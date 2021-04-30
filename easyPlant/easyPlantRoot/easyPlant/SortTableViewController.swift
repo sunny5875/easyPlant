@@ -33,43 +33,54 @@ class SortTableViewController: UITableViewController {
         //색션에 몇개의 셀이 있는가
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return plants.count%2==0 ? plants.count/2 : plants.count/2+1
     }
 
     
     //인덱스 패스에 어떤 셀로 화면 상에 출력 되는지
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //화면 스크롤 시키면 사라진걸 재사용하기 위해 설정
-        //재생 가능한 셀을 가져옴
-        //뭘가져와야될지 identifier로 알려줌
-        //여기에 설정한 이름 그대로 story 보드에서 원하는 셀을 클릭한 후 identifier 설정을 해줘야함
-        //이거 하면서 테이블 뷰 스타일 basic으로 변경해주기
+        
         let cell: CellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! CellTableViewCell
         
+        //셀에서 완쪽 항목 불러오기
         let itemLeft = plants[indexPath.row*2]
-        let itemRight = plants[indexPath.row*2+1]
-        print(itemLeft)
-        print(itemRight)
-        
+        //이미지만들어두기
         let leftImage : UIImage? = UIImage(named: itemLeft.name)
-        let rightImage: UIImage? = UIImage(named: itemRight.name)
-        
-        if let leftImage = leftImage , let rightImage = rightImage {
-            print("success image")
+        //위의 이미지로 이미지 버튼의 이미지 설정
+        if let leftImage = leftImage  {
             cell.leftImageButton?.setImage(leftImage, for: .normal)
-            cell.rightImageButton?.setImage(rightImage, for: .normal)
+           
         }
-        
+        //이미지버튼의 타이틀 설정
         cell.leftImageButton?.setTitle(itemLeft.name, for: .normal)
-        cell.rightImageButton?.setTitle(itemRight.name, for: .normal)
-
+        //이름버튼의 타이틀 설정
         cell.leftButton?.setTitle(itemLeft.name, for: .normal)
-        cell.rightButton?.setTitle(itemRight.name, for: .normal)
-        
+        //각 버튼을 눌렀을 시 호출할 함수 설정
         cell.leftButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
-        cell.rightButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         cell.leftImageButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
-        cell.rightImageButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
+        
+        
+        //셀에서 오른쪽 항목 불러오기. 대신 총 항목의 개수가 홀수였던 경우는 마지막 셀의 오른쪽 항목은 생략
+        if (indexPath.row*2+1) < plants.count{
+            let itemRight = plants[indexPath.row*2+1]
+            //이미지 설정
+            let rightImage: UIImage? = UIImage(named: itemRight.name)
+            
+            if let rightImage = rightImage{
+                cell.rightImageButton?.setImage(rightImage, for: .normal)
+            }
+            
+            //이미지 버튼의 타이틀 설정
+            cell.rightImageButton?.setTitle(itemRight.name, for: .normal)
+            //이름버튼의 타이틀 설정
+            cell.rightButton?.setTitle(itemRight.name, for: .normal)
+            
+            //각 버튼을 눌렀을 시 호출할 함수 설정
+            cell.rightButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
+            cell.rightImageButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
+
+        }
+            
  
  
         // Configure the cell...
