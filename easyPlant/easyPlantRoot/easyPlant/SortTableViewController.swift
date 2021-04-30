@@ -8,7 +8,8 @@
 import UIKit
 
 class SortTableViewController: UITableViewController {
-
+    @IBOutlet weak var plantSegmentControl: UISegmentedControl!
+    
     //일단 가장 먼저 스토리보드의 테이블 뷰 컨트롤러를 클릭한 후 class 칸에 TablViewController를 적어줘야 연결이 됨
     override func viewDidLoad() {
         super.viewDidLoad()
