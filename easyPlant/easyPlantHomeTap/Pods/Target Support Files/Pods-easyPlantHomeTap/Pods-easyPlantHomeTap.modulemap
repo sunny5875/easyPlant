@@ -1,0 +1,6 @@
+framework module Pods_easyPlantHomeTap {
+  umbrella header "Pods-easyPlantHomeTap-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -16,9 +16,11 @@
 		3E4E4FEF263BBC64001B8C74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4E4FED263BBC64001B8C74 /* LaunchScreen.storyboard */; };
 		3ED0054A263BC116001EAE98 /* UserPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED00549263BC116001EAE98 /* UserPlant.swift */; };
 		3ED0054E263BC9F5001EAE98 /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0054D263BC9F5001EAE98 /* UserPlantTableViewCell.swift */; };
+		4267E1668653102CB5A014D9 /* Pods_easyPlantHomeTap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B58F7107ADBFB6CACF1D28 /* Pods_easyPlantHomeTap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32601B5DD849C0C73275AA1F /* Pods-easyPlantHomeTap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantHomeTap.debug.xcconfig"; path = "Target Support Files/Pods-easyPlantHomeTap/Pods-easyPlantHomeTap.debug.xcconfig"; sourceTree = "<group>"; };
 		3E3698F9263BD9C70076AC42 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		3E4E4FDF263BBC61001B8C74 /* easyPlantHomeTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = easyPlantHomeTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4E4FE2263BBC61001B8C74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +32,8 @@
 		3E4E4FF0263BBC64001B8C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3ED00549263BC116001EAE98 /* UserPlant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlant.swift; sourceTree = "<group>"; };
 		3ED0054D263BC9F5001EAE98 /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
+		B4B58F7107ADBFB6CACF1D28 /* Pods_easyPlantHomeTap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlantHomeTap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7CE6E3927098D03AD93C78D /* Pods-easyPlantHomeTap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantHomeTap.release.xcconfig"; path = "Target Support Files/Pods-easyPlantHomeTap/Pods-easyPlantHomeTap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4267E1668653102CB5A014D9 /* Pods_easyPlantHomeTap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2ACF9034271B7CD197A0320F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4B58F7107ADBFB6CACF1D28 /* Pods_easyPlantHomeTap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		36C5744A151A622B69FD10E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				32601B5DD849C0C73275AA1F /* Pods-easyPlantHomeTap.debug.xcconfig */,
+				B7CE6E3927098D03AD93C78D /* Pods-easyPlantHomeTap.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3E4E4FD6263BBC61001B8C74 = {
 			isa = PBXGroup;
 			children = (
 				3E4E4FE1263BBC61001B8C74 /* easyPlantHomeTap */,
 				3E4E4FE0263BBC61001B8C74 /* Products */,
+				36C5744A151A622B69FD10E3 /* Pods */,
+				2ACF9034271B7CD197A0320F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,9 +108,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E4E4FF3263BBC64001B8C74 /* Build configuration list for PBXNativeTarget "easyPlantHomeTap" */;
 			buildPhases = (
+				ED1600836A2C9AD6A065EBAA /* [CP] Check Pods Manifest.lock */,
 				3E4E4FDB263BBC61001B8C74 /* Sources */,
 				3E4E4FDC263BBC61001B8C74 /* Frameworks */,
 				3E4E4FDD263BBC61001B8C74 /* Resources */,
+				548BCAC130A880B60EBF4800 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,6 +167,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		548BCAC130A880B60EBF4800 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-easyPlantHomeTap/Pods-easyPlantHomeTap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-easyPlantHomeTap/Pods-easyPlantHomeTap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-easyPlantHomeTap/Pods-easyPlantHomeTap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED1600836A2C9AD6A065EBAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-easyPlantHomeTap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E4E4FDB263BBC61001B8C74 /* Sources */ = {
@@ -295,6 +364,7 @@
 		};
 		3E4E4FF4263BBC64001B8C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32601B5DD849C0C73275AA1F /* Pods-easyPlantHomeTap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -313,6 +383,7 @@
 		};
 		3E4E4FF5263BBC64001B8C74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7CE6E3927098D03AD93C78D /* Pods-easyPlantHomeTap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
