@@ -70,17 +70,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    private func moveCurrentPage(moveUp: Bool) {
-    dateComponents.month = moveUp ? 1 : -1
-    self.currentPage = calendarCurrent.date(byAdding: dateComponents, to: self.currentPage ?? self.today)
-    self.calendar.setCurrentPage(self.currentPage!, animated: true)
-    }
-    @objc func tappedPrevBtn(_ sender: Any) {
-    self.moveCurrentPage(moveUp: false)
-    }
-    @objc func tappedNextBtn(_ sender: Any) {
-    self.moveCurrentPage(moveUp: true)
-    }
-
-    출처: https://ahyeonlog.tistory.com/7 [기록]
+//    private func moveCurrentPage(moveUp: Bool) {
+//    dateComponents.month = moveUp ? 1 : -1
+//    self.currentPage = calendarCurrent.date(byAdding: dateComponents, to: self.currentPage ?? self.today)
+//    self.calendar.setCurrentPage(self.currentPage!, animated: true)
+//    }
+//    @objc func tappedPrevBtn(_ sender: Any) {
+//    self.moveCurrentPage(moveUp: false)
+//    }
+//    @objc func tappedNextBtn(_ sender: Any) {
+//    self.moveCurrentPage(moveUp: true)
+//    }
+//
+//    출처: https://ahyeonlog.tistory.com/7 [기록]
 }
