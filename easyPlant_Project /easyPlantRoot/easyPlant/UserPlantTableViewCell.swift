@@ -20,7 +20,7 @@ class UserPlantTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func update(with plant: UserPlant) {
+    func update(with plant: userPlant) {
         
     }
 }

@@ -8,16 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rTJ-VN-GTY">
-                                <rect key="frame" x="21" y="448" width="374" height="400"/>
+                                <rect key="frame" x="20" y="248" width="374" height="400"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-TC-w4R">
                                         <rect key="frame" x="163" y="0.0" width="48.5" height="33.5"/>
@@ -42,26 +42,28 @@
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
-                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="auY-A7-Dad"/>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="mmk-D2-mYe"/>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="UXJ-un-aFy"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="vqG-cS-OiR"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="MJQ-Jc-6Gi"/>
+                                    <constraint firstAttribute="trailing" secondItem="owf-qX-XP8" secondAttribute="trailing" id="6Xa-2R-q8U"/>
+                                    <constraint firstItem="owf-qX-XP8" firstAttribute="leading" secondItem="rTJ-VN-GTY" secondAttribute="leading" id="FGM-K7-dfk"/>
+                                    <constraint firstAttribute="bottom" secondItem="owf-qX-XP8" secondAttribute="bottom" id="TKf-AQ-1jW"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rTJ-VN-GTY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="200" id="bmb-cx-TEl"/>
-                            <constraint firstItem="rTJ-VN-GTY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="gAN-XX-Fdg"/>
+                            <constraint firstItem="rTJ-VN-GTY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rWk-RD-PBs"/>
+                            <constraint firstItem="rTJ-VN-GTY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wSD-wh-YPz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XHv-IU-GIv"/>
                     <connections>
-                        <outlet property="plantListTableView" destination="owf-qX-XP8" id="eEI-9i-JrG"/>
+                        <outlet property="plantListTableView" destination="owf-qX-XP8" id="c3f-6F-poW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -10,20 +10,20 @@ import UIKit
 class NotificationViewController: UIViewController {
     
     @IBOutlet weak var colorLabel: UILabel!
-    var myPlant: UserPlant?
+    var myPlant: userPlant?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cycleLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "알림"
-        colorLabel.text = 
+        colorLabel.text = "빨강"
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if let myPlant = myPlant {
             titleLabel.text = "\(myPlant.name) 물주기"
-            cycleLabel.text = myPlant.cycle
+            cycleLabel.text = String(myPlant.waterPeriod)
         }
     }
     
