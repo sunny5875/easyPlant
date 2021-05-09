@@ -7,23 +7,27 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
 
     @IBOutlet weak var plantListTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
     
-}
-
-
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        //이거 초기값은0 인데 1로 변경해줘야함
+        print("section")
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("row")
         return userPlants.count
     }
     
@@ -34,7 +38,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = item.name
         cell.detailTextLabel?.text = item.location
         cell.imageView?.image = UIImage(named: item.plantImage)
-        
+        print(item.name)
+        print("Hello")
         return cell
     }
     

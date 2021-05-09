@@ -31,7 +31,6 @@
 		12EA1D63264795FF009A0A5E /* userPlantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D62264795FE009A0A5E /* userPlantCollectionViewCell.swift */; };
 		12EA1D6826479603009A0A5E /* userPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D6726479603009A0A5E /* userPlant.swift */; };
 		12EA1D6D26479608009A0A5E /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D6C26479608009A0A5E /* Diary.swift */; };
-		12EA1D8826479DC3009A0A5E /* PlantListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D8726479DC3009A0A5E /* PlantListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +81,6 @@
 		12EA1D62264795FE009A0A5E /* userPlantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userPlantCollectionViewCell.swift; sourceTree = "<group>"; };
 		12EA1D6726479603009A0A5E /* userPlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = userPlant.swift; path = ../../easyPlant_myPlant/easyPlant_myPlant/userPlant.swift; sourceTree = "<group>"; };
 		12EA1D6C26479608009A0A5E /* Diary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Diary.swift; path = ../../easyPlant_myPlant/easyPlant_myPlant/Diary.swift; sourceTree = "<group>"; };
-		12EA1D8726479DC3009A0A5E /* PlantListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +139,6 @@
 				12EA1D7426479699009A0A5E /* Home */,
 				12EA1D3B26479554009A0A5E /* HomeViewController.swift */,
 				12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */,
-				12EA1D8726479DC3009A0A5E /* PlantListTableViewController.swift */,
 				12EA1D362647954F009A0A5E /* NotificationViewController.swift */,
 				12EA1D76264796AE009A0A5E /* Myplant */,
 				12EA1D5D264795FA009A0A5E /* userPlantsCollectionViewController.swift */,
@@ -344,7 +341,6 @@
 				121663C6263BBD8200125C69 /* SearchTabViewController.swift in Sources */,
 				12EA1D3C26479554009A0A5E /* HomeViewController.swift in Sources */,
 				12EA1D5E264795FA009A0A5E /* userPlantsCollectionViewController.swift in Sources */,
-				12EA1D8826479DC3009A0A5E /* PlantListTableViewController.swift in Sources */,
 				12166393263BB8F700125C69 /* AppDelegate.swift in Sources */,
 				121663D3263BC2AF00125C69 /* CellTableViewCell.swift in Sources */,
 				12EA1D59264795F5009A0A5E /* myPlantViewController.swift in Sources */,
