@@ -10,12 +10,6 @@ import FSCalendar
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
 
-    fileprivate lazy var dateFormatter2: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
@@ -76,59 +70,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func setUpEvents() {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
-        let xmas = formatter.date(from: "2021-05-09")
-        let sampledate = formatter.date(from: "2021-05-11")
-        events = [xmas!, sampledate!]
+    private func moveCurrentPage(moveUp: Bool) {
+    dateComponents.month = moveUp ? 1 : -1
+    self.currentPage = calendarCurrent.date(byAdding: dateComponents, to: self.currentPage ?? self.today)
+    self.calendar.setCurrentPage(self.currentPage!, animated: true)
     }
-    
-}
+    @objc func tappedPrevBtn(_ sender: Any) {
+    self.moveCurrentPage(moveUp: false)
+    }
+    @objc func tappedNextBtn(_ sender: Any) {
+    self.moveCurrentPage(moveUp: true)
+    }
 
-    var datesWithEvent = ["2021-05-23","2020-12-16","2020-12-18","2020-12-14","2020-12-06"]
-    var datesWithMultipleEvents = ["2020-12-03","2020-12-13","2020-12-11","2020-10-03","2020-12-06"]
-    
-    
-    
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            print("did select date \(self.dateFormatter2.string(from: date))")
-            let selectedDates = calendar.selectedDates.map({self.dateFormatter2.string(from: $0)})
-            print("selected dates is \(selectedDates)")
-            if monthPosition == .next || monthPosition == .previous {
-                calendar.setCurrentPage(date, animated: true)
-            }
-        }
-        
-        
-        func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-            print("\(self.dateFormatter2.string(from: calendar.currentPage))")
-        }
-    
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-
-            let dateString = dateFormatter2.string(from: date)
-                    
-            if self.datesWithEvent.contains(dateString){
-                return 1
-            }
-            
-            if self.datesWithMultipleEvents.contains(dateString) {
-                return 2
-            }
-            
-            return 0
-        }
-        
-        
-        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-            
-            let key = self.dateFormatter2.string(from: date)
-            
-            if self.datesWithMultipleEvents.contains(key){
-                return [UIColor.blue]
-            }
-            return nil
-        }
+    출처: https://ahyeonlog.tistory.com/7 [기록]
 }
