@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -176,7 +176,7 @@
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="plantCell" rowHeight="250" id="V2F-no-dcX" customClass="CellTableViewCell" customModule="easyPlant" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="60" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="56.5" width="414" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V2F-no-dcX" id="kay-kN-ibc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
@@ -248,20 +248,25 @@
             </objects>
             <point key="canvasLocation" x="2805.7971014492755" y="55.580357142857139"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tabbar View Controller-->
         <scene sceneID="KwC-eu-7m9">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="uPJ-oT-hy5" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="uPJ-oT-hy5" customClass="tabbarViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQ6-TS-0ty">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="hUS-pR-mcC" kind="relationship" relationship="viewControllers" id="I6I-xo-OXQ"/>
-                        <segue destination="jt7-hR-KLj" kind="relationship" relationship="viewControllers" id="Opn-ed-W6M"/>
-                        <segue destination="nnI-Ad-zcN" kind="relationship" relationship="viewControllers" id="sRv-jb-khf"/>
+                        <segue destination="VqI-YM-fRL" kind="relationship" relationship="viewControllers" id="CSA-ad-bVn"/>
+                        <segue destination="q6A-FK-i1I" kind="relationship" relationship="viewControllers" id="LIA-d2-mLj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S80-MR-9qL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -287,65 +292,27 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="65.625"/>
         </scene>
-        <!--홈-->
-        <scene sceneID="O1h-nO-9Az">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jt7-hR-KLj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="3Q6-Ra-buZ"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Cck-Ix-WV4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="har-f3-WLk">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="VqI-YM-fRL" kind="relationship" relationship="rootViewController" id="Ni6-9r-4Bv"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DuQ-ek-CLH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1048" y="822"/>
-        </scene>
         <!--Home-->
         <scene sceneID="LF5-LD-X3D">
             <objects>
                 <viewControllerPlaceholder storyboardName="Home" id="VqI-YM-fRL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="sI1-99-Zks"/>
                     <navigationItem key="navigationItem" id="3MT-Bn-HnF"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOG-I9-zUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="822"/>
-        </scene>
-        <!--나의 식물-->
-        <scene sceneID="V9r-A5-9QN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nnI-Ad-zcN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="나의 식물" image="leaf.fill" catalog="system" id="Kqy-4E-JKr"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="2bR-NU-Kot"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tqG-Qk-KcJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="q6A-FK-i1I" kind="relationship" relationship="rootViewController" id="twG-56-eYr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mS0-xB-9zX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1097" y="1633"/>
+            <point key="canvasLocation" x="1101" y="824"/>
         </scene>
         <!--Myplant-->
         <scene sceneID="P1R-Jd-pin">
             <objects>
                 <viewControllerPlaceholder storyboardName="Myplant" id="q6A-FK-i1I" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="LeG-Qt-2Zh"/>
                     <navigationItem key="navigationItem" id="TQZ-m0-6F3"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lp0-BX-L4L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2108" y="1632"/>
+            <point key="canvasLocation" x="805" y="1500"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -353,8 +320,6 @@
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
-        <image name="house" catalog="system" width="128" height="106"/>
-        <image name="leaf.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
