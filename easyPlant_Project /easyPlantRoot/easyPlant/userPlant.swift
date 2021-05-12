@@ -25,6 +25,6 @@ struct userPlant{
 }
 
 
-var userPlants : [userPlant] = [userPlant(name: "초록콩", location: "책상 위", registedDate: "2010-10-30",        waterPeriod: 28, wateringDay: "2020.4.30", plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: (0,255,0), happeniess: 85.5, alarmTime: 10.0,plantImage: "plant1"),
-                                userPlant(name: "초록콩1", location: "책상 위", registedDate: "2010-10-30", waterPeriod: 28, wateringDay: "2020.4.30", plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: (0,255,0), happeniess: 85.5, alarmTime: 10.0,plantImage: "plant1"),
-                                userPlant(name: "초록콩2", location: "책상 위", registedDate: "2010-10-30", waterPeriod: 28, wateringDay: "2020.4.30", plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: (0,255,0), happeniess: 85.5, alarmTime: 10.0,plantImage: "plant1")]
+var userPlants : [userPlant] = [userPlant(name: "초록콩", location: "책상 위", registedDate: "2010-10-30",        waterPeriod: 28, wateringDay: "2020.5.12", plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: (0,255,0), happeniess: 85.5, alarmTime: 10.0,plantImage: "plant1"),
+                                userPlant(name: "쁘띠", location: "창가", registedDate: "2010-10-30", waterPeriod: 7, wateringDay: "2020.4.30", plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: (0,255,0), happeniess: 85.5, alarmTime: 10.0,plantImage: "산세베리아"),
+                                userPlant(name: "요니", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: "2020.5.3", plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: (0,255,0), happeniess: 85.5, alarmTime: 10.0, plantImage: "스킨답서스")]
