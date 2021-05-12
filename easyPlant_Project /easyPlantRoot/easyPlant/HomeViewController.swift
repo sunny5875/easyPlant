@@ -8,12 +8,12 @@
 import UIKit
 import FSCalendar
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
-    var events: [Date] = []
+    var dates: [Date] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         calendar.appearance.selectionColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
+        
+        setUpEvents()
       
     }
 
@@ -45,22 +47,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         //이거 초기값은0 인데 1로 변경해줘야함
-        print("section")
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(90)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("row")
         return userPlants.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! UserPlantTableViewCell
         
         let item = userPlants[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = item.location
-        cell.imageView?.image = UIImage(named: item.plantImage)
+        cell.name.text = item.name
+        cell.period.text = "\(item.waterPeriod) 일"
+        cell.lastWater.text = item.wateringDay
+        cell.plantImage.image = UIImage(named: item.plantImage)
+        cell.plantImage.layer.cornerRadius = cell.plantImage.frame.size.width / 2
+
+
         return cell
     }
     
@@ -70,17 +78,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-//    private func moveCurrentPage(moveUp: Bool) {
-//    dateComponents.month = moveUp ? 1 : -1
-//    self.currentPage = calendarCurrent.date(byAdding: dateComponents, to: self.currentPage ?? self.today)
-//    self.calendar.setCurrentPage(self.currentPage!, animated: true)
-//    }
-//    @objc func tappedPrevBtn(_ sender: Any) {
-//    self.moveCurrentPage(moveUp: false)
-//    }
-//    @objc func tappedNextBtn(_ sender: Any) {
-//    self.moveCurrentPage(moveUp: true)
-//    }
-//
-//    출처: https://ahyeonlog.tistory.com/7 [기록]
+    func setUpEvents() {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd"
+        let xmas = formatter.date(from: "2021-05-21")
+        let sampledate = formatter.date(from: "2021-05-20")
+        dates = [xmas!, sampledate!]
+        print(dates)
+    }
+}
+
+extension HomeViewController: FSCalendarDataSource {
+//이벤트 표시 개수
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        print("Hello")
+        if self.dates.contains(date) {
+            return 1
+        } else {
+            return 0
+        }
+    }
 }
