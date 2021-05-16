@@ -145,7 +145,6 @@
 			children = (
 				12166391263BB8F700125C69 /* easyPlant */,
 				121663A8263BB8F800125C69 /* easyPlantTests */,
-				121663B3263BB8F800125C69 /* easyPlantUITests */,
 				12166390263BB8F700125C69 /* Products */,
 				0E31A008ED3A777BDB0AB3B1 /* Pods */,
 				552CB5891E536838BF9C75AD /* Frameworks */,
@@ -193,6 +192,7 @@
 				D6AEE1BA2647B27400E85162 /* Myplant.storyboard */,
 				D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */,
 				121663A0263BB8F800125C69 /* Info.plist */,
+				121663B3263BB8F800125C69 /* easyPlantUITests */,
 			);
 			path = easyPlant;
 			sourceTree = "<group>";
