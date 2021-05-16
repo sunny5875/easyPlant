@@ -63,6 +63,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let item = userPlants[indexPath.row]
         cell.name.text = item.name
+        cell.location.text = item.location
         cell.period.text = "\(item.waterPeriod) 일"
         cell.lastWater.text = item.wateringDay
         cell.plantImage.image = UIImage(named: item.plantImage)
