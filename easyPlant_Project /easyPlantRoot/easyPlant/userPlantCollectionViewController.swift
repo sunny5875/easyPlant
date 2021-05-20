@@ -9,12 +9,15 @@ import UIKit
 
 private let reuseIdentifier = "userPlantCell"
 
-class userPlantsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
+class userPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
 
+    @IBOutlet weak var userPlantCollectionView: UICollectionView!
     
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        userPlantCollectionView.reloadData()
         
        
         // Uncomment the following line to preserve selection between presentations
@@ -38,34 +41,32 @@ class userPlantsCollectionViewController: UICollectionViewController, UICollecti
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return userPlants.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-   
-   
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! userPlantCollectionViewCell
-        // Configure the cell
-        
-
-        
-        let userplant = userPlants[indexPath.row]
     
-        cell.update(info: userplant)
-        
-        
-        return cell
-    }
+    
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+       // #warning Incomplete implementation, return the number of sections
+       return 1
+   }
+
+
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       // #warning Incomplete implementation, return the number of items
+    return userPlants.count
+   }
+
+   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! userPlantCollectionViewCell
+
+  
+  
+        let userplant = userPlants[indexPath.row]
+        cell.update(info: userplant)
+   
+       
+       return cell
+   }
+    
     // MARK: UICollectionViewDelegate
 
     /*
@@ -109,16 +110,11 @@ class userPlantsCollectionViewController: UICollectionViewController, UICollecti
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-  
-        
-        if segue.identifier == "detailSegue" {
-          if let cell = sender as? UICollectionViewCell, let indexPath = self.collectionView.indexPath(for: cell){
-            let controller = segue.destination as! myPlantViewController
-            controller.myPlant = userPlants[indexPath.item]
-          }
+        if let detailVC = segue.destination as? myPlantViewController,let cell = sender as? UICollectionViewCell,
+           let indexPath =  userPlantCollectionView.indexPath(for: cell) {
+            detailVC.myPlant = userPlants[indexPath.item]
         }
-    
-    
+
 
     }
     
