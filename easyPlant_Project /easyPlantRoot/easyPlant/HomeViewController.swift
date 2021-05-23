@@ -85,6 +85,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         cell.plantCellView.backgroundColor = UIColor(cgColor: CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1))
         cell.plantCellView.layer.cornerRadius = cell.plantCellView.frame.height / 3
+        if item.waterPeriod == 14 {
+            cell.wateringButton.isHidden = false
+        } else {
+            cell.wateringButton.isHidden = true
+        }
         
         return cell
     }
