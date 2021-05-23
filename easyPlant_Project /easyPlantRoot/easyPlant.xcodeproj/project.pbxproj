@@ -25,6 +25,7 @@
 		12EA1D4F264795D5009A0A5E /* myDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* myDiaryViewController.swift */; };
 		12EA1D63264795FF009A0A5E /* userPlantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D62264795FE009A0A5E /* userPlantCollectionViewCell.swift */; };
 		12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */; };
+		3EB65430265A04BB00620193 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB6542F265A04BB00620193 /* Home.storyboard */; };
 		47D8D3177E205A8A242DE88D /* Pods_easyPlant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */; };
 		A0E89ECC6A3B8C88A65010D2 /* Pods_easyPlant_easyPlantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */; };
 		D6AEE1B12647B1EB00E85162 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B02647B1EB00E85162 /* Diary.swift */; };
@@ -82,6 +83,7 @@
 		12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		369230177CD436241BC4D097 /* Pods-easyPlantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantTests.debug.xcconfig"; path = "Target Support Files/Pods-easyPlantTests/Pods-easyPlantTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3EB6542F265A04BB00620193 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		53B379B6017A5E33457B4CF9 /* Pods-easyPlant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant.release.xcconfig"; path = "Target Support Files/Pods-easyPlant/Pods-easyPlant.release.xcconfig"; sourceTree = "<group>"; };
 		5D9888BD1B6573F596E98CCF /* Pods_easyPlantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant_easyPlantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 		D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePlantSettingTableViewController.swift; sourceTree = "<group>"; };
 		D6D572D52659F9D00090182B /* MyPlant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPlant.storyboard; sourceTree = "<group>"; };
 		D6D572D8265A04FD0090182B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = "../../../../Desktop/easyPlant/easyPlant_Project /easyPlantRoot/easyPlant/Home.storyboard"; sourceTree = "<group>"; };
+		D6D572D52659F9D00090182B /* Myplant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Myplant.storyboard; sourceTree = "<group>"; };
 		EC0A5FE624978012AC1606AF /* Pods-easyPlant-easyPlantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant-easyPlantUITests.debug.xcconfig"; path = "Target Support Files/Pods-easyPlant-easyPlantUITests/Pods-easyPlant-easyPlantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA38A6520A100BAA92880458 /* Pods-easyPlantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantTests.release.xcconfig"; path = "Target Support Files/Pods-easyPlantTests/Pods-easyPlantTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,7 +194,8 @@
 				12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */,
 				1216639B263BB8F800125C69 /* Assets.xcassets */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
-				D6D572D52659F9D00090182B /* MyPlant.storyboard */,
+				D6D572D52659F9D00090182B /* Myplant.storyboard */,
+				3EB6542F265A04BB00620193 /* Home.storyboard */,
 				12166398263BB8F700125C69 /* Main.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
 				121663B3263BB8F800125C69 /* easyPlantUITests */,
@@ -360,6 +364,7 @@
 				1216639C263BB8F800125C69 /* Assets.xcassets in Resources */,
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,
 				D6D572D9265A04FD0090182B /* Home.storyboard in Resources */,
+				3EB65430265A04BB00620193 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
