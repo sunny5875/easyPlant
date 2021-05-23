@@ -69,7 +69,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userPlants.count
     }
-    
+   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! UserPlantTableViewCell
         
@@ -85,11 +85,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         cell.plantCellView.backgroundColor = UIColor(cgColor: CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1))
         cell.plantCellView.layer.cornerRadius = cell.plantCellView.frame.height / 3
-        if item.waterPeriod == 14 {
-            cell.wateringButton.isHidden = false
-        } else {
-            cell.wateringButton.isHidden = true
-        }
+        cell.accessoryView?.largeContentImage = UIImage(named: "산세베리아")
         
         return cell
     }
