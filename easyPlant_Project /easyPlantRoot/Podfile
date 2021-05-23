@@ -7,8 +7,9 @@ target 'easyPlant' do
 
   # Pods for easyPlant
 
-  pod 'FSCalendar'  
-  
+  pod 'FSCalendar'
+  pod 'Charts'
+
   target 'easyPlantTests' do
     inherit! :search_paths
     # Pods for testing
