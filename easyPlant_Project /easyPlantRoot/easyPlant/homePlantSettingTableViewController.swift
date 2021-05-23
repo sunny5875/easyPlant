@@ -8,13 +8,7 @@
 import UIKit
 
 class homePlantSettingTableViewController: UITableViewController {
-
-   
-    @IBOutlet weak var redSlider: UISlider!
-    
-    @IBOutlet weak var greenSlider: UISlider!
-    @IBOutlet weak var blueSlider: UISlider!
-    
+/*
     @IBOutlet weak var calendarColorImageView: UIImageView!
     
     @IBOutlet weak var alramDateLabel: UILabel!
@@ -26,31 +20,6 @@ class homePlantSettingTableViewController: UITableViewController {
     
    
     @IBOutlet weak var smallImageVIew: UIImageView!
-    
-    @IBAction func sliderChanged(_ sender: Any) {
-        updateColor()
-    }
-    
-    func updateColor(){
-        var red: CGFloat=0
-        var green: CGFloat=0
-        var blue: CGFloat=0
-        
-       
-        red=CGFloat(redSlider.value)
-       
-        green=CGFloat(greenSlider.value)
-        
-        blue=CGFloat(blueSlider.value)
-        
-        let color = UIColor(red: red, green: green, blue: blue, alpha: 1)//1은 불투명도
-        
-        calendarColorImageView.backgroundColor = color
-        smallImageVIew.backgroundColor = color
-       
-        
-        
-    }
     
     
     let calendarColorChangeCellIndexPath = IndexPath(row: 0, section: 0)
@@ -82,8 +51,11 @@ class homePlantSettingTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
     }
-
+    
+    
   
     @IBAction func pickerValueChanged(_ sender: Any) {
         updateViews()
@@ -194,5 +166,5 @@ class homePlantSettingTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+*/
 }
