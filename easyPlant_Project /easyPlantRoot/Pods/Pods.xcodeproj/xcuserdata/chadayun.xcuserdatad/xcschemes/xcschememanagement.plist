@@ -7,7 +7,7 @@
 		<key>Charts.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>FSCalendar.xcscheme_^#shared#^_</key>
 		<dict>
@@ -17,11 +17,7 @@
 		<key>Pods-easyPlant-easyPlantUITests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>4</integer>
-=======
-			<integer>0</integer>
->>>>>>> dayun
 		</dict>
 		<key>Pods-easyPlant.xcscheme_^#shared#^_</key>
 		<dict>
@@ -31,11 +27,7 @@
 		<key>Pods-easyPlantTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>5</integer>
-=======
-			<integer>3</integer>
->>>>>>> dayun
+			<integer>1</integer>
 		</dict>
 	</dict>
 </dict>
