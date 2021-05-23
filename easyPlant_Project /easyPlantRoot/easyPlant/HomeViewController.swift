@@ -85,9 +85,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         cell.plantCellView.backgroundColor = UIColor(cgColor: CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1))
         cell.plantCellView.layer.cornerRadius = cell.plantCellView.frame.height / 3
-        cell.accessoryView?.largeContentImage = UIImage(named: "산세베리아")
+        
+        let wateringButton = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        wateringButton.contentMode = .scaleAspectFit
+        wateringButton.imageView?.image = UIImage(named: "산세베리아")
+        //wateringButton.addTarget(self, action: #selector(watering), for: .touchUpInside)
+        
+        cell.accessoryView = wateringButton
         
         return cell
+    }
+    /*
+    @objc
+    func watering() {
+        print("Button was tapped.")
+    }
+ */
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print("hello \(indexPath.row)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

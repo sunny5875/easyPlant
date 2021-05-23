@@ -36,7 +36,6 @@
 		D6AEE1B72647B20D00E85162 /* myPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B62647B20D00E85162 /* myPlantViewController.swift */; };
 		D6AEE1B92647B21D00E85162 /* userPlantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B82647B21D00E85162 /* userPlantCollectionViewController.swift */; };
 		D6AEE1BF2647C1DB00E85162 /* tabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */; };
-		D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */; };
 		E86CEA649CC9CDCC3A75F55D /* Pods_easyPlantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9888BD1B6573F596E98CCF /* Pods_easyPlantTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,7 +178,6 @@
 				12EA1D3B26479554009A0A5E /* HomeViewController.swift */,
 				12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */,
 				12EA1D362647954F009A0A5E /* NotificationViewController.swift */,
-				D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */,
 				12EA1D76264796AE009A0A5E /* Myplant */,
 				12EA1D4E264795D5009A0A5E /* myDiaryViewController.swift */,
 				D6AEE1B62647B20D00E85162 /* myPlantViewController.swift */,
@@ -514,6 +512,7 @@
 				D6AEE1B92647B21D00E85162 /* userPlantCollectionViewController.swift in Sources */,
 				12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */,
 				D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */,
+				D6AEE1B92647B21D00E85162 /* userPlantsCollectionViewController.swift in Sources */,
 				12166395263BB8F700125C69 /* SceneDelegate.swift in Sources */,
 				121663DE263BC40400125C69 /* SortTableViewController.swift in Sources */,
 			);
