@@ -19,6 +19,8 @@
 		121663D3263BC2AF00125C69 /* CellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663D2263BC2AF00125C69 /* CellTableViewCell.swift */; };
 		121663DE263BC40400125C69 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663DD263BC40400125C69 /* SortTableViewController.swift */; };
 		121663E3263BC5AE00125C69 /* plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663E2263BC5AE00125C69 /* plant.swift */; };
+		1218F174265A0E19000D99F4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1218F173265A0E19000D99F4 /* Home.storyboard */; };
+		1218F179265A0E2E000D99F4 /* MyPlant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1218F178265A0E2E000D99F4 /* MyPlant.storyboard */; };
 		12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */; };
 		12EA1D372647954F009A0A5E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D362647954F009A0A5E /* NotificationViewController.swift */; };
 		12EA1D3C26479554009A0A5E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D3B26479554009A0A5E /* HomeViewController.swift */; };
@@ -75,6 +77,8 @@
 		121663D2263BC2AF00125C69 /* CellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTableViewCell.swift; sourceTree = "<group>"; };
 		121663DD263BC40400125C69 /* SortTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		121663E2263BC5AE00125C69 /* plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plant.swift; sourceTree = "<group>"; };
+		1218F173265A0E19000D99F4 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		1218F178265A0E2E000D99F4 /* MyPlant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPlant.storyboard; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
 		12EA1D362647954F009A0A5E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		12EA1D3B26479554009A0A5E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -193,9 +197,11 @@
 				D6D572D8265A04FD0090182B /* Home.storyboard */,
 				12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */,
 				1216639B263BB8F800125C69 /* Assets.xcassets */,
+				1218F178265A0E2E000D99F4 /* MyPlant.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
 				D6D572D52659F9D00090182B /* Myplant.storyboard */,
 				3EB6542F265A04BB00620193 /* Home.storyboard */,
+				1218F173265A0E19000D99F4 /* Home.storyboard */,
 				12166398263BB8F700125C69 /* Main.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
 				121663B3263BB8F800125C69 /* easyPlantUITests */,
@@ -360,11 +366,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1218F179265A0E2E000D99F4 /* MyPlant.storyboard in Resources */,
 				1216639F263BB8F800125C69 /* LaunchScreen.storyboard in Resources */,
 				1216639C263BB8F800125C69 /* Assets.xcassets in Resources */,
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,
 				D6D572D9265A04FD0090182B /* Home.storyboard in Resources */,
 				3EB65430265A04BB00620193 /* Home.storyboard in Resources */,
+				1218F174265A0E19000D99F4 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

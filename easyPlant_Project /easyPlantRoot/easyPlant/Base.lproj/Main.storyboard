@@ -480,10 +480,10 @@
             </objects>
             <point key="canvasLocation" x="490" y="611"/>
         </scene>
-        <!--Myplant-->
+        <!--MyPlant-->
         <scene sceneID="P1R-Jd-pin">
             <objects>
-                <viewControllerPlaceholder storyboardName="Myplant" id="q6A-FK-i1I" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MyPlant" id="q6A-FK-i1I" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="LeG-Qt-2Zh"/>
                     <navigationItem key="navigationItem" id="TQZ-m0-6F3"/>
                 </viewControllerPlaceholder>
