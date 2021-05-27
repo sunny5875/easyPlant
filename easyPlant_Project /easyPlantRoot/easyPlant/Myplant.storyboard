@@ -729,7 +729,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="leaf" catalog="system" width="128" height="109"/>
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
-        <image name="plant1" width="225" height="225"/>
+        <image name="plant1" width="886" height="886"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

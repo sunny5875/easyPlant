@@ -9,6 +9,8 @@ target 'easyPlant' do
 
   pod 'FSCalendar'
   pod 'Charts'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Core'
 
   target 'easyPlantTests' do
     inherit! :search_paths
