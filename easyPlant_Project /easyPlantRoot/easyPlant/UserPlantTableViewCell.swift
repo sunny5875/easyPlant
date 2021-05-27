@@ -9,7 +9,6 @@ import UIKit
 
 class UserPlantTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var plantCellView: UIView!
     @IBOutlet weak var lastWater: UILabel!
     @IBOutlet weak var period: UILabel!
     @IBOutlet weak var location: UILabel!
@@ -21,22 +20,21 @@ class UserPlantTableViewCell: UITableViewCell {
     }
     
     func update(with plant: userPlant) {
-        
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
       if highlighted {
-        self.plantCellView.backgroundColor = UIColor.lightGray
+        self.contentView.backgroundColor = UIColor.white
       } else {
-        self.plantCellView.backgroundColor = UIColor(cgColor: CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1))
+        self.contentView.backgroundColor = UIColor.white
       }
     }
      
     override func setSelected(_ selected: Bool, animated: Bool) {
       if selected {
-        self.plantCellView.backgroundColor = UIColor(cgColor: CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1))
+        self.contentView.backgroundColor = UIColor.white
       } else {
-        self.plantCellView.backgroundColor = UIColor(cgColor: CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1))
+        self.contentView.backgroundColor = UIColor.white
       }
     }
  
