@@ -5,49 +5,37 @@
 	<key>SchemeUserState</key>
 	<dict>
 		<key>Charts.xcscheme_^#shared#^_</key>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>FSCalendar.xcscheme_^#shared#^_</key>
-=======
->>>>>>> dayun
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>FSCalendar.xcscheme_^#shared#^_</key>
->>>>>>> yujin
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>FSCalendar.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>FSCalendar.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-easyPlant-easyPlantUITests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 <<<<<<< HEAD
-			<integer>5</integer>
+			<integer>3</integer>
 =======
-			<integer>4</integer>
->>>>>>> yujin
+			<integer>1</integer>
+>>>>>>> dayun
 		</dict>
 		<key>Pods-easyPlant.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-easyPlantTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>0</integer>
+=======
+			<integer>2</integer>
+>>>>>>> dayun
 		</dict>
 	</dict>
 </dict>
