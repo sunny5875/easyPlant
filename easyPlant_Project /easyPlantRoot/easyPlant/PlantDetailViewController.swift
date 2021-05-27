@@ -11,6 +11,7 @@ class PlantDetailViewController: UIViewController {
 
     @IBOutlet var subTitleLabels: [UILabel]!
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet var subContentText: [UITextView]!
     var detailPlantName: String?
     var detailPlantType: String?
@@ -22,7 +23,7 @@ class PlantDetailViewController: UIViewController {
         if let nameData = detailPlantName, let typeData = detailPlantType{
             
             plantDetailImage.image = UIImage(named: nameData)
-            plantDetailImage.layer.cornerRadius = plantDetailImage.layer.frame.width/2
+            plantDetailImage.layer.cornerRadius = 0
             plantDetailImage.layer.borderColor = UIColor.lightGray.cgColor
             plantDetailImage.layer.borderWidth = 0.5
 
@@ -42,9 +43,14 @@ class PlantDetailViewController: UIViewController {
             }
             
      
-            
+            contentView.layer.cornerRadius = 30
+           // contentView.layer.borderColor = UIColor.lightGray.cgColor
+            //contentView.layer.borderWidth = 1
+            contentView.layer.zPosition = 2
+            plantDetailImage.layer.zPosition = 1
             contentLoad(plantType.plantAll[index1][index2])
         }
+      
         // Do any additional setup after loading the view.
     }
   
@@ -62,7 +68,8 @@ class PlantDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        self.navigationItem.largeTitleDisplayMode =  .never
+
         
         
     }
