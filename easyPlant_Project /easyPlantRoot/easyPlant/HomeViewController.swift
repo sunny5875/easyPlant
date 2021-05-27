@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
-    var dates: [Date] = []
+    var dates = ["2021-05-23", "2021-05-24"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +21,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         calendar.headerHeight = 50
 
         self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        self.plantListTableView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
         calendar.appearance.headerTitleColor = .black
-        calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
+        //calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
         calendar.locale = Locale(identifier: "ko_KR")
         for i in 0...6 {
             calendar.calendarWeekdayView.weekdayLabels[i].font = UIFont(name:"나눔명조", size: 60.0)
@@ -38,24 +39,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         calendar.calendarWeekdayView.weekdayLabels[6].text = "토"
         
         
+        
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
+        calendar.layer.cornerRadius = calendar.frame.height / 8
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
         
-        setUpEvents()
+        let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
+        headerView.text = "식물 목록"
+        headerView.textColor = UIColor.white
+        headerView.textAlignment = .center
+        headerView.contentMode = .scaleAspectFit
         
-        plantListTableView.separatorStyle = .none
+        headerView.font = UIFont.boldSystemFont(ofSize: CGFloat(20))
+
+        plantListTableView.tableHeaderView = headerView
         
-        
-      
+        plantListTableView.reloadData()
     }
     /*
     func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
         return shouldShowEventDot
     }
  */
-
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -81,30 +88,47 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lastWater.text = item.wateringDay
         cell.plantImage.image = UIImage(named: item.plantImage)
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
-        cell.plantImage.layer.borderWidth = 1
-        cell.plantImage.layer.borderColor = CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
 
-        cell.plantCellView.backgroundColor = UIColor(cgColor: CGColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1))
-        cell.plantCellView.layer.cornerRadius = cell.plantCellView.frame.height / 3
+        cell.backgroundColor = UIColor.white
+        cell.layer.cornerRadius = cell.frame.height / 4
         
-        let wateringButton = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        // reloadData 하면 다시 새 물뿌리개 이미지 생성함.
+        // reload 하는 경우엔 이 부분 실행하지 않도록
+        //if (item.watered == false)
+        let wateringButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         wateringButton.contentMode = .scaleAspectFit
-        wateringButton.imageView?.image = UIImage(named: "산세베리아")
-        //wateringButton.addTarget(self, action: #selector(watering), for: .touchUpInside)
+        wateringButton.image = UIImage(named: "watering")
+        wateringButton.tag = indexPath.row
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(watering(sender: )))
+        wateringButton.addGestureRecognizer(tapGesture)
+        wateringButton.isUserInteractionEnabled = true
         
         cell.accessoryView = wateringButton
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let current_date_string = formatter.string(from: Date())
+        if current_date_string != item.wateringDay {
+            cell.accessoryView?.isHidden = true
+        }
+        
         return cell
     }
-    /*
-    @objc
-    func watering() {
-        print("Button was tapped.")
-    }
- */
     
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        print("hello \(indexPath.row)")
+    @objc func watering(sender: UITapGestureRecognizer){
+        //sender.image = UIImage(named: "watering_fill")
+        let wateringButton = sender.view as! UIImageView
+        
+        wateringButton.image = UIImage(named: "watering_fill")
+        
+        // TODO need to save
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let current_date_string = formatter.string(from: Date())
+        userPlants[wateringButton.tag].wateringDay = current_date_string
+        
+        plantListTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -112,27 +136,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             detailVC.myPlant = userPlants[indexPath.row]
         }
     }
-    
-    func setUpEvents() {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy-MM-dd"
-        let xmas = formatter.date(from: "2021-05-21")
-        let sampledate = formatter.date(from: "2021-05-20")
-        dates = [xmas!, sampledate!]
-        print(dates)
-    }
 }
-/*
-extension HomeViewController: FSCalendarDataSource {
-//이벤트 표시 개수
+
+extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
+    //이벤트 표시 개수
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        print("Hello")
-        if self.dates.contains(date) {
-            return 1
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let calendarDate = formatter.string(from: date)
+        if self.dates.contains(calendarDate) {
+            return 5
         } else {
             return 0
         }
     }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let calendarDate = formatter.string(from: date)
+        
+        if self.dates.contains(calendarDate) {
+            return [UIColor.green]
+        }
+        return [UIColor.white]
+    }
 }
-*/
