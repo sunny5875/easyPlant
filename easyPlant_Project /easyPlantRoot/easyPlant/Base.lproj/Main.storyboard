@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="iUR-zW-ciJ">
-                                        <rect key="frame" x="0.0" y="8" width="414" height="801"/>
+                                        <rect key="frame" x="0.0" y="8" width="414" height="690"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     취향별로 식물을 찾아봐요" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqv-eu-9vd">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
@@ -58,7 +58,7 @@
                                                 <rect key="frame" x="20.5" y="261" width="373" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="귀차니즘">
+                                                <state key="normal" title="다육식물">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -98,28 +98,15 @@
                                                     <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ksY-La-GGi"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpP-fg-nAT">
-                                                <rect key="frame" x="20.5" y="705" width="373" height="96"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="다육식물">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m4N-H1-LXz"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="l6U-D1-vM7" firstAttribute="width" secondItem="u15-hj-KXq" secondAttribute="width" id="02H-hG-zhv"/>
                                             <constraint firstAttribute="trailing" secondItem="Bqv-eu-9vd" secondAttribute="trailing" id="6Wg-5D-hqd"/>
                                             <constraint firstItem="aJC-Yd-usB" firstAttribute="width" secondItem="uuk-Sl-pYT" secondAttribute="width" id="8MU-7a-4hm"/>
                                             <constraint firstItem="Bqv-eu-9vd" firstAttribute="top" secondItem="iUR-zW-ciJ" secondAttribute="top" id="CtZ-9s-Hn2"/>
-                                            <constraint firstItem="cpP-fg-nAT" firstAttribute="height" secondItem="uuk-Sl-pYT" secondAttribute="height" id="Fp2-vc-F2W"/>
                                             <constraint firstItem="uuk-Sl-pYT" firstAttribute="width" secondItem="l6U-D1-vM7" secondAttribute="width" id="Ku5-P6-11H"/>
                                             <constraint firstItem="pf1-Kh-nJI" firstAttribute="width" secondItem="uuk-Sl-pYT" secondAttribute="width" id="OyB-Gj-5ar"/>
                                             <constraint firstItem="aJC-Yd-usB" firstAttribute="height" secondItem="uuk-Sl-pYT" secondAttribute="height" id="QFq-dL-MGK"/>
-                                            <constraint firstItem="cpP-fg-nAT" firstAttribute="width" secondItem="uuk-Sl-pYT" secondAttribute="width" id="TnA-7t-NOp"/>
                                             <constraint firstItem="yfE-2Z-YPV" firstAttribute="height" secondItem="uuk-Sl-pYT" secondAttribute="height" id="X2e-B0-RCW"/>
                                             <constraint firstItem="l6U-D1-vM7" firstAttribute="height" secondItem="u15-hj-KXq" secondAttribute="height" id="XYi-EY-hSQ"/>
                                             <constraint firstItem="uuk-Sl-pYT" firstAttribute="height" secondItem="l6U-D1-vM7" secondAttribute="height" id="fAa-1O-bXg"/>
@@ -152,7 +139,6 @@
                     <navigationItem key="navigationItem" title="검색" largeTitleDisplayMode="always" id="j4P-kW-cxq"/>
                     <connections>
                         <outletCollection property="menuButtons" destination="uuk-Sl-pYT" collectionClass="NSMutableArray" id="fiN-nj-anu"/>
-                        <outletCollection property="menuButtons" destination="cpP-fg-nAT" collectionClass="NSMutableArray" id="IUH-nd-wOo"/>
                         <outletCollection property="menuButtons" destination="yfE-2Z-YPV" collectionClass="NSMutableArray" id="J8m-fe-yIn"/>
                         <outletCollection property="menuButtons" destination="aJC-Yd-usB" collectionClass="NSMutableArray" id="hC2-D8-Tne"/>
                         <outletCollection property="menuButtons" destination="u15-hj-KXq" collectionClass="NSMutableArray" id="bi4-TJ-jvm"/>
@@ -173,7 +159,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa4-o7-hgY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa4-o7-hgY">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEf-3D-tyG">
@@ -360,29 +346,27 @@
         <scene sceneID="7Y5-bT-tF1">
             <objects>
                 <tableViewController id="ma7-xl-PRu" customClass="SortTableViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="-1" id="JgM-35-uvO">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="-1" id="JgM-35-uvO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
                         <prototypes>
-
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="plantCell" id="V2F-no-dcX" customClass="CellTableViewCell" customModule="easyPlant" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="236"/>
-
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plantCell" id="V2F-no-dcX" customClass="CellTableViewCell" customModule="easyPlant" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="235.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V2F-no-dcX" id="kay-kN-ibc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="235.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IYC-xF-dOS">
-                                            <rect key="frame" x="30" y="15" width="354" height="211"/>
+                                            <rect key="frame" x="30" y="15" width="354" height="210.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLV-hf-zYf" userLabel="Left Cell View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="211"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="210.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qTg-RA-51N" userLabel="Left Stack View">
-                                                            <rect key="frame" x="15" y="15" width="137" height="181"/>
+                                                            <rect key="frame" x="15" y="15" width="137" height="180.5"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJI-LM-uze" userLabel="Left Button">
                                                                     <rect key="frame" x="0.0" y="0.0" width="137" height="22"/>
@@ -399,7 +383,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zlT-J0-et9" userLabel="Left Image Button">
-                                                                    <rect key="frame" x="0.0" y="44" width="137" height="137"/>
+                                                                    <rect key="frame" x="0.0" y="44" width="137" height="136.5"/>
                                                                     <state key="normal" title="Button"/>
                                                                 </button>
                                                             </subviews>
@@ -418,10 +402,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbS-va-yUw" userLabel="Right Cell View">
-                                                    <rect key="frame" x="187" y="0.0" width="167" height="211"/>
+                                                    <rect key="frame" x="187" y="0.0" width="167" height="210.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A67-qD-Olg" userLabel="RightStack View">
-                                                            <rect key="frame" x="15" y="15" width="137" height="181"/>
+                                                            <rect key="frame" x="15" y="15" width="137" height="180.5"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUU-Jt-7qM" userLabel="Right Button">
                                                                     <rect key="frame" x="0.0" y="0.0" width="137" height="22"/>
@@ -438,7 +422,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41c-hP-3NS" userLabel="Right Image Button">
-                                                                    <rect key="frame" x="0.0" y="42.5" width="137" height="138.5"/>
+                                                                    <rect key="frame" x="0.0" y="42.5" width="137" height="138"/>
                                                                     <state key="normal" title="Button"/>
                                                                 </button>
                                                             </subviews>

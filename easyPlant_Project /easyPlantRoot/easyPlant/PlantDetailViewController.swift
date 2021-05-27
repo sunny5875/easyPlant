@@ -44,8 +44,8 @@ class PlantDetailViewController: UIViewController {
             
      
             contentView.layer.cornerRadius = 30
-           // contentView.layer.borderColor = UIColor.lightGray.cgColor
-            //contentView.layer.borderWidth = 1
+            contentView.layer.borderColor = UIColor.systemGray5.cgColor
+            contentView.layer.borderWidth = 1
             contentView.layer.zPosition = 2
             plantDetailImage.layer.zPosition = 1
             contentLoad(plantType.plantAll[index1][index2])

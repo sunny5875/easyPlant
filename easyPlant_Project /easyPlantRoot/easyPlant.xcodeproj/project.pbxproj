@@ -103,7 +103,6 @@
 		D6AEE1B82647B21D00E85162 /* userPlantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userPlantCollectionViewController.swift; sourceTree = "<group>"; };
 		D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabbarViewController.swift; sourceTree = "<group>"; };
 		D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePlantSettingTableViewController.swift; sourceTree = "<group>"; };
-		D6D572D8265A04FD0090182B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = "../../../../Desktop/easyPlant/easyPlant_Project /easyPlantRoot/easyPlant/Home.storyboard"; sourceTree = "<group>"; };
 		EC0A5FE624978012AC1606AF /* Pods-easyPlant-easyPlantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant-easyPlantUITests.debug.xcconfig"; path = "Target Support Files/Pods-easyPlant-easyPlantUITests/Pods-easyPlant-easyPlantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA38A6520A100BAA92880458 /* Pods-easyPlantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantTests.release.xcconfig"; path = "Target Support Files/Pods-easyPlantTests/Pods-easyPlantTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,7 +196,6 @@
 				121663C5263BBD8200125C69 /* SearchTabViewController.swift */,
 				121663D2263BC2AF00125C69 /* CellTableViewCell.swift */,
 				121663DD263BC40400125C69 /* SortTableViewController.swift */,
-				D6D572D8265A04FD0090182B /* Home.storyboard */,
 				12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */,
 				1218F191265A3384000D99F4 /* CustomTabBarController.swift */,
 				1216639B263BB8F800125C69 /* Assets.xcassets */,
