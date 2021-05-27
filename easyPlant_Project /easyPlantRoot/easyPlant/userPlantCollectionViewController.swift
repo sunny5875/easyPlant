@@ -16,7 +16,13 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+   
+        userPlantCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
         userPlantCollectionView.reloadData()
         
        

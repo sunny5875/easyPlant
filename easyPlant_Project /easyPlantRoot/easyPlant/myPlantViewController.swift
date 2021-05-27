@@ -7,17 +7,20 @@
 
 import UIKit
 import Charts
+import FirebaseStorage
 private let reuseIdentifier = "diaryCell"
 
 
-class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate {
 
     var myPlant : userPlant?
     var numbers : [Double] = []
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     var ChartEntry : [ChartDataEntry] = []
+    var selectedImage : UIImage?
     
+   
     
     @IBOutlet weak var diaryCollectionView: UICollectionView!
     @IBOutlet weak var dDayLabel: UILabel!
@@ -42,31 +45,34 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         let cancelAction = UIAlertAction(title: "Cancel",style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-//        let imagePicker = UIImagePickerController()
-//            imagePicker.delegate = self
-//
-//
-//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//
-//            let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
-//                imagePicker.sourceType = .camera
-//                self.present(imagePicker,animated: true,completion: nil)//보여주고 나서 추가작언 없으니까 nil
-//            })
-//            alertController.addAction(cameraAction)
-//        }
-//
-//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-//        let photoLibraryAction = UIAlertAction(title: "PhotoLibrary", style: .default, handler: { action in
-//            imagePicker.sourceType = .photoLibrary
-//            self.present(imagePicker,animated: true,completion: nil)
-//            })
-//            alertController.addAction(photoLibraryAction)
-//        }
-//
+        let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+
+
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+
+            let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
+                imagePicker.sourceType = .camera
+                self.present(imagePicker,animated: true,completion: nil)//보여주고 나서 추가작언 없으니까 nil
+            })
+            alertController.addAction(cameraAction)
+        }
+
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+        let photoLibraryAction = UIAlertAction(title: "PhotoLibrary", style: .default, handler: { action in
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker,animated: true,completion: nil)
+            })
+            alertController.addAction(photoLibraryAction)
+        }
+        
        
-//        alertController.popoverPresentationController?.sourceView = sender as! UIButton
+        alertController.popoverPresentationController?.sourceView = sender as! UIButton
         
         present(alertController, animated: true, completion: nil)
+        
+        
+        
     }
     
          func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -90,8 +96,11 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 cell.update(info: userDiary)
         
             }
+            
+           
             return cell
         }
+    
   /*
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -108,14 +117,71 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         if let detailVC = segue.destination as? myDiaryViewController,let cell = sender as? UICollectionViewCell,
            let indexPath =  diaryCollectionView.indexPath(for: cell) {
             detailVC.diary = myPlant?.diarylist[indexPath.item]
+            detailVC.myplant = myPlant
         }
     
+        
+        if segue.identifier == "pickImageSegue"{
+            if let detailVC = segue.destination as? WriteDiaryViewController{
+                detailVC.image = selectedImage!
+                detailVC.userplant = myPlant
+                detailVC.isEdit = false
+                
+            }
+        }
+        
+        if segue.identifier == "editPlantSegue"{
+            if let detailVC = segue.destination as? EditUserPlantTableViewController{
+                
+                detailVC.editPlant = myPlant
+                
+            }
+        }
+        
     }
 
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
+        //이미지를 선택했으면 imageView에 보여주는 함수
+        guard let sImage = info[.originalImage] as? UIImage else { return }
+        
+        selectedImage = sImage
+        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "pickImageSegue", sender: self)
+    }
+    
+    @IBAction func unwindToMyPlant(_ unwindSegue: UIStoryboardSegue) {
+        for i in 0...(userPlants.count-1) {
+            if(userPlants[i].name == myPlant!.name){
+               myPlant = userPlants[i]
+            }
+        }
+        
+        diaryCollectionView.reloadData()
+      
+    }
+    
+    @IBAction func unwindToSetting(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        if let sourceVC = sourceViewController as? EditUserPlantTableViewController {
+            myPlant = sourceVC.editPlant
+            
+            updateUI()
+        }
+        // Use data from the view controller which initiated the unwind segue
+    }
+    
+    
+        
+    
+    func updateUI(){
+        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+   
+        diaryCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        labelStackView.layer.cornerRadius =  20
+       
+        
         // Do any additional setup after loading the view.
         if let myPlant = myPlant {
             dDayLabel.text = "등록일\n"+myPlant.registedDate
@@ -136,10 +202,10 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             speciesLabel?.layer.masksToBounds = true
             happeniessLabel?.layer.masksToBounds = true
             
-            dDayLabel.layer.cornerRadius = 84.0 / 2
-            locationLabel.layer.cornerRadius = 84.0 / 2
-            speciesLabel.layer.cornerRadius = 84.0 / 2
-            happeniessLabel.layer.cornerRadius = 84.0 / 2
+            dDayLabel.layer.cornerRadius = 20
+            locationLabel.layer.cornerRadius = 20
+            speciesLabel.layer.cornerRadius = 20
+            happeniessLabel.layer.cornerRadius = 20
             
             labelStackView.layer.cornerRadius = 20
             
@@ -165,10 +231,10 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         let chartData = LineChartData(dataSet: chartDataset)
         
-        chartView.rightAxis.enabled = false
-        chartView.leftAxis.enabled = false
-        chartView.drawBordersEnabled = false
-        chartView.xAxis.enabled = false
+        //chartView.rightAxis.enabled = false
+      //  chartView.leftAxis.enabled = false
+      //  chartView.drawBordersEnabled = false
+       // chartView.xAxis.enabled = false
         
         
         var circleColors: [NSUIColor] = []           // arrays with circle color definitions
@@ -185,7 +251,10 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
 
         chartView.data = chartData
-//
+//        chartView.backgroundColor = .white
+        chartView.layer.cornerRadius = 20
+        chartView.layer.masksToBounds = true
+        //todo
         
 //        let animation = CABasicAnimation(keyPath: "path")
         
@@ -194,7 +263,49 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateUI()
+       
+    }
+    
+    
+    func downloadimage(imgview:UIImageView){
+        Storage.storage().reference(forURL: "gs://firstios-f6c7c.appspot.com/diaryImage").downloadURL { (url, error) in
+                           let data = NSData(contentsOf: url!)
+                           let image = UIImage(data: data! as Data)
+                            imgview.image = image
+            }
+    }
+    
    
    
+    @IBAction func editButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)
+            
+//            alert.addAction(UIAlertAction(title: "Approve", style: .default , handler:{ (UIAlertAction)in
+//                print("User click Approve button")
+//            }))
+            
+            alert.addAction(UIAlertAction(title: "Edit", style: .default , handler:{ (UIAlertAction) in
+                self.performSegue(withIdentifier: "editPlantSegue", sender: myPlantViewController.self)
+            }))
 
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+                print("User click Delete button")
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+                print("User click Dismiss button")
+            }))
+
+            
+            //uncomment for iPad Support
+            //alert.popoverPresentationController?.sourceView = self.view
+
+            self.present(alert, animated: true, completion: {
+                print("completion block")
+            })
+    
+    }
 }
