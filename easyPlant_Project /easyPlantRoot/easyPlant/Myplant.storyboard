@@ -118,7 +118,7 @@
         <!--초록콩-->
         <scene sceneID="G0c-oD-eae">
             <objects>
-                <viewController id="Rli-Ho-JN6" customClass="myPlantViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myPlantSB" id="Rli-Ho-JN6" customClass="myPlantViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0TC-Zs-dST">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

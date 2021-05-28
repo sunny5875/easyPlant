@@ -115,6 +115,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    /*
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
+                guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? myPlantViewController else {return indexPath}
+                self.navigationController?.pushViewController(secondVC, animated: true)
+    }
+ */
     
     @objc func watering(sender: UITapGestureRecognizer){
         //sender.image = UIImage(named: "watering_fill")
