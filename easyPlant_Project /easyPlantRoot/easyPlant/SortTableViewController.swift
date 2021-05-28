@@ -196,6 +196,10 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         //이거 초기값은0 인데 1로 변경해줘야함
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 236
+    }
 
         //색션에 몇개의 셀이 있는가
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
