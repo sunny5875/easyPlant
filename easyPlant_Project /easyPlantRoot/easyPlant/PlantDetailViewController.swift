@@ -9,28 +9,72 @@ import UIKit
 
 class PlantDetailViewController: UIViewController {
 
-    var data: String?
-    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet var subTitleLabels: [UILabel]!
+    
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet var subContentText: [UITextView]!
+    var detailPlantName: String?
+    var detailPlantType: String?
+    var index1 = 0
+    var index2 = 0
     @IBOutlet weak var plantDetailImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let test = data{
-            plantDetailImage.image = UIImage(named: test)
-            plantDetailImage.layer.cornerRadius = 110
+        if let nameData = detailPlantName, let typeData = detailPlantType{
+            
+            plantDetailImage.image = UIImage(named: nameData)
+            plantDetailImage.layer.cornerRadius = 0
             plantDetailImage.layer.borderColor = UIColor.lightGray.cgColor
             plantDetailImage.layer.borderWidth = 0.5
 
-            testLabel?.text? = test
+            
+            for (i,typeString) in plantType.type.enumerated(){
+                if typeString == typeData {
+                    index1 = i
+                    break
+                }
+            }
+         
+            for (i,plant) in plantType.plantAll[index1].enumerated(){
+                if plant.name == nameData {
+                    index2 = i
+                    break
+                }
+            }
+            
+     
+            contentView.layer.cornerRadius = 30
+            contentView.layer.borderColor = UIColor.systemGray5.cgColor
+            contentView.layer.borderWidth = 1
+            contentView.layer.zPosition = 2
+            plantDetailImage.layer.zPosition = 1
+            contentLoad(plantType.plantAll[index1][index2])
+        }
+      
+        // Do any additional setup after loading the view.
+    }
+  
+    
+    func contentLoad(_ plant :Plant){
+        for (index,label) in subTitleLabels.enumerated(){
+            label.text = "원산지"
+            subContentText[index].text = "테스트 텍스트"
             
         }
+    }
         
+        
+    //let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle") , style: .plain, target: nil, action: nil)
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.largeTitleDisplayMode =  .never
+
+        
+        
+    }
+    
+    func searchData(_ name: String){
         
     }
 

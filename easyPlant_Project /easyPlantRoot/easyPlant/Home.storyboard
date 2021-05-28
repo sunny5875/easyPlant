@@ -250,7 +250,6 @@
                             <outlet property="delegate" destination="IUI-bo-2Kx" id="G6M-yJ-6CA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="V2a-81-Dss"/>
                     <connections>
                         <outlet property="colorPickerView" destination="XIj-Z2-oXi" id="gDE-xB-Czq"/>
                         <outlet property="datePicker" destination="4O3-8W-F1e" id="rlo-0K-tk0"/>

@@ -1,2 +1,40 @@
+# https://www.toptal.com/developers/gitignore/api/xcode에 의해 생성됨
+# https://www.toptal.com/developers/gitignore?templates=xcode에서 편집
 
-*.DS_Store
+### Xcode ###
+# Xcode
+#
+# gitignore 기여자 : Global / Xcode.gitignore, Objective-C.gitignore 및 Swift.gitignore를 업데이트해야합니다.
+
+## 사용자 설정
+xcuserdata /
+
+## Xcode 8 및 이전 버전과의 호환성 (Xcode 9부터는 필요하지 않음)
+* .xcscmblueprint
+* .xccheckout
+
+## Xcode 3 및 이전 버전과의 호환성 (Xcode 4부터는 필요하지 않음)
+짓다/
+DerivedData /
+* .moved-aside
+* .pbxuser
+! default.pbxuser
+* .mode1v3
+! default.mode1v3
+* .mode2v3
+! default.mode2v3
+* .perspectivev3
+! default.perspectivev3
+
+## Gcc 패치
+/*.gcno
+
+### Xcode 패치 ###
+* .xcodeproj / *
+! *. xcodeproj / project.pbxproj
+! *. xcodeproj / xcshareddata /
+! *. xcworkspace / contents.xcworkspacedata
+** / xcshareddata / WorkspaceSettings.xcsettings
+
+# https://www.toptal.com/developers/gitignore/api/xcode 끝
+.DS_Store

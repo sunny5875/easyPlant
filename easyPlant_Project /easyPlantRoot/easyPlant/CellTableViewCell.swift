@@ -13,6 +13,8 @@ class CellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var rightImageButton: UIButton!
     
+    @IBOutlet weak var rightCellView: UIView!
+    @IBOutlet weak var leftCellView: UIView!
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     
@@ -22,6 +24,25 @@ class CellTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = 1
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
+        //self.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        self.backgroundColor = UIColor.white
+        rightCellView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        rightCellView.layer.cornerRadius = 30
+        leftCellView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        leftCellView.layer.cornerRadius = 30
+        
+        rightImageButton.layer.cornerRadius = 30
+        leftImageButton.layer.cornerRadius = 30
+        
+        rightButton.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        leftButton.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+
+
+
         // Initialization code
     }
 
