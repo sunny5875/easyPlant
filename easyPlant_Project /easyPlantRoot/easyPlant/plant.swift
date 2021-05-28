@@ -7,102 +7,84 @@
 
 import Foundation
 struct Plant {
-    var name: String
-    var like: Int
-
+    var 이름: String
+    var 원산지 : String
+    var 과명: String
+    
+    var 생육온도 : Int
+    var 광요구도 : String
+    var 물주기 : String
+    
+    var 기능성 : String
+    
+    var 한줄설명 : String
 
 }
 
 
 var plantsClearAir: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
+    Plant(이름: "홍콩야자", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "  테스트 한줄설명"),
+    Plant(이름: "관음죽", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "  테스트 한줄설명"),
+    Plant(이름: "대나무야자", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "  테스트 한줄설명"),
+    Plant(이름: "파키라", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "  테스트 한줄설명"),
+    Plant(이름: "황금죽", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "  테스트 한줄설명"),
+    Plant(이름: "산세베리아", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "  테스트 한줄설명")
+  
+]
+var plantsShade: [Plant] = [
+    Plant(이름: "스킨답서스", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "아이비", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "싱고니움", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "문샤인", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "파비안느", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "스파티필름", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "")
+  
+]
+var plantsDry: [Plant] = [
+    Plant(이름: "정야", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "만세선인장", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "백도선",원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "소정", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "행운목", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "라울", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "")
   
 ]
 
-var plantsAnimal: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
-  
-]
 
 var plantsLazy: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
+    Plant(이름: "제라늄", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "금전수", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "바이올렛", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "뱅갈고무나무", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "호야", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "스투키", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "")
   
 ]
 
 var plantsInterior: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
+    Plant(이름: "코로키아", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "테이블야자", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "올리브나무",원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "몬스테라", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "유칼립투스", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "극락조",원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "")
   
 ]
 
-var plantsEasy: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
+
+var plantsAnimal: [Plant] = [
+    Plant(이름: "율마", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "마오리소포라", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "페페", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "트리안",원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "틸란드시아", 원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: ""),
+    Plant(이름: "캣그라스",원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 기능성: "", 한줄설명: "")
   
 ]
 
-var plantsShade: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
-  
-]
 
-var plantsTemp: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
-  
-]
 
-var plantsDry: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
-  
-]
 
-var plantsLight: [Plant] = [
-    Plant(name: "산세베리아", like: 0),
-    Plant(name: "바나나", like: 0),
-    Plant(name: "백도선", like: 0),
-    Plant(name: "스킨답서스", like: 0),
-    Plant(name: "행운목", like: 0),
-    Plant(name: "만세선인장", like: 0)
-  
-]
 
 
 struct PlantType {
@@ -114,8 +96,8 @@ struct PlantType {
 
 
 var plantType = PlantType(
-    type : ["공기정화","반려동물","귀차니즘","인테리어","초보농부","그늘에서","온도무관","다육식물","햇빛듬뿍"],
-    plantAll : [plantsClearAir,plantsAnimal,plantsLazy,plantsInterior,plantsEasy,plantsShade,plantsTemp,plantsDry,plantsLight]
+    type : ["공기정화","그늘에서","다육식물","귀차니즘","인테리어","반려동물"],
+    plantAll : [plantsClearAir,plantsShade,plantsDry,plantsLazy,plantsInterior,plantsAnimal]
 
 )
 
