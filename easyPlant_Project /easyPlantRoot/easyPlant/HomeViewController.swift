@@ -19,9 +19,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
-    var ChartEntry : [ChartDataEntry] = []
-    
-    var dates = ["2021-05-23", "2021-05-24"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,70 +82,40 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         plantListTableView.reloadData()
         calendar.reloadData()
         
-        var value : ChartDataEntry
-        value = ChartDataEntry(x: Double(0), y: Double(90))
-        ChartEntry.append(value)
-        value = ChartDataEntry(x: Double(0), y: Double(10))
-        ChartEntry.append(value)
+        var ChartEntry : [ChartDataEntry] = []
+        let value_fill = PieChartDataEntry(value: 0)
+        let value_empty = PieChartDataEntry(value: 0)
         
-        let chartDataset = PieChartDataSet(entries: ChartEntry, label: "행복도")
-        let chartData = PieChartData(dataSet: chartDataset)
+        pieChart.chartDescription?.text = ""
         
-        var circleColors: [NSUIColor] = []           // arrays with circle color definitions
-
-       
+        value_fill.value = 70
+        value_fill.label = ""
+        value_empty.value = 30
+        value_empty.label = ""
+        
+        ChartEntry.append(value_fill)
+        ChartEntry.append(value_empty)
+        
+        let chartDataSet = PieChartDataSet(entries: ChartEntry, label: nil)
+        let chartData = PieChartData(dataSet: chartDataSet)
+        
+        var colors: [NSUIColor] = []
         var color = UIColor(red: CGFloat(189.0/255), green: CGFloat(236.0/255), blue: CGFloat(182.0/255), alpha: 1)
-        circleColors.append(color)
+        colors.append(color)
         color = UIColor(red: CGFloat(255/255), green: CGFloat(255/255), blue: CGFloat(255/255), alpha: 1)
-        circleColors.append(color)
+        colors.append(color)
         
-
-        // set colors and enable value drawing
-        chartDataset.colors = circleColors
-        chartDataset.drawValuesEnabled = true
-        
-        chartDataset.selectionShift = 0
-        pieChart.transparentCircleColor = UIColor.clear
-        pieChart.data?.setValueTextColor(UIColor.clear)
-        pieChart.holeRadiusPercent = 0
+        chartDataSet.colors = colors
+        chartDataSet.drawValuesEnabled = false
+        chartDataSet.selectionShift = 5
         pieChart.transparentCircleRadiusPercent = 0
+        //pieChart.holeRadiusPercent = 0
         pieChart.legend.enabled = false
         pieChart.chartDescription?.enabled = false
         pieChart.minOffset = 0
-        //pieChart.draw
-        pieChart.drawEntryLabelsEnabled = false
-
         pieChart.data = chartData
-//        chartView.backgroundColor = .white
-        pieChart.layer.cornerRadius = 20
-        pieChart.layer.masksToBounds = true
-        
-        /*
-        let chartSet = PieChartDataSet(entries: array, label: "")
-        let chartData = PieChartData(dataSet: chartSet)
-        chartSet.selectionShift = 10
-        pieChart.transparentCircleColor = UIColor.clear
-        pieChart.data?.setValueTextColor(UIColor.clear)
-        pieChart.holeRadiusPercent = 0.65
-        pieChart.transparentCircleRadiusPercent = 0
-        pieChart.legend.enabled = false
-        pieChart.chartDescription?.enabled = false
-        pieChart.minOffset = 0
-        //pieChart.centerAttributedText = centerText
-        pieChart.drawEntryLabelsEnabled = false //Here id what i tried
 
-        let colors = [UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1)), UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))]
-
-        chartSet.colors = colors 
-
-        pieChart.data = chartData
- */
     }
-    /*
-    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
-        return shouldShowEventDot
-    }
- */
     
     @objc func showLevelView(sender: UIView) {
         performSegue(withIdentifier: "levelViewSegue", sender: nil)
@@ -171,10 +138,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! UserPlantTableViewCell
         
         let item = userPlants[indexPath.row]
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let current_date_string = formatter.string(from: Date())
+        let watering_date_string = formatter.string(from: item.wateringDay)
+        
         cell.name.text = item.name
         cell.location.text = item.location
         cell.period.text = "\(item.waterPeriod) 일"
-        cell.lastWater.text = item.wateringDay
+        cell.lastWater.text = watering_date_string
         cell.plantImage.image = UIImage(named: item.plantImage)
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
@@ -195,10 +168,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.accessoryView = wateringButton
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
-        let current_date_string = formatter.string(from: Date())
-        if current_date_string != item.wateringDay {
+        if current_date_string != watering_date_string {
             cell.accessoryView?.isHidden = true
         }
         
@@ -222,10 +192,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         wateringButton.image = UIImage(named: "watering_fill")
         
         // TODO need to save
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
-        let current_date_string = formatter.string(from: Date())
-        userPlants[wateringButton.tag].wateringDay = current_date_string
+        userPlants[wateringButton.tag].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[wateringButton.tag].waterPeriod, to: Date())!
         
         plantListTableView.reloadData()
     }
@@ -244,11 +211,16 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let calendarDate = formatter.string(from: date)
-        if self.dates.contains(calendarDate) {
-            return 5
-        } else {
-            return 0
+        
+        var dotNum = 0
+        for i in 0...userPlants.count {
+            let wateringDate = formatter.string(from: userPlants[i].wateringDay)
+            if wateringDate == calendarDate {
+                dotNum += 1
+            }
         }
+        
+        return dotNum
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
@@ -257,9 +229,13 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         formatter.dateFormat = "yyyy-MM-dd"
         let calendarDate = formatter.string(from: date)
         
-        if self.dates.contains(calendarDate) {
-            return [UIColor.green]
+        for i in 0...userPlants.count {
+            let wateringDate = formatter.string(from: userPlants[i].wateringDay)
+            if wateringDate == calendarDate {
+                return [UIColor.green]
+            }
         }
+        
         return [UIColor.white]
     }
 }
