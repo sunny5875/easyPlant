@@ -12,7 +12,8 @@ class PlantDetailViewController: UIViewController {
     @IBOutlet var subTitleLabels: [UILabel]!
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet var subContentText: [UITextView]!
+    
+    @IBOutlet var subtext: [UITextView]!
     var detailPlantName: String?
     var detailPlantType: String?
     var index1 = 0
@@ -36,7 +37,7 @@ class PlantDetailViewController: UIViewController {
             }
          
             for (i,plant) in plantType.plantAll[index1].enumerated(){
-                if plant.name == nameData {
+                if plant.이름 == nameData {
                     index2 = i
                     break
                 }
@@ -56,9 +57,40 @@ class PlantDetailViewController: UIViewController {
   
     
     func contentLoad(_ plant :Plant){
-        for (index,label) in subTitleLabels.enumerated(){
-            label.text = "원산지"
-            subContentText[index].text = "테스트 텍스트"
+        for index in 0...6{
+            switch index{
+            case 0:
+                //subtext[index].text = plant.이름
+                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+
+                break
+            case 1:
+                //subtext[index].text = plant.원산지
+                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                break
+            case 2:
+                //subtext[index].text = plant.과명
+                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                break
+            case 3:
+                //subtext[index].text = plant.광요구도
+                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                break
+            case 4:
+                //subtext[index].text = String(plant.생육온도)
+                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                break
+            case 5:
+                //subtext[index].text = plant.물주기
+                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                break
+            case 6:
+                //subtext[index].text = plant.특징
+                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                break
+            default:
+                break
+            }
             
         }
     }

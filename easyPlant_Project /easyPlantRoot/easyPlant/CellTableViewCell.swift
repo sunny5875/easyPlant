@@ -18,8 +18,10 @@ class CellTableViewCell: UITableViewCell {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     
+    @IBOutlet weak var leftLabel: UILabel!
     
-
+    @IBOutlet weak var rightLabel: UILabel!
+    
     
     
     override func awakeFromNib() {
@@ -42,7 +44,10 @@ class CellTableViewCell: UITableViewCell {
         leftButton.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
 
 
-
+        leftImageButton.contentMode = .scaleAspectFit
+        rightImageButton.contentMode = .scaleAspectFit
+        
+     
         // Initialization code
     }
 
