@@ -7,16 +7,32 @@
 
 import UIKit
 import FSCalendar
+import Charts
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var pieChart: PieChartView!
+    @IBOutlet weak var userView: UIView!
+    @IBOutlet weak var hapinessImage: UIImageView!
+    @IBOutlet weak var levelImage: UIImageView!
+    @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
+    
+    var ChartEntry : [ChartDataEntry] = []
     
     var dates = ["2021-05-23", "2021-05-24"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showLevelView(sender:)))
+        userView.addGestureRecognizer(tapGesture)
+
+        
+        levelImage.image = UIImage(named: "sprout")
+        hapinessImage.image = UIImage(named: "행복한식물")
+        
         self.calendar.scope = .week
         calendar.headerHeight = 50
 
@@ -42,12 +58,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
-        calendar.layer.cornerRadius = calendar.frame.height / 8
+        calendar.layer.cornerRadius = calendar.frame.height / 14
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
         
+        userView.backgroundColor = .white
+        userView.layer.cornerRadius = userView.frame.height / 14
+        
+        
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
         headerView.text = "식물 목록"
+        headerView.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
         headerView.textColor = UIColor.white
         headerView.textAlignment = .center
         headerView.contentMode = .scaleAspectFit
@@ -56,7 +77,72 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         plantListTableView.tableHeaderView = headerView
         
+        
+    }
+    
+    var array: [ChartDataEntry] = [ChartDataEntry()]
+    override func viewWillAppear(_ animated: Bool) {
         plantListTableView.reloadData()
+        calendar.reloadData()
+        
+        var value : ChartDataEntry
+        value = ChartDataEntry(x: Double(0), y: Double(90))
+        ChartEntry.append(value)
+        value = ChartDataEntry(x: Double(0), y: Double(10))
+        ChartEntry.append(value)
+        
+        let chartDataset = PieChartDataSet(entries: ChartEntry, label: "행복도")
+        let chartData = PieChartData(dataSet: chartDataset)
+        
+        var circleColors: [NSUIColor] = []           // arrays with circle color definitions
+
+       
+        var color = UIColor(red: CGFloat(189.0/255), green: CGFloat(236.0/255), blue: CGFloat(182.0/255), alpha: 1)
+        circleColors.append(color)
+        color = UIColor(red: CGFloat(255/255), green: CGFloat(255/255), blue: CGFloat(255/255), alpha: 1)
+        circleColors.append(color)
+        
+
+        // set colors and enable value drawing
+        chartDataset.colors = circleColors
+        chartDataset.drawValuesEnabled = true
+        
+        chartDataset.selectionShift = 0
+        pieChart.transparentCircleColor = UIColor.clear
+        pieChart.data?.setValueTextColor(UIColor.clear)
+        pieChart.holeRadiusPercent = 0
+        pieChart.transparentCircleRadiusPercent = 0
+        pieChart.legend.enabled = false
+        pieChart.chartDescription?.enabled = false
+        pieChart.minOffset = 0
+        //pieChart.draw
+        pieChart.drawEntryLabelsEnabled = false
+
+        pieChart.data = chartData
+//        chartView.backgroundColor = .white
+        pieChart.layer.cornerRadius = 20
+        pieChart.layer.masksToBounds = true
+        
+        /*
+        let chartSet = PieChartDataSet(entries: array, label: "")
+        let chartData = PieChartData(dataSet: chartSet)
+        chartSet.selectionShift = 10
+        pieChart.transparentCircleColor = UIColor.clear
+        pieChart.data?.setValueTextColor(UIColor.clear)
+        pieChart.holeRadiusPercent = 0.65
+        pieChart.transparentCircleRadiusPercent = 0
+        pieChart.legend.enabled = false
+        pieChart.chartDescription?.enabled = false
+        pieChart.minOffset = 0
+        //pieChart.centerAttributedText = centerText
+        pieChart.drawEntryLabelsEnabled = false //Here id what i tried
+
+        let colors = [UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1)), UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))]
+
+        chartSet.colors = colors 
+
+        pieChart.data = chartData
+ */
     }
     /*
     func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
@@ -64,9 +150,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
  */
     
+    @objc func showLevelView(sender: UIView) {
+        performSegue(withIdentifier: "levelViewSegue", sender: nil)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        //이거 초기값은0 인데 1로 변경해줘야함
         return 1
     }
     
@@ -115,14 +204,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
-    /*
+    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
-                guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? myPlantViewController else {return indexPath}
-                self.navigationController?.pushViewController(secondVC, animated: true)
+        guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? myPlantViewController else {return indexPath}
+        secondVC.myPlant = userPlants[indexPath.row]
+        self.navigationController?.pushViewController(secondVC, animated: true)
+        
+        return indexPath
     }
- */
-    
+ 
+ 
     @objc func watering(sender: UITapGestureRecognizer){
         //sender.image = UIImage(named: "watering_fill")
         let wateringButton = sender.view as! UIImageView
@@ -138,11 +230,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         plantListTableView.reloadData()
     }
     
+    /* MyPlant의 설정으로 이동
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailVC = segue.destination as? NotificationViewController, let indexPath =  plantListTableView.indexPathForSelectedRow {
             detailVC.myPlant = userPlants[indexPath.row]
         }
-    }
+    }*/
 }
 
 extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
