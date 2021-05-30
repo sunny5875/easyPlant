@@ -24,8 +24,10 @@ class WriteDiaryViewController: UIViewController {
     var diarycontent : String = ""
 
 
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
@@ -72,8 +74,7 @@ class WriteDiaryViewController: UIViewController {
                 editDiary?.story = contentTextField.text!
                 
                 userPlants[i].diarylist[j] = editDiary!
-                print("------saveButtonTapped--------")
-                print(editDiary)
+           
                 performSegue(withIdentifier: "backToMyPlant", sender: self)
                 return 
                 
@@ -87,7 +88,7 @@ class WriteDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+//        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
    
         
         if let image = image, let _ = userplant{
@@ -120,6 +121,14 @@ class WriteDiaryViewController: UIViewController {
         if(isEdit == true){
             saveBarButton.isEnabled = true
         }
+        
+        
+        contentView.layer.zPosition = 100
+        imageView.layer.zPosition = 99
+        
+        stackView.layer.cornerRadius = 20
+        
+        contentView.layer.cornerRadius = 30
     }
     
     

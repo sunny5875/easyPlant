@@ -33,7 +33,8 @@ class NotificationViewController: UITableViewController {
     }
     
     @objc func changed () {
-        myPlant?.alarmTime = datePicker.date
+        // alarmTime 타입 Date로 바꾸기
+        //myPlant?.alarmTime = datePicker.date
     }
 
     @objc func colorWellChanged(_ sender: Any) {

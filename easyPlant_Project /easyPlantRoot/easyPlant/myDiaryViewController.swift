@@ -11,21 +11,47 @@ class myDiaryViewController: UIViewController {
     var myplant : userPlant?
     var diary : Diary?
 
+    @IBOutlet weak var viewClear: UIView!
     @IBOutlet weak var imageLabel: UIImageView!
+ 
+   
+    @IBOutlet weak var contentVie: UIView!
+    @IBOutlet weak var stackVIew: UIStackView!
+    
     @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
     @IBOutlet weak var diaryLabel: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         if let diary = diary, let plant = myplant {
             imageLabel.image = UIImage(named: diary.picture)
-            titleLabel.text = diary.title
-            diaryLabel.text = diary.story
+            titleLabel.text = "  " + diary.title
+            diaryLabel.text = "  " + diary.story
             myplant = plant
+            dateLabel.text = "  " + diary.date
+            
+         
         }
+        navigationController?.title = myplant?.name
         
         view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        diaryLabel.layer.cornerRadius = 20
+        
+        titleLabel.layer.cornerRadius = titleLabel.frame.height / 3
+       
+        
+        contentVie.layer.cornerRadius = 30
+        contentVie.layer.zPosition = 100
+        imageLabel.layer.zPosition = 99
+    
+        
     }
     
     
@@ -73,7 +99,11 @@ class myDiaryViewController: UIViewController {
             }))
 
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-                print("User click Delete button")
+                for i in 0...(self.myplant?.diarylist.count)!-1 {
+                    if(self.diary?.date == self.myplant?.diarylist[i].date){
+                        self.myplant?.diarylist.remove(at: i)
+                    }
+                }
             }))
             
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in

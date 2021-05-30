@@ -8,15 +8,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "182D6629-9CB5-4A66-A576-6DABD923EA41"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "easyPlant/myPlantViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "unwindToMyPlant(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

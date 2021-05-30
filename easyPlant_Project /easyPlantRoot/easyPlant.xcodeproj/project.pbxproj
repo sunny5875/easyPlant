@@ -29,8 +29,6 @@
 		12EA1D4F264795D5009A0A5E /* myDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* myDiaryViewController.swift */; };
 		12EA1D63264795FF009A0A5E /* userPlantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D62264795FE009A0A5E /* userPlantCollectionViewCell.swift */; };
 		12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */; };
-		3E86CF572663472300C99B13 /* level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86CF562663472300C99B13 /* level.swift */; };
-		3E86CF5F26634AB500C99B13 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86CF5E26634AB500C99B13 /* User.swift */; };
 		47D8D3177E205A8A242DE88D /* Pods_easyPlant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */; };
 		A0E89ECC6A3B8C88A65010D2 /* Pods_easyPlant_easyPlantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */; };
 		D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */; };
@@ -42,6 +40,7 @@
 		D6AEE1B92647B21D00E85162 /* userPlantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B82647B21D00E85162 /* userPlantCollectionViewController.swift */; };
 		D6AEE1BF2647C1DB00E85162 /* tabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */; };
 		D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */; };
+		D6CC2DE026636215009E5710 /* PushAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */; };
 		E86CEA649CC9CDCC3A75F55D /* Pods_easyPlantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9888BD1B6573F596E98CCF /* Pods_easyPlantTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,8 +92,6 @@
 		12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		369230177CD436241BC4D097 /* Pods-easyPlantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantTests.debug.xcconfig"; path = "Target Support Files/Pods-easyPlantTests/Pods-easyPlantTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3E86CF562663472300C99B13 /* level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = level.swift; sourceTree = "<group>"; };
-		3E86CF5E26634AB500C99B13 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		53B379B6017A5E33457B4CF9 /* Pods-easyPlant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant.release.xcconfig"; path = "Target Support Files/Pods-easyPlant/Pods-easyPlant.release.xcconfig"; sourceTree = "<group>"; };
 		5D9888BD1B6573F596E98CCF /* Pods_easyPlantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant_easyPlantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +106,7 @@
 		D6AEE1B82647B21D00E85162 /* userPlantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userPlantCollectionViewController.swift; sourceTree = "<group>"; };
 		D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabbarViewController.swift; sourceTree = "<group>"; };
 		D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePlantSettingTableViewController.swift; sourceTree = "<group>"; };
+		D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmViewController.swift; sourceTree = "<group>"; };
 		EC0A5FE624978012AC1606AF /* Pods-easyPlant-easyPlantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant-easyPlantUITests.debug.xcconfig"; path = "Target Support Files/Pods-easyPlant-easyPlantUITests/Pods-easyPlant-easyPlantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA38A6520A100BAA92880458 /* Pods-easyPlantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantTests.release.xcconfig"; path = "Target Support Files/Pods-easyPlantTests/Pods-easyPlantTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,13 +183,12 @@
 				12166394263BB8F700125C69 /* SceneDelegate.swift */,
 				D6AEE1B02647B1EB00E85162 /* Diary.swift */,
 				121663E2263BC5AE00125C69 /* plant.swift */,
+				D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */,
 				12EA1D7426479699009A0A5E /* Home */,
 				12EA1D3B26479554009A0A5E /* HomeViewController.swift */,
 				12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */,
 				12EA1D362647954F009A0A5E /* NotificationViewController.swift */,
 				1218F211265FE3CB000D99F4 /* LevelViewController.swift */,
-				3E86CF562663472300C99B13 /* level.swift */,
-				3E86CF5E26634AB500C99B13 /* User.swift */,
 				12EA1D76264796AE009A0A5E /* Myplant */,
 				12EA1D4E264795D5009A0A5E /* myDiaryViewController.swift */,
 				D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */,
@@ -531,11 +528,10 @@
 				D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */,
 				D6AEE1BF2647C1DB00E85162 /* tabbarViewController.swift in Sources */,
 				D6AEE1B32647B1F600E85162 /* userPlant.swift in Sources */,
+				D6CC2DE026636215009E5710 /* PushAlarmViewController.swift in Sources */,
 				D6119B2C265F92A400D947A0 /* EditUserPlantTableViewController.swift in Sources */,
 				121663CB263BBDE200125C69 /* PlantDetailViewController.swift in Sources */,
 				D6AEE1B92647B21D00E85162 /* userPlantCollectionViewController.swift in Sources */,
-				3E86CF572663472300C99B13 /* level.swift in Sources */,
-				3E86CF5F26634AB500C99B13 /* User.swift in Sources */,
 				1218F192265A3384000D99F4 /* CustomTabBarController.swift in Sources */,
 				D6AEE1B92647B21D00E85162 /* userPlantCollectionViewController.swift in Sources */,
 				12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */,
@@ -720,12 +716,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				INFOPLIST_FILE = easyPlant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = yujin.easyPlant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codershigh.easyPlant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -739,12 +736,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				INFOPLIST_FILE = easyPlant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = yujin.easyPlant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codershigh.easyPlant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
