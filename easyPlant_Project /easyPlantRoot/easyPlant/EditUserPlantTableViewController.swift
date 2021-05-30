@@ -68,11 +68,15 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         super.viewDidLoad()
         
         if let usrplant = editPlant {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy.MM.dd"
+            let watering_date_string = formatter.string(from: usrplant.wateringDay)
+            
             imageView.image = UIImage(named : usrplant.plantImage)
             nameTextField.text = usrplant.name
             locationTextField.text = usrplant.location
             speciesTextField.text = usrplant.plantSpecies
-            wateringDayTextField.text = usrplant.wateringDay
+            wateringDayTextField.text = watering_date_string
             
             registerationTextField.text = usrplant.registedDate
             
@@ -100,7 +104,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 editPlant?.name = nameTextField.text!
                 editPlant?.location = locationTextField.text!
                 editPlant?.plantSpecies = speciesTextField.text!
-                editPlant?.wateringDay = wateringDayTextField.text!
+                //editPlant?.wateringDay = wateringDayTextField.text!
                 editPlant?.plantImage = imageView.image!.description
                 
                 userPlants[i] = editPlant!

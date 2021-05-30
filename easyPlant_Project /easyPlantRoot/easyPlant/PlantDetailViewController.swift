@@ -60,33 +60,40 @@ class PlantDetailViewController: UIViewController {
         for index in 0...6{
             switch index{
             case 0:
-                //subtext[index].text = plant.이름
-                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                if plant.이름 != ""{
+                    subtext[index].text = plant.이름
+                }
 
                 break
             case 1:
-                //subtext[index].text = plant.원산지
-                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                if plant.원산지 != ""{
+                    subtext[index].text = plant.원산지
+                }
                 break
             case 2:
-                //subtext[index].text = plant.과명
-                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                if plant.과명 != ""{
+                    subtext[index].text = plant.과명
+                }
                 break
             case 3:
-                //subtext[index].text = plant.광요구도
-                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                if plant.광요구도 != ""{
+                    subtext[index].text = plant.광요구도
+                }
                 break
             case 4:
-                //subtext[index].text = String(plant.생육온도)
-                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                if plant.생육온도 != ""{
+                    subtext[index].text = plant.생육온도
+                }
                 break
             case 5:
-                //subtext[index].text = plant.물주기
-                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                if plant.물주기 != ""{
+                    subtext[index].text = plant.물주기
+                }
                 break
             case 6:
-                //subtext[index].text = plant.특징
-                subtext[index].text = "테스트 설명 테스트 설명 테스트 설명"
+                if plant.특징 != ""{
+                    subtext[index].text = plant.특징
+                }
                 break
             default:
                 break
