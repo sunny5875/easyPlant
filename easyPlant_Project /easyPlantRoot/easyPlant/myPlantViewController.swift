@@ -11,7 +11,7 @@ import FirebaseStorage
 private let reuseIdentifier = "diaryCell"
 
 
-class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate {
+class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate, UICollectionViewDelegateFlowLayout {
 
     var myPlant : userPlant?
     var numbers : [Double] = []
@@ -21,6 +21,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     var selectedImage : UIImage?
     
    
+    @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var diaryCollectionView: UICollectionView!
     @IBOutlet weak var dDayLabel: UILabel!
@@ -53,7 +54,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
 
             let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
                 imagePicker.sourceType = .camera
-                self.present(imagePicker,animated: true,completion: nil)//보여주고 나서 추가작언 없으니까 nil
+                self.present(imagePicker,animated: true,completion: nil)
             })
             alertController.addAction(cameraAction)
         }
@@ -100,17 +101,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
            
             return cell
         }
-    
-  /*
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-                
-        return CGSize(width: 130, height: 130)
-            
-    }
-*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
   
         
@@ -172,26 +163,38 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     
-        
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+        {
+        let width  = (diaryCollectionView.frame.width-10)/3
+    
+        return CGSize(width: width, height: width)
+        }
+
+    
     
     func updateUI(){
-        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+//        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
    
-        diaryCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+//        diaryCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
-        labelStackView.layer.cornerRadius =  20
+        
+        
+        labelStackView.layer.cornerRadius = 20
+        imageView.layer.borderWidth = 3
+        imageView.layer.borderColor = UIColor.white.cgColor
        
         
         // Do any additional setup after loading the view.
         if let myPlant = myPlant {
-            dDayLabel.text = "등록일\n"+myPlant.registedDate
-            locationLabel.text = "위치\n"+myPlant.location
-            speciesLabel.text = "종류\n"+myPlant.plantSpecies
-            happeniessLabel.text = "행복도\n\(myPlant.happeniess[myPlant.happeniess.count-1])"
+            dDayLabel.text = myPlant.registedDate
+            locationLabel.text = myPlant.location
+            speciesLabel.text = myPlant.plantSpecies
+            happeniessLabel.text = "\(myPlant.happeniess[myPlant.happeniess.count-1])"
             
             imageView.image = UIImage(named: myPlant.plantImage)
             
-            imageView.layer.cornerRadius = imageView.frame.width / 2
+            imageView.layer.cornerRadius = imageView.frame.width / 2.0
+            imageView.layer.masksToBounds = true
             
             numbers = myPlant.happeniess
             
@@ -202,10 +205,10 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             speciesLabel?.layer.masksToBounds = true
             happeniessLabel?.layer.masksToBounds = true
             
-            dDayLabel.layer.cornerRadius = 20
-            locationLabel.layer.cornerRadius = 20
-            speciesLabel.layer.cornerRadius = 20
-            happeniessLabel.layer.cornerRadius = 20
+            dDayLabel.layer.cornerRadius = dDayLabel.frame.width / 2
+            locationLabel.layer.cornerRadius = locationLabel.frame.width / 2
+            speciesLabel.layer.cornerRadius = speciesLabel.frame.width / 2
+            happeniessLabel.layer.cornerRadius = happeniessLabel.frame.width / 2
             
             labelStackView.layer.cornerRadius = 20
             
@@ -231,10 +234,10 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         let chartData = LineChartData(dataSet: chartDataset)
         
-        //chartView.rightAxis.enabled = false
-      //  chartView.leftAxis.enabled = false
-      //  chartView.drawBordersEnabled = false
-       // chartView.xAxis.enabled = false
+        chartView.rightAxis.enabled = false
+        chartView.leftAxis.enabled = false
+        chartView.drawBordersEnabled = false
+        chartView.xAxis.enabled = false
         
         
         var circleColors: [NSUIColor] = []           // arrays with circle color definitions
@@ -254,10 +257,15 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
 //        chartView.backgroundColor = .white
         chartView.layer.cornerRadius = 20
         chartView.layer.masksToBounds = true
+        
+//        chartView.backgroundColor = UIColor(red: CGFloat(174/255), green: CGFloat(213/255), blue: CGFloat(129/255), alpha: 1)
         //todo
         
-//        let animation = CABasicAnimation(keyPath: "path")
         
+//        chartView.animate(xAxisDuration: 3.0, easingOption: .linear)
+        
+        
+        backgroundView.layer.cornerRadius = 20
         
         
     }
@@ -292,7 +300,14 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             }))
 
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-                print("User click Delete button")
+                for i in 0...(userPlants.count-1) {
+                    if(userPlants[i].name == self.myPlant!.name){
+                        userPlants.remove(at: i)
+                        break
+                    }
+                    
+                }
+                self.performSegue(withIdentifier: "unwindToUserPlants", sender: myPlantViewController.self)
             }))
             
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
