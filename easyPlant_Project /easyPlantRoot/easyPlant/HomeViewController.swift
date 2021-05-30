@@ -52,18 +52,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
-        calendar.layer.cornerRadius = calendar.frame.height / 14
+        calendar.layer.cornerRadius = 30
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
         
         userView.backgroundColor = .white
-        userView.layer.cornerRadius = userView.frame.height / 14
+        userView.layer.cornerRadius = 30
         
         
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
         headerView.text = "식물 목록"
         headerView.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        headerView.textColor = UIColor.white
+        headerView.textColor = UIColor.black
         headerView.textAlignment = .center
         headerView.contentMode = .scaleAspectFit
         
@@ -213,7 +213,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
         cell.backgroundColor = UIColor.white
-        cell.layer.cornerRadius = cell.frame.height / 4
+        cell.layer.cornerRadius = 30
         
         // reloadData 하면 다시 새 물뿌리개 이미지 생성함.
         // reload 하는 경우엔 이 부분 실행하지 않도록
