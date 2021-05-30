@@ -213,7 +213,7 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         let calendarDate = formatter.string(from: date)
         
         var dotNum = 0
-        for i in 0...userPlants.count {
+        for i in 0...userPlants.count-1 {
             let wateringDate = formatter.string(from: userPlants[i].wateringDay)
             if wateringDate == calendarDate {
                 dotNum += 1

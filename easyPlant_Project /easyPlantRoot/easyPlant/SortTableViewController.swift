@@ -105,7 +105,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
                 plant.이름.lowercased().contains(searchText.lowercased())
             }
             if resultPlantArray.count == 0{
-                resultPlantArray.append(Plant(이름 : "",원산지: "",과명: "",생육온도: 0, 광요구도: "", 물주기: "", 특징: "", 한줄설명: ""))
+                resultPlantArray.append(Plant(이름 : "",원산지: "",과명: "",생육온도: "", 광요구도: "", 물주기: "", 특징: "", 한줄설명: ""))
             }
             tableView.reloadData()
           
@@ -249,7 +249,9 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         cell.leftButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         cell.leftImageButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         
-        cell.leftLabel?.text = "  테스트 한줄설명"
+        if itemLeft.한줄설명 != "" {
+            cell.leftLabel.text = itemLeft.한줄설명
+        }
         
         //검색결과가 없다면
         if resultPlantArray.count == 1 && resultPlantArray[0].이름 == "" {
@@ -280,7 +282,10 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
             //각 버튼을 눌렀을 시 호출할 함수 설정
             cell.rightButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
             cell.rightImageButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
-            cell.rightLabel.text = "  테스트 한줄설명"
+            if itemRight.한줄설명 != "" {
+                cell.rightLabel.text = itemRight.한줄설명
+            }
+                
 
 
         }
