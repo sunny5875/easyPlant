@@ -15,7 +15,7 @@ struct User {
     var totalWaterNum: Int
     var didWaterNum: Int
     
-    var hapiness: Double
+    var hapiness: Int //int형으로 바꿨어
     let registeredDate: Date
     
     init(_ registeredDate: Date) {
@@ -32,11 +32,11 @@ struct User {
         numPlants = userPlants.count
         growingDays = Calendar.current.dateComponents([.day], from: registeredDate, to: Date()).day!
         
-        hapiness = Double(didWaterNum / totalWaterNum)
+        hapiness = didWaterNum / totalWaterNum
         
         
         for standard in levels {
-            if standard.hapiness <= hapiness && standard.numPlants <= numPlants && standard.growingDays <= growingDays {
+            if Int(standard.hapiness) <= hapiness && standard.numPlants <= numPlants && standard.growingDays <= growingDays {
                 self.level = standard
             }
         }

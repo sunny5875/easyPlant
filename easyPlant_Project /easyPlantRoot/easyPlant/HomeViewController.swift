@@ -100,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.chartDescription?.textColor = .lightGray
         
         // TODO 수정 필요 (행복도 평균 계산)
-        value_fill.value = myUser.hapiness
+        value_fill.value = Double(myUser.hapiness)
         value_fill.label = ""
         value_empty.value = 100 - value_fill.value
         value_empty.label = ""

@@ -105,8 +105,8 @@ class WriteDiaryViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-       dateString = dateFormatter.string(from: date)
-        dateLabel.text = dateString
+       //dateString = dateFormatter.string(from: date)
+        //dateLabel.text = dateString
         
        // uploadimage(img: image)
         

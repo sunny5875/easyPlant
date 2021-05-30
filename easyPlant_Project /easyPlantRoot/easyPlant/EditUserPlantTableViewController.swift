@@ -80,6 +80,9 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             let watering_date_string = formatter.string(from: usrplant.wateringDay)
             
             imageView.image = UIImage(named : usrplant.plantImage)
+            imageView.layer.cornerRadius = imageView.layer.frame.width / 2
+            imageView.layer.borderWidth = 3
+            imageView.layer.borderColor = UIColor.white.cgColor
             nameTextField.text = usrplant.name
             locationTextField.text = usrplant.location
             speciesTextField.text = usrplant.plantSpecies

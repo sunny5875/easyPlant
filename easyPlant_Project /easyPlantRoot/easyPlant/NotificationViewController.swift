@@ -10,7 +10,6 @@ import UIKit
 class NotificationViewController: UITableViewController {
     
     @IBOutlet weak var colorPickerView: UIColorWell!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var myPlant: userPlant?
@@ -20,15 +19,9 @@ class NotificationViewController: UITableViewController {
         self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         self.title = "알림"
         
-        if let myPlant = myPlant {
-            titleLabel.text = "\(myPlant.name) 설정"
-        } else {
-            titleLabel.text = "잘못된 정보입니다."
-        }
-
         colorPickerView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         colorPickerView.addTarget(self, action: #selector(colorWellChanged(_:)), for: .valueChanged)
-        
+    
         datePicker.addTarget(self, action: #selector(changed), for: .valueChanged)
     }
     

@@ -14,7 +14,7 @@ private let reuseIdentifier = "diaryCell"
 class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate, UICollectionViewDelegateFlowLayout {
 
     var myPlant : userPlant?
-    var numbers : [Double] = []
+    var numbers : [Int] = []
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     var ChartEntry : [ChartDataEntry] = []
@@ -180,7 +180,6 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         
         
-        labelStackView.layer.cornerRadius = 20
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
        
@@ -206,12 +205,11 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             speciesLabel?.layer.masksToBounds = true
             happeniessLabel?.layer.masksToBounds = true
             
-            dDayLabel.layer.cornerRadius = dDayLabel.frame.width / 2
-            locationLabel.layer.cornerRadius = locationLabel.frame.width / 2
-            speciesLabel.layer.cornerRadius = speciesLabel.frame.width / 2
-            happeniessLabel.layer.cornerRadius = happeniessLabel.frame.width / 2
+            //dDayLabel.layer.cornerRadius = dDayLabel.frame.width / 2
+            //locationLabel.layer.cornerRadius = locationLabel.frame.width / 2
+            //speciesLabel.layer.cornerRadius = speciesLabel.frame.width / 2
+            //happeniessLabel.layer.cornerRadius = happeniessLabel.frame.width / 2
             
-            labelStackView.layer.cornerRadius = 20
             
             
             
@@ -222,10 +220,10 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         for i in 0..<months.count {
             let value : ChartDataEntry
             if(numbers.count > i){
-                 value = ChartDataEntry(x: Double(i), y: Double(numbers[i]))
+                value = ChartDataEntry(x: Double(i), y: Double(numbers[i]))
             }
             else{
-                value = ChartDataEntry(x: Double(i), y: Double(0.0))
+                value = ChartDataEntry(x: Double(i), y: 0.0)
             }
             ChartEntry.append(value)
         }
@@ -236,21 +234,22 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         let chartData = LineChartData(dataSet: chartDataset)
         
         chartView.rightAxis.enabled = false
-        //chartView.leftAxis.enabled = false
+        chartView.leftAxis.enabled = false
         chartView.drawBordersEnabled = false
-        //chartView.xAxis.enabled = false
+        chartView.xAxis.enabled = false
         
         
         
         var circleColors: [NSUIColor] = []           // arrays with circle color definitions
 
        
-        let color = UIColor(red: CGFloat(189.0/255), green: CGFloat(236.0/255), blue: CGFloat(182.0/255), alpha: 1)
+        let color = UIColor(red: CGFloat(174.0/255), green: CGFloat(213.0/255), blue: CGFloat(129.0/255), alpha: 1)
         circleColors.append(color)
         
 
         // set colors and enable value drawing
         chartDataset.colors = circleColors
+        chartDataset.circleHoleColor = color
         chartDataset.circleColors = circleColors
         chartDataset.drawValuesEnabled = true
         
