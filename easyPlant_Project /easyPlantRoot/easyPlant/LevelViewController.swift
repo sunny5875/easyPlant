@@ -35,6 +35,7 @@ class LevelViewController: UIViewController {
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 15), range: NSMakeRange(0, attributedString.length))
 
         myLevelView.attributedText = attributedString
+        myLevelView.layer.cornerRadius = 30
         print(myLevelView.text!)
         myStack.layer.cornerRadius = 30
         myStack.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
