@@ -107,13 +107,16 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     }
     */
     
+   
+
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
         let width  = (userPlantCollectionView.frame.width-10)/2
         
     
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: width*1.3)
         }
 
     
@@ -141,13 +144,13 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
+        return 0.0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
+        return 0.0
     }
         
    
