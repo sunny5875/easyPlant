@@ -67,7 +67,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         headerView.textAlignment = .center
         headerView.contentMode = .scaleAspectFit
         
-        headerView.font = UIFont.boldSystemFont(ofSize: CGFloat(20))
+        headerView.font = UIFont.boldSystemFont(ofSize: CGFloat(22))
 
         plantListTableView.tableHeaderView = headerView
         

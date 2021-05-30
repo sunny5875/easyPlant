@@ -35,6 +35,12 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     @IBOutlet weak var imageView: UIImageView!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationItem.title = myPlant?.name
+
+    }
+    
     
     @IBAction func plusButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "add new Diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
