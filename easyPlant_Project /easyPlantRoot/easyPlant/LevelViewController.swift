@@ -60,7 +60,7 @@ class LevelViewController: UIViewController {
             } else {
                 level.text = "평균  행복도: \(levels[i].hapiness) 키운 식물수: \(levels[i].numPlants) 키운 기간: \(levels[i].growingDays)"
             }
-            level.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+            //level.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             level.backgroundColor =  UIColor.white
         }
         // Do any additional setup after loading the view.

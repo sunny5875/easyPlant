@@ -236,9 +236,10 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         let chartData = LineChartData(dataSet: chartDataset)
         
         chartView.rightAxis.enabled = false
-        chartView.leftAxis.enabled = false
+        //chartView.leftAxis.enabled = false
         chartView.drawBordersEnabled = false
-        chartView.xAxis.enabled = false
+        //chartView.xAxis.enabled = false
+        
         
         
         var circleColors: [NSUIColor] = []           // arrays with circle color definitions
