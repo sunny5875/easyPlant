@@ -46,14 +46,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9V-Ib-Gat">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                            <rect key="frame" x="22" y="0.0" width="128" height="150"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-oa-0Jk">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="129.66666666666666"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plant" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-oa-0Jk">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="129.66666666666666"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwG-7A-w4S">
-                                                                    <rect key="frame" x="54.333333333333329" y="129.66666666666666" width="41.333333333333329" height="20.333333333333343"/>
+                                                                    <rect key="frame" x="43.333333333333329" y="129.66666666666666" width="41.333333333333329" height="20.333333333333343"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20.329999999999998" id="ZbC-L3-Eqx"/>
                                                                     </constraints>
@@ -922,6 +922,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="leaf" catalog="system" width="128" height="109"/>
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
+        <image name="plant" width="128" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
