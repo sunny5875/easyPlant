@@ -375,7 +375,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdb-Ji-niA">
-                                        <rect key="frame" x="261" y="322" width="46" height="30"/>
+                                        <rect key="frame" x="261" y="3" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <segue destination="Qo0-sR-u1D" kind="show" id="SES-8D-jF2"/>
