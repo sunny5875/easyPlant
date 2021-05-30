@@ -165,7 +165,8 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
-        let width  = (diaryCollectionView.frame.width-10)/3
+        //10으로하면 12 아이폰에서 다시 깨지길래 12로 바꿔뒀어
+        let width  = (diaryCollectionView.frame.width-12)/3
     
         return CGSize(width: width, height: width)
         }
