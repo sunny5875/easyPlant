@@ -62,7 +62,14 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         present(alertController, animated: true, completion: nil)
         
         
+        
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+        {
+        let width  = (view.frame.width-10)/2
+    
+        return CGSize(width: width, height: width)
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +86,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             wateringDayTextField.text = watering_date_string
             
             registerationTextField.text = usrplant.registedDate
-            
-            
             
             
         }
@@ -100,7 +105,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
       
         for i in 0...(userPlants.count-1) {
             if(userPlants[i].name == editPlant?.name){
-                
                 editPlant?.name = nameTextField.text!
                 editPlant?.location = locationTextField.text!
                 editPlant?.plantSpecies = speciesTextField.text!

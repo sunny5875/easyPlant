@@ -17,7 +17,7 @@ class userPlantCollectionViewCell: UICollectionViewCell {
     
     func update(info: userPlant) {
         imageView.image = UIImage(named: info.plantImage)
-        nameLabel.text = info.name
+        nameLabel.text = "           "+info.name
       
         
        }

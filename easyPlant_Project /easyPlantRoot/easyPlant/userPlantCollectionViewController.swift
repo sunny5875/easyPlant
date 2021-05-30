@@ -9,19 +9,21 @@ import UIKit
 
 private let reuseIdentifier = "userPlantCell"
 
-class userPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class userPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var userPlantCollectionView: UICollectionView!
-    
+
+  
    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+//        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
    
-        userPlantCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+//        userPlantCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
         userPlantCollectionView.reloadData()
         
@@ -68,6 +70,7 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
   
         let userplant = userPlants[indexPath.row]
         cell.update(info: userplant)
+    
    
        
        return cell
@@ -105,14 +108,16 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     */
     
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-//        {
-//        let width  = (view.frame.width-10)/2
-//        print(width)
-//        return CGSize(width: width, height: width)
-//        }
-//
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+        {
+        let width  = (userPlantCollectionView.frame.width-10)/2
+        
     
+        return CGSize(width: width, height: width)
+        }
+
+    
+
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -124,14 +129,14 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
 
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-                
-        return CGSize(width: 20, height: 20)
-            
-    }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//
+//        return CGSize(width: 20, height: 20)
+//
+//    }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -145,5 +150,14 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
         return 1.0
     }
         
+   
+    @IBAction func unwindToUserPlants(_ unwindSegue: UIStoryboardSegue) {
+//        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+        
+        userPlantCollectionView.reloadData()
+        
+    }
     
+   
 }
