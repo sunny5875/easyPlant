@@ -38,7 +38,7 @@ class myDiaryViewController: UIViewController {
             
          
         }
-        navigationController?.title = myplant?.name
+        self.navigationItem.title = myplant?.name
         
         view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
