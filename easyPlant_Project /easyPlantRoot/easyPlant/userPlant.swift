@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
+
+var clickedDay: Date = Date()
+
 struct userPlant{
     var name: String
     var location: String
@@ -20,12 +23,13 @@ struct userPlant{
     var diarylist : [Diary]
     var color : UIColor
     var happeniess : [Double]
-    var alarmTime : Double
+    var alarmTime : Date
     var plantImage : String
-
+    var watered : Int
 }
+var listPlantsIndex: [Int] = []
 
-
-var userPlants : [userPlant] = [userPlant(name: "초록콩", location: "책상 위", registedDate: "2010-10-30",        waterPeriod: 28, wateringDay: Date(), plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: UIColor(), happeniess: [86.4,65.3,67.4,98.2,87,68.8,76.8,77.8,89.0,76.7], alarmTime: 10.0,plantImage: "plant"),
-                                userPlant(name: "쁘띠", location: "창가", registedDate: "2010-10-30", waterPeriod: 7, wateringDay: Date(), plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: UIColor(), happeniess: [86.4,65.3,57.4,76.8], alarmTime: 10.0,plantImage: "plant"),
-                                userPlant(name: "요니", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: Date(), plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: UIColor(), happeniess:  [86.4,65.3,67.4,98.2,87,68.8,76.8,77.8,89.0,76.7], alarmTime: 10.0, plantImage: "plant")]
+var userPlants : [userPlant] = [userPlant(name: "초록콩", location: "책상 위", registedDate: "2010-10-30",        waterPeriod: 28, wateringDay: Date(), plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: UIColor(red: 1, green: 0, blue: 0, alpha: 1), happeniess: [86.4,65.3,67.4,98.2,87,68.8,76.8,77.8,89.0,76.7], alarmTime: Date() ,plantImage: "plant1", watered: 0),
+                                userPlant(name: "쁘띠", location: "창가", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: UIColor(red: 0, green: 1, blue: 0, alpha: 1), happeniess: [86.4,65.3,57.4,76.8], alarmTime: Date() ,plantImage: "산세베리아", watered: 0),
+                                userPlant(name: "요니", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: Date(), plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: UIColor(red: 0, green: 0, blue: 1, alpha: 1), happeniess:  [86.4,65.3,67.4,98.2,87,68.8,76.8,77.8,89.0,76.7], alarmTime: Date(), plantImage: "스킨답서스", watered: 0),
+                                userPlant(name: "꾹꾹이", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: Date(), plantSpecies: "스투키", sunLight: 20, temperature: 22.3, diarylist: diarys, color: UIColor(red: 1, green: 1, blue: 0, alpha: 1), happeniess:  [86.4,65.3,67.4,98.2,87,68.8,76.8,77.8,89.0,76.7], alarmTime: Date() , plantImage: "스킨답서스", watered: 0)]
