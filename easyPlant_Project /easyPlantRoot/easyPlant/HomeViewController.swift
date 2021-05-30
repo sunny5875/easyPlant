@@ -23,12 +23,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        levelLabel.text = "Lv.\(myUser.level.name)"
+        clickedDay = Date()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showLevelView(sender:)))
         userView.addGestureRecognizer(tapGesture)
-
-        
-        levelImage.image = UIImage(named: "sprout")
-        hapinessImage.image = UIImage(named: "행복한식물")
         
         self.calendar.scope = .week
         calendar.headerHeight = 50
@@ -52,21 +50,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         calendar.calendarWeekdayView.weekdayLabels[6].text = "토"
         
         
-        
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
-        calendar.layer.cornerRadius = calendar.frame.height / 14
+        calendar.layer.cornerRadius = 30
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
         
         userView.backgroundColor = .white
-        userView.layer.cornerRadius = userView.frame.height / 14
+        userView.layer.cornerRadius = 30
         
         
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
         headerView.text = "식물 목록"
         headerView.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        headerView.textColor = UIColor.white
+        headerView.textColor = UIColor.black
         headerView.textAlignment = .center
         headerView.contentMode = .scaleAspectFit
         
@@ -74,23 +71,38 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         plantListTableView.tableHeaderView = headerView
         
-        
     }
     
-    var array: [ChartDataEntry] = [ChartDataEntry()]
     override func viewWillAppear(_ animated: Bool) {
         plantListTableView.reloadData()
+        
+        myUser.updateUser()
         calendar.reloadData()
+        
+        levelImage.image = UIImage(named: myUser.level.icon)
+        if myUser.level.name == levels[0].name {
+            hapinessImage.isHidden = false
+            if myUser.hapiness < 70 {
+                hapinessImage.image = UIImage(named: "시든식물")
+            } else {
+                hapinessImage.image = UIImage(named: "행복한식물")
+            }
+        } else {
+            hapinessImage.isHidden = true
+        }
         
         var ChartEntry : [ChartDataEntry] = []
         let value_fill = PieChartDataEntry(value: 0)
         let value_empty = PieChartDataEntry(value: 0)
         
-        pieChart.chartDescription?.text = ""
+        pieChart.chartDescription?.text = "행복도"
+        pieChart.chartDescription?.font = UIFont.boldSystemFont(ofSize: CGFloat(12))
+        pieChart.chartDescription?.textColor = .lightGray
         
-        value_fill.value = 70
+        // TODO 수정 필요 (행복도 평균 계산)
+        value_fill.value = myUser.hapiness
         value_fill.label = ""
-        value_empty.value = 30
+        value_empty.value = 100 - value_fill.value
         value_empty.label = ""
         
         ChartEntry.append(value_fill)
@@ -102,18 +114,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var colors: [NSUIColor] = []
         var color = UIColor(red: CGFloat(189.0/255), green: CGFloat(236.0/255), blue: CGFloat(182.0/255), alpha: 1)
         colors.append(color)
-        color = UIColor(red: CGFloat(255/255), green: CGFloat(255/255), blue: CGFloat(255/255), alpha: 1)
+        color = UIColor(red: CGFloat(189.0/255), green: CGFloat(236.0/255), blue: CGFloat(182.0/255), alpha: 0.3)
         colors.append(color)
         
+        pieChart.highlightPerTapEnabled =  false
+        chartDataSet.drawIconsEnabled = false
+        pieChart.rotationEnabled = false
         chartDataSet.colors = colors
         chartDataSet.drawValuesEnabled = false
-        chartDataSet.selectionShift = 5
+        chartDataSet.selectionShift = 8
         pieChart.transparentCircleRadiusPercent = 0
-        //pieChart.holeRadiusPercent = 0
+        pieChart.holeRadiusPercent = 50
         pieChart.legend.enabled = false
-        pieChart.chartDescription?.enabled = false
+        pieChart.chartDescription?.enabled = true
+        pieChart.drawHoleEnabled = false
+        pieChart.drawCenterTextEnabled = true
+        pieChart.centerText = "\(value_fill.value)%"
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize),
+            .foregroundColor: UIColor.gray
+        ]
+        
+        let attributedString = NSAttributedString(string: String(value_fill.value), attributes: attributes)
+        
+        pieChart.centerAttributedText = attributedString
+        
         pieChart.minOffset = 0
         pieChart.data = chartData
+        pieChart.isHidden = false
 
     }
     
@@ -131,18 +160,50 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userPlants.count
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let clicked_date_string = formatter.string(from: clickedDay)
+        let current_date_string = formatter.string(from: Date())
+        
+        listPlantsIndex = []
+        for i in 0...userPlants.count-1 {
+            var plant = userPlants[i]
+            let watering_day_string = formatter.string(from: plant.wateringDay)
+            
+            if watering_day_string != current_date_string && plant.watered == 1 {
+                // TODO need to save
+                plant.wateringDay = Calendar.current.date(byAdding: .day, value: plant.waterPeriod, to: Date())!
+                
+                myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
+                myUser.didWaterNum = max(myUser.didWaterNum + 1, 10)
+                
+                plantListTableView.reloadData()
+                calendar.reloadData()
+                plant.watered = 0
+            } else if plant.wateringDay.compare(Date()) == .orderedAscending {
+                myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
+                if (myUser.totalWaterNum == 10) {
+                    myUser.didWaterNum -= 1
+                }
+            }
+            
+            if watering_day_string == clicked_date_string {
+                listPlantsIndex.append(i)
+            }
+        }
+        
+        return listPlantsIndex.count
     }
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! UserPlantTableViewCell
-        
-        let item = userPlants[indexPath.row]
+        let item = userPlants[listPlantsIndex[indexPath.row]]
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
-        let current_date_string = formatter.string(from: Date())
+        let clicked_date_string = formatter.string(from: clickedDay)
         let watering_date_string = formatter.string(from: item.wateringDay)
+        let current_date_string = formatter.string(from: Date())
         
         cell.name.text = item.name
         cell.location.text = item.location
@@ -152,14 +213,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
         cell.backgroundColor = UIColor.white
-        cell.layer.cornerRadius = cell.frame.height / 4
+        cell.layer.cornerRadius = 30
         
         // reloadData 하면 다시 새 물뿌리개 이미지 생성함.
         // reload 하는 경우엔 이 부분 실행하지 않도록
         //if (item.watered == false)
         let wateringButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         wateringButton.contentMode = .scaleAspectFit
-        wateringButton.image = UIImage(named: "watering")
+        if (item.watered == 1) {
+            wateringButton.image = UIImage(named: "watering_fill")
+        }
+        else {
+            wateringButton.image = UIImage(named: "watering")
+        }
+        
         wateringButton.tag = indexPath.row
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(watering(sender: )))
@@ -168,7 +235,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.accessoryView = wateringButton
         
-        if current_date_string != watering_date_string {
+        if clicked_date_string != current_date_string {
             cell.accessoryView?.isHidden = true
         }
         
@@ -178,7 +245,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
         guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? myPlantViewController else {return indexPath}
-        secondVC.myPlant = userPlants[indexPath.row]
+        secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
         self.navigationController?.pushViewController(secondVC, animated: true)
         
         return indexPath
@@ -189,12 +256,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //sender.image = UIImage(named: "watering_fill")
         let wateringButton = sender.view as! UIImageView
         
-        wateringButton.image = UIImage(named: "watering_fill")
+        if userPlants[listPlantsIndex[wateringButton.tag]].watered == 1 {
+            userPlants[listPlantsIndex[wateringButton.tag]].watered = 0
+            wateringButton.image = UIImage(named: "watering")
+        } else {
+            userPlants[listPlantsIndex[wateringButton.tag]].watered = 1
+            wateringButton.image = UIImage(named: "watering_fill")
+        }
         
-        // TODO need to save
-        userPlants[wateringButton.tag].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[wateringButton.tag].waterPeriod, to: Date())!
         
-        plantListTableView.reloadData()
     }
     
     /* MyPlant의 설정으로 이동
@@ -228,14 +298,23 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let calendarDate = formatter.string(from: date)
-        
-        for i in 0...userPlants.count {
+        var colors: [UIColor] = []
+        for i in 0...userPlants.count-1 {
             let wateringDate = formatter.string(from: userPlants[i].wateringDay)
             if wateringDate == calendarDate {
-                return [UIColor.green]
+                colors.append(userPlants[i].color)
             }
         }
         
-        return [UIColor.white]
+        if colors.isEmpty {
+            return [UIColor.white]
+        } else {
+            return colors
+        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        clickedDay = date
+        plantListTableView.reloadData()
     }
 }
