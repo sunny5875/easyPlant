@@ -86,7 +86,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             nameTextField.text = usrplant.name
             locationTextField.text = usrplant.location
             speciesTextField.text = usrplant.plantSpecies
-            wateringDayTextField.text = watering_date_string
+            wateringDayTextField.text = String(usrplant.waterPeriod)
+            registerationTextField.text = usrplant.registedDate
             
           
 
@@ -112,7 +113,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 editPlant?.name = nameTextField.text!
                 editPlant?.location = locationTextField.text!
                 editPlant?.plantSpecies = speciesTextField.text!
-                //editPlant?.wateringDay = wateringDayTextField.text!
+                editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
                 editPlant?.plantImage = imageView.image!.description
                 
                 userPlants[i] = editPlant!
