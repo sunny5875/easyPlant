@@ -19,12 +19,12 @@ struct User {
     let registeredDate: Date
     
     init(_ registeredDate: Date) {
-        level = levels[3]
-        growingDays = 0
+        level = levels[1]
+        growingDays = 10
         numPlants = 2
-        hapiness = 40
-        totalWaterNum = 0
-        didWaterNum = 0
+        hapiness = 80
+        totalWaterNum = 10
+        didWaterNum = 8
         self.registeredDate = registeredDate
     }
     

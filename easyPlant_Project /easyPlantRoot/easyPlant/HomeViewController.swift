@@ -60,6 +60,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         userView.layer.cornerRadius = 30
         
         
+        
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
         headerView.text = "식물 목록"
         headerView.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
@@ -76,11 +77,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         plantListTableView.reloadData()
         
-        myUser.updateUser()
+        //myUser.updateUser()
         calendar.reloadData()
         
         levelImage.image = UIImage(named: myUser.level.icon)
-        if myUser.level.name == levels[0].name {
+        if myUser.level.name != levels[0].name {
             hapinessImage.isHidden = false
             if myUser.hapiness < 70 {
                 hapinessImage.image = UIImage(named: "시든식물")
@@ -143,6 +144,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
+        
 
     }
     
