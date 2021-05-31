@@ -16,10 +16,8 @@ class NotificationViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+       
         self.title = "알림"
-        
-        colorPickerView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         colorPickerView.addTarget(self, action: #selector(colorWellChanged(_:)), for: .valueChanged)
     
         datePicker.addTarget(self, action: #selector(changed), for: .valueChanged)
