@@ -88,7 +88,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             speciesTextField.text = usrplant.plantSpecies
             wateringDayTextField.text = watering_date_string
             
-            registerationTextField.text = usrplant.registedDate
+          
+
             
             
         }
