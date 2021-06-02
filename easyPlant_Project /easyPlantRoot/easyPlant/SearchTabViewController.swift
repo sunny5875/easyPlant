@@ -36,8 +36,9 @@ class SearchTabViewController: UIViewController {
     func setUI(){
         for but in menuButtons{
             but.layer.borderWidth = 0.5
-            but.layer.borderColor = UIColor.lightGray.cgColor
-            but.layer.cornerRadius = 15
+            but.layer.borderColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1)).cgColor
+            
+            but.layer.cornerRadius = 20
             but.layer.backgroundColor = UIColor.white.cgColor
             but.setTitle(but.currentTitle, for: .normal)
         
