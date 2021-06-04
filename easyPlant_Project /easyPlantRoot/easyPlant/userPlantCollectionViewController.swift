@@ -10,7 +10,7 @@ import UIKit
 private let reuseIdentifier = "userPlantCell"
 
 let documentsDirectory = FileManager.default.urls(for: .documentDirectory,in: .userDomainMask).first!
-let archiveURL = documentsDirectory.appendingPathComponent("savingUserPlants").appendingPathExtension("plist")
+let archiveURL = documentsDirectory.appendingPathComponent("savingUserPlants.json")
 
 
 class userPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -24,6 +24,10 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        
+//        saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+        
         
         loadUserPlant()
         
@@ -190,21 +194,25 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     
     
     func loadUserPlant(){
-        print(archiveURL)
-        
-        let propertyListDecoder = PropertyListDecoder()
-       
-        if let retrievedNotesData = try? Data(contentsOf: archiveURL){
+        let jsonDecoder = JSONDecoder()
             
-            if let decodedNotes = try? propertyListDecoder.decode(Array<userPlant>.self, from:
-              retrievedNotesData) {
-            print("decode한 결과")
-            print(decodedNotes)
-            
-                userPlants  = decodedNotes
-      
+            do{
+               
+                
+                let jsonData  = try Data(contentsOf: archiveURL, options: .mappedIfSafe)
+                let decoded = try jsonDecoder.decode([userPlant].self, from: jsonData)
+
+               userPlants = decoded
+                
+                
+                
             }
-        }
+            catch {
+                print("에러")
+                print(error)
+               
+            }
+
    
     }
     

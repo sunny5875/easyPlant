@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         userNotificationCenter.delegate = self
-        
+        /*
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
@@ -46,8 +46,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
- 
-        /*
+ */
+        
         let date = Date()
         let calendar1 = Calendar.current
         let realHour = calendar1.component(.hour, from: date)
@@ -78,7 +78,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
  
-        }*/
+        }
+        
         
         //sendNotification(seconds: 10)
  

@@ -100,12 +100,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 wateringDayTextField.text = String(usrplant.waterPeriod)
                 registerationTextField.text = usrplant.registedDate
                 
-                
-                
-                
-                
-                
-                editPlant?.wateringDay = usrplant.wateringDay
+                recentlyWateringDayTextField.text = "\(Calendar.current.date(byAdding: .day, value: -usrplant.waterPeriod, to: usrplant.wateringDay)!)"
             }
             saveBarButton.isEnabled = true
         }
@@ -197,7 +192,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             
             
      
-            editPlant!.saveNewUserPlant(archiveURL: archiveURL)
+            saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
            
             
             performSegue(withIdentifier: "makeNewPlant", sender: self)

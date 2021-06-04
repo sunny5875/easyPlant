@@ -49,8 +49,6 @@ struct userPlant : Codable {
         
         name = try container.decode(String.self, forKey: .name)
         location = try container.decode(String.self, forKey: .location)
-       
-
         registedDate = try container.decode(String.self, forKey: .registedDate)
         waterPeriod = try container.decode(Int.self, forKey: .waterPeriod)
         wateringDay = try container.decode(Date.self, forKey: .wateringDay)
@@ -61,22 +59,24 @@ struct userPlant : Codable {
         alarmTime = try container.decode(Date.self, forKey: .alarmTime)
         plantImage = try container.decode(String.self, forKey: .plantImage)
         watered = try container.decode(Int.self, forKey: .watered)
+        
     }
+    
     public func encode(to encoder: Encoder) throws {
         var valueContatiner = encoder.container(keyedBy: CodingKeys.self)
         
-        try valueContatiner.encode(true,forKey: CodingKeys.name)
-        try valueContatiner.encode(true,forKey: CodingKeys.location)
-        try valueContatiner.encode(true,forKey: CodingKeys.registedDate)
-        try valueContatiner.encode(true,forKey: CodingKeys.waterPeriod)
-        try valueContatiner.encode(true,forKey: CodingKeys.wateringDay)
-        try valueContatiner.encode(true,forKey: CodingKeys.plantSpecies)
-        try valueContatiner.encode(true,forKey: CodingKeys.diarylist)
-        try valueContatiner.encode(true,forKey: CodingKeys.color)
-        try valueContatiner.encode(true,forKey: CodingKeys.happeniess)
-        try valueContatiner.encode(true,forKey: CodingKeys.alarmTime)
-        try valueContatiner.encode(true,forKey: CodingKeys.plantImage)
-        try valueContatiner.encode(true,forKey: CodingKeys.watered)
+        try valueContatiner.encode(self.name,forKey: CodingKeys.name)
+        try valueContatiner.encode(self.location,forKey: CodingKeys.location)
+        try valueContatiner.encode(self.registedDate,forKey: CodingKeys.registedDate)
+        try valueContatiner.encode(self.waterPeriod,forKey: CodingKeys.waterPeriod)
+        try valueContatiner.encode(self.wateringDay,forKey: CodingKeys.wateringDay)
+        try valueContatiner.encode(self.plantSpecies,forKey: CodingKeys.plantSpecies)
+        try valueContatiner.encode(self.diarylist,forKey: CodingKeys.diarylist)
+        try valueContatiner.encode(self.color,forKey: CodingKeys.color)
+        try valueContatiner.encode(self.happeniess,forKey: CodingKeys.happeniess)
+        try valueContatiner.encode(self.alarmTime,forKey: CodingKeys.alarmTime)
+        try valueContatiner.encode(self.plantImage,forKey: CodingKeys.plantImage)
+        try valueContatiner.encode(self.watered,forKey: CodingKeys.watered)
         
     
         
@@ -118,41 +118,47 @@ struct userPlant : Codable {
         self.watered = watered
     }
     
-    public func  saveNewUserPlant(archiveURL : URL) {
-
-        let encoder: JSONEncoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        
-        
-        let propertyListEncoder = PropertyListEncoder()
-        let propertyListDecoder = PropertyListDecoder()
-        
-        print("저장 시작")
-        
-        if let retrievedNotesData = try? Data(contentsOf: archiveURL){
-            if var saved = try? propertyListDecoder.decode(Array<userPlant>.self, from: retrievedNotesData) {
-                
-               // let temp = try? propertyListEncoder.encode(self)
-                saved.append(self)
-                
-                let encodedNote = try? propertyListEncoder.encode(saved)
-           
-                
-                try? encodedNote?.write(to: archiveURL,options: .noFileProtection)
-                
-                print(archiveURL)
     
-            }
-        }
-   
-
-
-    }
-
 }
+    
+    
+    
+    
+  
 var listPlantsIndex: [Int] = []
 
 var userPlants : [userPlant] = [userPlant(name: "초록콩", location: "책상 위", registedDate: "2010-10-30",  waterPeriod: 28, wateringDay: Date(), plantSpecies: "스투키", diarylist: diarys, color: Color(uiColor: UIColor(red: 1, green: 0, blue: 0, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date() ,plantImage: "Stuckyi", watered: 0),
                                 userPlant(name: "쁘띠", location: "창가", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "호야",  diarylist: diarys, color: Color(uiColor: UIColor(red: 0, green: 1, blue: 0, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date() ,plantImage: "Hoya", watered: 0),
                                 userPlant(name: "요니", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: Date(), plantSpecies: "싱고니움", diarylist: diarys, color: Color(uiColor: UIColor(red: 0, green: 0, blue: 1, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(), plantImage: "Syngonium", watered: 0),
                                 userPlant(name: "꾹꾹이", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: Date(), plantSpecies: "테이블야자", diarylist: diarys, color: Color(uiColor: UIColor(red: 1, green: 1, blue: 0, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date() , plantImage: "ParlourPalm", watered: 0)]
+
+
+func  saveNewUserPlant(plantsList : [userPlant], archiveURL : URL) {
+
+    
+    let jsonEncoder = JSONEncoder()
+
+      do{
+          let encodeData = try jsonEncoder.encode(plantsList)
+     
+         print("hi")
+          print(archiveURL)
+        
+          do{
+              try encodeData.write(to: archiveURL, options: .noFileProtection)
+               
+          }
+          catch let error as NSError {
+              print(error)
+          }
+          
+          
+      }
+      catch {
+          print(error)
+      }
+    
+
+    print("hi 끝")
+}
+
