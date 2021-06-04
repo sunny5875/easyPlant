@@ -39,7 +39,8 @@ class WriteDiaryViewController: UIViewController {
     
     @IBAction func checkTextWrite(_ sender: UITextField) {
         
-        sender.resignFirstResponder()
+//        sender.resignFirstResponder()
+        
         if(isEdit == false){
             if titleTextField.text != "", contentTextField.text != "" {
                 saveBarButton.isEnabled = true
@@ -87,6 +88,17 @@ class WriteDiaryViewController: UIViewController {
     }
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unwindToEditDiarySegue"{
+            if let detailVC = segue.destination as? myDiaryViewController{
+                detailVC.myplant = userplant
+                detailVC.diary = editDiary
+                
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -98,11 +110,11 @@ class WriteDiaryViewController: UIViewController {
             
             
         }
-    
-        
+   
+
         saveBarButton.isEnabled = false
         
-        let date:Date = Date()
+        let _:Date = Date()
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -112,7 +124,7 @@ class WriteDiaryViewController: UIViewController {
         
        // uploadimage(img: image)
         
-        if let editDairy = editDiary {
+        if editDiary != nil {
             titleTextField.text =  editDiary?.title
             contentTextField.text = editDiary?.story
             imageView.image = UIImage(named: editDiary!.picture)
@@ -127,13 +139,19 @@ class WriteDiaryViewController: UIViewController {
         
         contentView.layer.zPosition = 100
         imageView.layer.zPosition = 99
-        
         stackView.layer.cornerRadius = 20
-        
         contentView.layer.cornerRadius = 30
+        
+        
     }
     
     
+   
+    
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     /*
     // MARK: - Navigation
@@ -165,5 +183,8 @@ class WriteDiaryViewController: UIViewController {
                   }
     }
 
+    
+    
+    
 
 }

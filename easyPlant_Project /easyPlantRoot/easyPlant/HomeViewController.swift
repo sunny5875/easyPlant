@@ -8,6 +8,7 @@
 import UIKit
 import FSCalendar
 import Charts
+import UserNotifications
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -19,8 +20,69 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
+    let userNotificationCenter = UNUserNotificationCenter.current()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNotificationCenter.delegate = self
+        /*
+        // Request notification authentication
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
+                })
+        
+        let notiContent = UNMutableNotificationContent()
+        for plant in userPlants {
+            notiContent.title = "\(plant.name) 물 줄 시간이예요!"
+            notiContent.body = "\(plant.name)이 배고파해요"
+
+            let date = Date(timeIntervalSinceNow: 15)
+            let dateComponents = Calendar.current.dateComponents([.year, .day, .hour, .minute], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let request = UNNotificationRequest(identifier: "watering_notification", content: notiContent, trigger: trigger)
+                
+            userNotificationCenter.add(request) { error in
+                if let error = error {
+                    print("Notification Error: ", error)
+                }
+            }
+        }
+ */
+        
+        let date = Date()
+        let calendar1 = Calendar.current
+        let realHour = calendar1.component(.hour, from: date)
+        let realMinute = calendar1.component(.minute, from: date)
+        
+        for (i, plant) in userPlants.enumerated() {
+            let alarmHour = Calendar.current.component(.hour, from: plant.alarmTime)
+            let alarmMinute = Calendar.current.component(.minute, from: plant.alarmTime)
+            
+            var timeDiffer = Double((alarmHour - realHour) * 3600 + (alarmMinute - realMinute) * 60)
+            
+            let content = UNMutableNotificationContent() // 노티피케이션 메세지 객체
+            content.title = NSString.localizedUserNotificationString(forKey: "알림!", arguments: nil)
+            content.body = NSString.localizedUserNotificationString(forKey: " \(plant.name)", arguments: nil)
+            
+            timeDiffer = Double(i + 15)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeDiffer, repeats: false)
+
+            let request = UNNotificationRequest(
+                identifier: "LocalNotification",
+                content: content,
+                trigger: trigger
+            ) // 노티피케이션 전송 객체
+            
+            userNotificationCenter.add(request) { error in
+                if let error = error {
+                    print("Notification Error: ", error)
+                }
+            }
+ 
+        }
+        
+        
+        //sendNotification(seconds: 10)
+ 
         
         clickedDay = Date()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showLevelView(sender:)))
@@ -73,9 +135,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("Changed color ", userPlants[0].color)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
         
-        //myUser.updateUser()
+        myUser.updateUser()
         calendar.reloadData()
         
         levelLabel.text = "Lv.\(myUser.level.name)"
@@ -143,9 +209,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
-        
-
     }
+    
     
     @objc func showLevelView(sender: UIView) {
         performSegue(withIdentifier: "levelViewSegue", sender: nil)
@@ -232,7 +297,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.name.text = item.name
         cell.location.text = item.location
         cell.period.text = "\(item.waterPeriod) 일"
-        cell.plantColor.tintColor = item.color
+        cell.plantColor.tintColor = item.color.uiColor
         cell.plantImage.image = UIImage(named: item.plantImage)
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
@@ -295,15 +360,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
         
-        
+        plantListTableView.reloadData()
     }
     
-    /* MyPlant의 설정으로 이동
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let detailVC = segue.destination as? NotificationViewController, let indexPath =  plantListTableView.indexPathForSelectedRow {
-            detailVC.myPlant = userPlants[indexPath.row]
+    func sendNotification(seconds: Double) {
+        let notificationContent = UNMutableNotificationContent()
+
+        notificationContent.title = "알림 테스트"
+        notificationContent.body = "이것은 알림을 테스트 하는 것이다"
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
+        let request = UNNotificationRequest(identifier: "testNotification",
+                                            content: notificationContent,
+                                            trigger: trigger)
+
+        userNotificationCenter.add(request) { error in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
         }
-    }*/
+    }
 }
 
 extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
@@ -333,7 +409,7 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         for i in 0...userPlants.count-1 {
             let wateringDate = formatter.string(from: userPlants[i].wateringDay)
             if wateringDate == calendarDate {
-                colors.append(userPlants[i].color)
+                colors.append(userPlants[i].color.uiColor)
             }
         }
         
@@ -347,5 +423,17 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         clickedDay = date
         plantListTableView.reloadData()
+    }
+}
+
+
+extension HomeViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.list, .badge, .sound, .banner])
+        //        completionHandler([.alert, .badge, .sound])
     }
 }

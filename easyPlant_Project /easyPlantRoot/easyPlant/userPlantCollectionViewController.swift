@@ -9,6 +9,10 @@ import UIKit
 
 private let reuseIdentifier = "userPlantCell"
 
+let documentsDirectory = FileManager.default.urls(for: .documentDirectory,in: .userDomainMask).first!
+let archiveURL = documentsDirectory.appendingPathComponent("savingUserPlants.json")
+
+
 class userPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var userPlantCollectionView: UICollectionView!
@@ -20,6 +24,12 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        
+//        saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+        
+        
+        loadUserPlant()
         
 //        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
    
@@ -175,11 +185,35 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     
     
     @IBAction func unwindToNewPlantsList(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+//        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
     
         userPlantCollectionView.reloadData()
     }
     
+    
+    
+    func loadUserPlant(){
+        let jsonDecoder = JSONDecoder()
+            
+            do{
+               
+                
+                let jsonData  = try Data(contentsOf: archiveURL, options: .mappedIfSafe)
+                let decoded = try jsonDecoder.decode([userPlant].self, from: jsonData)
+
+               userPlants = decoded
+                
+                
+                
+            }
+            catch {
+                print("에러")
+                print(error)
+               
+            }
+
    
+    }
+    
 }
