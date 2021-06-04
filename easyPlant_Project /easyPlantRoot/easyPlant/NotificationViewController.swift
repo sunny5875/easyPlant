@@ -13,23 +13,53 @@ class NotificationViewController: UITableViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var myPlant: userPlant?
+    var newColor : UIColor!
+    var newAlarm : Date!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        newColor = myPlant!.color
+        newAlarm = myPlant!.alarmTime
        
+        datePicker.date = myPlant?.alarmTime ?? Date()
         self.title = "알림"
         colorPickerView.addTarget(self, action: #selector(colorWellChanged(_:)), for: .valueChanged)
     
+        colorPickerView.tintColor = myPlant?.color
         datePicker.addTarget(self, action: #selector(changed), for: .valueChanged)
+        
     }
     
     @objc func changed () {
-        // alarmTime 타입 Date로 바꾸기
-        //myPlant?.alarmTime = datePicker.date
+        //newAlarm = datePicker.date
+        
+        for i in 0...(userPlants.count-1) {
+            if(userPlants[i].name == myPlant?.name){
+                userPlants[i].alarmTime = datePicker.date
+                break
+            }
+        }
     }
 
     @objc func colorWellChanged(_ sender: Any) {
-        myPlant?.color = colorPickerView.selectedColor ?? Color(uiColor:  Color(uiColor: UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))))
+        //newColor = colorPickerView.selectedColor ?? UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))
+        
+        for i in 0...(userPlants.count-1) {
+            if(userPlants[i].name == myPlant?.name){
+                userPlants[i].color = colorPickerView.selectedColor ?? UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))
+                break
+            }
+        }
+ 
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("hello")
+        if let detailVC = segue.destination as? EditUserPlantTableViewController{
+            print("HIHIHHI")
+            detailVC.newColor = newColor
+            detailVC.newAlarm = newAlarm
+        }
     }
 }
 
@@ -37,7 +67,7 @@ class NotificationViewController: UITableViewController {
 extension NotificationViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         if var myPlant = myPlant {
-            myPlant.color = Color(uiColor: viewController.selectedColor)
+            myPlant.color = viewController.selectedColor
         }
     }
 }
