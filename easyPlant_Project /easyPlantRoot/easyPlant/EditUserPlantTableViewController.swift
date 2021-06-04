@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+
+
 class EditUserPlantTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var editPlant : userPlant?
     var isChangePhoto : Bool = false
@@ -70,6 +73,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
         let width  = (view.frame.width-10)/2
@@ -80,11 +84,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if isEdit == true{
+        if isEdit == true {
             if let usrplant = editPlant {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy.MM.dd"
-                let watering_date_string = formatter.string(from: usrplant.wateringDay)
+                _ = formatter.string(from: usrplant.wateringDay)
             
                 imageView.image = UIImage(named : usrplant.plantImage)
                 imageView.layer.cornerRadius = imageView.layer.frame.width / 2
@@ -95,8 +99,13 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 speciesTextField.text = usrplant.plantSpecies
                 wateringDayTextField.text = String(usrplant.waterPeriod)
                 registerationTextField.text = usrplant.registedDate
-                recentlyWateringDayTextField.text = usrplant.recentlyWateringDay
-          
+                
+                
+                
+                
+                
+                
+                editPlant?.wateringDay = usrplant.wateringDay
             }
             saveBarButton.isEnabled = true
         }
@@ -104,6 +113,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         else{
             saveBarButton.isEnabled = false
         }
+        
+        imageView.layer.borderWidth = 3
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.cornerRadius = imageView.layer.frame.width / 2
+        
 
         
         // Uncomment the following line to preserve selection between presentations
@@ -132,7 +146,17 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                         editPlant?.plantImage = userPlants[i].plantImage
                     }
                     
-                    editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
+//                    editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
+                    let dateFormatter = DateFormatter()
+
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+
+                    let date:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
+                    
+                    editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: editPlant!.waterPeriod, to: date)!
+                    
+                    editPlant?.registedDate = registerationTextField.text!
                  
                     userPlants[i] = editPlant!
                     
@@ -152,20 +176,30 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
            
 //            editPlant?.plantImage = imageView.image!.debugDescription
-            editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
+          
+            let dateFormatter = DateFormatter()
+
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+
+            print(recentlyWateringDayTextField.text!)
             
+            let date:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
             
+            let day : Int = Int(editPlant!.waterPeriod)
+            
+            editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
             
             userPlants.append(editPlant!)
             
      
-            
+            editPlant!.saveNewUserPlant(archiveURL: archiveURL)
            
             
             performSegue(withIdentifier: "makeNewPlant", sender: self)
         }
         
-       
+    
         
     }
 
@@ -245,11 +279,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         if(isEdit == false){
             if nameTextField.text! != "", speciesTextField.text != "", registerationTextField.text != "", recentlyWateringDayTextField.text != "", wateringDayTextField.text != "", locationTextField.text != ""{
                 saveBarButton.isEnabled = true
+                
+            }
         }
         
-        }
         
-        sender.resignFirstResponder()
         
     }
     
@@ -262,5 +296,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         imageView.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
-
+    
+   
 }

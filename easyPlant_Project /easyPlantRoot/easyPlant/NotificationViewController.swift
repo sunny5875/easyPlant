@@ -29,7 +29,7 @@ class NotificationViewController: UITableViewController {
     }
 
     @objc func colorWellChanged(_ sender: Any) {
-        myPlant?.color = colorPickerView.selectedColor ?? UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))
+        myPlant?.color = colorPickerView.selectedColor ?? Color(uiColor:  Color(uiColor: UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))))
     }
 }
 
@@ -37,7 +37,7 @@ class NotificationViewController: UITableViewController {
 extension NotificationViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         if var myPlant = myPlant {
-            myPlant.color = viewController.selectedColor
+            myPlant.color = Color(uiColor: viewController.selectedColor)
         }
     }
 }
