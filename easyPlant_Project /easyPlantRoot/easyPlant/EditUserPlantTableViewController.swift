@@ -62,14 +62,14 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker,animated: true,completion: nil)
             })
+
             alertController.addAction(photoLibraryAction)
         }
-        
+
        
         alertController.popoverPresentationController?.sourceView = sender as! UIButton
-        
+
         present(alertController, animated: true, completion: nil)
-        
         
         
     }
@@ -307,6 +307,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         
         imageView.image = selectedImage
+        uploadimage(img: selectedImage)
         dismiss(animated: true, completion: nil)
     }
     

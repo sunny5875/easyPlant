@@ -316,15 +316,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     
-    func downloadimage(imgview:UIImageView){
-        Storage.storage().reference(forURL: "gs://firstios-f6c7c.appspot.com/diaryImage").downloadURL { (url, error) in
-                           let data = NSData(contentsOf: url!)
-                           let image = UIImage(data: data! as Data)
-                            imgview.image = image
-            }
-    }
-    
-   
+ 
    
     @IBAction func editButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)

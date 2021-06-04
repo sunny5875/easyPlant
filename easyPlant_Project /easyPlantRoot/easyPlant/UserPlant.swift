@@ -7,6 +7,10 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
+let storage = Storage.storage()
+let storageRef =  Storage.storage().reference()
+
 
 
 var clickedDay: Date = Date()
@@ -189,3 +193,68 @@ func loadUserPlant(){
 
 
 }
+
+/*
+func downloadimage(imgview:UIImageView){
+    storage.reference(forURL: "gs://firstios-f6c7c.appspot.com/password").downloadURL { (url, error) in
+                       let data = NSData(contentsOf: url!)
+                       let image = UIImage(data: data! as Data)
+                        imgview.image = image
+        }
+}
+    
+func uploadimage(img :UIImage){
+    var data = Data()
+    data = img.jpegData(compressionQuality: 0.9)!
+    let filePath = "password"
+    let metaData = StorageMetadata()
+    metaData.contentType = "image/png"
+    
+    storage.reference().child(filePath).putData(data,metadata: metaData){
+        (metaData,error) in if let error = error{
+                print(error.localizedDescription)
+                return
+            }else{
+                print("성공")
+            }
+        }
+}
+
+*/
+
+
+
+
+ func downloadimage(imgview:UIImageView){
+     Storage.storage().reference(forURL: "gs://easyplant-8649d.appspot.com/diary").downloadURL { (url, error) in
+                        let data = NSData(contentsOf: url!)
+                        let image = UIImage(data: data! as Data)
+                         imgview.image = image
+         }
+    print(imgview.image)
+ }
+ 
+ 
+ func uploadimage(img :UIImage){
+    
+     
+     var data = Data()
+     data = img.jpegData(compressionQuality: 0.8)!
+     let filePath = "diary"
+     let metaData = StorageMetadata()
+     metaData.contentType = "image/png"
+     storageRef.child(filePath).putData(data,metadata: metaData){
+             (metaData,error) in if let error = error{
+             print(error.localizedDescription)
+             return
+                 
+         }
+         else{
+             print("성공")
+         }
+     }
+
+ }
+
+ 
+
