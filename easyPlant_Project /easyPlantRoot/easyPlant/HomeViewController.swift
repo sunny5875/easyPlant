@@ -20,25 +20,43 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
-    let userNotificationCenter = UNUserNotificationCenter.current()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userNotificationCenter.delegate = self
-        /*
+        
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            print("Not first launch.")
+        } else {
+            // 저장
+            myUser = User(Date())
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
+        
+        myUser.updateUser()
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
         
-        let notiContent = UNMutableNotificationContent()
-        for plant in userPlants {
+        for (i, plant) in userPlants.enumerated() {
+            let notiContent = UNMutableNotificationContent()
+            let userNotificationCenter = UNUserNotificationCenter.current()
+            userNotificationCenter.delegate = self
+            
+            //let date = Date(timeIntervalSinceNow: 15)
             notiContent.title = "\(plant.name) 물 줄 시간이예요!"
-            notiContent.body = "\(plant.name)이 배고파해요"
+            notiContent.body = "물 뿌리개를 통해 \(plant.name)에게 물을 주세요."
 
-            let date = Date(timeIntervalSinceNow: 15)
-            let dateComponents = Calendar.current.dateComponents([.year, .day, .hour, .minute], from: date)
+            //let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+            
+            var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: plant.wateringDay)
+            dateComponents.hour = Calendar.current.component(.hour, from: plant.alarmTime)
+            dateComponents.minute = Calendar.current.component(.minute, from: plant.alarmTime)
+            
+            print("\(plant.name) \(dateComponents)")
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let request = UNNotificationRequest(identifier: "watering_notification", content: notiContent, trigger: trigger)
+            let request = UNNotificationRequest(identifier: "watering_notification\(i)", content: notiContent, trigger: trigger)
                 
             userNotificationCenter.add(request) { error in
                 if let error = error {
@@ -46,43 +64,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
- */
-        
-        let date = Date()
-        let calendar1 = Calendar.current
-        let realHour = calendar1.component(.hour, from: date)
-        let realMinute = calendar1.component(.minute, from: date)
-        
-        for (i, plant) in userPlants.enumerated() {
-            let alarmHour = Calendar.current.component(.hour, from: plant.alarmTime)
-            let alarmMinute = Calendar.current.component(.minute, from: plant.alarmTime)
-            
-            var timeDiffer = Double((alarmHour - realHour) * 3600 + (alarmMinute - realMinute) * 60)
-            
-            let content = UNMutableNotificationContent() // 노티피케이션 메세지 객체
-            content.title = NSString.localizedUserNotificationString(forKey: "알림!", arguments: nil)
-            content.body = NSString.localizedUserNotificationString(forKey: " \(plant.name)", arguments: nil)
-            
-            timeDiffer = Double(i + 15)
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeDiffer, repeats: false)
-
-            let request = UNNotificationRequest(
-                identifier: "LocalNotification",
-                content: content,
-                trigger: trigger
-            ) // 노티피케이션 전송 객체
-            
-            userNotificationCenter.add(request) { error in
-                if let error = error {
-                    print("Notification Error: ", error)
-                }
-            }
- 
-        }
-        
-        
-        //sendNotification(seconds: 10)
- 
         
         clickedDay = Date()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showLevelView(sender:)))
@@ -246,14 +227,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 plantListTableView.reloadData()
                 calendar.reloadData()
                 plant.watered = 0
-            } else if plant.wateringDay.compare(Date()) == .orderedAscending {
+            } else if Calendar.current.compare(plant.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
                 if (myUser.totalWaterNum == 10) {
-                    myUser.didWaterNum = min(myUser.didWaterNum - 1, 0)
+                    myUser.didWaterNum = max(myUser.didWaterNum - 1, 0)
                 }
-                myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
+                myUser.totalWaterNum = min(myUser.totalWaterNum + 1, 10)
                 plant.wateringDay = Date()
             }
-            
+
             if watering_day_string == clicked_date_string {
                 listPlantsIndex.append(i)
             }
@@ -270,6 +251,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! UserPlantTableViewCell
         
         if listPlantsIndex.isEmpty {
+            cell.plantImage.isHidden = true
             cell.name.isHidden = true
             cell.location.isHidden = true
             cell.period.isHidden = true
@@ -279,6 +261,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return cell
         }
         
+        cell.plantImage.isHidden = false
         cell.name.isHidden = false
         cell.location.isHidden = false
         cell.period.isHidden = false
@@ -362,24 +345,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         plantListTableView.reloadData()
     }
-    
-    func sendNotification(seconds: Double) {
-        let notificationContent = UNMutableNotificationContent()
-
-        notificationContent.title = "알림 테스트"
-        notificationContent.body = "이것은 알림을 테스트 하는 것이다"
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
-        let request = UNNotificationRequest(identifier: "testNotification",
-                                            content: notificationContent,
-                                            trigger: trigger)
-
-        userNotificationCenter.add(request) { error in
-            if let error = error {
-                print("Notification Error: ", error)
-            }
-        }
-    }
 }
 
 extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
@@ -434,6 +399,6 @@ extension HomeViewController: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.list, .badge, .sound, .banner])
-        //        completionHandler([.alert, .badge, .sound])
+        //completionHandler([.alert, .badge, .sound])
     }
 }
