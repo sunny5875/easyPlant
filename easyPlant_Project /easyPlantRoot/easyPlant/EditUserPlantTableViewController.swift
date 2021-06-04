@@ -135,6 +135,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         if(isEdit == true){
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == editPlant?.name){
+                    editPlant = userPlants[i]
+                    
                     editPlant?.name = nameTextField.text!
                     editPlant?.location = locationTextField.text!
                     editPlant?.plantSpecies = speciesTextField.text!
@@ -189,8 +191,10 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             let day : Int = Int(editPlant!.waterPeriod)
             
             editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
-            
+            editPlant?.alarmTime = Date()
+            editPlant?.color = Color(uiColor: UIColor.green)
             userPlants.append(editPlant!)
+            
             
      
             editPlant!.saveNewUserPlant(archiveURL: archiveURL)
@@ -297,5 +301,10 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         dismiss(animated: true, completion: nil)
     }
     
-   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let detailVC = segue.destination as? NotificationViewController{
+                detailVC.myPlant = editPlant
+            }
+        }
+    
 }
