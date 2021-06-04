@@ -890,10 +890,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ksd-zl-xs8">
-                                <rect key="frame" x="0.0" y="298" width="414" height="598"/>
+                                <rect key="frame" x="0.0" y="238" width="414" height="658"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="MPB-K7-kCD">
-                                        <rect key="frame" x="30" y="30" width="354" height="538"/>
+                                        <rect key="frame" x="30" y="30" width="354" height="598"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tY4-2S-LC1">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="30"/>
@@ -926,9 +926,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Enter the text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lRQ-58-mTs">
-                                                <rect key="frame" x="0.0" y="142" width="354" height="396"/>
+                                                <rect key="frame" x="0.0" y="142" width="354" height="456"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="checkTextWrite:" destination="6XQ-O8-JIb" eventType="editingChanged" id="CGK-LB-F7X"/>
@@ -966,7 +966,7 @@
                         <constraints>
                             <constraint firstItem="aOr-ss-A1C" firstAttribute="leading" secondItem="Ksd-zl-xs8" secondAttribute="leading" id="1QV-Is-wIC"/>
                             <constraint firstItem="aOr-ss-A1C" firstAttribute="top" secondItem="h6W-W9-eKU" secondAttribute="top" id="2KJ-wC-Yfe"/>
-                            <constraint firstItem="aOr-ss-A1C" firstAttribute="bottom" secondItem="Ksd-zl-xs8" secondAttribute="top" constant="40" id="8A2-k6-pnV"/>
+                            <constraint firstItem="aOr-ss-A1C" firstAttribute="bottom" secondItem="Ksd-zl-xs8" secondAttribute="top" constant="100" id="8A2-k6-pnV"/>
                             <constraint firstItem="h6W-W9-eKU" firstAttribute="trailing" secondItem="aOr-ss-A1C" secondAttribute="trailing" id="PIU-ra-9oY"/>
                             <constraint firstAttribute="bottom" secondItem="Ksd-zl-xs8" secondAttribute="bottom" id="XrI-Mb-NVG"/>
                             <constraint firstItem="aOr-ss-A1C" firstAttribute="leading" secondItem="h6W-W9-eKU" secondAttribute="leading" id="aE9-T1-QE3"/>

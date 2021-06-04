@@ -20,11 +20,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
+    var indexTmp : IndexPath = IndexPath()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("home did load")
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
@@ -48,7 +49,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         myUser.updateUser()
         saveUserInfo(user: myUser)
         
-        print("homeload")
+
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
@@ -132,8 +133,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         //print("Changed color ", userPlants[0].color)
         print("home appear")
+
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationItem.largeTitleDisplayMode = .always
 
         navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
@@ -329,19 +331,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if listPlantsIndex.isEmpty {
-            return indexPath
-        }
-        let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
-        guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
-        secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
-        self.navigationController?.show(secondVC, sender: self)
     
-        //self.navigationController?.pushViewController(secondVC, animated: true)
-        
-        return indexPath
-    }
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+           if listPlantsIndex.isEmpty {
+               return indexPath
+           }
+           let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
+           guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
+           secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
+           self.navigationController?.show(secondVC, sender: self)
+       
+           //self.navigationController?.pushViewController(secondVC, animated: true)
+           
+           return indexPath
+       }
  
  
     @objc func watering(sender: UITapGestureRecognizer){
