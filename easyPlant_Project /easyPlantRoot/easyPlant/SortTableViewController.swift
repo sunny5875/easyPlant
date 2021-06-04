@@ -102,10 +102,10 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         if searchText != ""{
             resultPlantArray = plantArray.filter { plant in
             return
-                plant.이름.lowercased().contains(searchText.lowercased())
+                plant.korName.lowercased().contains(searchText.lowercased())
             }
             if resultPlantArray.count == 0{
-                resultPlantArray.append(Plant(이름 : "",원산지: "",과명: "",생육온도: "", 광요구도: "", 물주기: "", 특징: "", 한줄설명: ""))
+                resultPlantArray.append(Plant(korName: "", engName: "", from: "", sciName: "", temp: "", light: "", water: "", chara: "", def: "" ))
             }
             tableView.reloadData()
           
@@ -222,7 +222,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         
         //segment 값에따라 데이터 정렬
         var plants: [Plant] = []
-        plants = resultPlantArray.sorted{ $0.이름.lowercased() < $1.이름.lowercased()}
+        plants = resultPlantArray.sorted{ $0.korName.lowercased() < $1.korName.lowercased()}
        
         //print(plants[indexPath.row*2])
         //print(indexPath.row*2)
@@ -233,28 +233,28 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         //셀에서 완쪽 항목 불러오기
         let itemLeft = plants[indexPath.row*2]
         //이미지만들어두기
-        let leftImage : UIImage? = UIImage(named: itemLeft.이름)
+        let leftImage : UIImage? = UIImage(named: itemLeft.engName)
         //위의 이미지로 이미지 버튼의 이미지 설정
         if let leftImage = leftImage  {
             cell.leftImageButton?.setImage(leftImage, for: .normal)
            
         }
         //이미지버튼의 타이틀 설정
-        cell.leftImageButton?.setTitle(itemLeft.이름, for: .normal)
+        cell.leftImageButton?.setTitle(itemLeft.korName, for: .normal)
         //이름버튼의 타이틀 설정
-        cell.leftButton?.setTitle(itemLeft.이름, for: .normal)
+        cell.leftButton?.setTitle(itemLeft.korName, for: .normal)
         //ui 업데이트
         greenLeftUIUpdate(cell)
         //각 버튼을 눌렀을 시 호출할 함수 설정
         cell.leftButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         cell.leftImageButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         
-        if itemLeft.한줄설명 != "" {
-            cell.leftLabel.text = itemLeft.한줄설명
+        if itemLeft.def != "" {
+            cell.leftLabel.text = itemLeft.def
         }
         
         //검색결과가 없다면
-        if resultPlantArray.count == 1 && resultPlantArray[0].이름 == "" {
+        if resultPlantArray.count == 1 && resultPlantArray[0].korName == "" {
             //ui 업데이트
             whiteLeftUIUpdate(cell)
             whiteRightUIUpdate(cell)
@@ -266,24 +266,24 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         if (indexPath.row*2+1) < plants.count{
             let itemRight = plants[indexPath.row*2+1]
             //이미지 설정
-            let rightImage: UIImage? = UIImage(named: itemRight.이름)
+            let rightImage: UIImage? = UIImage(named: itemRight.engName)
             
             if let rightImage = rightImage{
                 cell.rightImageButton?.setImage(rightImage, for: .normal)
             }
             
             //이미지 버튼의 타이틀 설정
-            cell.rightImageButton?.setTitle(itemRight.이름, for: .normal)
+            cell.rightImageButton?.setTitle(itemRight.korName, for: .normal)
             //이름버튼의 타이틀 설정
-            cell.rightButton?.setTitle(itemRight.이름, for: .normal)
+            cell.rightButton?.setTitle(itemRight.korName, for: .normal)
             //ui 업데이트
             greenRightUIUpdate(cell)
             
             //각 버튼을 눌렀을 시 호출할 함수 설정
             cell.rightButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
             cell.rightImageButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
-            if itemRight.한줄설명 != "" {
-                cell.rightLabel.text = itemRight.한줄설명
+            if itemRight.def != "" {
+                cell.rightLabel.text = itemRight.def
             }
                 
 
@@ -407,4 +407,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         
         
     }
+    
+   
 }

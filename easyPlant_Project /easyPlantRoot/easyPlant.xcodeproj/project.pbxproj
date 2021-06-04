@@ -18,7 +18,7 @@
 		121663CB263BBDE200125C69 /* PlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663CA263BBDE200125C69 /* PlantDetailViewController.swift */; };
 		121663D3263BC2AF00125C69 /* CellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663D2263BC2AF00125C69 /* CellTableViewCell.swift */; };
 		121663DE263BC40400125C69 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663DD263BC40400125C69 /* SortTableViewController.swift */; };
-		121663E3263BC5AE00125C69 /* plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663E2263BC5AE00125C69 /* plant.swift */; };
+		121663E3263BC5AE00125C69 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121663E2263BC5AE00125C69 /* Plant.swift */; };
 		1218F174265A0E19000D99F4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1218F173265A0E19000D99F4 /* Home.storyboard */; };
 		1218F192265A3384000D99F4 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F191265A3384000D99F4 /* CustomTabBarController.swift */; };
 		1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F211265FE3CB000D99F4 /* LevelViewController.swift */; };
@@ -81,7 +81,7 @@
 		121663CA263BBDE200125C69 /* PlantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailViewController.swift; sourceTree = "<group>"; };
 		121663D2263BC2AF00125C69 /* CellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTableViewCell.swift; sourceTree = "<group>"; };
 		121663DD263BC40400125C69 /* SortTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
-		121663E2263BC5AE00125C69 /* plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plant.swift; sourceTree = "<group>"; };
+		121663E2263BC5AE00125C69 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		1218F173265A0E19000D99F4 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		1218F191265A3384000D99F4 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		1218F211265FE3CB000D99F4 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */,
 				12166394263BB8F700125C69 /* SceneDelegate.swift */,
 				D6AEE1B02647B1EB00E85162 /* Diary.swift */,
-				121663E2263BC5AE00125C69 /* plant.swift */,
+				121663E2263BC5AE00125C69 /* Plant.swift */,
 				D6CC2DE32663AC68009E5710 /* User.swift */,
 				D6CC2DE12663AC57009E5710 /* level.swift */,
 				D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */,
@@ -522,7 +522,7 @@
 				12EA1D372647954F009A0A5E /* NotificationViewController.swift in Sources */,
 				12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */,
 				1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */,
-				121663E3263BC5AE00125C69 /* plant.swift in Sources */,
+				121663E3263BC5AE00125C69 /* Plant.swift in Sources */,
 				D6AEE1B12647B1EB00E85162 /* Diary.swift in Sources */,
 				D6CC2DE22663AC57009E5710 /* level.swift in Sources */,
 				D6CC2DE82663B14C009E5710 /* userPlantCollectionViewController.swift in Sources */,

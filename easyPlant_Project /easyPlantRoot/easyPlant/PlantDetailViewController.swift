@@ -22,11 +22,6 @@ class PlantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let nameData = detailPlantName, let typeData = detailPlantType{
-            
-            plantDetailImage.image = UIImage(named: nameData)
-            plantDetailImage.layer.cornerRadius = 0
-            plantDetailImage.layer.borderColor = UIColor.lightGray.cgColor
-            plantDetailImage.layer.borderWidth = 0.5
 
             
             for (i,typeString) in plantType.type.enumerated(){
@@ -37,11 +32,16 @@ class PlantDetailViewController: UIViewController {
             }
          
             for (i,plant) in plantType.plantAll[index1].enumerated(){
-                if plant.이름 == nameData {
+                if plant.korName == nameData {
                     index2 = i
                     break
                 }
             }
+            
+            plantDetailImage.image = UIImage(named: plantType.plantAll[index1][index2].engName)
+            plantDetailImage.layer.cornerRadius = 0
+            plantDetailImage.layer.borderColor = UIColor.lightGray.cgColor
+            plantDetailImage.layer.borderWidth = 0.5
             
      
             contentView.layer.cornerRadius = 30
@@ -60,39 +60,40 @@ class PlantDetailViewController: UIViewController {
         for index in 0...6{
             switch index{
             case 0:
-                if plant.이름 != ""{
-                    subtext[index].text = plant.이름
+                if plant.korName != ""{
+                    subtext[index].text = plant.korName
                 }
 
                 break
             case 1:
-                if plant.원산지 != ""{
-                    subtext[index].text = plant.원산지
+                if plant.from != ""{
+                    subtext[index].text = plant.from
                 }
                 break
             case 2:
-                if plant.과명 != ""{
-                    subtext[index].text = plant.과명
+                if plant.sciName != ""{
+                    subtext[index].text = plant.sciName
                 }
                 break
             case 3:
-                if plant.광요구도 != ""{
-                    subtext[index].text = plant.광요구도
+                if plant.light != ""{
+                    subtext[index].text = plant.light
                 }
                 break
             case 4:
-                if plant.생육온도 != ""{
-                    subtext[index].text = plant.생육온도
+                if plant.temp != ""{
+                    subtext[index].text = plant.temp
                 }
                 break
             case 5:
-                if plant.물주기 != ""{
-                    subtext[index].text = plant.물주기
+                if plant.water != ""{
+                    subtext[index].text = plant.water
+                    
                 }
                 break
             case 6:
-                if plant.특징 != ""{
-                    subtext[index].text = plant.특징
+                if plant.chara != ""{
+                    subtext[index].text = plant.chara
                 }
                 break
             default:

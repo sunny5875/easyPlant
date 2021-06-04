@@ -36,7 +36,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="130" minY="35" maxX="130" maxY="35"/>
-                                                <state key="normal" title="공기정화" backgroundImage="공기정화">
+                                                <state key="normal" title="공기정화" backgroundImage="menuCleanAir">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                                 </state>
@@ -49,7 +49,7 @@
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="그늘에서" backgroundImage="그림자2">
+                                                <state key="normal" title="그늘에서" backgroundImage="menuShadow">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -60,7 +60,7 @@
                                                 <rect key="frame" x="20.5" y="285" width="373" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="다육식물" backgroundImage="다육이 4">
+                                                <state key="normal" title="다육식물" backgroundImage="menuDry">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -71,7 +71,7 @@
                                                 <rect key="frame" x="20.5" y="404" width="373" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="귀차니즘" backgroundImage="침대">
+                                                <state key="normal" title="귀차니즘" backgroundImage="menuBed">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -83,7 +83,7 @@
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="인테리어" backgroundImage="인테리어2">
+                                                <state key="normal" title="인테리어" backgroundImage="menuInterior">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -95,7 +95,7 @@
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="130" minY="20" maxX="130" maxY="20"/>
-                                                <state key="normal" title="반려동물" backgroundImage="고양이3">
+                                                <state key="normal" title="반려동물" backgroundImage="menuCat">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -641,12 +641,12 @@
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="고양이3" width="466" height="134"/>
-        <image name="공기정화" width="372" height="128"/>
-        <image name="그림자2" width="344" height="124"/>
-        <image name="다육이 4" width="570" height="154"/>
-        <image name="인테리어2" width="612" height="206"/>
-        <image name="침대" width="410" height="124"/>
+        <image name="menuBed" width="410" height="124"/>
+        <image name="menuCat" width="466" height="134"/>
+        <image name="menuCleanAir" width="372" height="128"/>
+        <image name="menuDry" width="570" height="154"/>
+        <image name="menuInterior" width="612" height="206"/>
+        <image name="menuShadow" width="344" height="124"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -75,6 +75,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("home appear")
+        navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode =  .always
         plantListTableView.reloadData()
         
         //myUser.updateUser()
