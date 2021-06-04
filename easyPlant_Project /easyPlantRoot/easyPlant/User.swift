@@ -55,7 +55,7 @@ struct User : Codable{
     
     
     init(_ registeredDate: Date) {
-        level = levels[1]
+        level = levels[0]
         growingDays = 10
         numPlants = 2
         hapiness = 80
@@ -68,7 +68,7 @@ struct User : Codable{
         numPlants = userPlants.count
         growingDays = Calendar.current.dateComponents([.day], from: registeredDate, to: Date()).day!
         
-        hapiness = didWaterNum / totalWaterNum
+        hapiness = (didWaterNum * 100) / totalWaterNum
         
         
         for standard in levels {
@@ -80,7 +80,7 @@ struct User : Codable{
 }
 
 // 사용자가 처음 식물을 등록한 날로 바꿔야 함.
-var myUser: User = User(Date())
+
 
 
 func loadUserInfo(){
@@ -136,3 +136,4 @@ func  saveUserInfo(user : User) {
 
     print("user save complete")
 }
+var myUser: User!
