@@ -21,7 +21,7 @@ struct level {
 let levels: [level] = [level(name: "일반인", hapiness: 0, numPlants: 0,
                              growingDays: 0, icon: "일반인", description: "새롭게 식물을 등록해 보세요!"),
                        level(name: "새내기 농부", hapiness: 75, numPlants: 1,
-                             growingDays: 0, icon: "새싹", description: "새롭게 농부가 된 당신! 앞으로 easyPlant와 함께 식물을 키워나가요"),
+                             growingDays: 0, icon: "sprout", description: "새롭게 농부가 된 당신! 앞으로 easyPlant와 함께 식물을 키워나가요"),
                        level(name: "초보 농부", hapiness: 80, numPlants: 3, growingDays: 60, icon: "잎", description: "식물을 키우는 재미를 느끼셨나요? 다음 레벨을 향해 더 노력해봐요!"),
                        level(name: "주니어 농부", hapiness: 85, numPlants: 6, growingDays: 180, icon: "꽃1", description: "여기까지 오느라 수고하셨어요~ 한 단계 성장한 농부가 되셨네요!"),
                        level(name: "숙련된 농부", hapiness: 90, numPlants: 10, growingDays: 360, icon: "열매", description: ""),
