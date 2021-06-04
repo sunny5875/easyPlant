@@ -36,18 +36,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             // 저장
             myUser = User(Date())
-            
+            saveUserInfo(user: myUser)
+            saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
             UserDefaults.standard.set(true, forKey: "launchedBefore")
         }
         
-        
 
-        
+
+        loadUserInfo()
+        loadUserPlant()
         myUser.updateUser()
         saveUserInfo(user: myUser)
         
         print("homeload")
-        loadUserInfo()
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
@@ -129,9 +130,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Changed color ", userPlants[0].color)
-        
+        //print("Changed color ", userPlants[0].color)
+        print("home appear")
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+
         navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
         
@@ -240,12 +243,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 plantListTableView.reloadData()
                 calendar.reloadData()
                 plant.watered = 0
+
             } else if Calendar.current.compare(plant.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
                 if (myUser.totalWaterNum == 10) {
                     myUser.didWaterNum = max(myUser.didWaterNum - 1, 0)
                 }
                 myUser.totalWaterNum = min(myUser.totalWaterNum + 1, 10)
                 plant.wateringDay = Date()
+
             }
 
             if watering_day_string == clicked_date_string {
@@ -329,9 +334,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return indexPath
         }
         let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
-        guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? myPlantViewController else {return indexPath}
+        guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
         secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
-        self.navigationController?.pushViewController(secondVC, animated: true)
+        self.navigationController?.show(secondVC, sender: self)
+    
+        //self.navigationController?.pushViewController(secondVC, animated: true)
         
         return indexPath
     }
@@ -346,6 +353,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             wateringButton.image = UIImage(named: "watering")
         } else {
             userPlants[listPlantsIndex[wateringButton.tag]].watered = 1
+
             wateringButton.image = UIImage(named: "watering_fill")
         }
         

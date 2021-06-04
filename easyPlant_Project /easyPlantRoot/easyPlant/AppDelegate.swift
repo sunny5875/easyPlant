@@ -43,27 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         print("will terminate")
         saveUserInfo(user: myUser)
+        saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
+
     }
     
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        print("did Finish Launching")
-        loadUserInfo()
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        print("did become Active")
-        loadUserInfo()
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        print("enter foreground")
-        loadUserInfo()
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        print("enter background")
-        loadUserInfo()
-    }
+  
     
     
   

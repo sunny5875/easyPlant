@@ -7,7 +7,7 @@
 
 import UIKit
 
-class diaryCollectionViewCell: UICollectionViewCell {
+class DiaryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     

@@ -13,7 +13,7 @@ import Firebase
 
 class WriteDiaryViewController: UIViewController {
     
-    var userplant: userPlant?
+    var userplant: UserPlant?
     var editDiary : Diary?
     
     var isEdit: Bool = false
@@ -41,57 +41,68 @@ class WriteDiaryViewController: UIViewController {
         
 //        sender.resignFirstResponder()
         
+        //새로 만들기였다면
         if(isEdit == false){
             if titleTextField.text != "", contentTextField.text != "" {
                 saveBarButton.isEnabled = true
             
-                diarytitle = titleTextField.text!
-                diarycontent = contentTextField.text!
-           
             
-                for i in 0...(userPlants.count-1) {
-                    if(userPlants[i].name == userplant?.name){
-                    //add
-                        userPlants[i].diarylist.append(Diary(title: diarytitle, date: dateString, story: diarycontent, picture: image!.description))
-                        
-                        performSegue(withIdentifier: "backToMyPlant", sender: self)
-                    
-                    //uploadimage(img: imageView.image!)
-                    }
-                    
-                }
+                
             }
-            
-            
-            
         }
+        
     }
     
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        for i in 0...(userPlants.count-1) {
-            if(userPlants[i].name == userplant?.name){
-                for j in 0...userPlants[i].diarylist.count-1 {
-                    if(userPlants[i].diarylist[j].date == editDiary?.date){
-                        editDiary?.title = titleTextField.text!
-                        editDiary?.story = contentTextField.text!
-                        
-                        userPlants[i].diarylist[j] = editDiary!
-                   
-                        performSegue(withIdentifier: "unwindToEditDiarySegue", sender: self)
-                        return
-                        
+        //편집중이었다면
+        if (isEdit == true){
+            for i in 0...(userPlants.count-1) {
+                if(userPlants[i].name == userplant?.name){
+                    for j in 0...userPlants[i].diarylist.count-1 {
+                        if(userPlants[i].diarylist[j].date == editDiary?.date){
+                            editDiary?.title = titleTextField.text!
+                            editDiary?.story = contentTextField.text!
+                            
+                            userPlants[i].diarylist[j] = editDiary!
+                            print("unwindto edit DiarySegue")
+                            performSegue(withIdentifier: "unwindToEditDiarySegue", sender: self)
+                            return
+                            
+                        }
                     }
+                    
+                    
                 }
-    }
-        
-    }
+            
+            }
+        }
+        else{
+            
+            diarytitle = titleTextField.text!
+            diarycontent = contentTextField.text!
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            dateString = formatter.string(from: Date())
+           
+            for i in 0...(userPlants.count-1) {
+                if(userPlants[i].name == userplant?.name){
+                //add
+                    userPlants[i].diarylist.append(Diary(title: diarytitle, date: dateString, story: diarycontent, picture: image!.description))
+                    print("backTomyplant")
+                    performSegue(withIdentifier: "backToMyPlant", sender: self)
+                
+                //uploadimage(img: imageView.image!)
+                }
+            }
+                
+        }
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindToEditDiarySegue"{
-            if let detailVC = segue.destination as? myDiaryViewController{
+            if let detailVC = segue.destination as? MyDiaryViewController{
                 detailVC.myplant = userplant
                 detailVC.diary = editDiary
                 

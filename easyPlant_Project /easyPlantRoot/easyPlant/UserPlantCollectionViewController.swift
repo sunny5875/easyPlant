@@ -13,7 +13,7 @@ let documentsDirectory = FileManager.default.urls(for: .documentDirectory,in: .u
 let archiveURL = documentsDirectory.appendingPathComponent("savingUserPlants.json")
 
 
-class userPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class UserPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var userPlantCollectionView: UICollectionView!
 
@@ -30,13 +30,14 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
         
         
         loadUserPlant()
-        
+        print("user plant load finish")
 //        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
    
 //        userPlantCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
         userPlantCollectionView.reloadData()
-        
+        print("user plant reload data finish")
+
        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,6 +46,12 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
 //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        userPlantCollectionView.reloadData()
+
     }
 
     /*
@@ -64,6 +71,7 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
        // #warning Incomplete implementation, return the number of sections
+
        return 1
    }
 
@@ -74,13 +82,15 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
    }
 
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! userPlantCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UserPlantCollectionViewCell
 
   
-  
+        print("user plant update before")
+    
         let userplant = userPlants[indexPath.row]
         cell.update(info: userplant)
-    
+        print("user plant update finish")
+
    
        
        return cell
@@ -134,16 +144,20 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let detailVC = segue.destination as? myPlantViewController,let cell = sender as? UICollectionViewCell,
+        if let detailVC = segue.destination as? MyPlantViewController,let cell = sender as? UICollectionViewCell,
            let indexPath =  userPlantCollectionView.indexPath(for: cell) {
             detailVC.myPlant = userPlants[indexPath.item]
+            print("user plant prepare1 finish")
+
         }
         
         
         if segue.identifier == "makeNewUserPlant"{
             if let detailVC = segue.destination as?  EditUserPlantTableViewController{
-                detailVC.editPlant = userPlant()
+                detailVC.editPlant = UserPlant()
                 detailVC.isEdit = false
+                print("user plant prepare2 finish")
+
                 
                 
             }
@@ -178,7 +192,6 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     @IBAction func unwindToUserPlants(_ unwindSegue: UIStoryboardSegue) {
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
-        
         userPlantCollectionView.reloadData()
         
     }
@@ -187,33 +200,14 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     @IBAction func unwindToNewPlantsList(_ unwindSegue: UIStoryboardSegue) {
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
-    
         userPlantCollectionView.reloadData()
     }
     
     
     
-    func loadUserPlant(){
-        let jsonDecoder = JSONDecoder()
-            
-            do{
-               
-                
-                let jsonData  = try Data(contentsOf: archiveURL, options: .mappedIfSafe)
-                let decoded = try jsonDecoder.decode([userPlant].self, from: jsonData)
-
-               userPlants = decoded
-                
-                
-                
-            }
-            catch {
-                print("에러")
-                print(error)
-               
-            }
-
-   
-    }
+    
     
 }
+
+
+

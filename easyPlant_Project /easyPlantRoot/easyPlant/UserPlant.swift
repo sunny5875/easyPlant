@@ -25,9 +25,10 @@ struct Color : Codable {
     
 }
 
-struct userPlant : Codable {
+struct UserPlant : Codable {
     var name: String
     var location: String
+    var recentWater : String
     var registedDate : String
     var waterPeriod : Int
     var wateringDay : Date
@@ -40,7 +41,7 @@ struct userPlant : Codable {
     var watered : Int
     
     private enum CodingKeys : String, CodingKey{
-        case name,location,registedDate,waterPeriod, wateringDay,plantSpecies, diarylist,color,happeniess,alarmTime,plantImage,watered }
+        case name,location,recentWater,registedDate,waterPeriod, wateringDay,plantSpecies, diarylist,color,happeniess,alarmTime,plantImage,watered }
     
     
     init(from decoder: Decoder) throws {
@@ -59,6 +60,7 @@ struct userPlant : Codable {
         alarmTime = try container.decode(Date.self, forKey: .alarmTime)
         plantImage = try container.decode(String.self, forKey: .plantImage)
         watered = try container.decode(Int.self, forKey: .watered)
+        recentWater = try container.decode(String.self, forKey: .recentWater)
         
     }
     
@@ -77,7 +79,7 @@ struct userPlant : Codable {
         try valueContatiner.encode(self.alarmTime,forKey: CodingKeys.alarmTime)
         try valueContatiner.encode(self.plantImage,forKey: CodingKeys.plantImage)
         try valueContatiner.encode(self.watered,forKey: CodingKeys.watered)
-        
+        try valueContatiner.encode(self.recentWater, forKey: CodingKeys.recentWater)
     
         
             
@@ -100,10 +102,11 @@ struct userPlant : Codable {
         alarmTime = Date()
         plantImage = "plant"
         watered = Int()
+        recentWater = ""
         
     }
     
-    init(name : String, location : String, registedDate : String, waterPeriod : Int, wateringDay : Date, plantSpecies : String, diarylist : [Diary], color : Color, happeniess : [Int], alarmTime : Date, plantImage : String, watered : Int) {
+    init(name : String, location : String, recentWater : String, registedDate : String, waterPeriod : Int, wateringDay : Date, plantSpecies : String, diarylist : [Diary], color : Color, happeniess : [Int], alarmTime : Date, plantImage : String, watered : Int) {
         self.name = name
         self.location = location
         self.registedDate = registedDate
@@ -116,6 +119,7 @@ struct userPlant : Codable {
         self.alarmTime = alarmTime
         self.plantImage = plantImage
         self.watered = watered
+        self.recentWater = recentWater
     }
     
     
@@ -127,13 +131,13 @@ struct userPlant : Codable {
   
 var listPlantsIndex: [Int] = []
 
-var userPlants : [userPlant] = [userPlant(name: "초록콩", location: "책상 위", registedDate: "2010-10-30",  waterPeriod: 28, wateringDay: Date(), plantSpecies: "스투키", diarylist: diarys, color: Color(uiColor: UIColor(red: 1, green: 0, blue: 0, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date() ,plantImage: "Stuckyi", watered: 0),
-                                userPlant(name: "쁘띠", location: "창가", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "호야",  diarylist: diarys, color: Color(uiColor: UIColor(red: 0, green: 1, blue: 0, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date() ,plantImage: "Hoya", watered: 0),
-                                userPlant(name: "요니", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: Date(), plantSpecies: "싱고니움", diarylist: diarys, color: Color(uiColor: UIColor(red: 0, green: 0, blue: 1, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(), plantImage: "Syngonium", watered: 0),
-                                userPlant(name: "꾹꾹이", location: "베란다", registedDate: "2010-10-30", waterPeriod: 14, wateringDay: Date(), plantSpecies: "테이블야자", diarylist: diarys, color: Color(uiColor: UIColor(red: 1, green: 1, blue: 0, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date() , plantImage: "ParlourPalm", watered: 0)]
+var userPlants : [UserPlant] = [UserPlant(name: "초록콩", location: "책상 위", recentWater : "2021-06-01", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "스투키", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date() ,plantImage: "Stuckyi", watered: 0),
+                                UserPlant(name: "쁘띠", location: "창가", recentWater : "2021-06-01", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "호야",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date() ,plantImage: "Hoya", watered: 0),
+                                UserPlant(name: "요니", location: "베란다", recentWater : "2021-06-01",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "싱고니움", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(), plantImage: "Syngonium", watered: 0),
+                                UserPlant(name: "꾹꾹이", location: "베란다", recentWater : "2021-06-01",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "테이블야자", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date() , plantImage: "ParlourPalm", watered: 0)]
 
 
-func  saveNewUserPlant(plantsList : [userPlant], archiveURL : URL) {
+func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
 
     
     let jsonEncoder = JSONEncoder()
@@ -160,4 +164,28 @@ func  saveNewUserPlant(plantsList : [userPlant], archiveURL : URL) {
     
 
     print("hi 끝")
+}
+
+
+func loadUserPlant(){
+    let jsonDecoder = JSONDecoder()
+        
+        do{
+           
+            
+            let jsonData  = try Data(contentsOf: archiveURL, options: .mappedIfSafe)
+            let decoded = try jsonDecoder.decode([UserPlant].self, from: jsonData)
+
+           userPlants = decoded
+            
+            
+            
+        }
+        catch {
+            print("에러")
+            print(error)
+           
+        }
+
+
 }

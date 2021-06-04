@@ -11,7 +11,7 @@ import UIKit
 
 
 class EditUserPlantTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    var editPlant : userPlant?
+    var editPlant : UserPlant?
     var isChangePhoto : Bool = false
     var isEdit : Bool = true
     
@@ -100,7 +100,9 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 wateringDayTextField.text = String(usrplant.waterPeriod)
                 registerationTextField.text = usrplant.registedDate
                 
-                recentlyWateringDayTextField.text = "\(Calendar.current.date(byAdding: .day, value: -usrplant.waterPeriod, to: usrplant.wateringDay)!)"
+                //let subDate = Calendar.current.date(byAdding: .day, value: -usrplant.waterPeriod, to: usrplant.wateringDay)
+                //print(subDate)
+                recentlyWateringDayTextField.text = usrplant.recentWater
             }
             saveBarButton.isEnabled = true
         }
@@ -135,6 +137,9 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                     editPlant?.name = nameTextField.text!
                     editPlant?.location = locationTextField.text!
                     editPlant?.plantSpecies = speciesTextField.text!
+                    editPlant?.recentWater = recentlyWateringDayTextField.text!
+                    print("recent watering")
+                    print(recentlyWateringDayTextField.text!)
                     editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
                     if(isChangePhoto == true){
                         editPlant?.plantImage = imageView.image!.debugDescription
@@ -150,9 +155,13 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                     dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
 
                     let date:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
+                    let day : Int = Int(editPlant!.waterPeriod)
+
                     
-                    editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: editPlant!.waterPeriod, to: date)!
-                    
+                    print(editPlant!.waterPeriod)
+                    editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
+                    print("new plant wateringDay")
+                    print(editPlant!.wateringDay)
                     editPlant?.registedDate = registerationTextField.text!
                  
                     userPlants[i] = editPlant!
@@ -171,14 +180,16 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             editPlant?.location = locationTextField.text!
             editPlant?.plantSpecies = speciesTextField.text!
             editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
-           
+            editPlant?.registedDate = registerationTextField.text!
+            editPlant?.recentWater = recentlyWateringDayTextField.text!
+
 //            editPlant?.plantImage = imageView.image!.debugDescription
           
             let dateFormatter = DateFormatter()
 
             dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-
+            print("recent watering")
             print(recentlyWateringDayTextField.text!)
             
             let date:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
@@ -186,8 +197,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             let day : Int = Int(editPlant!.waterPeriod)
             
             editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
+            print("new plant wateringDay")
+            print(editPlant!.wateringDay)
             editPlant?.alarmTime = Date()
             editPlant?.color = Color(uiColor: UIColor.green)
+            
             userPlants.append(editPlant!)
             
             
