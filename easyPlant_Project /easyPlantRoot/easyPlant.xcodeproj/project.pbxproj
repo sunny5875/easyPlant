@@ -39,7 +39,7 @@
 		D6AEE1BF2647C1DB00E85162 /* tabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */; };
 		D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */; };
 		D6CC2DE026636215009E5710 /* PushAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */; };
-		D6CC2DE22663AC57009E5710 /* level.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DE12663AC57009E5710 /* level.swift */; };
+		D6CC2DE22663AC57009E5710 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DE12663AC57009E5710 /* Level.swift */; };
 		D6CC2DE42663AC68009E5710 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DE32663AC68009E5710 /* User.swift */; };
 		D6CC2DE62663AFF8009E5710 /* MyPlant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */; };
 		D6CC2DE82663B14C009E5710 /* userPlantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DE72663B14C009E5710 /* userPlantCollectionViewController.swift */; };
@@ -108,7 +108,7 @@
 		D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabbarViewController.swift; sourceTree = "<group>"; };
 		D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePlantSettingTableViewController.swift; sourceTree = "<group>"; };
 		D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmViewController.swift; sourceTree = "<group>"; };
-		D6CC2DE12663AC57009E5710 /* level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = level.swift; sourceTree = "<group>"; };
+		D6CC2DE12663AC57009E5710 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		D6CC2DE32663AC68009E5710 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPlant.storyboard; sourceTree = "<group>"; };
 		D6CC2DE72663B14C009E5710 /* userPlantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userPlantCollectionViewController.swift; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 				D6AEE1B02647B1EB00E85162 /* Diary.swift */,
 				121663E2263BC5AE00125C69 /* Plant.swift */,
 				D6CC2DE32663AC68009E5710 /* User.swift */,
-				D6CC2DE12663AC57009E5710 /* level.swift */,
+				D6CC2DE12663AC57009E5710 /* Level.swift */,
 				D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */,
 				12EA1D7426479699009A0A5E /* Home */,
 				12EA1D3B26479554009A0A5E /* HomeViewController.swift */,
@@ -528,7 +528,7 @@
 				1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */,
 				121663E3263BC5AE00125C69 /* Plant.swift in Sources */,
 				D6AEE1B12647B1EB00E85162 /* Diary.swift in Sources */,
-				D6CC2DE22663AC57009E5710 /* level.swift in Sources */,
+				D6CC2DE22663AC57009E5710 /* Level.swift in Sources */,
 				D6CC2DE82663B14C009E5710 /* userPlantCollectionViewController.swift in Sources */,
 				D6CC2DE42663AC68009E5710 /* User.swift in Sources */,
 				121663C6263BBD8200125C69 /* SearchTabViewController.swift in Sources */,
