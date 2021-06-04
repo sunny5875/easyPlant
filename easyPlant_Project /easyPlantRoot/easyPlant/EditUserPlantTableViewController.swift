@@ -8,50 +8,6 @@
 import UIKit
 import FirebaseStorage
 
-class FirebaseStorageManager {
-    
-    public func uploadFile(localFile: URL, serverFileName: String, completionHandler: @escaping (_ isSuccess: Bool, _ url: String?) -> Void) {
-        
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        // Create a reference to the file you want to upload
-        let directory = "uploads/"
-        let fileRef = storageRef.child(directory + serverFileName)
-
-        _ = fileRef.putFile(from: localFile, metadata: nil) { metadata, error in
-            fileRef.downloadURL { (url, error) in
-                guard let downloadURL = url else {
-                    // Uh-oh, an error occurred!
-                    completionHandler(false, nil)
-                    return
-                }
-                // File Uploaded Successfully
-                completionHandler(true, downloadURL.absoluteString)
-            }
-        }
-    }
-    public func uploadImageData(data: Data, serverFileName: String, completionHandler: @escaping (_ isSuccess: Bool, _ url: String?) -> Void) {
-            
-            let storage = Storage.storage()
-            let storageRef = storage.reference()
-            // Create a reference to the file you want to upload
-            let directory = "uploads/"
-            let fileRef = storageRef.child(directory + serverFileName)
-            
-            _ = fileRef.putData(data, metadata: nil) { metadata, error in
-                fileRef.downloadURL { (url, error) in
-                    guard let downloadURL = url else {
-                        // Uh-oh, an error occurred!
-                        completionHandler(false, nil)
-                        return
-                    }
-                    // File Uploaded Successfully
-                    completionHandler(true, downloadURL.absoluteString)
-                }
-            }
-        }
-}
-
 
 class EditUserPlantTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var editPlant : UserPlant?
@@ -143,19 +99,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 wateringDayTextField.text = String(usrplant.waterPeriod)
                 registerationTextField.text = usrplant.registedDate
                 
-<<<<<<< HEAD
+
                 //let subDate = Calendar.current.date(byAdding: .day, value: -usrplant.waterPeriod, to: usrplant.wateringDay)
                 //print(subDate)
                 recentlyWateringDayTextField.text = usrplant.recentWater
-=======
-                
-                var dayComp = DateComponents(day: usrplant.waterPeriod)
-                let date = Calendar.current.date(byAdding: dayComp, to: usrplant.wateringDay)!
-//                Calendar.current.component(.weekday, from: date!)
-                let recentlyDate = formatter.string(from: date)
-                recentlyWateringDayTextField.text = recentlyDate
-                
->>>>>>> ea03a8eda1393e9f3d26a30c89a37fe1d3d52a1d
+
             }
             saveBarButton.isEnabled = true
         }
@@ -224,16 +172,12 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                     
              
                     
-                    let imageData : Data = (imageView.image?.pngData())!
+                    //let imageData : Data = (imageView.image?.pngData())!
                     
-                    let imagename = imageView.image?.description
+                   // let imagename = imageView.image?.description
                    
                     
-                    FirebaseStorageManager().uploadImageData(data: imageData, serverFileName: imagename!+".png") { (isSuccess, url) in
-                           print("uploadImageData: \(isSuccess), \(url)")
-                     
-                        }
-                   
+                
                 }
             }
             

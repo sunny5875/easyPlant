@@ -47,13 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
 
     }
-    
-
-    override init() {
-        super.init()
-        FirebaseApp.configure()
-    }
-   
+  
  
 
   
