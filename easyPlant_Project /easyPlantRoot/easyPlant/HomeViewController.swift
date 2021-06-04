@@ -73,6 +73,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
         
         //myUser.updateUser()
@@ -143,9 +145,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
-        
-
     }
+    
     
     @objc func showLevelView(sender: UIView) {
         performSegue(withIdentifier: "levelViewSegue", sender: nil)
@@ -295,7 +296,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
         
-        
+        plantListTableView.reloadData()
     }
     
     /* MyPlant의 설정으로 이동
