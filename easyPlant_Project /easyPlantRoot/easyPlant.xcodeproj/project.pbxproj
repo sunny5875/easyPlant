@@ -22,6 +22,7 @@
 		1218F174265A0E19000D99F4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1218F173265A0E19000D99F4 /* Home.storyboard */; };
 		1218F192265A3384000D99F4 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F191265A3384000D99F4 /* CustomTabBarController.swift */; };
 		1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F211265FE3CB000D99F4 /* LevelViewController.swift */; };
+		1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */; };
 		12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */; };
 		12EA1D372647954F009A0A5E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D362647954F009A0A5E /* NotificationViewController.swift */; };
 		12EA1D3C26479554009A0A5E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D3B26479554009A0A5E /* HomeViewController.swift */; };
@@ -85,6 +86,7 @@
 		1218F173265A0E19000D99F4 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		1218F191265A3384000D99F4 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		1218F211265FE3CB000D99F4 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
+		1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
 		12EA1D362647954F009A0A5E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		12EA1D3B26479554009A0A5E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
+				1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */,
 				121663B3263BB8F800125C69 /* easyPlantUITests */,
 			);
 			path = easyPlant;
@@ -391,6 +394,7 @@
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,
 				D6CC2DE62663AFF8009E5710 /* MyPlant.storyboard in Resources */,
 				1218F174265A0E19000D99F4 /* Home.storyboard in Resources */,
+				1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
