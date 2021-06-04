@@ -13,6 +13,7 @@ class CellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var rightImageButton: UIButton!
     
+    @IBOutlet weak var contView: UIView!
     @IBOutlet weak var rightCellView: UIView!
     @IBOutlet weak var leftCellView: UIView!
     @IBOutlet weak var leftButton: UIButton!

@@ -541,6 +541,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="contView" destination="kay-kN-ibc" id="S6Q-0B-Tsf"/>
                                     <outlet property="leftButton" destination="FJI-LM-uze" id="NkN-s0-U41"/>
                                     <outlet property="leftCellView" destination="RLV-hf-zYf" id="hFu-zV-T9f"/>
                                     <outlet property="leftImageButton" destination="zlT-J0-et9" id="cDy-JT-6NM"/>
@@ -559,6 +560,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="관엽 식물" largeTitleDisplayMode="never" id="OnN-Ma-bir"/>
                     <connections>
+                        <outlet property="tableView" destination="JgM-35-uvO" id="ZWh-1E-aS3"/>
                         <segue destination="84U-Yc-eil" kind="show" identifier="leftSegue" id="kMl-6a-qfj"/>
                         <segue destination="84U-Yc-eil" kind="show" identifier="rightSegue" id="SFN-OF-yaE"/>
                     </connections>
