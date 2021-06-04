@@ -296,7 +296,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.name.text = item.name
         cell.location.text = item.location
         cell.period.text = "\(item.waterPeriod) 일"
-        cell.plantColor.tintColor = item.color
+        cell.plantColor.tintColor = item.color.uiColor
         cell.plantImage.image = UIImage(named: item.plantImage)
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
@@ -408,7 +408,7 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         for i in 0...userPlants.count-1 {
             let wateringDate = formatter.string(from: userPlants[i].wateringDay)
             if wateringDate == calendarDate {
-                colors.append(userPlants[i].color)
+                colors.append(userPlants[i].color.uiColor)
             }
         }
         
