@@ -240,7 +240,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     
     
-    @IBAction func checkTextComplete(_ sender: Any) {
+    @IBAction func checkTextComplete(_ sender: UITextField) {
         
         if(isEdit == false){
             if nameTextField.text! != "", speciesTextField.text != "", registerationTextField.text != "", recentlyWateringDayTextField.text != "", wateringDayTextField.text != "", locationTextField.text != ""{
@@ -248,6 +248,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         }
         
         }
+        
+        sender.resignFirstResponder()
         
     }
     

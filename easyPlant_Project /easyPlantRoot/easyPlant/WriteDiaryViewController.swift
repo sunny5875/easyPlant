@@ -37,7 +37,9 @@ class WriteDiaryViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     
     
-    @IBAction func checkTextWrite(_ sender: Any) {
+    @IBAction func checkTextWrite(_ sender: UITextField) {
+        
+        sender.resignFirstResponder()
         if(isEdit == false){
             if titleTextField.text != "", contentTextField.text != "" {
                 saveBarButton.isEnabled = true
