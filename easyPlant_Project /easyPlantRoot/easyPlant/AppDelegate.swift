@@ -63,9 +63,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     
-    override init() {
-        super.init()
-        FirebaseApp.configure()
-    }
+
 
 }
