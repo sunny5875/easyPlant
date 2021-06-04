@@ -106,6 +106,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         }
 
         
+        imageView.layer.cornerRadius = imageView.layer.frame.width / 2
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 3
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

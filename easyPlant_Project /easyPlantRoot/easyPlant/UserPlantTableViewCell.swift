@@ -9,11 +9,13 @@ import UIKit
 
 class UserPlantTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lastWater: UILabel!
     @IBOutlet weak var period: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var plantImage: UIImageView!
+    @IBOutlet weak var plantColor: UIButton!
+    @IBOutlet weak var noPlantLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

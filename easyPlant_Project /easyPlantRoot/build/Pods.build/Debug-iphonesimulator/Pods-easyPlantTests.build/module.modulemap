@@ -1,6 +1,0 @@
-framework module Pods_easyPlantTests {
-  umbrella header "Pods-easyPlantTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -19,11 +19,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        levelLabel.text = "Lv.\(myUser.level.name)"
         clickedDay = Date()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showLevelView(sender:)))
         userView.addGestureRecognizer(tapGesture)
@@ -75,22 +73,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("home appear")
-        navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.largeTitleDisplayMode =  .always
         plantListTableView.reloadData()
         
         //myUser.updateUser()
         calendar.reloadData()
         
+        levelLabel.text = "Lv.\(myUser.level.name)"
         levelImage.image = UIImage(named: myUser.level.icon)
         if myUser.level.name != levels[0].name {
             hapinessImage.isHidden = false
             if myUser.hapiness < 70 {
-                hapinessImage.image = UIImage(named: "시든식물")
+                hapinessImage.image = UIImage(named: "sadPlant")
             } else {
-                hapinessImage.image = UIImage(named: "행복한식물")
+                hapinessImage.image = UIImage(named: "happyPlant")
             }
         } else {
             hapinessImage.isHidden = true
@@ -187,10 +182,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 calendar.reloadData()
                 plant.watered = 0
             } else if plant.wateringDay.compare(Date()) == .orderedAscending {
-                myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
                 if (myUser.totalWaterNum == 10) {
-                    myUser.didWaterNum -= 1
+                    myUser.didWaterNum = min(myUser.didWaterNum - 1, 0)
                 }
+                myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
+                plant.wateringDay = Date()
             }
             
             if watering_day_string == clicked_date_string {
@@ -198,32 +194,51 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        return listPlantsIndex.count
+        if (!listPlantsIndex.isEmpty) {
+            return listPlantsIndex.count
+        } else {
+            return 1
+        }
     }
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! UserPlantTableViewCell
+        
+        if listPlantsIndex.isEmpty {
+            cell.name.isHidden = true
+            cell.location.isHidden = true
+            cell.period.isHidden = true
+            cell.plantColor.isHidden = true
+            cell.noPlantLabel.isHidden = false
+            cell.accessoryView?.isHidden = true
+            return cell
+        }
+        
+        cell.name.isHidden = false
+        cell.location.isHidden = false
+        cell.period.isHidden = false
+        cell.plantColor.isHidden = false
+        cell.noPlantLabel.isHidden = true
+        cell.accessoryView?.isHidden = false
+        
         let item = userPlants[listPlantsIndex[indexPath.row]]
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
         let clicked_date_string = formatter.string(from: clickedDay)
-        let watering_date_string = formatter.string(from: item.wateringDay)
         let current_date_string = formatter.string(from: Date())
         
+        cell.noPlantLabel.isHidden = true
         cell.name.text = item.name
         cell.location.text = item.location
         cell.period.text = "\(item.waterPeriod) 일"
-        cell.lastWater.text = watering_date_string
+        cell.plantColor.tintColor = item.color
         cell.plantImage.image = UIImage(named: item.plantImage)
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
         cell.backgroundColor = UIColor.white
-        cell.layer.cornerRadius = 30
+        cell.layer.cornerRadius = 100
         
-        // reloadData 하면 다시 새 물뿌리개 이미지 생성함.
-        // reload 하는 경우엔 이 부분 실행하지 않도록
-        //if (item.watered == false)
         let wateringButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         wateringButton.contentMode = .scaleAspectFit
         if (item.watered == 1) {
@@ -249,6 +264,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if listPlantsIndex.isEmpty {
+            return indexPath
+        }
         let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
         guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? myPlantViewController else {return indexPath}
         secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
@@ -269,6 +287,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             userPlants[listPlantsIndex[wateringButton.tag]].watered = 1
             wateringButton.image = UIImage(named: "watering_fill")
         }
+        
+        
+    }
+    
+    @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
+//        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
         
         
     }
