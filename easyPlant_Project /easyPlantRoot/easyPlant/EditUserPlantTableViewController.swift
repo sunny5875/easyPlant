@@ -9,6 +9,7 @@ import UIKit
 
 class EditUserPlantTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var editPlant : userPlant?
+    var isChangePhoto : Bool = false
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
@@ -22,9 +23,13 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     @IBOutlet weak var registerationTextField: UITextField!
     @IBOutlet weak var speciesTextField: UITextField!
     
+    @IBOutlet weak var recentlyWateringDayTextField: UITextField!
+    
     @IBOutlet weak var wateringDayTextField: UITextField!
     
     @IBAction func ChangeImageButtonTapped(_ sender: Any) {
+        
+        isChangePhoto = true
         
         let alertController = UIAlertController(title: "Change plant's image", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
@@ -88,7 +93,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             speciesTextField.text = usrplant.plantSpecies
             wateringDayTextField.text = String(usrplant.waterPeriod)
             registerationTextField.text = usrplant.registedDate
-            
+            recentlyWateringDayTextField.text = usrplant.recentlyWateringDay
           
 
             
@@ -114,9 +119,18 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 editPlant?.location = locationTextField.text!
                 editPlant?.plantSpecies = speciesTextField.text!
                 editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
-                editPlant?.plantImage = imageView.image!.description
+                if(isChangePhoto == true){
+                    editPlant?.plantImage = imageView.image!.debugDescription
+                }
+                else{
+                    editPlant?.plantImage = userPlants[i].plantImage
+                }
                 
+                editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
+             
                 userPlants[i] = editPlant!
+                
+            
                 
                 //uploadimage(img: imageView.image!)
                
