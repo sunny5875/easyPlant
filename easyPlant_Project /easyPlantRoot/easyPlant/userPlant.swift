@@ -25,6 +25,41 @@ struct userPlant{
     var alarmTime : Date
     var plantImage : String
     var watered : Int
+    
+    
+    
+    init() {
+        name = ""
+        location = ""
+        registedDate = ""
+        recentlyWateringDay = ""
+        waterPeriod = 0
+        wateringDay = Date()
+        plantSpecies = ""
+        diarylist = []
+        color = UIColor()
+        happeniess = []
+        alarmTime = Date()
+        plantImage = "plant"
+        watered = Int()
+        
+    }
+    
+    init(name : String, location : String, registedDate : String, recentlyWateringDay : String, waterPeriod : Int, wateringDay : Date, plantSpecies : String, diarylist : [Diary], color : UIColor, happeniess : [Int], alarmTime : Date, plantImage : String, watered : Int) {
+        self.name = name
+        self.location = location
+        self.registedDate = registedDate
+        self.recentlyWateringDay = recentlyWateringDay
+        self.waterPeriod = waterPeriod
+        self.wateringDay = wateringDay
+        self.plantSpecies = plantSpecies
+        self.diarylist = diarylist
+        self.color = color
+        self.happeniess = happeniess
+        self.alarmTime = alarmTime
+        self.plantImage = plantImage
+        self.watered = watered
+    }
 }
 var listPlantsIndex: [Int] = []
 

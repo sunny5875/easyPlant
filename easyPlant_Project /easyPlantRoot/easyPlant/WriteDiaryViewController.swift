@@ -68,18 +68,18 @@ class WriteDiaryViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         for i in 0...(userPlants.count-1) {
             if(userPlants[i].name == userplant?.name){
-        for j in 0...userPlants[i].diarylist.count-1 {
-            if(userPlants[i].diarylist[j].date == editDiary?.date){
-                editDiary?.title = titleTextField.text!
-                editDiary?.story = contentTextField.text!
-                
-                userPlants[i].diarylist[j] = editDiary!
-           
-                performSegue(withIdentifier: "backToMyPlant", sender: self)
-                return 
-                
-            }
-        }
+                for j in 0...userPlants[i].diarylist.count-1 {
+                    if(userPlants[i].diarylist[j].date == editDiary?.date){
+                        editDiary?.title = titleTextField.text!
+                        editDiary?.story = contentTextField.text!
+                        
+                        userPlants[i].diarylist[j] = editDiary!
+                   
+                        performSegue(withIdentifier: "unwindToEditDiarySegue", sender: self)
+                        return
+                        
+                    }
+                }
     }
         
     }
@@ -96,7 +96,7 @@ class WriteDiaryViewController: UIViewController {
             
             
         }
-        print(isEdit)
+    
         
         saveBarButton.isEnabled = false
         

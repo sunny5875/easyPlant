@@ -128,6 +128,17 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
            let indexPath =  userPlantCollectionView.indexPath(for: cell) {
             detailVC.myPlant = userPlants[indexPath.item]
         }
+        
+        
+        if segue.identifier == "makeNewUserPlant"{
+            if let detailVC = segue.destination as?  EditUserPlantTableViewController{
+                detailVC.editPlant = userPlant()
+                detailVC.isEdit = false
+                
+                
+            }
+        }
+        
 
 
     }
@@ -160,6 +171,14 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
         
         userPlantCollectionView.reloadData()
         
+    }
+    
+    
+    @IBAction func unwindToNewPlantsList(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+    
+        userPlantCollectionView.reloadData()
     }
     
    
