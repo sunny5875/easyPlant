@@ -70,6 +70,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         searchController.searchBar.placeholder = ""
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.layer.borderWidth = 1
+        searchController.searchBar.resignFirstResponder()
        // searchController.searchBar.layer.borderColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1)).cgColor
         let image = self.getImageWithColor(color: UIColor.systemGray6, size: CGSize(width: 370, height: 40))
         searchController.searchBar.setSearchFieldBackgroundImage(image, for: .normal)

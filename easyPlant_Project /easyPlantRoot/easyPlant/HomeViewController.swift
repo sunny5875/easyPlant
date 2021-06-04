@@ -333,7 +333,7 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         for i in 0...userPlants.count-1 {
             let wateringDate = formatter.string(from: userPlants[i].wateringDay)
             if wateringDate == calendarDate {
-                colors.append(userPlants[i].color)
+                colors.append(userPlants[i].color.uiColor)
             }
         }
         

@@ -9,6 +9,10 @@ import UIKit
 
 private let reuseIdentifier = "userPlantCell"
 
+let documentsDirectory = FileManager.default.urls(for: .documentDirectory,in: .userDomainMask).first!
+let archiveURL = documentsDirectory.appendingPathComponent("savingUserPlants").appendingPathExtension("plist")
+
+
 class userPlantCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var userPlantCollectionView: UICollectionView!
@@ -20,6 +24,8 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        loadUserPlant()
         
 //        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
    
@@ -175,11 +181,31 @@ class userPlantCollectionViewController: UIViewController,UICollectionViewDelega
     
     
     @IBAction func unwindToNewPlantsList(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+//        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
     
         userPlantCollectionView.reloadData()
     }
     
+    
+    
+    func loadUserPlant(){
+        print(archiveURL)
+        
+        let propertyListDecoder = PropertyListDecoder()
+       
+        if let retrievedNotesData = try? Data(contentsOf: archiveURL){
+            
+            if let decodedNotes = try? propertyListDecoder.decode(Array<userPlant>.self, from:
+              retrievedNotesData) {
+            print("decode한 결과")
+            print(decodedNotes)
+            
+                userPlants  = decodedNotes
+      
+            }
+        }
    
+    }
+    
 }
