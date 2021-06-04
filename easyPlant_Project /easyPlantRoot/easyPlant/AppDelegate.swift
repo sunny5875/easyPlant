@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,7 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        return true
 //    }
+    
+    
+    override init() {
+        super.init()
+        FirebaseApp.configure()
+    }
    
+ 
   
 }
 
@@ -53,4 +61,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
     }
+    
+    
+ 
+
 }
