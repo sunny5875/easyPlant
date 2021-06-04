@@ -10,6 +10,7 @@ import UIKit
 class EditUserPlantTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var editPlant : userPlant?
     var isChangePhoto : Bool = false
+    var isEdit : Bool = true
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
@@ -79,25 +80,29 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let usrplant = editPlant {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy.MM.dd"
-            let watering_date_string = formatter.string(from: usrplant.wateringDay)
+        if isEdit == true{
+            if let usrplant = editPlant {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy.MM.dd"
+                let watering_date_string = formatter.string(from: usrplant.wateringDay)
             
-            imageView.image = UIImage(named : usrplant.plantImage)
-            imageView.layer.cornerRadius = imageView.layer.frame.width / 2
-            imageView.layer.borderWidth = 3
-            imageView.layer.borderColor = UIColor.white.cgColor
-            nameTextField.text = usrplant.name
-            locationTextField.text = usrplant.location
-            speciesTextField.text = usrplant.plantSpecies
-            wateringDayTextField.text = String(usrplant.waterPeriod)
-            registerationTextField.text = usrplant.registedDate
-            recentlyWateringDayTextField.text = usrplant.recentlyWateringDay
+                imageView.image = UIImage(named : usrplant.plantImage)
+                imageView.layer.cornerRadius = imageView.layer.frame.width / 2
+                imageView.layer.borderWidth = 3
+                imageView.layer.borderColor = UIColor.white.cgColor
+                nameTextField.text = usrplant.name
+                locationTextField.text = usrplant.location
+                speciesTextField.text = usrplant.plantSpecies
+                wateringDayTextField.text = String(usrplant.waterPeriod)
+                registerationTextField.text = usrplant.registedDate
+                recentlyWateringDayTextField.text = usrplant.recentlyWateringDay
           
-
-            
-            
+            }
+            saveBarButton.isEnabled = true
+        }
+        
+        else{
+            saveBarButton.isEnabled = false
         }
 
         
@@ -113,30 +118,54 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     @IBAction func saveButtonTapped(_ sender: Any) {
       
-        for i in 0...(userPlants.count-1) {
-            if(userPlants[i].name == editPlant?.name){
-                editPlant?.name = nameTextField.text!
-                editPlant?.location = locationTextField.text!
-                editPlant?.plantSpecies = speciesTextField.text!
-                editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
-                if(isChangePhoto == true){
-                    editPlant?.plantImage = imageView.image!.debugDescription
+        if(isEdit == true){
+            for i in 0...(userPlants.count-1) {
+                if(userPlants[i].name == editPlant?.name){
+                    editPlant?.name = nameTextField.text!
+                    editPlant?.location = locationTextField.text!
+                    editPlant?.plantSpecies = speciesTextField.text!
+                    editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
+                    if(isChangePhoto == true){
+                        editPlant?.plantImage = imageView.image!.debugDescription
+                    }
+                    else{
+                        editPlant?.plantImage = userPlants[i].plantImage
+                    }
+                    
+                    editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
+                 
+                    userPlants[i] = editPlant!
+                    
+                
+                    
+                    //uploadimage(img: imageView.image!)
+                   
                 }
-                else{
-                    editPlant?.plantImage = userPlants[i].plantImage
-                }
-                
-                editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
-             
-                userPlants[i] = editPlant!
-                
-            
-                
-                //uploadimage(img: imageView.image!)
-               
             }
+            
+            self.performSegue(withIdentifier: "edituesrPlant", sender: self)
         }
-        self.performSegue(withIdentifier: "edituesrPlant", sender: self)
+        else{
+            editPlant?.name = nameTextField.text!
+            editPlant?.location = locationTextField.text!
+            editPlant?.plantSpecies = speciesTextField.text!
+            editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
+           
+//            editPlant?.plantImage = imageView.image!.debugDescription
+            editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
+            
+            
+            
+            userPlants.append(editPlant!)
+            
+     
+            
+           
+            
+            performSegue(withIdentifier: "makeNewPlant", sender: self)
+        }
+        
+       
         
     }
 
@@ -207,6 +236,23 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+    
+    @IBAction func checkTextComplete(_ sender: UITextField) {
+        
+        if(isEdit == false){
+            if nameTextField.text! != "", speciesTextField.text != "", registerationTextField.text != "", recentlyWateringDayTextField.text != "", wateringDayTextField.text != "", locationTextField.text != ""{
+                saveBarButton.isEnabled = true
+        }
+        
+        }
+        
+        sender.resignFirstResponder()
+        
+    }
+    
     
     
     func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {

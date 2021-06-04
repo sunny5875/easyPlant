@@ -10,6 +10,7 @@ import UIKit
 class myDiaryViewController: UIViewController {
     var myplant : userPlant?
     var diary : Diary?
+    var index : Int?
 
     @IBOutlet weak var viewClear: UIView!
     @IBOutlet weak var imageLabel: UIImageView!
@@ -27,7 +28,13 @@ class myDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateUI()
         
+       
+        
+    }
+    
+    func updateUI(){
         
         if let diary = diary, let plant = myplant {
             imageLabel.image = UIImage(named: diary.picture)
@@ -51,7 +58,6 @@ class myDiaryViewController: UIViewController {
         contentVie.layer.zPosition = 100
         imageLabel.layer.zPosition = 99
     
-        
     }
     
     
@@ -84,6 +90,12 @@ class myDiaryViewController: UIViewController {
         }
         
         
+        if segue.identifier == "deleteDiary"{
+            if let detailVC = segue.destination as? myPlantViewController{
+                detailVC.myPlant = myplant
+                detailVC.isDeleteDiary = true
+            }
+        }
     }
     
     
@@ -99,11 +111,13 @@ class myDiaryViewController: UIViewController {
             }))
 
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-                for i in 0...(self.myplant?.diarylist.count)!-1 {
-                    if(self.diary?.date == self.myplant?.diarylist[i].date){
-                        self.myplant?.diarylist.remove(at: i)
-                    }
-                }
+             
+         
+                self.myplant?.diarylist.remove(at: self.index!)
+            
+                     
+                self.performSegue(withIdentifier: "deleteDiary", sender: myDiaryViewController.self)
+                
             }))
             
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
@@ -120,6 +134,17 @@ class myDiaryViewController: UIViewController {
     
     }
         
+    
+    
+    @IBAction func unwindToEditDiary(_ unwindSegue: UIStoryboardSegue) {
+//        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+        
+        updateUI()
+    }
+    
+    
+
     
     
 }

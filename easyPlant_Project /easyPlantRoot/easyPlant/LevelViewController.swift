@@ -13,6 +13,7 @@ class LevelViewController: UIViewController {
     @IBOutlet weak var myStack: UIStackView!
     @IBOutlet var levelLables: [UILabel]!
     
+    @IBOutlet var levelImages: [UIImageView]!
     @IBOutlet weak var myLevelView: UITextView!
     
     @IBOutlet var levelsView: [UITextView]!
@@ -21,13 +22,13 @@ class LevelViewController: UIViewController {
     
         super.viewDidLoad()
 
-        let attributedString = NSMutableAttributedString(string: "\n당신은 현재 \(myUser.level.name). \n\(myUser.level.description) 당신은 이때까지 \(myUser.growingDays)일 동안 식물을 돌보고 있으며, \(myUser.numPlants)개의 식물을 키우고 있습니다. 전체 식물의 평균 행복도는 \(myUser.hapiness)입니다.")
+        let attributedString = NSMutableAttributedString(string: "당신은 현재 \(myUser.level.name). \n\(myUser.level.description) 당신은 이때까지 \(myUser.growingDays)일 동안 식물을 돌보고 있으며, \(myUser.numPlants)개의 식물을 키우고 있습니다. 전체 식물의 평균 행복도는 \(myUser.hapiness)입니다.")
 
         // *** Create instance of `NSMutableParagraphStyle`
         let paragraphStyle = NSMutableParagraphStyle()
 
         // *** set LineSpacing property in points ***
-        paragraphStyle.lineSpacing = 5 // Whatever line spacing you want in points
+        paragraphStyle.lineSpacing = 6 // Whatever line spacing you want in points
         
         // *** Apply attribute to string ***
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attributedString.length))
@@ -62,6 +63,10 @@ class LevelViewController: UIViewController {
             }
             //level.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             level.backgroundColor =  UIColor.white
+        }
+        
+        for (i, level) in levelImages.enumerated() {
+            level.image = UIImage(named: levels[i].icon)
         }
         // Do any additional setup after loading the view.
     }

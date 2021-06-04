@@ -283,16 +283,37 @@
                                             <constraint firstItem="tbz-y9-kNO" firstAttribute="leading" secondItem="Mfa-pH-Nad" secondAttribute="leading" constant="15" id="yhb-Cb-7ki"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   다이어리 목록" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93t-Ps-xjj">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-Y8-s0C">
                                         <rect key="frame" x="0.0" y="360" width="414" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   다이어리 목록" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93t-Ps-xjj">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="A1R-O7-xEh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTL-Hj-COZ">
+                                                <rect key="frame" x="354" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Asi-lE-lkO"/>
+                                                    <constraint firstAttribute="width" constant="60" id="Yr1-tI-eEk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="tintColor" systemColor="labelColor"/>
+                                                <state key="normal" title="Plus" image="plus" catalog="system"/>
+                                                <connections>
+                                                    <action selector="plusButtonTapped:" destination="Rli-Ho-JN6" eventType="touchUpInside" id="s7C-l5-Mgi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="A1R-O7-xEh"/>
+                                            <constraint firstAttribute="trailing" secondItem="zTL-Hj-COZ" secondAttribute="trailing" id="PSq-Pt-YQQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qto-ep-3ia">
                                         <rect key="frame" x="0.0" y="420" width="414" height="305"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -352,18 +373,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="gG5-Ai-IrL">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="edit" id="Mc6-51-bKu">
-                                <connections>
-                                    <action selector="editButtonTapped:" destination="Rli-Ho-JN6" id="6G9-mE-RWl"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="add" id="LtL-5h-3mB">
-                                <connections>
-                                    <action selector="plusButtonTapped:" destination="Rli-Ho-JN6" id="cMr-2T-4g7"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Mc6-51-bKu">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="Rli-Ho-JN6" id="6G9-mE-RWl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundView" destination="tbz-y9-kNO" id="RMN-iC-UdQ"/>
@@ -495,9 +509,11 @@
                         <outlet property="titleLabel" destination="Tdr-eS-6qJ" id="ZfJ-Eh-Gx0"/>
                         <outlet property="viewClear" destination="B6B-aU-xbO" id="dwd-OT-3xf"/>
                         <segue destination="6XQ-O8-JIb" kind="show" identifier="editDiarySegue" id="1Ye-oo-bKU"/>
+                        <segue destination="0Nq-Za-taj" kind="unwind" identifier="deleteDiary" unwindAction="unwindToMyPlant:" id="vHa-hw-xan"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Slm-h5-tWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="0Nq-Za-taj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2802" y="808"/>
         </scene>
@@ -576,6 +592,10 @@
                                                             <rect key="frame" x="0.0" y="23" width="374" height="37"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingChanged" id="EJp-Fk-zrI"/>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingDidEnd" id="JvP-We-wOc"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -616,6 +636,10 @@
                                                             <rect key="frame" x="0.0" y="30" width="374" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingChanged" id="HS7-QZ-XFd"/>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingDidEnd" id="Kw4-dI-nny"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -657,6 +681,10 @@
                                                             <rect key="frame" x="0.0" y="30" width="374" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingChanged" id="ayR-X6-FQs"/>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingDidEnd" id="iLS-qU-F5f"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -697,6 +725,10 @@
                                                             <rect key="frame" x="0.0" y="30" width="374" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingChanged" id="FNK-6a-VIP"/>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingDidEnd" id="OgR-kc-R3x"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -738,6 +770,10 @@
                                                             <rect key="frame" x="0.0" y="30" width="374" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingChanged" id="6jL-Uh-ZSC"/>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingDidEnd" id="Yw2-VU-6gD"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -780,7 +816,11 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  ex) 14 (일 단위로 적어주세요)" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="crQ-0J-KiK">
                                                             <rect key="frame" x="0.0" y="30" width="374" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            <connections>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingChanged" id="AJc-2N-4DI"/>
+                                                                <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingDidEnd" id="ALC-tm-UWC"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -833,6 +873,7 @@
                         <outlet property="speciesTextField" destination="HUr-P5-vL6" id="sqA-zi-qpT"/>
                         <outlet property="wateringDayTextField" destination="crQ-0J-KiK" id="Jwd-cG-xiU"/>
                         <segue destination="Tbh-Dk-QRp" kind="unwind" identifier="edituesrPlant" unwindAction="unwindToSetting:" id="oer-RP-b9X"/>
+                        <segue destination="Tbh-Dk-QRp" kind="unwind" identifier="makeNewPlant" unwindAction="unwindToNewPlantsList:" id="bwn-C8-F6X"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycz-2W-Ef2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -945,6 +986,7 @@
                         <outlet property="stackView" destination="MPB-K7-kCD" id="K9c-S8-BDX"/>
                         <outlet property="titleTextField" destination="q6e-M6-ucg" id="hXb-Hu-h1Q"/>
                         <segue destination="Faf-87-HeI" kind="unwind" identifier="backToMyPlant" unwindAction="unwindToMyPlant:" id="nxS-sL-4Ia"/>
+                        <segue destination="Faf-87-HeI" kind="unwind" identifier="unwindToEditDiarySegue" unwindAction="unwindToEditDiary:" id="Xa4-Wu-pJA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AIc-8C-1B9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1063,14 +1105,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-    <segue reference="EB6-r5-rxP"/>
-
+        <segue reference="EB6-r5-rxP"/>
+        <segue reference="fv4-gj-Q8Y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="leaf" catalog="system" width="128" height="109"/>
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">

@@ -19,6 +19,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
 
     var ChartEntry : [ChartDataEntry] = []
     var selectedImage : UIImage?
+    var isDeleteDiary : Bool = false
     
    
     @IBOutlet weak var backgroundView: UIView!
@@ -39,9 +40,19 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewDidAppear(animated)
         self.navigationItem.title = myPlant?.name
         updateUI()
+        
+        diaryCollectionView.reloadData()
       
         
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationItem.title = myPlant?.name
+        updateUI()
+        
+        diaryCollectionView.reloadData()
     }
     
     
@@ -118,6 +129,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
            let indexPath =  diaryCollectionView.indexPath(for: cell) {
             detailVC.diary = myPlant?.diarylist[indexPath.item]
             detailVC.myplant = myPlant
+            detailVC.index = indexPath.item
         }
     
         
@@ -138,6 +150,8 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             }
         }
         
+       
+        
     }
 
     
@@ -151,12 +165,20 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     @IBAction func unwindToMyPlant(_ unwindSegue: UIStoryboardSegue) {
-        for i in 0...(userPlants.count-1) {
-            if(userPlants[i].name == myPlant!.name){
-               myPlant = userPlants[i]
+        if(isDeleteDiary == true){
+            for i in 0...(userPlants.count-1) {
+                if(userPlants[i].name == myPlant!.name){
+                    userPlants[i] = myPlant!
+                }
             }
         }
-        
+        else{
+            for i in 0...(userPlants.count-1) {
+                if(userPlants[i].name == myPlant!.name){
+                   myPlant = userPlants[i]
+                }
+            }
+        }
         diaryCollectionView.reloadData()
       
     }
@@ -201,8 +223,12 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             dDayLabel.text = myPlant.registedDate
             locationLabel.text = myPlant.location
             speciesLabel.text = myPlant.plantSpecies
-            happeniessLabel.text = "\(myPlant.happeniess[myPlant.happeniess.count-1])"
-            
+            if(myPlant.happeniess.count != 0 ){
+                happeniessLabel.text = "\(myPlant.happeniess[myPlant.happeniess.count-1])"
+            }
+            else{
+                happeniessLabel.text = "0"
+            }
             imageView.image = UIImage(named: myPlant.plantImage)
         
             imageView.layer.cornerRadius = imageView.frame.width / 2.0
@@ -316,7 +342,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                     }
                     
                 }
-                self.performSegue(withIdentifier: "unwindToUserPlants", sender: myPlantViewController.self)
+                self.performSegue(withIdentifier: "deleteDiary", sender: myPlantViewController.self)
             }))
             
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
