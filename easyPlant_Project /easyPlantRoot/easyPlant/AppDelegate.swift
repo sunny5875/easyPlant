@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        return true
 //    }
+
     func applicationWillTerminate(_ application: UIApplication) {
         print("will terminate")
         saveUserInfo(user: myUser)
@@ -47,9 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
-  
-    
-    
+
+    override init() {
+        super.init()
+        FirebaseApp.configure()
+    }
+   
+ 
+
   
 }
 
@@ -65,4 +71,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
     }
+    
+    
+
+
 }
