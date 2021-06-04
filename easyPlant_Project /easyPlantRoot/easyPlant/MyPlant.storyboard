@@ -816,7 +816,7 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  ex) 14 (일 단위로 적어주세요)" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="crQ-0J-KiK">
                                                             <rect key="frame" x="0.0" y="30" width="374" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             <connections>
                                                                 <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingChanged" id="AJc-2N-4DI"/>
                                                                 <action selector="checkTextComplete:" destination="TcO-SJ-DT1" eventType="editingDidEnd" id="ALC-tm-UWC"/>
@@ -1105,9 +1105,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-    <segue reference="EB6-r5-rxP"/>
-
-
+        <segue reference="EB6-r5-rxP"/>
+        <segue reference="fv4-gj-Q8Y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
