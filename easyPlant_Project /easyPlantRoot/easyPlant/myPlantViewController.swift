@@ -38,6 +38,9 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationItem.title = myPlant?.name
+        updateUI()
+      
+        
 
     }
     
@@ -188,17 +191,20 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
+        
        
         
         // Do any additional setup after loading the view.
         if let myPlant = myPlant {
+          
+            
             dDayLabel.text = myPlant.registedDate
             locationLabel.text = myPlant.location
             speciesLabel.text = myPlant.plantSpecies
             happeniessLabel.text = "\(myPlant.happeniess[myPlant.happeniess.count-1])"
             
             imageView.image = UIImage(named: myPlant.plantImage)
-            
+        
             imageView.layer.cornerRadius = imageView.frame.width / 2.0
             imageView.layer.masksToBounds = true
             
@@ -211,11 +217,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             speciesLabel?.layer.masksToBounds = true
             happeniessLabel?.layer.masksToBounds = true
             
-            //dDayLabel.layer.cornerRadius = dDayLabel.frame.width / 2
-            //locationLabel.layer.cornerRadius = locationLabel.frame.width / 2
-            //speciesLabel.layer.cornerRadius = speciesLabel.frame.width / 2
-            //happeniessLabel.layer.cornerRadius = happeniessLabel.frame.width / 2
-            
+         
             
             
             
