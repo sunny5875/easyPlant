@@ -173,26 +173,7 @@ class WriteDiaryViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func uploadimage(img :UIImage){
-       
-        let storageRef =  Storage.storage().reference()
-        
-        var data = Data()
-        data = img.jpegData(compressionQuality: 0.8)!
-        let filePath = "diaryImage"
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/png"
-        storageRef.child(filePath).putData(data,metadata: nil){
-            (metaData,error) in if let error = error{
-            print(error.localizedDescription)
-            return
-                
-        }
-        else{
-            print("성공")
-        }
-                  }
-    }
+ 
 
     
     
