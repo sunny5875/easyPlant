@@ -83,9 +83,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if myUser.level.name != levels[0].name {
             hapinessImage.isHidden = false
             if myUser.hapiness < 70 {
-                hapinessImage.image = UIImage(named: "시든식물")
+                hapinessImage.image = UIImage(named: "sadPlant")
             } else {
-                hapinessImage.image = UIImage(named: "행복한식물")
+                hapinessImage.image = UIImage(named: "happyPlant")
             }
         } else {
             hapinessImage.isHidden = true
