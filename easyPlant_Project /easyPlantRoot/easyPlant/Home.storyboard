@@ -189,6 +189,7 @@
                                                     <outlet property="period" destination="RwR-N8-D1x" id="aqM-Hl-hVn"/>
                                                     <outlet property="plantColor" destination="GjR-G0-6RW" id="jOz-6d-0hb"/>
                                                     <outlet property="plantImage" destination="ecg-sn-tUs" id="1ro-ZO-QRq"/>
+                                                    <segue destination="cCr-wP-H0u" kind="show" id="aDV-W6-hsE"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -233,6 +234,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1913" y="64"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FHb-15-Qu3">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wfx-xK-yAe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="NYQ-cs-srp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y9K-uW-dap">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tkj-7U-v9x"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SFs-4y-Xmx"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1748" y="954"/>
+        </scene>
+        <!--myPlantSB-->
+        <scene sceneID="J6N-bW-RoH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyPlant" referencedIdentifier="myPlantSB" id="cCr-wP-H0u" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dvH-Aa-clA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Atd-07-p9O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2789" y="474"/>
         </scene>
         <!--홈-->
         <scene sceneID="XyD-vA-AkJ">

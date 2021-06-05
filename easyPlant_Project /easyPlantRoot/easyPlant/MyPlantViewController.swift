@@ -40,22 +40,36 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewDidAppear(animated)
         self.navigationItem.title = myPlant?.name
         updateUI()
-
+        print("myplant did appear")
         diaryCollectionView.reloadData()
-      
+
         
 
     }
+ 
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
+        print("myplant will appear")
         self.navigationItem.title = myPlant?.name
         updateUI()
         
         diaryCollectionView.reloadData()
+        navigationItem.largeTitleDisplayMode = .never
+      
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("myplant will disa")
+        navigationItem.largeTitleDisplayMode = .always
+
     }
     
     
+ 
+ 
     @IBAction func plusButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "add new Diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
@@ -149,6 +163,9 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 
             }
         }
+        
+       
+       
         
        
         

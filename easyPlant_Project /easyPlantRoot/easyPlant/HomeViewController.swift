@@ -132,12 +132,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         //print("Changed color ", userPlants[0].color)
-        print("home appear")
+        print("home will appear")
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
 
-        navigationController?.navigationBar.shadowImage = UIImage()
+        //navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
         
         myUser.updateUser()
@@ -208,6 +206,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
+        
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
     }
     
     
@@ -331,21 +333,34 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    
+  
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
            if listPlantsIndex.isEmpty {
                return indexPath
            }
+        /*
            let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
            guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
            secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
            self.navigationController?.show(secondVC, sender: self)
        
            //self.navigationController?.pushViewController(secondVC, animated: true)
-           
+           */
+           indexTmp = indexPath
            return indexPath
        }
  
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+            if let detailVC = segue.destination as? MyPlantViewController{
+                detailVC.myPlant = userPlants[listPlantsIndex[indexTmp.row]]
+                
+                
+            }
+        
+    }
+    
  
     @objc func watering(sender: UITapGestureRecognizer){
         //sender.image = UIImage(named: "watering_fill")
@@ -368,6 +383,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Use data from the view controller which initiated the unwind segue
         
         plantListTableView.reloadData()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
     }
 }
 

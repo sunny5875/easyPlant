@@ -146,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qz5-vX-pcd">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gO-CG-dig">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
@@ -241,7 +241,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="9ol-S4-stt" firstAttribute="top" secondItem="3gO-CG-dig" secondAttribute="top" constant="15" id="7L7-aZ-fPP"/>
                                             <constraint firstItem="9ol-S4-stt" firstAttribute="leading" secondItem="3gO-CG-dig" secondAttribute="leading" constant="10" id="QxW-u7-aKt"/>
@@ -315,7 +315,7 @@
                                         </constraints>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qto-ep-3ia">
-                                        <rect key="frame" x="0.0" y="420" width="414" height="305"/>
+                                        <rect key="frame" x="0.0" y="420" width="414" height="253"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <edgeInsets key="layoutMargins" top="1" left="1" bottom="1" right="1"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="xTc-Pm-9Nj">
@@ -372,7 +372,7 @@
                             <constraint firstAttribute="trailing" secondItem="qz5-vX-pcd" secondAttribute="trailing" id="xi8-mp-hUA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="gG5-Ai-IrL">
+                    <navigationItem key="navigationItem" id="gG5-Ai-IrL">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Mc6-51-bKu">
                             <connections>
                                 <action selector="editButtonTapped:" destination="Rli-Ho-JN6" id="6G9-mE-RWl"/>
