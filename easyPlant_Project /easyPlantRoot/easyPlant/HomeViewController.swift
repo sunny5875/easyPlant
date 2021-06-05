@@ -9,6 +9,7 @@ import UIKit
 import FSCalendar
 import Charts
 import UserNotifications
+import Photos
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,7 +26,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("home did load")
+        
+        
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
@@ -238,7 +240,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let watering_day_string = formatter.string(from: plant.wateringDay)
             
             if watering_day_string != current_date_string && plant.watered == 1 {
-                // TODO need to save
+                plant.recentWater = formatter.string(from: plant.wateringDay)
                 plant.wateringDay = Calendar.current.date(byAdding: .day, value: plant.waterPeriod, to: Date())!
                 
                 myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)

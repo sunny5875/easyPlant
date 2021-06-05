@@ -8,6 +8,7 @@
 import UIKit
 import Charts
 import FirebaseStorage
+import Photos
 private let reuseIdentifier = "diaryCell"
 
 

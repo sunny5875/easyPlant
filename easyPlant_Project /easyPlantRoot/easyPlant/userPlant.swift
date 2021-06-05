@@ -148,10 +148,6 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
 
       do{
           let encodeData = try jsonEncoder.encode(plantsList)
-     
-         print("hi")
-          print(archiveURL)
-        
           do{
               try encodeData.write(to: archiveURL, options: .noFileProtection)
                
