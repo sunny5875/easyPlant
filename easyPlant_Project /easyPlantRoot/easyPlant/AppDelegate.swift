@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import Firebase
 
-@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         return true
     }
 
@@ -37,7 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        return true
 //    }
-   
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        print("will terminate")
+        saveUserInfo(user: myUser)
+        saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
+
+    }
+  
+ 
+
   
 }
 
@@ -53,4 +65,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
     }
+    
+    
+
+
 }

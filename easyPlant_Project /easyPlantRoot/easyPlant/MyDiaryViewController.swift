@@ -7,8 +7,8 @@
 
 import UIKit
 
-class myDiaryViewController: UIViewController {
-    var myplant : userPlant?
+class MyDiaryViewController: UIViewController {
+    var myplant : UserPlant?
     var diary : Diary?
     var index : Int?
 
@@ -91,7 +91,7 @@ class myDiaryViewController: UIViewController {
         
         
         if segue.identifier == "deleteDiary"{
-            if let detailVC = segue.destination as? myPlantViewController{
+            if let detailVC = segue.destination as? MyPlantViewController{
                 detailVC.myPlant = myplant
                 detailVC.isDeleteDiary = true
             }
@@ -107,7 +107,7 @@ class myDiaryViewController: UIViewController {
 //            }))
             
             alert.addAction(UIAlertAction(title: "Edit", style: .default , handler:{ (UIAlertAction) in
-                self.performSegue(withIdentifier: "editDiarySegue", sender: myPlantViewController.self)
+                self.performSegue(withIdentifier: "editDiarySegue", sender: MyPlantViewController.self)
             }))
 
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
@@ -116,7 +116,7 @@ class myDiaryViewController: UIViewController {
                 self.myplant?.diarylist.remove(at: self.index!)
             
                      
-                self.performSegue(withIdentifier: "deleteDiary", sender: myDiaryViewController.self)
+                self.performSegue(withIdentifier: "deleteDiary", sender: MyDiaryViewController.self)
                 
             }))
             

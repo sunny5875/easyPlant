@@ -21,7 +21,7 @@ class UserPlantTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func update(with plant: userPlant) {
+    func update(with plant: UserPlant) {
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {

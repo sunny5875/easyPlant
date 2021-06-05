@@ -12,7 +12,7 @@ class NotificationViewController: UITableViewController {
     @IBOutlet weak var colorPickerView: UIColorWell!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    var myPlant: userPlant?
+    var myPlant: UserPlant?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,8 @@ class NotificationViewController: UITableViewController {
         for i in 0...(userPlants.count-1) {
             if(userPlants[i].name == myPlant?.name){
                 userPlants[i].alarmTime = datePicker.date
+                saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
+
                 break
             }
         }
@@ -43,6 +45,8 @@ class NotificationViewController: UITableViewController {
         for i in 0...(userPlants.count-1) {
             if(userPlants[i].name == myPlant?.name){
                 userPlants[i].color = Color(uiColor: colorPickerView.selectedColor ?? UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1)))
+                saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
+
                 break
             }
         }

@@ -20,10 +20,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
+    var indexTmp : IndexPath = IndexPath()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("home did load")
+        // Request notification authentication
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
+                })
+
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
@@ -31,10 +37,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             // 저장
             myUser = User(Date())
+            saveUserInfo(user: myUser)
+            saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
             UserDefaults.standard.set(true, forKey: "launchedBefore")
         }
         
+
+
+        loadUserInfo()
+        loadUserPlant()
         myUser.updateUser()
+        saveUserInfo(user: myUser)
+        
+
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
@@ -116,10 +131,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Changed color ", userPlants[0].color)
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.shadowImage = UIImage()
+        //print("Changed color ", userPlants[0].color)
+        print("home will appear")
+
+
+        //navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
         
         myUser.updateUser()
@@ -190,6 +206,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
+        
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
     }
     
     
@@ -227,12 +247,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 plantListTableView.reloadData()
                 calendar.reloadData()
                 plant.watered = 0
+
             } else if Calendar.current.compare(plant.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
                 if (myUser.totalWaterNum == 10) {
                     myUser.didWaterNum = max(myUser.didWaterNum - 1, 0)
                 }
                 myUser.totalWaterNum = min(myUser.totalWaterNum + 1, 10)
                 plant.wateringDay = Date()
+
             }
 
             if watering_day_string == clicked_date_string {
@@ -311,18 +333,34 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+  
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if listPlantsIndex.isEmpty {
-            return indexPath
-        }
-        let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
-        guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? myPlantViewController else {return indexPath}
-        secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
-        self.navigationController?.pushViewController(secondVC, animated: true)
-        
-        return indexPath
-    }
+           if listPlantsIndex.isEmpty {
+               return indexPath
+           }
+        /*
+           let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
+           guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
+           secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
+           self.navigationController?.show(secondVC, sender: self)
+       
+           //self.navigationController?.pushViewController(secondVC, animated: true)
+           */
+           indexTmp = indexPath
+           return indexPath
+       }
  
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+            if let detailVC = segue.destination as? MyPlantViewController{
+                detailVC.myPlant = userPlants[listPlantsIndex[indexTmp.row]]
+                
+                
+            }
+        
+    }
+    
  
     @objc func watering(sender: UITapGestureRecognizer){
         //sender.image = UIImage(named: "watering_fill")
@@ -333,6 +371,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             wateringButton.image = UIImage(named: "watering")
         } else {
             userPlants[listPlantsIndex[wateringButton.tag]].watered = 1
+
             wateringButton.image = UIImage(named: "watering_fill")
         }
         
@@ -344,6 +383,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Use data from the view controller which initiated the unwind segue
         
         plantListTableView.reloadData()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
     }
 }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class userPlantCollectionViewCell: UICollectionViewCell {
+class UserPlantCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -15,7 +15,8 @@ class userPlantCollectionViewCell: UICollectionViewCell {
     
     
     
-    func update(info: userPlant) {
+    func update(info: UserPlant) {
+        print("cell info")
         imageView.image = UIImage(named: info.plantImage)
         nameLabel.text = ""+info.name
       

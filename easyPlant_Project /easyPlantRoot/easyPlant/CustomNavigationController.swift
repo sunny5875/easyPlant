@@ -14,6 +14,8 @@ class CustomNavigationController: UINavigationController {
         //self.navigationBar.barTintColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         //self.navigationBar.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         self.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+
         self.navigationBar.shadowImage = UIImage()
      
     }

@@ -11,9 +11,9 @@ import FirebaseStorage
 private let reuseIdentifier = "diaryCell"
 
 
-class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate, UICollectionViewDelegateFlowLayout {
+class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate, UICollectionViewDelegateFlowLayout {
 
-    var myPlant : userPlant?
+    var myPlant : UserPlant?
     var numbers : [Int] = []
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -40,22 +40,36 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewDidAppear(animated)
         self.navigationItem.title = myPlant?.name
         updateUI()
-        
+        print("myplant did appear")
         diaryCollectionView.reloadData()
-      
+
         
 
     }
+ 
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
+        print("myplant will appear")
         self.navigationItem.title = myPlant?.name
         updateUI()
         
         diaryCollectionView.reloadData()
+        navigationItem.largeTitleDisplayMode = .never
+      
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("myplant will disa")
+        navigationItem.largeTitleDisplayMode = .always
+
     }
     
     
+ 
+ 
     @IBAction func plusButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "add new Diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
@@ -109,7 +123,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! diaryCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiaryCollectionViewCell
            
        
             
@@ -125,7 +139,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
   
         
-        if let detailVC = segue.destination as? myDiaryViewController,let cell = sender as? UICollectionViewCell,
+        if let detailVC = segue.destination as? MyDiaryViewController,let cell = sender as? UICollectionViewCell,
            let indexPath =  diaryCollectionView.indexPath(for: cell) {
             detailVC.diary = myPlant?.diarylist[indexPath.item]
             detailVC.myplant = myPlant
@@ -149,6 +163,12 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 
             }
         }
+        
+       
+       
+        
+       
+        
         
        
         
@@ -313,15 +333,7 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     
-    func downloadimage(imgview:UIImageView){
-        Storage.storage().reference(forURL: "gs://firstios-f6c7c.appspot.com/diaryImage").downloadURL { (url, error) in
-                           let data = NSData(contentsOf: url!)
-                           let image = UIImage(data: data! as Data)
-                            imgview.image = image
-            }
-    }
-    
-   
+ 
    
     @IBAction func editButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)
@@ -331,18 +343,19 @@ class myPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
 //            }))
             
             alert.addAction(UIAlertAction(title: "Edit", style: .default , handler:{ (UIAlertAction) in
-                self.performSegue(withIdentifier: "editPlantSegue", sender: myPlantViewController.self)
+                self.performSegue(withIdentifier: "editPlantSegue", sender: MyPlantViewController.self)
             }))
 
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
                 for i in 0...(userPlants.count-1) {
                     if(userPlants[i].name == self.myPlant!.name){
+                        print("deleteplant success")
                         userPlants.remove(at: i)
                         break
                     }
                     
                 }
-                self.performSegue(withIdentifier: "deleteDiary", sender: myPlantViewController.self)
+                self.performSegue(withIdentifier: "unwindToUserPlants", sender: MyPlantViewController.self)
             }))
             
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in

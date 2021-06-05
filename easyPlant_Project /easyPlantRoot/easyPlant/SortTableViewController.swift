@@ -20,24 +20,44 @@ extension UIButton {
    }
 }
 
+
+extension SortTableViewController : UISearchBarDelegate {
+    
+    func setDelegate(){
+        print("setDelegate")
+        searchController.searchBar.delegate = self
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("search button click")
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+}
+
+
 class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 
 
 
+    @IBOutlet weak var searchBar: UISearchBar!
     var searchController = UISearchController(searchResultsController: nil)
     
-
+    
     var nowTitle  = ""
     var plantArrayIndex = 0
     var plantArray: [Plant] = []
     var resultPlantArray: [Plant] = []
 
+    
+    let gesture = UITapGestureRecognizer(target: self, action:  #selector(checkAction))
     //일단 가장 먼저 스토리보드의 테이블 뷰 컨트롤러를 클릭한 후 class 칸에 TablViewController를 적어줘야 연결이 됨
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidload")
         findArray()
-        
         setUI()
+        setDelegate()
         //updateSegControl()
 
 
@@ -48,7 +68,9 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        print("search view will appear")
         self.navigationItem.largeTitleDisplayMode =  .never
+      
 
     }
     
@@ -64,33 +86,41 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 
     
+  
+
+    @objc func checkAction(sender : UITapGestureRecognizer) {
+        print("checkaction")
+        searchController.searchBar.resignFirstResponder()
+
+    }
+
+
     func setUI(){
 
     
         searchController.searchBar.placeholder = ""
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.layer.borderWidth = 1
-        searchController.searchBar.resignFirstResponder()
        // searchController.searchBar.layer.borderColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1)).cgColor
         let image = self.getImageWithColor(color: UIColor.systemGray6, size: CGSize(width: 370, height: 40))
         searchController.searchBar.setSearchFieldBackgroundImage(image, for: .normal)
         self.tableView.tableHeaderView = searchController.searchBar
        
-     
 
         searchController.searchBar.layer.borderWidth = 1
         searchController.searchBar.layer.borderColor = UIColor.white.cgColor
-        
+        searchController.searchBar.tintColor = UIColor.black
+    
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
 
-       
+      
 
-
-        searchController.searchBar.tintColor = UIColor.black
     }
+    
+    
     
     
     
@@ -119,6 +149,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 
         }
     }
+    
+    
     
     /*
     @IBAction func leftOrderSelect(_ sender: Any) {
@@ -218,7 +250,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.backgroundColor = UIColor.white.cgColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        
+        cell.contView.addGestureRecognizer(gesture)
+
         
         
         //segment 값에따라 데이터 정렬
@@ -352,6 +385,9 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         print("rightsegue")
         self.performSegue(withIdentifier: "rightSegue", sender: sender)
     }
+    
+    
+    
     //셀을 누르면 화면 전환하고 싶으면 selection segue way에 show 사용
 
     /*
@@ -411,3 +447,4 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     
    
 }
+

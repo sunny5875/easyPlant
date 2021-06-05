@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-nR-zYl">
-                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="624"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-K2-Bcx">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="315"/>
@@ -109,7 +109,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="owf-qX-XP8">
-                                        <rect key="frame" x="0.0" y="323" width="414" height="353"/>
+                                        <rect key="frame" x="0.0" y="323" width="414" height="301"/>
                                         <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="25" maxY="0.0"/>
                                         <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="TSc-FQ-Nr2">
@@ -163,9 +163,9 @@
                                                                 <constraint firstItem="RwR-N8-D1x" firstAttribute="width" secondItem="R32-hj-C3d" secondAttribute="width" multiplier="0.28" id="QXs-kM-VBy"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="물을 줘야 할 식물이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaP-90-Kxw">
-                                                            <rect key="frame" x="49.5" y="33.5" width="231.5" height="24"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘은 물을 줄 식물이 없어요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaP-90-Kxw">
+                                                            <rect key="frame" x="60" y="35" width="210.5" height="21.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -189,6 +189,7 @@
                                                     <outlet property="period" destination="RwR-N8-D1x" id="aqM-Hl-hVn"/>
                                                     <outlet property="plantColor" destination="GjR-G0-6RW" id="jOz-6d-0hb"/>
                                                     <outlet property="plantImage" destination="ecg-sn-tUs" id="1ro-ZO-QRq"/>
+                                                    <segue destination="cCr-wP-H0u" kind="show" id="aDV-W6-hsE"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -216,7 +217,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="EasyPlant" largeTitleDisplayMode="always" id="Czv-lR-JIg">
-                        <barButtonItem key="backBarButtonItem" title="Home" id="Snt-wW-i2G"/>
+                        <barButtonItem key="backBarButtonItem" title="Home" id="hWg-Bo-cTf"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -232,7 +233,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.9710144927537" y="63.616071428571423"/>
+            <point key="canvasLocation" x="1913" y="64"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FHb-15-Qu3">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wfx-xK-yAe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="NYQ-cs-srp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y9K-uW-dap">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tkj-7U-v9x"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SFs-4y-Xmx"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1748" y="954"/>
+        </scene>
+        <!--myPlantSB-->
+        <scene sceneID="J6N-bW-RoH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyPlant" referencedIdentifier="myPlantSB" id="cCr-wP-H0u" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dvH-Aa-clA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Atd-07-p9O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2789" y="474"/>
         </scene>
         <!--홈-->
         <scene sceneID="XyD-vA-AkJ">
@@ -241,8 +268,8 @@
                     <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" selectedImage="house.fill" id="3Gq-3b-ypI"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2QJ-Zi-FDg">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="2QJ-Zi-FDg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
