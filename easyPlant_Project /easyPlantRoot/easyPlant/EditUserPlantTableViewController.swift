@@ -162,7 +162,12 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                     
 
                     print(editPlant!.waterPeriod)
+                    
                     editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
+                    
+                    if Calendar.current.compare(editPlant!.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
+                        editPlant?.wateringDay = Date()
+                    }
                     print("new plant wateringDay")
                     print(editPlant!.wateringDay)
 
@@ -206,6 +211,10 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             let day : Int = Int(editPlant!.waterPeriod)
             
             editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
+            if Calendar.current.compare(editPlant!.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
+                editPlant?.wateringDay = Date()
+            }
+            
             print("new plant wateringDay")
             print(editPlant!.wateringDay)
             editPlant?.alarmTime = Date()
