@@ -10,7 +10,7 @@ import UIKit
 
 
 
-
+//버튼에 함수 확장
 extension UIButton {
     func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
        let border = CALayer()
@@ -21,6 +21,7 @@ extension UIButton {
 }
 
 
+//서치바에서 포커스가 벗어나면 내려가게 할려고 해본건데 효과 없음ㅠ
 extension SortTableViewController : UISearchBarDelegate {
     
     func setDelegate(){
@@ -49,7 +50,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     var plantArray: [Plant] = []
     var resultPlantArray: [Plant] = []
 
-    
+    //이것도 키보드 내려가게 할려고 한건데 실패
     let gesture = UITapGestureRecognizer(target: self, action:  #selector(checkAction))
     //일단 가장 먼저 스토리보드의 테이블 뷰 컨트롤러를 클릭한 후 class 칸에 TablViewController를 적어줘야 연결이 됨
     override func viewDidLoad() {
@@ -74,6 +75,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 
     }
     
+    //서치바 커스텀하는 함수
     func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         let path = UIBezierPath(roundedRect: rect, cornerRadius: 100)
@@ -87,7 +89,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 
     
   
-
+    //서치바에서 키보드 내려갈려고 추가 한건데 실패
     @objc func checkAction(sender : UITapGestureRecognizer) {
         print("checkaction")
         searchController.searchBar.resignFirstResponder()
@@ -95,6 +97,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 
 
+    //UI 디자인 설정
     func setUI(){
 
     
@@ -123,13 +126,14 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     
     
     
-    
+    //서치바에서 검색하면 새로 테이블 뷰를 세팅한다
     func updateSearchResults(for searchController: UISearchController) {
         print("result")
         resultSearch(for: searchController.searchBar.text ?? "")
     }
     
     private func resultSearch(for searchText: String) {
+        //아직 검색한게 없다면 - 임의의 셀을 추가 -> 그냥 디자인 때문
         if searchText != ""{
             resultPlantArray = plantArray.filter { plant in
             return
@@ -141,6 +145,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
             tableView.reloadData()
           
         }
+        //검색을 완료했다면
         else {
             resultPlantArray = plantArray
             tableView.reloadData()
@@ -150,58 +155,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         }
     }
     
-    
-    
-    /*
-    @IBAction func leftOrderSelect(_ sender: Any) {
-        selectOrderIndex = 0
-        updateSegControl()
-        self.tableView.reloadData()
-    }
-    
-    
-    @IBAction func rightOrderSelect(_ sender: Any) {
-        selectOrderIndex = 1
-        updateSegControl()
-        self.tableView.reloadData()
-        
-    }
- */
-    
-    
-   /*
-    func updateSegControl(){
-        let borderWidth: CGFloat = 1.0
-        var borderColor : UIColor
-        print("why")
-        if selectOrderIndex == 0{
-           
-            borderColor =  UIColor.black
-            
-                leftOrder.addBottomBorderWithColor(color: borderColor, width: borderWidth)
-                //borderColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-            borderColor = UIColor.white
-                rightOrder.addBottomBorderWithColor(color: borderColor, width: borderWidth)
- 
-            
-            
-            
-        }
-        else{
-            
-            borderColor  = UIColor.black
-                rightOrder.addBottomBorderWithColor(color: borderColor, width: borderWidth)
-                
-                //borderColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-            borderColor = UIColor.white
-                leftOrder.addBottomBorderWithColor(color: borderColor, width: borderWidth)
 
-      
-        
-            
-        }
-    }
-    */
+    //현재 식물 분류 배열이 뭔지 찾아둔다
     func findArray(){
         
         nowTitle = self.navigationItem.title!
@@ -258,11 +213,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         var plants: [Plant] = []
         plants = resultPlantArray.sorted{ $0.korName.lowercased() < $1.korName.lowercased()}
        
-        //print(plants[indexPath.row*2])
-        //print(indexPath.row*2)
-        //print(plants[indexPath.row*2+1])
-        //print(indexPath.row*2 + 1)
-        //print("======================================")
         
         //셀에서 완쪽 항목 불러오기
         let itemLeft = plants[indexPath.row*2]
@@ -337,6 +287,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     }
      
     
+    //아래의 함수들은 모두 UI 설정 함수
     func greenRightUIUpdate(_ cell: CellTableViewCell){
         cell.rightCellView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         cell.rightButton.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
@@ -390,46 +341,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     
     //셀을 누르면 화면 전환하고 싶으면 selection segue way에 show 사용
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
-
-    //
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
