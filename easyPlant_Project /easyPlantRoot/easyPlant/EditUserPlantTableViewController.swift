@@ -102,6 +102,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
 
                 //let subDate = Calendar.current.date(byAdding: .day, value: -usrplant.waterPeriod, to: usrplant.wateringDay)
                 //print(subDate)
+                print("########Recent water : \(usrplant.recentWater)")
                 recentlyWateringDayTextField.text = usrplant.recentWater
 
             }

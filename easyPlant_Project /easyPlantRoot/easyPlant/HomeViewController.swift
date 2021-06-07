@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
-        
+        navigationController?.navigationItem.hidesSearchBarWhenScrolling = false
         
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
@@ -137,6 +137,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //print("Changed color ", userPlants[0].color)
         print("home will appear")
 
+        plantListTableView.scrollsToTop = true
 
         //navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
@@ -241,7 +242,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if watering_day_string != current_date_string && userPlants[i].watered == 1 {
                 userPlants[i].recentWater = formatter.string(from: userPlants[i].wateringDay)
-                userPlants[i].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[i].waterPeriod, to: Date())!
+                userPlants[i].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[i].waterPeriod, to: userPlants[i].wateringDay)!
                 
                 myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
                 myUser.didWaterNum = max(myUser.didWaterNum + 1, 10)
