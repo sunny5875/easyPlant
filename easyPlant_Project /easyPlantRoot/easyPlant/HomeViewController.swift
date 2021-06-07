@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
+    let userNotificationCenter = UNUserNotificationCenter.current()
     var indexTmp : IndexPath = IndexPath()
     
     
@@ -133,9 +134,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        for (i, plant) in userPlants.enumerated() {
+            let notiContent = UNMutableNotificationContent()
+            //let date = Date(timeIntervalSinceNow: 15)
+            notiContent.title = "\(plant.name) 물 줄 시간이예요!"
+            notiContent.body = "물 뿌리개를 통해 \(plant.name)에게 물을 주세요."
+
+            //let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+            
+            var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: plant.wateringDay)
+            dateComponents.hour = Calendar.current.component(.hour, from: plant.alarmTime)
+            dateComponents.minute = Calendar.current.component(.minute, from: plant.alarmTime)
+            
+            print("\(plant.name) \(dateComponents)")
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let request = UNNotificationRequest(identifier: "watering_notification\(i)", content: notiContent, trigger: trigger)
+                
+            userNotificationCenter.add(request) { error in
+                if let error = error {
+                    print("Notification Error: ", error)
+                }
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         //print("Changed color ", userPlants[0].color)
         print("home will appear")
+        
 
         plantListTableView.scrollsToTop = true
 
