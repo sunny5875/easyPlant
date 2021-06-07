@@ -13,18 +13,18 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-nR-zYl">
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-nR-zYl">
                                 <rect key="frame" x="0.0" y="140" width="414" height="624"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-K2-Bcx">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="315"/>
+                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDx-Rj-Jda">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="334"/>
                                         <subviews>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ATB-T6-o2z" customClass="FSCalendar">
-                                                <rect key="frame" x="20.5" y="0.0" width="373" height="150"/>
+                                                <rect key="frame" x="20.5" y="10" width="373" height="150"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="vIo-3n-eN1"/>
@@ -46,7 +46,7 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNE-r7-qch">
-                                                <rect key="frame" x="20.5" y="165" width="373" height="150"/>
+                                                <rect key="frame" x="20.5" y="180" width="373" height="150"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XwP-bE-MOZ">
                                                         <rect key="frame" x="19" y="0.0" width="335" height="150"/>
@@ -104,18 +104,26 @@
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="ATB-T6-o2z" firstAttribute="width" secondItem="fw4-K2-Bcx" secondAttribute="width" multiplier="0.9" id="Wx6-4u-cwj"/>
-                                            <constraint firstItem="GNE-r7-qch" firstAttribute="width" secondItem="fw4-K2-Bcx" secondAttribute="width" multiplier="0.9" id="xV7-Aq-yiX"/>
+                                            <constraint firstItem="GNE-r7-qch" firstAttribute="centerX" secondItem="aDx-Rj-Jda" secondAttribute="centerX" id="JpY-zH-sal"/>
+                                            <constraint firstAttribute="bottom" secondItem="GNE-r7-qch" secondAttribute="bottom" id="MDU-8I-pmB"/>
+                                            <constraint firstItem="ATB-T6-o2z" firstAttribute="top" secondItem="aDx-Rj-Jda" secondAttribute="top" constant="10" id="MoH-LY-X1l"/>
+                                            <constraint firstItem="ATB-T6-o2z" firstAttribute="centerX" secondItem="aDx-Rj-Jda" secondAttribute="centerX" id="SVp-ju-yRs"/>
+                                            <constraint firstItem="GNE-r7-qch" firstAttribute="top" secondItem="ATB-T6-o2z" secondAttribute="bottom" constant="20" id="cvO-ac-bQO"/>
+                                            <constraint firstItem="GNE-r7-qch" firstAttribute="width" secondItem="ATB-T6-o2z" secondAttribute="width" id="hKw-pd-LpG"/>
+                                            <constraint firstItem="ATB-T6-o2z" firstAttribute="width" secondItem="aDx-Rj-Jda" secondAttribute="width" multiplier="0.9" id="nmL-gR-pnZ"/>
+                                            <constraint firstAttribute="width" constant="414" id="uSl-xA-xkd"/>
+                                            <constraint firstAttribute="trailing" secondItem="GNE-r7-qch" secondAttribute="trailing" id="uwe-T9-i59"/>
                                         </constraints>
-                                    </stackView>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="P0f-hr-LWX"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="OyG-mI-D6J"/>
+                                    </scrollView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="owf-qX-XP8">
-                                        <rect key="frame" x="0.0" y="323" width="414" height="301"/>
+                                        <rect key="frame" x="0.0" y="334" width="414" height="290"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="290" id="4eF-sd-viL"/>
+                                        </constraints>
                                         <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="25" maxY="0.0"/>
-                                        <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="TSc-FQ-Nr2">
-                                            <rect key="frame" x="0.0" y="164.5" width="414" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </stackView>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="plantCell" editingAccessoryType="detailDisclosureButton" rowHeight="91" id="fco-2B-cry" customClass="UserPlantTableViewCell" customModule="easyPlant" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="55.5" width="374" height="91"/>
@@ -200,7 +208,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="owf-qX-XP8" firstAttribute="centerX" secondItem="vZl-nR-zYl" secondAttribute="centerX" id="1OI-GG-YuB"/>
-                                    <constraint firstItem="fw4-K2-Bcx" firstAttribute="width" secondItem="vZl-nR-zYl" secondAttribute="width" id="8Rt-Kt-Q3Q"/>
+                                    <constraint firstItem="aDx-Rj-Jda" firstAttribute="top" secondItem="vZl-nR-zYl" secondAttribute="top" id="6Jf-Pa-oMI"/>
+                                    <constraint firstItem="aDx-Rj-Jda" firstAttribute="centerX" secondItem="vZl-nR-zYl" secondAttribute="centerX" id="LJx-4q-pMa"/>
                                     <constraint firstItem="owf-qX-XP8" firstAttribute="leading" secondItem="vZl-nR-zYl" secondAttribute="leading" id="Uzr-v3-gQj"/>
                                 </constraints>
                             </stackView>
@@ -232,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1913" y="64"/>
+            <point key="canvasLocation" x="1911.594202898551" y="63.616071428571423"/>
         </scene>
         <!--홈-->
         <scene sceneID="XyD-vA-AkJ">

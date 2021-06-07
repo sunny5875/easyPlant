@@ -248,7 +248,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         
         imageView.image = selectedImage
-        uploadimage(img: selectedImage)
+        //uploadimage(img: selectedImage)
         dismiss(animated: true, completion: nil)
     }
     

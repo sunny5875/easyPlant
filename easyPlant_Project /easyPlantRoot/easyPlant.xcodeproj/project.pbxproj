@@ -37,7 +37,6 @@
 		D6AEE1B32647B1F600E85162 /* UserPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B22647B1F600E85162 /* UserPlant.swift */; };
 		D6AEE1B52647B20200E85162 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */; };
 		D6AEE1B72647B20D00E85162 /* MyPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B62647B20D00E85162 /* MyPlantViewController.swift */; };
-		D6AEE1BF2647C1DB00E85162 /* tabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */; };
 		D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */; };
 		D6CC2DE026636215009E5710 /* PushAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */; };
 		D6CC2DE22663AC57009E5710 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CC2DE12663AC57009E5710 /* Level.swift */; };
@@ -89,8 +88,8 @@
 		1218F211265FE3CB000D99F4 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
-		12EA1D362647954F009A0A5E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		12EA1D3B26479554009A0A5E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		12EA1D362647954F009A0A5E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationViewController.swift; path = ../NotificationViewController.swift; sourceTree = "<group>"; };
+		12EA1D3B26479554009A0A5E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = easyPlant/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
 		12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +106,6 @@
 		D6AEE1B22647B1F600E85162 /* UserPlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlant.swift; sourceTree = "<group>"; };
 		D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D6AEE1B62647B20D00E85162 /* MyPlantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlantViewController.swift; sourceTree = "<group>"; };
-		D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabbarViewController.swift; sourceTree = "<group>"; };
 		D6AEE1C62647E76000E85162 /* homePlantSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePlantSettingTableViewController.swift; sourceTree = "<group>"; };
 		D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAlarmViewController.swift; sourceTree = "<group>"; };
 		D6CC2DE12663AC57009E5710 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -185,36 +183,14 @@
 		12166391263BB8F700125C69 /* easyPlant */ = {
 			isa = PBXGroup;
 			children = (
-				D6AEE1B22647B1F600E85162 /* UserPlant.swift */,
 				12166392263BB8F700125C69 /* AppDelegate.swift */,
-				D6AEE1BE2647C1DB00E85162 /* tabbarViewController.swift */,
 				12166394263BB8F700125C69 /* SceneDelegate.swift */,
-				D6AEE1B02647B1EB00E85162 /* Diary.swift */,
-				121663E2263BC5AE00125C69 /* Plant.swift */,
-				D6CC2DE32663AC68009E5710 /* User.swift */,
-				D6CC2DE12663AC57009E5710 /* Level.swift */,
+				12799938266E07BD0072E9FF /* Authorization */,
+				1279993A266E07CD0072E9FF /* Custom */,
+				12799939266E07C80072E9FF /* Data */,
 				12EA1D7426479699009A0A5E /* Home */,
-				12EA1D3B26479554009A0A5E /* HomeViewController.swift */,
-				12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */,
-				12EA1D362647954F009A0A5E /* NotificationViewController.swift */,
-				1218F211265FE3CB000D99F4 /* LevelViewController.swift */,
-				D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */,
 				12EA1D76264796AE009A0A5E /* Myplant */,
-				12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */,
-				D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */,
-				D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */,
-				D6AEE1B62647B20D00E85162 /* MyPlantViewController.swift */,
-				D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */,
-				D6CC2DE92663B22D009E5710 /* UserPlantCollectionViewCell.swift */,
-				D6CC2DE72663B14C009E5710 /* UserPlantCollectionViewController.swift */,
-				3E86CFD8266B709300C99B13 /* PhotosAuthorization.swift */,
 				12EA1D77264796BA009A0A5E /* Search */,
-				121663CA263BBDE200125C69 /* PlantDetailViewController.swift */,
-				121663C5263BBD8200125C69 /* SearchTabViewController.swift */,
-				121663D2263BC2AF00125C69 /* CellTableViewCell.swift */,
-				121663DD263BC40400125C69 /* SortTableViewController.swift */,
-				12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */,
-				1218F191265A3384000D99F4 /* CustomTabBarController.swift */,
 				1216639B263BB8F800125C69 /* Assets.xcassets */,
 				1218F173265A0E19000D99F4 /* Home.storyboard */,
 				12166398263BB8F700125C69 /* Main.storyboard */,
@@ -245,9 +221,43 @@
 			path = easyPlantUITests;
 			sourceTree = "<group>";
 		};
+		12799938266E07BD0072E9FF /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				3E86CFD8266B709300C99B13 /* PhotosAuthorization.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		12799939266E07C80072E9FF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D6AEE1B22647B1F600E85162 /* UserPlant.swift */,
+				121663E2263BC5AE00125C69 /* Plant.swift */,
+				D6CC2DE32663AC68009E5710 /* User.swift */,
+				D6AEE1B02647B1EB00E85162 /* Diary.swift */,
+				D6CC2DE12663AC57009E5710 /* Level.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1279993A266E07CD0072E9FF /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */,
+				1218F191265A3384000D99F4 /* CustomTabBarController.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		12EA1D7426479699009A0A5E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				12EA1D3B26479554009A0A5E /* HomeViewController.swift */,
+				12EA1D362647954F009A0A5E /* NotificationViewController.swift */,
+				12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */,
+				1218F211265FE3CB000D99F4 /* LevelViewController.swift */,
+				D6CC2DDF26636214009E5710 /* PushAlarmViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -255,6 +265,13 @@
 		12EA1D76264796AE009A0A5E /* Myplant */ = {
 			isa = PBXGroup;
 			children = (
+				12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */,
+				D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */,
+				D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */,
+				D6AEE1B62647B20D00E85162 /* MyPlantViewController.swift */,
+				D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */,
+				D6CC2DE92663B22D009E5710 /* UserPlantCollectionViewCell.swift */,
+				D6CC2DE72663B14C009E5710 /* UserPlantCollectionViewController.swift */,
 			);
 			path = Myplant;
 			sourceTree = "<group>";
@@ -262,6 +279,10 @@
 		12EA1D77264796BA009A0A5E /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				121663CA263BBDE200125C69 /* PlantDetailViewController.swift */,
+				121663C5263BBD8200125C69 /* SearchTabViewController.swift */,
+				121663D2263BC2AF00125C69 /* CellTableViewCell.swift */,
+				121663DD263BC40400125C69 /* SortTableViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -542,7 +563,6 @@
 				D6AEE1B72647B20D00E85162 /* MyPlantViewController.swift in Sources */,
 				12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */,
 				D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */,
-				D6AEE1BF2647C1DB00E85162 /* tabbarViewController.swift in Sources */,
 				D6AEE1B32647B1F600E85162 /* UserPlant.swift in Sources */,
 				D6CC2DE026636215009E5710 /* PushAlarmViewController.swift in Sources */,
 				D6119B2C265F92A400D947A0 /* EditUserPlantTableViewController.swift in Sources */,
