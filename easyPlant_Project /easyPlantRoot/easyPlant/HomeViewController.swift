@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
         
         
         // Request notification authentication
@@ -236,33 +237,37 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         listPlantsIndex = []
         for i in 0...userPlants.count-1 {
-            var plant = userPlants[i]
-            let watering_day_string = formatter.string(from: plant.wateringDay)
+            var watering_day_string = formatter.string(from: userPlants[i].wateringDay)
             
-            if watering_day_string != current_date_string && plant.watered == 1 {
-                plant.recentWater = formatter.string(from: plant.wateringDay)
-                plant.wateringDay = Calendar.current.date(byAdding: .day, value: plant.waterPeriod, to: Date())!
+            if watering_day_string != current_date_string && userPlants[i].watered == 1 {
+                userPlants[i].recentWater = formatter.string(from: userPlants[i].wateringDay)
+                userPlants[i].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[i].waterPeriod, to: Date())!
                 
                 myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
                 myUser.didWaterNum = max(myUser.didWaterNum + 1, 10)
                 
                 plantListTableView.reloadData()
                 calendar.reloadData()
-                plant.watered = 0
+                userPlants[i].watered = 0
 
-            } else if Calendar.current.compare(plant.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
+            } else if Calendar.current.compare(userPlants[i].wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
                 if (myUser.totalWaterNum == 10) {
                     myUser.didWaterNum = max(myUser.didWaterNum - 1, 0)
                 }
                 myUser.totalWaterNum = min(myUser.totalWaterNum + 1, 10)
-                plant.wateringDay = Date()
+                userPlants[i].wateringDay = Date()
 
             }
+            //print("watering day : \(plant.wateringDay), compare : \(Calendar.current.compare(userPlants[i].wateringDay, to: Date(), toGranularity: .day) == .orderedSame)")
 
+            watering_day_string = formatter.string(from: userPlants[i].wateringDay)
+            
             if watering_day_string == clicked_date_string {
                 listPlantsIndex.append(i)
             }
         }
+        
+        calendar.reloadData()
         
         if (!listPlantsIndex.isEmpty) {
             return listPlantsIndex.count
@@ -340,29 +345,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
            if listPlantsIndex.isEmpty {
                return indexPath
            }
-        /*
+        
            let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
            guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
            secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
-           self.navigationController?.show(secondVC, sender: self)
-       
-           //self.navigationController?.pushViewController(secondVC, animated: true)
-           */
-           indexTmp = indexPath
+           
+           self.navigationController?.pushViewController(secondVC, animated: true)
+           
            return indexPath
        }
  
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-            if let detailVC = segue.destination as? MyPlantViewController{
-                detailVC.myPlant = userPlants[listPlantsIndex[indexTmp.row]]
-                
-                
-            }
-        
-    }
-    
  
     @objc func watering(sender: UITapGestureRecognizer){
         //sender.image = UIImage(named: "watering_fill")
@@ -417,6 +409,7 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         var colors: [UIColor] = []
         for i in 0...userPlants.count-1 {
             let wateringDate = formatter.string(from: userPlants[i].wateringDay)
+            
             if wateringDate == calendarDate {
                 colors.append(userPlants[i].color.uiColor)
             }
