@@ -37,40 +37,29 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     @IBOutlet weak var imageView: UIImageView!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.navigationItem.title = myPlant?.name
-        updateUI()
-        print("myplant did appear")
-        diaryCollectionView.reloadData()
-
-        
-
-    }
- 
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("myplant will appear")
         self.navigationItem.title = myPlant?.name
         updateUI()
-        
+        myPlantUpdate()
         diaryCollectionView.reloadData()
-        navigationItem.largeTitleDisplayMode = .never
-      
-        
+       
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("myplant will disa")
-        navigationItem.largeTitleDisplayMode = .always
-
+  
+    
+    func myPlantUpdate(){
+        for plant in userPlants {
+            if plant.name == myPlant!.name {
+                myPlant = plant
+            }
+        }
     }
-    
-    
  
- 
+    //다이어리 생성 화면으로 이동
     @IBAction func plusButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "add new Diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
@@ -84,7 +73,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
 
-
+        //카메라로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
 
             let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
@@ -93,7 +82,9 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             })
             alertController.addAction(cameraAction)
         }
-
+        
+        
+        //사진 앨범으로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
         let photoLibraryAction = UIAlertAction(title: "PhotoLibrary", style: .default, handler: { action in
             imagePicker.sourceType = .photoLibrary
@@ -102,7 +93,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             alertController.addAction(photoLibraryAction)
         }
         
-       
+       //팝오버 띄우기
         alertController.popoverPresentationController?.sourceView = sender as! UIButton
         
         present(alertController, animated: true, completion: nil)
@@ -123,17 +114,10 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiaryCollectionViewCell
-           
-       
-            
             if let userDiary = myPlant?.diarylist[indexPath.row]{
                 cell.update(info: userDiary)
-        
-            }
-            
-           
+                    }
             return cell
         }
 
@@ -164,28 +148,27 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 
             }
         }
-        
-       
-       
-        
-       
-        
-        
-       
-        
     }
 
     
+    
+    //이미지 피커 설정
     func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
         //이미지를 선택했으면 imageView에 보여주는 함수
         guard let sImage = info[.originalImage] as? UIImage else { return }
         
         selectedImage = sImage
+        
+        //uploadDiaryImage(img: selectedImage, title: <#T##String#>)
+        
         dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "pickImageSegue", sender: self)
     }
     
+    //이 화면으로 돌아올 수있게 하는 길 만들어두기
     @IBAction func unwindToMyPlant(_ unwindSegue: UIStoryboardSegue) {
+        print("unwind to my plant")
+        //다이어리를 삭제했었던 경우
         if(isDeleteDiary == true){
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == myPlant!.name){
@@ -193,6 +176,8 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 }
             }
         }
+        
+        //이건 뭐지 - 식물 정보 수정하고 save하고 돌아온 경우인가
         else{
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == myPlant!.name){
@@ -204,11 +189,11 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
       
     }
     
+    
     @IBAction func unwindToSetting(_ unwindSegue: UIStoryboardSegue) {
         let sourceViewController = unwindSegue.source
         if let sourceVC = sourceViewController as? EditUserPlantTableViewController {
             myPlant = sourceVC.editPlant
-            
             updateUI()
         }
         // Use data from the view controller which initiated the unwind segue
@@ -226,47 +211,39 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     
     func updateUI(){
-//        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-   
-//        diaryCollectionView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-        
-        
-        
+
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         
        
-        
-        // Do any additional setup after loading the view.
         if let myPlant = myPlant {
           
-            
+            //등록일 위치 종류 데이터 불러오기
             dDayLabel.text = myPlant.registedDate
             locationLabel.text = myPlant.location
             speciesLabel.text = myPlant.plantSpecies
+            
+            //행복도 불러오기
             if(myPlant.happeniess.count != 0 ){
                 happeniessLabel.text = "\(myPlant.happeniess[myPlant.happeniess.count-1])"
             }
             else{
                 happeniessLabel.text = "0"
             }
+            
+            //이미지 불러오기
             imageView.image = UIImage(named: myPlant.plantImage)
-        
             imageView.layer.cornerRadius = imageView.frame.width / 2.0
             imageView.layer.masksToBounds = true
             
             numbers = myPlant.happeniess
+            //chartBackgroundView.layer.cornerRadius = 50
             
-            chartBackgroundView.layer.cornerRadius = 50
-            
+            //테두리 밖은 잘려서 표시됨
             dDayLabel?.layer.masksToBounds = true
             locationLabel?.layer.masksToBounds = true
             speciesLabel?.layer.masksToBounds = true
             happeniessLabel?.layer.masksToBounds = true
-            
-         
-            
-            
             
         }
 
@@ -283,10 +260,10 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             ChartEntry.append(value)
         }
         
-        let chartDataset = LineChartDataSet(entries: ChartEntry, label: "올해의 행복도 변화")
-       
         
-        let chartData = LineChartData(dataSet: chartDataset)
+        //차트 설정
+        let chartDataset = LineChartDataSet(entries: ChartEntry, label: "올해의 행복도 변화")
+               let chartData = LineChartData(dataSet: chartDataset)
         
         chartView.rightAxis.enabled = false
         chartView.leftAxis.enabled = false
@@ -296,8 +273,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         
         var circleColors: [NSUIColor] = []           // arrays with circle color definitions
-
-       
         let color = UIColor(red: CGFloat(174.0/255), green: CGFloat(213.0/255), blue: CGFloat(129.0/255), alpha: 1)
         circleColors.append(color)
         
@@ -310,18 +285,9 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
 
         chartView.data = chartData
-//        chartView.backgroundColor = .white
-        chartView.layer.cornerRadius = 20
+        //chartView.layer.cornerRadius = 20
         chartView.layer.masksToBounds = true
-        
-//        chartView.backgroundColor = UIColor(red: CGFloat(174/255), green: CGFloat(213/255), blue: CGFloat(129/255), alpha: 1)
-        //todo
-        
-        
-//        chartView.animate(xAxisDuration: 3.0, easingOption: .linear)
-        
-        
-        backgroundView.layer.cornerRadius = 20
+
         
         
     }
@@ -330,12 +296,13 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-       
+        loadUserPlant()
+
     }
     
     
  
-   
+   //식물 정보 수정버튼이 눌리게 되면
     @IBAction func editButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)
             
@@ -343,11 +310,15 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
 //                print("User click Approve button")
 //            }))
             
+        
+        //수정하기 버튼
             alert.addAction(UIAlertAction(title: "Edit", style: .default , handler:{ (UIAlertAction) in
                 self.performSegue(withIdentifier: "editPlantSegue", sender: MyPlantViewController.self)
             }))
 
+        //삭제하기 버튼
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+                //해당 식물 삭제하기
                 for i in 0...(userPlants.count-1) {
                     if(userPlants[i].name == self.myPlant!.name){
                         print("deleteplant success")
@@ -356,9 +327,16 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                     }
                     
                 }
+                
+                
+                //삭제하고 저장하기
+                saveUserInfo(user: myUser)
+                saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
                 self.performSegue(withIdentifier: "unwindToUserPlants", sender: MyPlantViewController.self)
             }))
             
+        
+        //해제 버튼
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
                 print("User click Dismiss button")
             }))

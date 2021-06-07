@@ -85,7 +85,7 @@ struct User : Codable{
 
 func loadUserInfo(){
     let jsonDecoder = JSONDecoder()
-    print("load start")
+    print("load user info start")
         
         do{
            
@@ -104,7 +104,7 @@ func loadUserInfo(){
            
         }
 
-    print("load finish")
+    print("load user info finish")
 }
 
 
@@ -116,7 +116,7 @@ func  saveUserInfo(user : User) {
       do{
           let encodeData = try jsonEncoder.encode(user)
      
-         print("user save")
+         print("user info save")
           print(userInfoURL)
         
           do{
@@ -134,6 +134,6 @@ func  saveUserInfo(user : User) {
       }
     
 
-    print("user save complete")
+    print("user info save complete")
 }
 var myUser: User!

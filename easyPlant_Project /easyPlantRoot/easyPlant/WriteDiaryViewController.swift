@@ -57,6 +57,7 @@ class WriteDiaryViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         //편집중이었다면
         if (isEdit == true){
+            print("edit")
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == userplant?.name){
                     for j in 0...userPlants[i].diarylist.count-1 {
@@ -66,6 +67,11 @@ class WriteDiaryViewController: UIViewController {
                             
                             userPlants[i].diarylist[j] = editDiary!
                             print("unwindto edit DiarySegue")
+                            
+                            
+                            //수정하고 저장하기
+                            saveUserInfo(user: myUser)
+                            saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
                             performSegue(withIdentifier: "unwindToEditDiarySegue", sender: self)
                             return
                             
@@ -77,6 +83,8 @@ class WriteDiaryViewController: UIViewController {
             
             }
         }
+        
+        //새로 만들기 였다면
         else{
             
             diarytitle = titleTextField.text!
@@ -90,6 +98,11 @@ class WriteDiaryViewController: UIViewController {
                 //add
                     userPlants[i].diarylist.append(Diary(title: diarytitle, date: dateString, story: diarycontent, picture: image!.description))
                     print("backTomyplant")
+                    
+                    
+                    //수정하고 저장하기
+                    saveUserInfo(user: myUser)
+                    saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
                     performSegue(withIdentifier: "backToMyPlant", sender: self)
                 
                 //uploadimage(img: imageView.image!)
@@ -155,28 +168,11 @@ class WriteDiaryViewController: UIViewController {
         
         
     }
-    
-    
-   
-    
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
- 
-
-    
-    
-    
 
 }

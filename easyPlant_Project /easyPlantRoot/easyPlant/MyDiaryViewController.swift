@@ -61,6 +61,7 @@ class MyDiaryViewController: UIViewController {
     }
     
     
+    //공유 버튼이 눌렸다면
     @IBAction func shareButtonTapped(_ sender: Any) {
         
         guard let image = imageLabel.image else { return }
@@ -73,14 +74,9 @@ class MyDiaryViewController: UIViewController {
     }
     
 
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
+      
         if segue.identifier == "editDiarySegue"{
             if let detailVC = segue.destination as? WriteDiaryViewController{
                 detailVC.editDiary = diary
@@ -99,6 +95,7 @@ class MyDiaryViewController: UIViewController {
     }
     
     
+    //다이어리 수정하기 버튼이 눌렸다면
     @IBAction func editButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)
             
@@ -106,20 +103,30 @@ class MyDiaryViewController: UIViewController {
 //                print("User click Approve button")
 //            }))
             
+        
+        //수정하기
             alert.addAction(UIAlertAction(title: "Edit", style: .default , handler:{ (UIAlertAction) in
+                
+                //수정하고 저장하기
+                saveUserInfo(user: myUser)
+                saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
                 self.performSegue(withIdentifier: "editDiarySegue", sender: MyPlantViewController.self)
             }))
 
+        //삭제하기
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
              
          
                 self.myplant?.diarylist.remove(at: self.index!)
             
-                     
+        //수정하고 저장하기
+                saveUserInfo(user: myUser)
+                saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
                 self.performSegue(withIdentifier: "deleteDiary", sender: MyDiaryViewController.self)
                 
             }))
             
+        //해제하기 버튼
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
                 print("User click Dismiss button")
             }))
@@ -139,7 +146,7 @@ class MyDiaryViewController: UIViewController {
     @IBAction func unwindToEditDiary(_ unwindSegue: UIStoryboardSegue) {
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
-        
+        print("unwindToEditDiary")
         updateUI()
     }
     

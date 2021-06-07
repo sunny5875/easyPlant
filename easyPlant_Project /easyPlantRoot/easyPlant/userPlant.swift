@@ -135,15 +135,15 @@ struct UserPlant : Codable {
   
 var listPlantsIndex: [Int] = []
 
-var userPlants : [UserPlant] = [UserPlant(name: "초록콩", location: "책상 위", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "스투키", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Stuckyi", watered: 0),
-                                UserPlant(name: "쁘띠", location: "창가", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "호야",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Hoya", watered: 0),
-                                UserPlant(name: "요니", location: "베란다", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "싱고니움", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium", watered: 0),
-                                UserPlant(name: "꾹꾹이", location: "베란다", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "테이블야자", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "ParlourPalm", watered: 0)]
+var userPlants : [UserPlant] = [UserPlant(name: "샘플1", location: "책상 위", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "스투키", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Stuckyi", watered: 0),
+                                UserPlant(name: "샘플2", location: "창가", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "호야",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Hoya", watered: 0),
+                                UserPlant(name: "샘플3", location: "베란다", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "싱고니움", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium", watered: 0),
+                                UserPlant(name: "샘플4", location: "베란다", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "테이블야자", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "ParlourPalm", watered: 0)]
 
 
 func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
 
-    
+    print("save user plant")
     let jsonEncoder = JSONEncoder()
 
       do{
@@ -163,11 +163,13 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
       }
     
 
-    print("hi 끝")
+    print("save user plant complete")
 }
 
 
 func loadUserPlant(){
+    print("load user plant start")
+
     let jsonDecoder = JSONDecoder()
         
         do{
@@ -187,42 +189,15 @@ func loadUserPlant(){
            
         }
 
+    print("load user plant complete")
 
 }
 
-/*
-func downloadimage(imgview:UIImageView){
-    storage.reference(forURL: "gs://firstios-f6c7c.appspot.com/password").downloadURL { (url, error) in
-                       let data = NSData(contentsOf: url!)
-                       let image = UIImage(data: data! as Data)
-                        imgview.image = image
-        }
-}
-    
-func uploadimage(img :UIImage){
-    var data = Data()
-    data = img.jpegData(compressionQuality: 0.9)!
-    let filePath = "password"
-    let metaData = StorageMetadata()
-    metaData.contentType = "image/png"
-    
-    storage.reference().child(filePath).putData(data,metadata: metaData){
-        (metaData,error) in if let error = error{
-                print(error.localizedDescription)
-                return
-            }else{
-                print("성공")
-            }
-        }
-}
-
-*/
 
 
 
-
- func downloadimage(imgview:UIImageView){
-     Storage.storage().reference(forURL: "gs://easyplant-8649d.appspot.com/diary").downloadURL { (url, error) in
+func downloadUserPlantImage(imgview:UIImageView, title : String){
+     Storage.storage().reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL { (url, error) in
                         let data = NSData(contentsOf: url!)
                         let image = UIImage(data: data! as Data)
                          imgview.image = image
@@ -231,12 +206,12 @@ func uploadimage(img :UIImage){
  }
  
  
- func uploadimage(img :UIImage){
+func uploadUserPlantImage(img :UIImage, title: String){
     
      
      var data = Data()
      data = img.jpegData(compressionQuality: 0.8)!
-     let filePath = "diary"
+     let filePath = "\(title)"
      let metaData = StorageMetadata()
      metaData.contentType = "image/png"
      storageRef.child(filePath).putData(data,metadata: metaData){

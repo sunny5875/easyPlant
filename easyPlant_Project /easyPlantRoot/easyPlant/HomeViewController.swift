@@ -33,6 +33,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
+        requestCameraPermission()
+        requestGalleryPermission()
 
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")

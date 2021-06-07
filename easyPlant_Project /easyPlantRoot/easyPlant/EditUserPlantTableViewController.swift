@@ -109,14 +109,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 speciesTextField.text = usrplant.plantSpecies
                 wateringDayTextField.text = String(usrplant.waterPeriod)
                 registerationTextField.text = usrplant.registedDate
-<<<<<<< HEAD
-                
-
-                //let subDate = Calendar.current.date(byAdding: .day, value: -usrplant.waterPeriod, to: usrplant.wateringDay)
-                //print(subDate)
-                print("########Recent water : \(usrplant.recentWater)")
-=======
->>>>>>> yujin
                 recentlyWateringDayTextField.text = usrplant.recentWater
 
             }
@@ -142,99 +134,92 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     //저장 버튼을 눌렀을 경우
     @IBAction func saveButtonTapped(_ sender: Any) {
       
+        //수정하기 였다면
         if(isEdit == true){
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == editPlant?.name){
+                    //식물의 정보를 수정한다
                     editPlant = userPlants[i]
-                    
                     editPlant?.name = nameTextField.text!
                     editPlant?.location = locationTextField.text!
                     editPlant?.plantSpecies = speciesTextField.text!
                     editPlant?.recentWater = recentlyWateringDayTextField.text!
-                    print("recent watering")
-                    print(recentlyWateringDayTextField.text!)
                     editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
+                    editPlant?.registedDate = registerationTextField.text!
+
+                    //사진이 변경되었다면 그 이미지로 설정
                     if(isChangePhoto == true){
                         editPlant?.plantImage = imageView.image!.debugDescription
                     }
+                    //아니라면 그 이미지 그대로
                     else{
                         editPlant?.plantImage = userPlants[i].plantImage
                     }
                     
-//                    editPlant?.recentlyWateringDay = recentlyWateringDayTextField.text!
-                    let dateFormatter = DateFormatter()
 
+                    //데이트 포멧 설정
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-
                     let date:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
                     let day : Int = Int(editPlant!.waterPeriod)
 
-                    
-
-                    print(editPlant!.waterPeriod)
-                    
                     editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
                     
                     if Calendar.current.compare(editPlant!.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
                         editPlant?.wateringDay = Date()
                     }
-                    print("new plant wateringDay")
-                    print(editPlant!.wateringDay)
+                    
 
-                    editPlant?.registedDate = registerationTextField.text!
-                 
-                    userPlants[i] = editPlant!
-                    
-                    
-             
-                    
+                    userPlants[i] = editPlant! // 변경된 사항들을 전부 적용시켜준다
+     
                     //let imageData : Data = (imageView.image?.pngData())!
-                    
                    // let imagename = imageView.image?.description
-                   
-                    
+     
                 
                 }
             }
+            
+            //수정하고 저장하기
             saveUserInfo(user: myUser)
             saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
             self.performSegue(withIdentifier: "edituesrPlant", sender: self)
         }
         else{
+            //만들어진 정보를 임시 식물구조체에 저장
             editPlant?.name = nameTextField.text!
             editPlant?.location = locationTextField.text!
             editPlant?.plantSpecies = speciesTextField.text!
             editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
             editPlant?.registedDate = registerationTextField.text!
             editPlant?.recentWater = recentlyWateringDayTextField.text!
-
+            
+            //기본값으로 알람과 색상을 설정
+            editPlant?.alarmTime = Date()
+            editPlant?.color = Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1))
+            
 //            editPlant?.plantImage = imageView.image!.debugDescription
           
+            //데이터 포멧
             let dateFormatter = DateFormatter()
-
             dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-            print("recent watering")
-            print(recentlyWateringDayTextField.text!)
-            
-            let date:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
-            
+                let date:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
             let day : Int = Int(editPlant!.waterPeriod)
             
+            //물주기 계산
             editPlant?.wateringDay = Calendar.current.date(byAdding: .day, value: day, to: date)!
             if Calendar.current.compare(editPlant!.wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
                 editPlant?.wateringDay = Date()
             }
             
-            print("new plant wateringDay")
-            print(editPlant!.wateringDay)
-            editPlant?.alarmTime = Date()
-            editPlant?.color = Color(uiColor: UIColor.green)
             
+            
+            
+            //새로 만들어진 식물을 배열에 저장
             userPlants.append(editPlant!)
             
-            
+            //수정하고 저장하기
             saveUserInfo(user: myUser)
             saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
            
@@ -247,91 +232,17 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     }
 
     
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    
-    
+    //모든 내용이 다 채워져야 저장하기 버튼을 활성화 한다
     @IBAction func checkTextComplete(_ sender: UITextField) {
         
         if(isEdit == false){
             if nameTextField.text! != "", speciesTextField.text != "", registerationTextField.text != "", recentlyWateringDayTextField.text != "", wateringDayTextField.text != "", locationTextField.text != ""{
                 saveBarButton.isEnabled = true
-                
             }
         }
-        
-        
-        
     }
     
-    
-    
+    //이미지 피커 컨트롤러
     func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
         //이미지를 선택했으면 imageView에 보여주는 함수
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
