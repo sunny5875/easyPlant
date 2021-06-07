@@ -20,8 +20,8 @@
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-nR-zYl">
                                 <rect key="frame" x="0.0" y="140" width="414" height="624"/>
                                 <subviews>
-                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDx-Rj-Jda">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="334"/>
+                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDx-Rj-Jda">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="354"/>
                                         <subviews>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ATB-T6-o2z" customClass="FSCalendar">
                                                 <rect key="frame" x="20.5" y="10" width="373" height="150"/>
@@ -118,9 +118,9 @@
                                         <viewLayoutGuide key="frameLayoutGuide" id="OyG-mI-D6J"/>
                                     </scrollView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="owf-qX-XP8">
-                                        <rect key="frame" x="0.0" y="334" width="414" height="290"/>
+                                        <rect key="frame" x="0.0" y="354" width="414" height="270"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="290" id="4eF-sd-viL"/>
+                                            <constraint firstAttribute="height" constant="270" id="4eF-sd-viL"/>
                                         </constraints>
                                         <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="25" maxY="0.0"/>

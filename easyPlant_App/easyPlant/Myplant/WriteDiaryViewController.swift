@@ -17,7 +17,7 @@ class WriteDiaryViewController: UIViewController {
     var editDiary : Diary?
     
     var isEdit: Bool = false
-    
+    var imageDate : String = ""
     var image : UIImage?
     var dateString:String = ""
     var diarytitle : String = ""
@@ -89,23 +89,26 @@ class WriteDiaryViewController: UIViewController {
             
             diarytitle = titleTextField.text!
             diarycontent = contentTextField.text!
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            dateString = formatter.string(from: Date())
+          
            
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == userplant?.name){
                 //add
-                    userPlants[i].diarylist.append(Diary(title: diarytitle, date: dateString, story: diarycontent, picture: image!.description))
+                    userPlants[i].diarylist.append(Diary(title: diarytitle, date: imageDate, story: diarycontent, picture: "\(userplant!.name)\(imageDate)"))
                     print("backTomyplant")
                     
+                    print(imageDate)
+                    if let image = imageView.image, let title = userplant?.name {
+                        uploadDiaryImage(img: image, title: "\(title)\(imageDate)")
+                    }
+                
                     
                     //수정하고 저장하기
                     saveUserInfo(user: myUser)
                     saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
                     performSegue(withIdentifier: "backToMyPlant", sender: self)
                 
-                //uploadimage(img: imageView.image!)
+                
                 }
             }
                 

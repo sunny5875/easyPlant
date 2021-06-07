@@ -13,7 +13,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     var editPlant : UserPlant?
     var isChangePhoto : Bool = false
     var isEdit : Bool = true
-    
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -51,6 +50,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
 
+        
+        requestCameraPermission()
+        requestGalleryPermission()
+
+    
         
         //사용자가 카메라 버튼을 누른 경우
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -101,7 +105,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
          
             
                 //해당 식물의 이미지를 가져오기
-                imageView.image = UIImage(named : usrplant.plantImage)
+                //imageView.image = UIImage(named : usrplant.plantImage)
+                downloadUserPlantImage(imgview: imageView!, title: "\(editPlant!.name)")
                 
                 //해당 식물의 정보를 불러오기
                 nameTextField.text = usrplant.name
@@ -150,6 +155,12 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                     //사진이 변경되었다면 그 이미지로 설정
                     if(isChangePhoto == true){
                         editPlant?.plantImage = imageView.image!.debugDescription
+                        if let name = editPlant?.name , let img = imageView.image{
+                            uploadUserPlantImage(img: img, title: name)
+                            print("image save -1")
+                        }
+                        editPlant?.plantImage = nameTextField.text!
+
                     }
                     //아니라면 그 이미지 그대로
                     else{
@@ -213,9 +224,12 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 editPlant?.wateringDay = Date()
             }
             
-            
-            
-            
+            if let name = editPlant?.name , let img = imageView.image{
+                uploadUserPlantImage(img: img, title: name)
+                print("image save -2")
+            }
+            editPlant?.plantImage = nameTextField.text!
+
             //새로 만들어진 식물을 배열에 저장
             userPlants.append(editPlant!)
             
@@ -246,9 +260,11 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
         //이미지를 선택했으면 imageView에 보여주는 함수
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
-        
         imageView.image = selectedImage
-        //uploadimage(img: selectedImage)
+        if let name = editPlant?.name , let img = imageView.image{
+            uploadUserPlantImage(img: img, title: name)
+            print("image save -0")
+        }
         dismiss(animated: true, completion: nil)
     }
     

@@ -17,7 +17,8 @@ class UserPlantCollectionViewCell: UICollectionViewCell {
     
     func update(info: UserPlant) {
         print("cell info")
-        imageView.image = UIImage(named: info.plantImage)
+        //imageView.image = UIImage(named: info.plantImage)
+        downloadUserPlantImage(imgview: imageView, title: "\(info.plantImage)")
         nameLabel.text = ""+info.name
       
         

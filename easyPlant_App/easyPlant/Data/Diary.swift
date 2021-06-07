@@ -30,11 +30,13 @@ var diarys : [Diary] = [Diary(title: "초록콩 데려온 날",date: "2020-10-31
 
 func downloadDiaryImage(imgview:UIImageView, title : String){
     Storage.storage().reference(forURL: "gs://easyplant-8649d.appspot.com/diary/\(title)").downloadURL { (url, error) in
+        print("download load diary image")
+        print(title)
                        let data = NSData(contentsOf: url!)
                        let image = UIImage(data: data! as Data)
                         imgview.image = image
         }
-   print(imgview.image)
+   //print(imgview.image!)
 }
 
 
@@ -43,7 +45,7 @@ func uploadDiaryImage(img :UIImage, title: String){
     
     var data = Data()
     data = img.jpegData(compressionQuality: 0.8)!
-    let filePath = "\(title)"
+    let filePath = "/diary/\(title)"
     let metaData = StorageMetadata()
     metaData.contentType = "image/png"
     storageRef.child(filePath).putData(data,metadata: metaData){
@@ -57,4 +59,18 @@ func uploadDiaryImage(img :UIImage, title: String){
         }
     }
 
+}
+
+func deleteDiaryImage(title : String){
+    // Create a reference to the file to delete
+    let desertRef = storageRef.child("/diary/\(title)")
+
+    // Delete the file
+    desertRef.delete { error in
+      if let error = error {
+            print("delete diary error + \(error)")
+      } else {
+        print("delete diary success")
+      }
+    }
 }

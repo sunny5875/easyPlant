@@ -37,7 +37,8 @@ class MyDiaryViewController: UIViewController {
     func updateUI(){
         
         if let diary = diary, let plant = myplant {
-            imageLabel.image = UIImage(named: diary.picture)
+            //imageLabel.image = UIImage(named: diary.picture)
+            downloadDiaryImage(imgview: imageLabel, title: diary.picture)
             titleLabel.text = "  " + diary.title
             diaryLabel.text = "  " + diary.story
             myplant = plant
@@ -115,9 +116,19 @@ class MyDiaryViewController: UIViewController {
 
         //삭제하기
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-             
-         
-                self.myplant?.diarylist.remove(at: self.index!)
+                if let picture = self.diary?.picture{
+                    deleteDiaryImage(title: picture)
+                    self.myplant?.diarylist.remove(at: self.index!)
+                    
+                    for i in 0...(userPlants.count-1) {
+                        if(userPlants[i].name == self.myplant?.name){
+                            print("delete diary success")
+                            userPlants[i].diarylist.remove(at: self.index!)
+                            break
+                        }
+                        
+                    }
+                }
             
         //수정하고 저장하기
                 saveUserInfo(user: myUser)

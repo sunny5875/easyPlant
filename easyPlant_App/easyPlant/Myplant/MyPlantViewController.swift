@@ -21,7 +21,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     var ChartEntry : [ChartDataEntry] = []
     var selectedImage : UIImage?
     var isDeleteDiary : Bool = false
-    
+    var dateString: String = ""
    
     @IBOutlet weak var backgroundView: UIView!
     
@@ -43,8 +43,9 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewWillAppear(animated)
         print("myplant will appear")
         self.navigationItem.title = myPlant?.name
-        updateUI()
         myPlantUpdate()
+        updateUI()
+      
         diaryCollectionView.reloadData()
        
     }
@@ -63,7 +64,9 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     @IBAction func plusButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "add new Diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
-        
+        requestCameraPermission()
+        requestGalleryPermission()
+
         
         //다음 세개를 action sheet에 추가할 것
         //cancel로 정하면 맨 밑에 생기고 default면 그냥 위에 생김
@@ -137,6 +140,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 detailVC.image = selectedImage!
                 detailVC.userplant = myPlant
                 detailVC.isEdit = false
+                detailVC.imageDate = dateString
                 
             }
         }
@@ -158,9 +162,13 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         guard let sImage = info[.originalImage] as? UIImage else { return }
         
         selectedImage = sImage
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        dateString = formatter.string(from: Date())
         
-        //uploadDiaryImage(img: selectedImage, title: <#T##String#>)
-        
+        if let image = imageView.image, let title = myPlant?.name {
+            uploadDiaryImage(img: image, title: "\(title)\(dateString)")
+        }
         dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "pickImageSegue", sender: self)
     }
@@ -232,7 +240,9 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             }
             
             //이미지 불러오기
-            imageView.image = UIImage(named: myPlant.plantImage)
+            //imageView.image = UIImage(named: myPlant.plantImage)
+            print(myPlant.name)
+            downloadUserPlantImage(imgview: imageView, title: myPlant.name)
             imageView.layer.cornerRadius = imageView.frame.width / 2.0
             imageView.layer.masksToBounds = true
             
@@ -317,12 +327,13 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             }))
 
         //삭제하기 버튼
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ [self] (UIAlertAction)in
                 //해당 식물 삭제하기
                 for i in 0...(userPlants.count-1) {
                     if(userPlants[i].name == self.myPlant!.name){
                         print("deleteplant success")
                         userPlants.remove(at: i)
+                        deleteUserPlantImage(title: "\(self.myPlant!.name)")
                         break
                     }
                     

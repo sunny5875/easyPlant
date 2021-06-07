@@ -29,19 +29,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
         navigationController?.navigationItem.hidesSearchBarWhenScrolling = false
-        
+      
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
-        requestCameraPermission()
-        requestGalleryPermission()
-
+        
+       
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             print("Not first launch.")
         } else {
-            // 저장
+            
+            //loadDummyData()
             myUser = User(Date())
             saveUserInfo(user: myUser)
             saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
@@ -56,10 +56,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         saveUserInfo(user: myUser)
         
 
-        // Request notification authentication
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
-                })
-        
+       
         for (i, plant) in userPlants.enumerated() {
             let notiContent = UNMutableNotificationContent()
             let userNotificationCenter = UNUserNotificationCenter.current()
@@ -135,6 +132,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         plantListTableView.tableHeaderView = headerView
         
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         for (i, plant) in userPlants.enumerated() {
@@ -245,6 +244,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.largeTitleDisplayMode = .always
     }
     
+    func loadDummyData(){
+        print("load dummy data")
+        for type in plantType.plantAll{
+            for plant in type {
+                
+               
+                
+                uploadDiaryImage(img: UIImage(named : plant.engName)!, title: "\(plant.engName)")
+                uploadUserPlantImage(img: UIImage(named : plant.engName)!, title: "\(plant.engName)")
+                
+ 
+            }
+        }
+    }
+    
     
     @objc func showLevelView(sender: UIView) {
         performSegue(withIdentifier: "levelViewSegue", sender: nil)
@@ -340,7 +354,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.location.text = item.location
         cell.period.text = "\(item.waterPeriod) 일"
         cell.plantColor.tintColor = item.color.uiColor
-        cell.plantImage.image = UIImage(named: item.plantImage)
+        //cell.plantImage.image = UIImage(named: item.plantImage)
+        downloadUserPlantImage(imgview: cell.plantImage, title: "\(item.plantImage)")
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
         cell.backgroundColor = UIColor.white
