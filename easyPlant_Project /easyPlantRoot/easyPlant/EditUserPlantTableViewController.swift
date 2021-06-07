@@ -30,6 +30,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     @IBOutlet weak var wateringDayTextField: UITextField!
     
+    
+    //사진 변경 버튼을 눌렀을 경우 실행
     @IBAction func ChangeImageButtonTapped(_ sender: Any) {
         
         isChangePhoto = true
@@ -40,22 +42,27 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         //다음 세개를 action sheet에 추가할 것
         //cancel로 정하면 맨 밑에 생기고 default면 그냥 위에 생김
+        
+        //취소버튼 만들기
         let cancelAction = UIAlertAction(title: "Cancel",style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
+        //이미지 피커 생성
         let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
 
-
+        
+        //사용자가 카메라 버튼을 누른 경우
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-
+            
             let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
                 imagePicker.sourceType = .camera
                 self.present(imagePicker,animated: true,completion: nil)//보여주고 나서 추가작언 없으니까 nil
             })
             alertController.addAction(cameraAction)
         }
-
+        
+        //사용자가 사진앨범 버튼을 누른 경우
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
         let photoLibraryAction = UIAlertAction(title: "PhotoLibrary", style: .default, handler: { action in
             imagePicker.sourceType = .photoLibrary
@@ -66,13 +73,14 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         }
 
        
+        //팝오버로 보여준다
         alertController.popoverPresentationController?.sourceView = sender as! UIButton
-
         present(alertController, animated: true, completion: nil)
         
         
     }
     
+    //컬렉션뷰 셀 하나당의 크기를 결정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
         {
         let width  = (view.frame.width-10)/2
@@ -80,55 +88,58 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         return CGSize(width: width, height: width)
         }
     
+    
+    //처음 뷰가 로드 됐을 때 실행
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //수정하기 화면을 경우
         if isEdit == true {
             if let usrplant = editPlant {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy.MM.dd"
          
             
+                //해당 식물의 이미지를 가져오기
                 imageView.image = UIImage(named : usrplant.plantImage)
-                imageView.layer.cornerRadius = imageView.layer.frame.width / 2
-                imageView.layer.borderWidth = 3
-                imageView.layer.borderColor = UIColor.white.cgColor
+                
+                //해당 식물의 정보를 불러오기
                 nameTextField.text = usrplant.name
                 locationTextField.text = usrplant.location
                 speciesTextField.text = usrplant.plantSpecies
                 wateringDayTextField.text = String(usrplant.waterPeriod)
                 registerationTextField.text = usrplant.registedDate
+<<<<<<< HEAD
                 
 
                 //let subDate = Calendar.current.date(byAdding: .day, value: -usrplant.waterPeriod, to: usrplant.wateringDay)
                 //print(subDate)
                 print("########Recent water : \(usrplant.recentWater)")
+=======
+>>>>>>> yujin
                 recentlyWateringDayTextField.text = usrplant.recentWater
 
             }
             saveBarButton.isEnabled = true
         }
         
+        //새로 만들기 화면일 경우
         else{
             saveBarButton.isEnabled = false
         }
         
+        
+        //이미지 뷰의 바운더리 설정
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = imageView.layer.frame.width / 2
         
 
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     
     
-    
+    //저장 버튼을 눌렀을 경우
     @IBAction func saveButtonTapped(_ sender: Any) {
       
         if(isEdit == true){
@@ -186,7 +197,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 
                 }
             }
-            
+            saveUserInfo(user: myUser)
+            saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
             self.performSegue(withIdentifier: "edituesrPlant", sender: self)
         }
         else{
@@ -223,8 +235,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             userPlants.append(editPlant!)
             
             
-     
-            saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+            saveUserInfo(user: myUser)
+            saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
            
             
             performSegue(withIdentifier: "makeNewPlant", sender: self)
