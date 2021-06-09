@@ -44,8 +44,12 @@ struct UserPlant : Codable {
     var plantImage : String
     var watered : Int
     
+    var totalWaterNum: Int
+    var didWaterNum: Int
+    
+    
     private enum CodingKeys : String, CodingKey{
-        case name,location,recentWater,registedDate,waterPeriod, wateringDay,plantSpecies, diarylist,color,happeniess,alarmTime,plantImage,watered }
+        case name,location,recentWater,registedDate,waterPeriod, wateringDay,plantSpecies, diarylist,color,happeniess,alarmTime,plantImage,watered,  totalWaterNum, didWaterNum}
     
     
     init(from decoder: Decoder) throws {
@@ -65,6 +69,8 @@ struct UserPlant : Codable {
         plantImage = try container.decode(String.self, forKey: .plantImage)
         watered = try container.decode(Int.self, forKey: .watered)
         recentWater = try container.decode(String.self, forKey: .recentWater)
+        totalWaterNum = try container.decode(Int.self, forKey: .totalWaterNum)
+        didWaterNum = try container.decode(Int.self, forKey: .didWaterNum)
         
     }
     
@@ -84,7 +90,8 @@ struct UserPlant : Codable {
         try valueContatiner.encode(self.plantImage,forKey: CodingKeys.plantImage)
         try valueContatiner.encode(self.watered,forKey: CodingKeys.watered)
         try valueContatiner.encode(self.recentWater, forKey: CodingKeys.recentWater)
-    
+        try valueContatiner.encode(self.totalWaterNum,forKey: CodingKeys.totalWaterNum)
+        try valueContatiner.encode(self.didWaterNum,forKey: CodingKeys.didWaterNum)
         
             
         
@@ -107,6 +114,7 @@ struct UserPlant : Codable {
         plantImage = "plant"
         watered = Int()
         recentWater = ""
+        
         
     }
     
