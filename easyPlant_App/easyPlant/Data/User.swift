@@ -14,14 +14,12 @@ struct User : Codable{
     var level: Level
     var growingDays: Int
     var numPlants: Int
-    var totalWaterNum: Int
-    var didWaterNum: Int
-    
+  
     var hapiness: Int //int형으로 바꿨어
     let registeredDate: Date
     
     private enum CodingKeys : String, CodingKey{
-        case level, growingDays, numPlants, totalWaterNum, didWaterNum, hapiness, registeredDate}
+        case level, growingDays, numPlants, hapiness, registeredDate}
     
     
     init(from decoder: Decoder) throws {
@@ -31,8 +29,7 @@ struct User : Codable{
         level = try container.decode(Level.self, forKey: .level)
         growingDays = try container.decode(Int.self, forKey: .growingDays)
         numPlants = try container.decode(Int.self, forKey: .numPlants)
-        totalWaterNum = try container.decode(Int.self, forKey: .totalWaterNum)
-        didWaterNum = try container.decode(Int.self, forKey: .didWaterNum)
+       
         hapiness = try container.decode(Int.self, forKey: .hapiness)
         registeredDate = try container.decode(Date.self, forKey: .registeredDate)
         
@@ -45,8 +42,7 @@ struct User : Codable{
         try valueContatiner.encode(self.level,forKey: CodingKeys.level)
         try valueContatiner.encode(self.growingDays,forKey: CodingKeys.growingDays)
         try valueContatiner.encode(self.numPlants,forKey: CodingKeys.numPlants)
-        try valueContatiner.encode(self.totalWaterNum,forKey: CodingKeys.totalWaterNum)
-        try valueContatiner.encode(self.didWaterNum,forKey: CodingKeys.didWaterNum)
+      
         try valueContatiner.encode(self.hapiness,forKey: CodingKeys.hapiness)
         try valueContatiner.encode(self.registeredDate,forKey: CodingKeys.registeredDate)
         

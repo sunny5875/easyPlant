@@ -164,7 +164,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //print("Changed color ", userPlants[0].color)
         print("home will appear")
         
-
+        print(myUser.didWaterNum)
+        print(myUser.totalWaterNum)
         plantListTableView.scrollsToTop = true
 
         //navigationController?.navigationBar.shadowImage = UIImage()
