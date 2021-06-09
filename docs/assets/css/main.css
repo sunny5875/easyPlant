@@ -2802,6 +2802,60 @@ input, select, textarea {
 	}
 
 /* Features */
+.teamfeatures {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    width: calc(100% + 2em);
+    margin: 0 0 3em -2em;
+    padding: 0;
+    list-style: none;
+}
+
+.teamfeatures .image img {
+    display: block;
+    border-radius: 100%;
+}
+.image img {
+    border-radius: 8px;
+    display: block;
+}
+
+.teamfeatures li h3{
+	font-weight: bold;
+}
+
+.teamfeatures li {
+	margin: 20px 13px 0 13px
+}
+
+.teamfeatures li p{
+	font-size: 18px ;
+}
+
+.teamfeatures .image {
+    display: inline-block;
+    margin-left: 0em;
+    padding: 0.65em;
+    border-radius: 100%;
+    border: solid 1px;
+    border-color: lightgray;
+}
+.image {
+    border-radius: 8px;
+    border: 0;
+    display: inline-block;
+    position: relative;
+}
 
 	.features {
 		display: -moz-flex;
