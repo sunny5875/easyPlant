@@ -229,7 +229,7 @@ func uploadUserPlantImage(img :UIImage, title: String){
     
      
      var data = Data()
-     data = img.jpegData(compressionQuality: 0.8)!
+     data = img.jpegData(compressionQuality: 0.7)!
      let filePath = "/userPlant/\(title)"
      let metaData = StorageMetadata()
      metaData.contentType = "image/png"

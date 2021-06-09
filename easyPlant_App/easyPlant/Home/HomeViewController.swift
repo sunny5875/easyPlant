@@ -312,6 +312,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         calendar.reloadData()
+        saveUserInfo(user: myUser)
+        saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
+        
         
         if (!listPlantsIndex.isEmpty) {
             return listPlantsIndex.count
@@ -413,6 +416,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             wateringButton.image = UIImage(named: "watering_fill")
         }
+        
+        saveUserInfo(user: myUser)
+        saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
         
         
     }
