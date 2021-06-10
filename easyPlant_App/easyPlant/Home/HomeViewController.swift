@@ -27,8 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
-        navigationController?.navigationItem.hidesSearchBarWhenScrolling = false
+        //calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
       
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
@@ -238,9 +237,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.data = chartData
         pieChart.isHidden = false
         
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
     }
     
     func loadDummyData(){
@@ -399,7 +395,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
            let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
            guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
            secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
-           
+        print("PUSH!!!!! \(secondVC.myPlant), \(userPlants[listPlantsIndex[indexPath.row]])")
            self.navigationController?.pushViewController(secondVC, animated: true)
            
            return indexPath
@@ -431,8 +427,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         plantListTableView.reloadData()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
     }
 }
 

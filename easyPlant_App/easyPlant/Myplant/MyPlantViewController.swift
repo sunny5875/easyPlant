@@ -38,7 +38,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     @IBOutlet weak var imageView: UIImageView!
     
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("myplant will appear")
@@ -55,7 +54,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func myPlantUpdate(){
         for plant in userPlants {
-            if plant.name == myPlant?.name {
+            if plant.name == myPlant!.name {
                 myPlant = plant
             }
         }
@@ -306,6 +305,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("View Did Load!!! \(myPlant)")
         updateUI()
         loadUserPlant()
 
