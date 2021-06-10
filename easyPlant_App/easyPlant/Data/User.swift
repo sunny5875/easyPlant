@@ -55,8 +55,6 @@ struct User : Codable{
         growingDays = 10
         numPlants = 2
         hapiness = 80
-        totalWaterNum = 10
-        didWaterNum = 8
         self.registeredDate = registeredDate
     }
     
@@ -64,8 +62,16 @@ struct User : Codable{
         numPlants = userPlants.count
         growingDays = Calendar.current.dateComponents([.day], from: registeredDate, to: Date()).day!
         
-        hapiness = (didWaterNum * 100) / totalWaterNum
+        hapiness = 0
+        for plant in userPlants {
+            var total_happy = 0
+            for happy in plant.happeniess {
+                total_happy += happy
+            }
+            hapiness += total_happy / plant.happeniess.count
+        }
         
+        hapiness /= userPlants.count
         
         for standard in levels {
             if Int(standard.hapiness) <= hapiness && standard.numPlants <= numPlants && standard.growingDays <= growingDays {
