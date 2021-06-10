@@ -43,6 +43,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         super.viewWillAppear(animated)
         print("myplant will appear")
         self.navigationItem.title = myPlant?.name
+        
         myPlantUpdate()
         updateUI()
       
@@ -54,7 +55,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func myPlantUpdate(){
         for plant in userPlants {
-            if plant.name == myPlant!.name {
+            if plant.name == myPlant?.name {
                 myPlant = plant
             }
         }

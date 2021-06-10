@@ -164,8 +164,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //print("Changed color ", userPlants[0].color)
         print("home will appear")
         
-        print(myUser.didWaterNum)
-        print(myUser.totalWaterNum)
         plantListTableView.scrollsToTop = true
 
         //navigationController?.navigationBar.shadowImage = UIImage()
@@ -288,20 +286,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 userPlants[i].recentWater = formatter.string(from: userPlants[i].wateringDay)
                 userPlants[i].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[i].waterPeriod, to: userPlants[i].wateringDay)!
                 
-                myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
-                myUser.didWaterNum = max(myUser.didWaterNum + 1, 10)
+                userPlants[i].totalWaterNum += 1
+                userPlants[i].didWaterNum += 1
                 
+                               
                 plantListTableView.reloadData()
                 calendar.reloadData()
                 userPlants[i].watered = 0
 
             } else if Calendar.current.compare(userPlants[i].wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
-                if (myUser.totalWaterNum == 10) {
-                    myUser.didWaterNum = max(myUser.didWaterNum - 1, 0)
-                }
-                myUser.totalWaterNum = min(myUser.totalWaterNum + 1, 10)
+                userPlants[i].totalWaterNum += 1
                 userPlants[i].wateringDay = Date()
-
+            }
+            
+            if userPlants[i].totalWaterNum == 5 {
+                userPlants[i].updateHappiness()
+                
+                myUser.updateUser()
             }
             //print("watering day : \(plant.wateringDay), compare : \(Calendar.current.compare(userPlants[i].wateringDay, to: Date(), toGranularity: .day) == .orderedSame)")
 

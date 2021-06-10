@@ -43,7 +43,6 @@ struct UserPlant : Codable {
     var alarmTime : Date
     var plantImage : String
     var watered : Int
-    
     var totalWaterNum: Int
     var didWaterNum: Int
     
@@ -51,6 +50,11 @@ struct UserPlant : Codable {
     private enum CodingKeys : String, CodingKey{
         case name,location,recentWater,registedDate,waterPeriod, wateringDay,plantSpecies, diarylist,color,happeniess,alarmTime,plantImage,watered,  totalWaterNum, didWaterNum}
     
+    mutating func updateHappiness() {
+        happeniess.append(Int(didWaterNum * 100 / totalWaterNum))
+        didWaterNum = 0
+        totalWaterNum = 0
+    }
     
     init(from decoder: Decoder) throws {
         
@@ -114,11 +118,11 @@ struct UserPlant : Codable {
         plantImage = "plant"
         watered = Int()
         recentWater = ""
-        
-        
+        totalWaterNum = 0
+        didWaterNum = 0
     }
     
-    init(name : String, location : String, recentWater : String, registedDate : String, waterPeriod : Int, wateringDay : Date, plantSpecies : String, diarylist : [Diary], color : Color, happeniess : [Int], alarmTime : Date, plantImage : String, watered : Int) {
+    init(name : String, location : String, recentWater : String, registedDate : String, waterPeriod : Int, wateringDay : Date, plantSpecies : String, diarylist : [Diary], color : Color, happeniess : [Int], alarmTime : Date, plantImage : String, watered : Int, totalWaterNum : Int, didWaterNum : Int) {
         self.name = name
         self.location = location
         self.registedDate = registedDate
@@ -132,6 +136,8 @@ struct UserPlant : Codable {
         self.plantImage = plantImage
         self.watered = watered
         self.recentWater = recentWater
+        self.totalWaterNum = totalWaterNum
+        self.didWaterNum = didWaterNum
     }
     
     
@@ -143,10 +149,10 @@ struct UserPlant : Codable {
   
 var listPlantsIndex: [Int] = []
 
-var userPlants : [UserPlant] = [UserPlant(name: "Stuckyi", location: "샘플 위", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Stuckyi", watered: 0),
-                                UserPlant(name: "Hoya", location: "샘플", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "샘플",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Hoya", watered: 0),
-                                UserPlant(name: "Syngonium", location: "샘플", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium", watered: 0),
-                                UserPlant(name: "ParlourPalm", location: "샘플", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "ParlourPalm", watered: 0)]
+var userPlants : [UserPlant] = [UserPlant(name: "Stuckyi", location: "샘플 위", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Stuckyi", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "Hoya", location: "샘플", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "샘플",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Hoya", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "Syngonium", location: "샘플", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "ParlourPalm", location: "샘플", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "ParlourPalm", watered: 0, totalWaterNum: 0, didWaterNum: 0)]
 
 
 func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
