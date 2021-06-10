@@ -395,12 +395,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
            let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
            guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
            secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
-        print("PUSH!!!!! \(secondVC.myPlant), \(userPlants[listPlantsIndex[indexPath.row]])")
-           self.navigationController?.pushViewController(secondVC, animated: true)
+
+        navigationController?.pushViewController(secondVC, animated: true)
            
            return indexPath
        }
- 
  
     @objc func watering(sender: UITapGestureRecognizer){
         //sender.image = UIImage(named: "watering_fill")

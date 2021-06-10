@@ -305,7 +305,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("View Did Load!!! \(myPlant)")
         updateUI()
         loadUserPlant()
 
