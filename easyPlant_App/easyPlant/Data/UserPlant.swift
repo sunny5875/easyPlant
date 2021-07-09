@@ -213,16 +213,7 @@ func loadUserPlant(){
 func downloadUserPlantImage(imgview:UIImageView, title : String){
     print("down load user plant image")
     print(title)
-    /*
-     Storage.storage().reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL { (url, error) in
-            print("download error")
-        let data = NSData(contentsOf: url!)
-        let image = UIImage(data: data! as Data)
-         imgview.image = image
-         }
-    
-    
-    */
+
     print("gs://easyplant-8649d.appspot.com/userPlant/\(title)")
     storage.reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL{ (url, error) in
             if let error = error{
@@ -235,7 +226,6 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
         }
                         
            }
-    //print(imgview.image!)
  }
  
  
