@@ -211,21 +211,68 @@ func loadUserPlant(){
 
 
 func downloadUserPlantImage(imgview:UIImageView, title : String){
-    print("down load user plant image")
+    print("download user plant image")
     print(title)
+    let urlString:String = documentsDirectory.absoluteString + "localPlant/\(title)"
+    let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    let localURL = URL(string: encodedString)!
+    
+    
+    //로컬에 없다면 원격 저장소에서 받아온다
+    if let data = NSData(contentsOf: localURL){
+        //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
+        print("exist and download fast")
+        let image = UIImage(data: data as Data)
+        imgview.image = image
+        
+    }
+    else {
+        let localURL = documentsDirectory.appendingPathComponent("localPlant/\(title)")
+        print("download to local start")
+        // Create a reference to the file you want to download
+        let filePath = "/userPlant/\(title)"
+        let imgRef = storageRef.child(filePath)
+        
 
-    print("gs://easyplant-8649d.appspot.com/userPlant/\(title)")
-    storage.reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL{ (url, error) in
-            if let error = error{
-             
-                print("download error + \(error)")
-            }else{
-                let data = NSData(contentsOf: url!)
-                let image = UIImage(data: data! as Data)
-                 imgview.image = image
+        // print local filesystem URL
+        print(localURL)
+
+        // Download to the local filesystem
+        imgRef.write(toFile: localURL) { url, error in
+          if let error = error {
+            print("download to local error : \(error)")
+
+          } else {
+            print("download to local success!!")
+            print(url)
+            let data = NSData(contentsOf: url!)
+            let image = UIImage(data: data! as Data)
+            imgview.image = image
+          }
+          
         }
-                        
-           }
+        print("download to local finish")
+
+        
+    }
+    
+    
+    /*
+    원래 코드
+     print("gs://easyplant-8649d.appspot.com/userPlant/\(title)")
+     storage.reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL{ (url, error) in
+             if let error = error{
+              
+                 print("download error + \(error)")
+             }else{
+                 let data = NSData(contentsOf: url!)
+                 let image = UIImage(data: data! as Data)
+                  imgview.image = image
+         }
+                         
+            }
+     */
+    
  }
  
  
@@ -233,7 +280,7 @@ func uploadUserPlantImage(img :UIImage, title: String){
     
      
      var data = Data()
-     data = img.jpegData(compressionQuality: 0.7)!
+    data = img.jpegData(compressionQuality: 0.7)!
      let filePath = "/userPlant/\(title)"
      let metaData = StorageMetadata()
      metaData.contentType = "image/png"
@@ -262,6 +309,9 @@ func deleteUserPlantImage(title : String){
         print("delete user plant success")
       }
     }
+    
+    
+ 
 }
  
 
