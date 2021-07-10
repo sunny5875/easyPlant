@@ -68,7 +68,11 @@ struct User : Codable{
             for happy in plant.happeniess {
                 total_happy += happy
             }
-            hapiness += total_happy / plant.happeniess.count
+            if total_happy != 0 {
+                hapiness += total_happy / plant.happeniess.count
+
+            }
+            
         }
         
         hapiness /= userPlants.count

@@ -94,12 +94,12 @@ class WriteDiaryViewController: UIViewController {
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == userplant?.name){
                 //add
-                    userPlants[i].diarylist.append(Diary(title: diarytitle, date: imageDate, story: diarycontent, picture: "\(userplant!.name)\(imageDate)"))
+                    userPlants[i].diarylist.append(Diary(title: diarytitle, date: imageDate, story: diarycontent, picture: "\(userplant!.name)-\(diarytitle)-\(imageDate)"))
                     print("backTomyplant")
                     
                     print(imageDate)
                     if let image = imageView.image, let title = userplant?.name {
-                        uploadDiaryImage(img: image, title: "\(title)\(imageDate)")
+                        uploadDiaryImage(img: image, title: "\(title)-\(diarytitle)-\(imageDate)")
                     }
                 
                     
