@@ -294,6 +294,9 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         }
         
         if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
+            if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
+                return 0
+            }
             if yearInt<1900 {
                 return 0
             }
