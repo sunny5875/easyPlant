@@ -138,19 +138,27 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     //저장 버튼을 눌렀을 경우
     @IBAction func saveButtonTapped(_ sender: Any) {
-      
+        if checkTextFormat()==0{
+            print("format error")
+            sendFailMsg()
+            return
+        }
         //수정하기 였다면
         if(isEdit == true){
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == editPlant?.name){
-                    //식물의 정보를 수정한다
+                    //식물의 정보를 수정한다 & 입력 형식 검사
                     editPlant = userPlants[i]
                     editPlant?.name = nameTextField.text!
                     editPlant?.location = locationTextField.text!
                     editPlant?.plantSpecies = speciesTextField.text!
                     editPlant?.recentWater = recentlyWateringDayTextField.text!
+                    
                     editPlant?.waterPeriod = Int(wateringDayTextField.text!) ?? 0
+                    
                     editPlant?.registedDate = registerationTextField.text!
+                    
+                    
 
                     //사진이 변경되었다면 그 이미지로 설정
                     if(isChangePhoto == true){
@@ -197,7 +205,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             self.performSegue(withIdentifier: "edituesrPlant", sender: self)
         }
         else{
-            //만들어진 정보를 임시 식물구조체에 저장
+            //만들어진 정보를 임시 식물구조체에 저장 & 입력 형식 검사
             editPlant?.name = nameTextField.text!
             editPlant?.location = locationTextField.text!
             editPlant?.plantSpecies = speciesTextField.text!
@@ -211,6 +219,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             
 //            editPlant?.plantImage = imageView.image!.debugDescription
           
+          
+            
             //데이터 포멧
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -248,12 +258,111 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     //모든 내용이 다 채워져야 저장하기 버튼을 활성화 한다
     @IBAction func checkTextComplete(_ sender: UITextField) {
+       
+        if checkTextEmpty()==1 {
+            saveBarButton.isEnabled = true
+        }
+        else {
+            saveBarButton.isEnabled = false
+
+        }
         
-        if(isEdit == false){
-            if nameTextField.text! != "", speciesTextField.text != "", registerationTextField.text != "", recentlyWateringDayTextField.text != "", wateringDayTextField.text != "", locationTextField.text != ""{
-                saveBarButton.isEnabled = true
+    }
+    
+    func checkTextEmpty() -> Int {
+        if nameTextField.text! != "", speciesTextField.text != "",
+               registerationTextField.text != "",
+               recentlyWateringDayTextField.text != "",
+               wateringDayTextField.text != "",
+               locationTextField.text != ""{
+            return 1
+        }
+        return 0
+    }
+    
+    func checkTextFormat() -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        
+        
+        //등록일 형식 검사
+        var textSplit = registerationTextField.text?.split(separator: "-")
+        print(textSplit)
+        if textSplit==nil || textSplit!.count != 3{
+            return 0
+        }
+        
+        if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
+            if yearInt<1900 {
+                return 0
+            }
+            if monthInt<1 || monthInt>12 {
+                return 0
+            }
+            if dayInt>31 || dayInt<1 {
+                return 0
+            }
+            let dateRegister:Date = dateFormatter.date(from:  registerationTextField.text!)!
+            if dateRegister > Date() {
+                print("미래야그건")
+                return 0
             }
         }
+        else {
+            return 0
+        }
+     
+       
+        //최근 물준 날짜 형식 검사
+        textSplit = recentlyWateringDayTextField.text?.split(separator: "-")
+        print(textSplit)
+        if textSplit==nil || textSplit!.count != 3{
+            return 0
+        }
+        
+        if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
+            if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
+                return 0
+            }
+            if yearInt<1900 {
+                return 0
+            }
+            if monthInt<1 || monthInt>12 {
+                return 0
+            }
+            if dayInt>31 || dayInt<1 {
+                return 0
+            }
+            let dateRecent:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
+            if dateRecent > Date() {
+                print("미래야그건")
+                return 0
+            }
+        }
+        else {
+            return 0
+        }
+            
+        //물주기 형식 검사
+        let perToInt = Int(wateringDayTextField.text!)
+        print(perToInt)
+        if perToInt == nil || perToInt! <= 0 {
+            return 0
+        }
+
+        return 1
+    }
+    
+    func sendFailMsg(){
+        let alert = UIAlertController(title: "제목뭐하지", message: "올바른 형식으로 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+
+        }
+        alert.addAction(okAction)
+
+        present(alert, animated: false, completion: nil)
+
     }
     
     //이미지 피커 컨트롤러
