@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,20 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4m-Zc-1qj">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    취향별로 식물을 찾아봐요" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqv-eu-9vd">
+                                <rect key="frame" x="0.0" y="140" width="414" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4m-Zc-1qj">
+                                <rect key="frame" x="15" y="169" width="384" height="644"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="iUR-zW-ciJ">
-                                        <rect key="frame" x="0.0" y="8" width="414" height="738"/>
+                                        <rect key="frame" x="0.0" y="8" width="384" height="691"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    취향별로 식물을 찾아봐요" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqv-eu-9vd">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="u15-hj-KXq">
-                                                <rect key="frame" x="20.5" y="47" width="373" height="96"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="384" height="96"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="96" id="ZSX-64-aTp"/>
@@ -45,7 +45,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pf1-Kh-nJI">
-                                                <rect key="frame" x="20.5" y="166" width="373" height="96"/>
+                                                <rect key="frame" x="0.0" y="119" width="384" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -57,7 +57,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuk-Sl-pYT">
-                                                <rect key="frame" x="20.5" y="285" width="373" height="96"/>
+                                                <rect key="frame" x="0.0" y="238" width="384" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                 <state key="normal" title="다육식물" backgroundImage="menuDry">
@@ -68,7 +68,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfE-2Z-YPV">
-                                                <rect key="frame" x="20.5" y="404" width="373" height="96"/>
+                                                <rect key="frame" x="0.0" y="357" width="384" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                 <state key="normal" title="귀차니즘" backgroundImage="menuBed">
@@ -79,7 +79,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJC-Yd-usB">
-                                                <rect key="frame" x="20.5" y="523" width="373" height="96"/>
+                                                <rect key="frame" x="0.0" y="476" width="384" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -91,7 +91,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-D1-vM7">
-                                                <rect key="frame" x="20.5" y="642" width="373" height="96"/>
+                                                <rect key="frame" x="0.0" y="595" width="384" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="130" minY="20" maxX="130" maxY="20"/>
@@ -105,18 +105,14 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="l6U-D1-vM7" firstAttribute="width" secondItem="u15-hj-KXq" secondAttribute="width" id="02H-hG-zhv"/>
-                                            <constraint firstAttribute="trailing" secondItem="Bqv-eu-9vd" secondAttribute="trailing" id="6Wg-5D-hqd"/>
                                             <constraint firstItem="aJC-Yd-usB" firstAttribute="width" secondItem="uuk-Sl-pYT" secondAttribute="width" id="8MU-7a-4hm"/>
-                                            <constraint firstItem="Bqv-eu-9vd" firstAttribute="top" secondItem="iUR-zW-ciJ" secondAttribute="top" id="CtZ-9s-Hn2"/>
                                             <constraint firstItem="uuk-Sl-pYT" firstAttribute="width" secondItem="l6U-D1-vM7" secondAttribute="width" id="Ku5-P6-11H"/>
                                             <constraint firstItem="pf1-Kh-nJI" firstAttribute="width" secondItem="uuk-Sl-pYT" secondAttribute="width" id="OyB-Gj-5ar"/>
                                             <constraint firstItem="aJC-Yd-usB" firstAttribute="height" secondItem="uuk-Sl-pYT" secondAttribute="height" id="QFq-dL-MGK"/>
                                             <constraint firstItem="yfE-2Z-YPV" firstAttribute="height" secondItem="uuk-Sl-pYT" secondAttribute="height" id="X2e-B0-RCW"/>
                                             <constraint firstItem="l6U-D1-vM7" firstAttribute="height" secondItem="u15-hj-KXq" secondAttribute="height" id="XYi-EY-hSQ"/>
                                             <constraint firstItem="uuk-Sl-pYT" firstAttribute="height" secondItem="l6U-D1-vM7" secondAttribute="height" id="fAa-1O-bXg"/>
-                                            <constraint firstItem="Bqv-eu-9vd" firstAttribute="leading" secondItem="iUR-zW-ciJ" secondAttribute="leading" id="j4N-PG-7WV"/>
                                             <constraint firstItem="yfE-2Z-YPV" firstAttribute="width" secondItem="uuk-Sl-pYT" secondAttribute="width" id="lFm-B4-UKB"/>
-                                            <constraint firstItem="u15-hj-KXq" firstAttribute="width" secondItem="Bqv-eu-9vd" secondAttribute="width" multiplier="0.9" id="ltx-tY-882"/>
                                             <constraint firstItem="pf1-Kh-nJI" firstAttribute="height" secondItem="uuk-Sl-pYT" secondAttribute="height" id="yaW-aQ-evg"/>
                                         </constraints>
                                     </stackView>
@@ -135,10 +131,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M4m-Zc-1qj" secondAttribute="trailing" id="EOk-M8-J9G"/>
-                            <constraint firstItem="M4m-Zc-1qj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kcu-f0-3tM"/>
-                            <constraint firstItem="M4m-Zc-1qj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="PYb-lx-LUc"/>
+                            <constraint firstItem="M4m-Zc-1qj" firstAttribute="top" secondItem="Bqv-eu-9vd" secondAttribute="bottom" constant="5" id="9fe-mr-XL0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M4m-Zc-1qj" secondAttribute="trailing" constant="15" id="EOk-M8-J9G"/>
+                            <constraint firstItem="M4m-Zc-1qj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Kcu-f0-3tM"/>
+                            <constraint firstItem="Bqv-eu-9vd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VBY-C0-aln"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="M4m-Zc-1qj" secondAttribute="bottom" id="kCr-G5-NK6"/>
+                            <constraint firstItem="Bqv-eu-9vd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="om4-GL-VhC"/>
+                            <constraint firstItem="Bqv-eu-9vd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pys-OY-Xjf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="검색" largeTitleDisplayMode="always" id="j4P-kW-cxq"/>
@@ -433,7 +432,7 @@
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plantCell" rowHeight="265" id="V2F-no-dcX" customClass="CellTableViewCell" customModule="easyPlant" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="265"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="265"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V2F-no-dcX" id="kay-kN-ibc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="265"/>

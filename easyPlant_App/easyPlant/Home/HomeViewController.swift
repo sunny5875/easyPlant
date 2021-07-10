@@ -118,7 +118,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         userView.layer.cornerRadius = 30
         
         
-        
+        /*
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
         headerView.text = "식물 목록"
         headerView.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
@@ -129,7 +129,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         headerView.font = UIFont.boldSystemFont(ofSize: CGFloat(22))
 
         plantListTableView.tableHeaderView = headerView
-        
+     */
     }
     
     
@@ -163,7 +163,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //print("Changed color ", userPlants[0].color)
         print("home will appear")
         
-        plantListTableView.scrollsToTop = true
+        //plantListTableView.scrollsToTop = true
 
         //navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
