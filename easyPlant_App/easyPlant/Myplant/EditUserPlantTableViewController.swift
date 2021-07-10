@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseStorage
+import Photos
 
 
 class EditUserPlantTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -50,38 +51,67 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
 
-        
-        requestCameraPermission()
-        requestGalleryPermission()
-
     
-        
         //사용자가 카메라 버튼을 누른 경우
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            
+            requestCameraPermission()
             let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
                 imagePicker.sourceType = .camera
                 self.present(imagePicker,animated: true,completion: nil)//보여주고 나서 추가작언 없으니까 nil
             })
             alertController.addAction(cameraAction)
+            
+            //팝오버로 보여준다
+            alertController.popoverPresentationController?.sourceView = sender as! UIButton
+            present(alertController, animated: true, completion: nil)
         }
         
         //사용자가 사진앨범 버튼을 누른 경우
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-        let photoLibraryAction = UIAlertAction(title: "PhotoLibrary", style: .default, handler: { action in
-            imagePicker.sourceType = .photoLibrary
-            self.present(imagePicker,animated: true,completion: nil)
-            })
-
-            alertController.addAction(photoLibraryAction)
+            requestGalleryPermission()
+            
+            let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+            
+            switch photoAuthorizationStatus {
+            case .authorized: print("접근 허가")
+                let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
+                    imagePicker.sourceType = .photoLibrary
+                    self.present(imagePicker,animated: true,completion: nil)
+                    })
+                    alertController.addAction(photoLibraryAction)
+                
+                //팝오버로 보여준다
+                alertController.popoverPresentationController?.sourceView = sender as! UIButton
+                present(alertController, animated: true, completion: nil)
+            case .denied: print("접근 거부")
+                setAuthAlertAction()
+            case .notDetermined: requestGalleryPermission()
+            default: break
+            }
+        
         }
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        
+    }
 
-       
-        //팝오버로 보여준다
-        alertController.popoverPresentationController?.sourceView = sender as! UIButton
-        present(alertController, animated: true, completion: nil)
+    
+    func setAuthAlertAction() {
+        let authAlertController: UIAlertController
+        authAlertController = UIAlertController(title: "갤러리 권한 요청", message: "갤러리 권한을 허용해야 앱을 정상적으로 이용할 수 있습니다.", preferredStyle: UIAlertController.Style.alert)
+        let getAuthAction: UIAlertAction
+        getAuthAction = UIAlertAction(title: "권한 허용", style: UIAlertAction.Style.default, handler: {_ in 
+            if let appSettings = URL(string: UIApplication.openSettingsURLString){
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+            
+        })
         
-        
+        authAlertController.addAction(getAuthAction)
+        self.present(authAlertController, animated: true, completion: nil)
     }
     
     //컬렉션뷰 셀 하나당의 크기를 결정
@@ -259,7 +289,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     //이미지 피커 컨트롤러
     func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
         //이미지를 선택했으면 imageView에 보여주는 함수
-        guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         imageView.image = selectedImage
         if let name = editPlant?.name , let img = imageView.image{
             uploadUserPlantImage(img: img, title: name)

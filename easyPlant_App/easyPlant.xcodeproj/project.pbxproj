@@ -29,6 +29,9 @@
 		12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */; };
 		12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */; };
 		3E86CFD9266B709400C99B13 /* PhotosAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86CFD8266B709300C99B13 /* PhotosAuthorization.swift */; };
+		3E86D031269967CC00C99B13 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86D030269967CC00C99B13 /* LoginViewController.swift */; };
+		3E86D036269969D200C99B13 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E86D035269969D200C99B13 /* Login.storyboard */; };
+		3E86D04B2699738F00C99B13 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86D04A2699738F00C99B13 /* JoinViewController.swift */; };
 		47D8D3177E205A8A242DE88D /* Pods_easyPlant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */; };
 		A0E89ECC6A3B8C88A65010D2 /* Pods_easyPlant_easyPlantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */; };
 		D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */; };
@@ -95,6 +98,9 @@
 		363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		369230177CD436241BC4D097 /* Pods-easyPlantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantTests.debug.xcconfig"; path = "Target Support Files/Pods-easyPlantTests/Pods-easyPlantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E86CFD8266B709300C99B13 /* PhotosAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAuthorization.swift; sourceTree = "<group>"; };
+		3E86D030269967CC00C99B13 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../../../../../Documents/LoginViewController.swift; sourceTree = "<group>"; };
+		3E86D035269969D200C99B13 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Login.storyboard; path = ../../../../Documents/Login.storyboard; sourceTree = "<group>"; };
+		3E86D04A2699738F00C99B13 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JoinViewController.swift; path = ../../../../../Documents/JoinViewController.swift; sourceTree = "<group>"; };
 		53B379B6017A5E33457B4CF9 /* Pods-easyPlant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant.release.xcconfig"; path = "Target Support Files/Pods-easyPlant/Pods-easyPlant.release.xcconfig"; sourceTree = "<group>"; };
 		5D9888BD1B6573F596E98CCF /* Pods_easyPlantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant_easyPlantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +191,7 @@
 			children = (
 				12166392263BB8F700125C69 /* AppDelegate.swift */,
 				12166394263BB8F700125C69 /* SceneDelegate.swift */,
+				3E86D01F269963D400C99B13 /* Login */,
 				12799938266E07BD0072E9FF /* Authorization */,
 				1279993A266E07CD0072E9FF /* Custom */,
 				12799939266E07C80072E9FF /* Data */,
@@ -196,6 +203,7 @@
 				12166398263BB8F700125C69 /* Main.storyboard */,
 				D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
+				3E86D035269969D200C99B13 /* Login.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
 				1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */,
 				121663B3263BB8F800125C69 /* easyPlantUITests */,
@@ -285,6 +293,15 @@
 				121663DD263BC40400125C69 /* SortTableViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		3E86D01F269963D400C99B13 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3E86D030269967CC00C99B13 /* LoginViewController.swift */,
+				3E86D04A2699738F00C99B13 /* JoinViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		552CB5891E536838BF9C75AD /* Frameworks */ = {
@@ -415,6 +432,7 @@
 			files = (
 				1216639F263BB8F800125C69 /* LaunchScreen.storyboard in Resources */,
 				1216639C263BB8F800125C69 /* Assets.xcassets in Resources */,
+				3E86D036269969D200C99B13 /* Login.storyboard in Resources */,
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,
 				D6CC2DE62663AFF8009E5710 /* MyPlant.storyboard in Resources */,
 				1218F174265A0E19000D99F4 /* Home.storyboard in Resources */,
@@ -546,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E86D031269967CC00C99B13 /* LoginViewController.swift in Sources */,
 				D6AEE1B52647B20200E85162 /* DiaryCollectionViewCell.swift in Sources */,
 				12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */,
 				1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */,
@@ -572,6 +591,7 @@
 				D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */,
 				12166395263BB8F700125C69 /* SceneDelegate.swift in Sources */,
 				3E86CFD9266B709400C99B13 /* PhotosAuthorization.swift in Sources */,
+				3E86D04B2699738F00C99B13 /* JoinViewController.swift in Sources */,
 				121663DE263BC40400125C69 /* SortTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
