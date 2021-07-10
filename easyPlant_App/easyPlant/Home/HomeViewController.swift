@@ -118,7 +118,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         userView.layer.cornerRadius = 30
         
         
-        /*
+        
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
         headerView.text = "식물 목록"
         headerView.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
@@ -129,7 +129,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         headerView.font = UIFont.boldSystemFont(ofSize: CGFloat(22))
 
         plantListTableView.tableHeaderView = headerView
-     */
+     
     }
     
     
@@ -360,7 +360,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
         cell.backgroundColor = UIColor.white
-        cell.layer.cornerRadius = 100
+        cell.layer.cornerRadius = 150
         
         let wateringButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         wateringButton.contentMode = .scaleAspectFit
