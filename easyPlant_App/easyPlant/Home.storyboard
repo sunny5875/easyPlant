@@ -20,8 +20,14 @@
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-nR-zYl">
                                 <rect key="frame" x="0.0" y="140" width="414" height="624"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41G-5S-874">
+                                        <rect key="frame" x="20.5" y="0.0" width="373" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-K2-Bcx">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="356.5"/>
+                                        <rect key="frame" x="0.0" y="58" width="414" height="356.5"/>
                                         <subviews>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ATB-T6-o2z" customClass="FSCalendar">
                                                 <rect key="frame" x="20.5" y="0.0" width="373" height="150"/>
@@ -114,12 +120,12 @@
                                             <constraint firstItem="GNE-r7-qch" firstAttribute="width" secondItem="fw4-K2-Bcx" secondAttribute="width" multiplier="0.9" id="xV7-Aq-yiX"/>
                                         </constraints>
                                     </stackView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="owf-qX-XP8">
-                                        <rect key="frame" x="0.0" y="364.5" width="414" height="259.5"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="owf-qX-XP8">
+                                        <rect key="frame" x="0.0" y="422.5" width="414" height="201.5"/>
                                         <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="25" maxY="0.0"/>
                                         <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="TSc-FQ-Nr2">
-                                            <rect key="frame" x="0.0" y="158.5" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="158" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </stackView>
                                         <prototypes>
@@ -208,6 +214,7 @@
                                     <constraint firstItem="owf-qX-XP8" firstAttribute="centerX" secondItem="vZl-nR-zYl" secondAttribute="centerX" id="1OI-GG-YuB"/>
                                     <constraint firstItem="fw4-K2-Bcx" firstAttribute="width" secondItem="vZl-nR-zYl" secondAttribute="width" id="8Rt-Kt-Q3Q"/>
                                     <constraint firstItem="owf-qX-XP8" firstAttribute="leading" secondItem="vZl-nR-zYl" secondAttribute="leading" id="Uzr-v3-gQj"/>
+                                    <constraint firstItem="41G-5S-874" firstAttribute="width" secondItem="ATB-T6-o2z" secondAttribute="width" id="cRd-qD-yd7"/>
                                 </constraints>
                             </stackView>
                         </subviews>
