@@ -160,12 +160,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+<<<<<<< HEAD:easyPlant_App/easyPlant/Home/HomeViewController.swift
         //print("Changed color ", userPlants[0].color)
         print("home will appear")
         
         //plantListTableView.scrollsToTop = true
 
         //navigationController?.navigationBar.shadowImage = UIImage()
+=======
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.shadowImage = UIImage()
+>>>>>>> 8add47bf2611ec9b7f11aa294367e766965d13a2:easyPlant_Project /easyPlantRoot/easyPlant/HomeViewController.swift
         plantListTableView.reloadData()
         
         myUser.updateUser()
@@ -236,6 +241,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
+<<<<<<< HEAD:easyPlant_App/easyPlant/Home/HomeViewController.swift
         
     }
     
@@ -254,6 +260,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+=======
+    }
+    
+>>>>>>> 8add47bf2611ec9b7f11aa294367e766965d13a2:easyPlant_Project /easyPlantRoot/easyPlant/HomeViewController.swift
     
     @objc func showLevelView(sender: UIView) {
         performSegue(withIdentifier: "levelViewSegue", sender: nil)
@@ -425,7 +435,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Use data from the view controller which initiated the unwind segue
         
         plantListTableView.reloadData()
+<<<<<<< HEAD:easyPlant_App/easyPlant/Home/HomeViewController.swift
         
+=======
+>>>>>>> 8add47bf2611ec9b7f11aa294367e766965d13a2:easyPlant_Project /easyPlantRoot/easyPlant/HomeViewController.swift
     }
 }
 
