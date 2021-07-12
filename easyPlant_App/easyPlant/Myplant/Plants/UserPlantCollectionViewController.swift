@@ -24,7 +24,7 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        myProfile.layer.cornerRadius = myProfile.frame.size.width/2
+        
    
    
         loadUserPlant()
@@ -37,6 +37,16 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         super.viewWillAppear(animated)
         userPlantCollectionView.reloadData()
 
+        var imagetmp : UIImageView = UIImageView()
+        let image = UIImage(named: "profileDefault2")
+        imagetmp.image = image
+        //만약 로그인된 상태고 전에 한번 수정한적 있다면
+        if myUser.isChangeProfile == 1{
+            downloadProfileImage(imgview: imagetmp)
+        }
+        
+        myProfile.setImage(imagetmp.image, for: .normal)
+        myProfile.layer.cornerRadius = myProfile.frame.size.width/2
     }
 
    

@@ -51,7 +51,7 @@
                                             <constraint firstAttribute="width" constant="40" id="Eit-uy-MVU"/>
                                             <constraint firstAttribute="height" constant="40" id="kTf-gn-o0Y"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="profileDefault"/>
+                                        <state key="normal" title="Button" image="profileDefault2"/>
                                         <connections>
                                             <action selector="profileImageClicked:" destination="peC-Tm-KZZ" eventType="touchUpInside" id="pij-41-cAf"/>
                                         </connections>
@@ -1196,7 +1196,7 @@
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
-        <image name="profileDefault" width="200" height="200"/>
+        <image name="profileDefault2" width="250" height="250"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

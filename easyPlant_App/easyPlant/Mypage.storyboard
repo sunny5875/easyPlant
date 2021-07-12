@@ -170,7 +170,7 @@
                                     <constraint firstItem="LNl-gK-Y3j" firstAttribute="leading" secondItem="sII-lc-xbG" secondAttribute="leading" constant="30" id="ui5-wr-ASc"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Bj9-F4-gq4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault2" translatesAutoresizingMaskIntoConstraints="NO" id="Bj9-F4-gq4">
                                 <rect key="frame" x="110" y="44" width="194" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bj9-F4-gq4" secondAttribute="height" id="KDA-xA-XOZ"/>
@@ -235,7 +235,7 @@
     </scenes>
     <resources>
         <image name="camera" width="512" height="512"/>
-        <image name="profileDefault" width="200" height="200"/>
+        <image name="profileDefault2" width="250" height="250"/>
         <image name="questions" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
