@@ -12,6 +12,7 @@ import UserNotifications
 import Photos
 import FirebaseAuth
 
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var pieChart: PieChartView!
@@ -21,6 +22,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var plantListTableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var firstStack: UIStackView!
     
     let userNotificationCenter = UNUserNotificationCenter.current()
     var indexTmp : IndexPath = IndexPath()
@@ -141,6 +143,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         userView.layer.cornerRadius = 20
         
         
+        //그림자 설정
+        firstStack.layer.zPosition = 99
+        userView.layer.zPosition = 100
+        calendar.layer.zPosition = 100
+        
+        userView.layer.shadowOpacity = 0.2
+        userView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        userView.layer.shadowRadius = 30
+        userView.layer.masksToBounds = false
+        
+        calendar.layer.shadowOpacity = 0.2
+        calendar.layer.shadowOffset = CGSize(width: 0, height: 10)
+        calendar.layer.shadowRadius = 30
+        calendar.layer.masksToBounds = false
+ 
         
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
         headerView.text = "식물 목록"
@@ -369,6 +386,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.noPlantLabel.isHidden = true
         cell.accessoryView?.isHidden = false
         
+        //그림자
+        //cell.addShadow()
+        
         let item = userPlants[listPlantsIndex[indexPath.row]]
         
         let formatter = DateFormatter()
@@ -497,7 +517,10 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         clickedDay = date
         plantListTableView.reloadData()
     }
+    
+   
 }
+
 
 
 extension HomeViewController: UNUserNotificationCenterDelegate {
@@ -508,5 +531,18 @@ extension HomeViewController: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.list, .badge, .sound, .banner])
         //completionHandler([.alert, .badge, .sound])
+    }
+}
+
+
+extension UIView {
+    func addShadow(){
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowRadius = 30
+        self.layer.shadowOffset = CGSize(width: 0, height: -10)
+
+        self.layer.masksToBounds = false
+        self.clipsToBounds = false
     }
 }
