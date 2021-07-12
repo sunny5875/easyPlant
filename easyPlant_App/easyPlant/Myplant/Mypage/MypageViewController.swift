@@ -180,7 +180,11 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
     
     @IBAction func guidebut(_ sender: Any) {
         print("guide cliked")
-        //가이드 화면으로 가는 코드 필요
+        
+        let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "OnboardingViewController")
+        
+        present(secondVC, animated: true, completion: nil)
     }
     
 }

@@ -232,6 +232,16 @@
             </objects>
             <point key="canvasLocation" x="808.69565217391312" y="-626.11607142857144"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="Tf0-OQ-hqg">
+            <objects>
+                <viewControllerPlaceholder id="0Js-p4-Fo2" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wNK-00-0XF"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TXH-zG-V9k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1567" y="-525"/>
+        </scene>
     </scenes>
     <resources>
         <image name="camera" width="512" height="512"/>
