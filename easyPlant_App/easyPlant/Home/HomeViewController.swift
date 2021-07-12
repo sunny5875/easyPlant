@@ -53,11 +53,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("Not first launch.")
         } else {
             
+            print("this is first launch")
             //loadDummyData()
             myUser = User(Date())
             saveUserInfo(user: myUser)
             saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
             UserDefaults.standard.set(true, forKey: "launchedBefore")
+            
+            
+            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "OnboardingViewController")
+            
+            present(secondVC, animated: true, completion: nil)
         }
         
 
