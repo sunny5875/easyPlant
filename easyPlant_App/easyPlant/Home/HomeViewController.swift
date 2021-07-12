@@ -15,6 +15,7 @@ import FirebaseAuth
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var pieChart: PieChartView!
     @IBOutlet weak var userView: UIView!
     @IBOutlet weak var hapinessImage: UIImageView!
@@ -30,19 +31,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.colors = [UIColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1).cgColor, UIColor.white.cgColor]
-        gradient.locations = [0.0, 1.0]
-        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
-        gradient.frame = self.view.bounds
-        self.view.layer.insertSublayer(gradient, at: 0)
-        */
-        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
-        self.plantListTableView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        self.view.backgroundColor = UIColor.white
         
+        //self.plantListTableView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        self.plantListTableView.backgroundColor = UIColor.clear
         calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
       
         // Request notification authentication
@@ -58,6 +51,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             print("this is first launch")
             //loadDummyData()
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
             myUser = User(Date())
             saveUserInfo(user: myUser)
             saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
@@ -144,9 +142,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         //그림자 설정
-        firstStack.layer.zPosition = 99
-        userView.layer.zPosition = 100
-        calendar.layer.zPosition = 100
+        firstStack.layer.zPosition = 101
+        userView.layer.zPosition = 102
+        calendar.layer.zPosition = 103
+        plantListTableView.layer.zPosition = 100
+        bgView.layer.zPosition = 0
         
         userView.layer.shadowOpacity = 0.2
         userView.layer.shadowOffset = CGSize(width: 0, height: 10)
@@ -157,19 +157,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         calendar.layer.shadowOffset = CGSize(width: 0, height: 10)
         calendar.layer.shadowRadius = 30
         calendar.layer.masksToBounds = false
- 
         
-        let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 60))
-        headerView.text = "식물 목록"
-        headerView.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        headerView.textColor = UIColor.black
-        headerView.textAlignment = .center
-        headerView.contentMode = .scaleAspectFit
-        
-        headerView.font = UIFont.boldSystemFont(ofSize: CGFloat(22))
+        plantListTableView.layer.shadowOpacity = 0.2
+        plantListTableView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        plantListTableView.layer.shadowRadius = 30
+        plantListTableView.layer.masksToBounds = false
 
-        plantListTableView.tableHeaderView = headerView
-     
     }
     
     
@@ -313,7 +306,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.dateFormat = "yyyy-MM-dd"
         let clicked_date_string = formatter.string(from: clickedDay)
         let current_date_string = formatter.string(from: Date())
         
@@ -392,6 +387,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let item = userPlants[listPlantsIndex[indexPath.row]]
         
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
         formatter.dateFormat = "yyyy.MM.dd"
         let clicked_date_string = formatter.string(from: clickedDay)
         let current_date_string = formatter.string(from: Date())
@@ -406,7 +403,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
         cell.backgroundColor = UIColor.white
-        cell.layer.cornerRadius = 150
+        cell.layer.cornerRadius = 200
         
         let wateringButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         wateringButton.contentMode = .scaleAspectFit
@@ -478,6 +475,8 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
     //이벤트 표시 개수
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
         formatter.dateFormat = "yyyy-MM-dd"
         let calendarDate = formatter.string(from: date)
         
@@ -495,6 +494,8 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
         
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
         formatter.dateFormat = "yyyy-MM-dd"
         let calendarDate = formatter.string(from: date)
         var colors: [UIColor] = []

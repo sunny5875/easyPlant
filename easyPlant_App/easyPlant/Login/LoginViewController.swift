@@ -53,8 +53,7 @@ class LoginViewController: UIViewController {
             (user, error) in
             if user != nil {
                 if ((Auth.auth().currentUser?.isEmailVerified == true)) {
-                    myUser.userName = (Auth.auth().currentUser?.displayName)!
-                    
+                    myUser.updateUser()
                     print("로그인 성공 이름 : \(Auth.auth().currentUser?.displayName)")
                     self.dismiss(animated: true, completion: nil)
                 } else {

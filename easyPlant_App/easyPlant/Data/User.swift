@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseStorage
+import FirebaseAuth
 let userInfoURL = documentsDirectory.appendingPathComponent("savingUserInfo.json")
 
 struct User : Codable{
@@ -57,9 +58,9 @@ struct User : Codable{
     
     init(_ registeredDate: Date) {
         level = levels[0]
-        growingDays = 10
-        numPlants = 2
-        hapiness = 80
+        growingDays = 0
+        numPlants = 0
+        hapiness = 100
         self.registeredDate = registeredDate
         userName = "사용자"
         isChangeProfile = 0
@@ -67,9 +68,10 @@ struct User : Codable{
     
     mutating func updateUser() {
         //여기에 사용자이름 업데이트 해주기 - 회원가입시에
-        
-        
+               userName = (Auth.auth().currentUser?.displayName)!
+               
         numPlants = userPlants.count
+        print("%%%%%%%%%% register : \(registeredDate), date : \(Date())")
         growingDays = Calendar.current.dateComponents([.day], from: registeredDate, to: Date()).day!
         
         hapiness = 0
