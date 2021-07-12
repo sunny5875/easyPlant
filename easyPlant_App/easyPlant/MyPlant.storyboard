@@ -62,7 +62,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utu-fB-yGb">
                                 <rect key="frame" x="122" y="140" width="170" height="170"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="5hU-gq-mHo"/>
+                                    <constraint firstAttribute="width" secondItem="Utu-fB-yGb" secondAttribute="height" id="uEd-0S-CMo"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="profileDefault"/>
                             </button>
