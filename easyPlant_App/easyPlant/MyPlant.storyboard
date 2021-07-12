@@ -720,16 +720,27 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="khm-1d-k85">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="키우기 시작한 날" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hp-ub-Djb">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aov-Qn-4qc">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="35"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="35" id="6kR-g7-F2g"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="키우기 시작한 날" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hp-ub-Djb">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="105.5" height="35"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="35" id="6kR-g7-F2g"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="올바른 형식으로 입력해주세요   " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qL-Fw-OWZ">
+                                                                    <rect key="frame" x="105.5" y="9" width="268.5" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ex) 2020-12-01" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YBm-Tj-bgS">
                                                             <rect key="frame" x="0.0" y="35" width="374" height="35"/>
                                                             <constraints>
@@ -745,8 +756,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="YBm-Tj-bgS" secondAttribute="trailing" id="EiX-EZ-c3i"/>
-                                                        <constraint firstItem="7Hp-ub-Djb" firstAttribute="leading" secondItem="khm-1d-k85" secondAttribute="leading" id="acm-Eu-wsW"/>
-                                                        <constraint firstAttribute="trailing" secondItem="7Hp-ub-Djb" secondAttribute="trailing" id="m58-cY-hmO"/>
+                                                        <constraint firstItem="aov-Qn-4qc" firstAttribute="leading" secondItem="khm-1d-k85" secondAttribute="leading" id="VeW-bf-DN1"/>
                                                         <constraint firstItem="YBm-Tj-bgS" firstAttribute="leading" secondItem="khm-1d-k85" secondAttribute="leading" id="t52-du-idE"/>
                                                     </constraints>
                                                 </stackView>
@@ -770,13 +780,24 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vFn-uy-vsb">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 물준 날" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37m-uR-b5d">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kUC-3b-hTg">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="35"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="최근 물준 날" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37m-uR-b5d">
+                                                                    <rect key="frame" x="0.0" y="8" width="208.5" height="19.5"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바른 형식으로 입력해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLI-FR-yhU">
+                                                                    <rect key="frame" x="208.5" y="9" width="165.5" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ex) 2020-12-01" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="o2G-vN-hV0">
                                                             <rect key="frame" x="0.0" y="35" width="374" height="35"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
@@ -789,7 +810,8 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="o2G-vN-hV0" secondAttribute="trailing" id="8Kf-qD-5E8"/>
-                                                        <constraint firstAttribute="trailing" secondItem="37m-uR-b5d" secondAttribute="trailing" id="Vmy-YD-ohZ"/>
+                                                        <constraint firstItem="kUC-3b-hTg" firstAttribute="leading" secondItem="vFn-uy-vsb" secondAttribute="leading" id="L2O-Tg-3fU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="kUC-3b-hTg" secondAttribute="trailing" id="YQ5-Yn-05g"/>
                                                         <constraint firstItem="o2G-vN-hV0" firstAttribute="leading" secondItem="vFn-uy-vsb" secondAttribute="leading" id="YtU-uC-5Cg"/>
                                                     </constraints>
                                                 </stackView>
@@ -906,13 +928,24 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="r3n-xb-lL5">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="물주기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xm1-8c-vh9">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iC1-EZ-j84">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="35"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="물주기" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xm1-8c-vh9">
+                                                                    <rect key="frame" x="0.0" y="8" width="208.5" height="19.5"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바른 형식으로 입력해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofw-cS-Xqr">
+                                                                    <rect key="frame" x="208.5" y="9" width="165.5" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ex) 14 (일 단위로 적어주세요)" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="crQ-0J-KiK">
                                                             <rect key="frame" x="0.0" y="35" width="374" height="35"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
@@ -926,8 +959,8 @@
                                                     <constraints>
                                                         <constraint firstItem="crQ-0J-KiK" firstAttribute="leading" secondItem="r3n-xb-lL5" secondAttribute="leading" id="8GI-9R-YDK"/>
                                                         <constraint firstAttribute="trailing" secondItem="crQ-0J-KiK" secondAttribute="trailing" id="BrR-JC-pfT"/>
-                                                        <constraint firstItem="xm1-8c-vh9" firstAttribute="leading" secondItem="r3n-xb-lL5" secondAttribute="leading" id="Nos-dq-9BA"/>
-                                                        <constraint firstAttribute="trailing" secondItem="xm1-8c-vh9" secondAttribute="trailing" id="qUb-oH-8Eh"/>
+                                                        <constraint firstItem="iC1-EZ-j84" firstAttribute="leading" secondItem="r3n-xb-lL5" secondAttribute="leading" id="IGg-RN-iCF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="iC1-EZ-j84" secondAttribute="trailing" id="TJx-dl-uew"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>

@@ -260,6 +260,35 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		12E3E945269BFF94001ED3C6 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */,
+				D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */,
+				D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		12E3E946269BFFA7001ED3C6 /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				12E3E937269BE19F001ED3C6 /* MypageViewController.swift */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
+		12E3E947269BFFBB001ED3C6 /* Plants */ = {
+			isa = PBXGroup;
+			children = (
+				D6AEE1B62647B20D00E85162 /* MyPlantViewController.swift */,
+				D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */,
+				D6CC2DE92663B22D009E5710 /* UserPlantCollectionViewCell.swift */,
+				D6CC2DE72663B14C009E5710 /* UserPlantCollectionViewController.swift */,
+			);
+			path = Plants;
+			sourceTree = "<group>";
+		};
 		12EA1D7426479699009A0A5E /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,14 +304,9 @@
 		12EA1D76264796AE009A0A5E /* Myplant */ = {
 			isa = PBXGroup;
 			children = (
-				12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */,
-				D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */,
-				D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */,
-				D6AEE1B62647B20D00E85162 /* MyPlantViewController.swift */,
-				D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */,
-				D6CC2DE92663B22D009E5710 /* UserPlantCollectionViewCell.swift */,
-				D6CC2DE72663B14C009E5710 /* UserPlantCollectionViewController.swift */,
-				12E3E937269BE19F001ED3C6 /* MypageViewController.swift */,
+				12E3E947269BFFBB001ED3C6 /* Plants */,
+				12E3E946269BFFA7001ED3C6 /* Mypage */,
+				12E3E945269BFF94001ED3C6 /* Diary */,
 			);
 			path = Myplant;
 			sourceTree = "<group>";
