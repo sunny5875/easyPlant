@@ -27,7 +27,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
+        /*
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.colors = [UIColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1).cgColor, UIColor.white.cgColor]
+        gradient.locations = [0.0, 1.0]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.frame = self.view.bounds
+        self.view.layer.insertSublayer(gradient, at: 0)
+        */
+        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        self.plantListTableView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
       
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
@@ -89,8 +102,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.calendar.scope = .week
         calendar.headerHeight = 50
 
-        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-        self.plantListTableView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        
+        //self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
         calendar.appearance.headerTitleColor = .black
@@ -110,12 +125,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
-        calendar.layer.cornerRadius = 30
+        calendar.layer.cornerRadius = 10
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
         
         userView.backgroundColor = .white
-        userView.layer.cornerRadius = 30
+        userView.layer.cornerRadius = 10
         
         
         
@@ -160,23 +175,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-<<<<<<< HEAD:easyPlant_App/easyPlant/Home/HomeViewController.swift
-        //print("Changed color ", userPlants[0].color)
-        print("home will appear")
-        
-        //plantListTableView.scrollsToTop = true
-
-        //navigationController?.navigationBar.shadowImage = UIImage()
-=======
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.shadowImage = UIImage()
->>>>>>> 8add47bf2611ec9b7f11aa294367e766965d13a2:easyPlant_Project /easyPlantRoot/easyPlant/HomeViewController.swift
+        
         plantListTableView.reloadData()
         
         myUser.updateUser()
         calendar.reloadData()
         
-        levelLabel.text = "Lv.\(myUser.level.name)"
+        levelLabel.text = "\(myUser.level.name)"
+        levelLabel.textColor = UIColor.systemGray3
         levelImage.image = UIImage(named: myUser.level.icon)
         if myUser.level.name != levels[0].name {
             hapinessImage.isHidden = false
@@ -241,8 +249,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
-<<<<<<< HEAD:easyPlant_App/easyPlant/Home/HomeViewController.swift
-        
     }
     
     func loadDummyData(){
@@ -259,11 +265,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
-=======
-    }
-    
->>>>>>> 8add47bf2611ec9b7f11aa294367e766965d13a2:easyPlant_Project /easyPlantRoot/easyPlant/HomeViewController.swift
     
     @objc func showLevelView(sender: UIView) {
         performSegue(withIdentifier: "levelViewSegue", sender: nil)
@@ -435,10 +436,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Use data from the view controller which initiated the unwind segue
         
         plantListTableView.reloadData()
-<<<<<<< HEAD:easyPlant_App/easyPlant/Home/HomeViewController.swift
-        
-=======
->>>>>>> 8add47bf2611ec9b7f11aa294367e766965d13a2:easyPlant_Project /easyPlantRoot/easyPlant/HomeViewController.swift
     }
 }
 
