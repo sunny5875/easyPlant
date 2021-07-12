@@ -988,7 +988,8 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="checkTextWrite:" destination="6XQ-O8-JIb" eventType="editingDidEnd" id="yaH-pq-vgZ"/>
+                                                    <action selector="checkTextWrite:" destination="6XQ-O8-JIb" eventType="editingDidEnd" id="k2a-Iu-NtQ"/>
+                                                    <action selector="checkTextWrite:" destination="6XQ-O8-JIb" eventType="editingChanged" id="mca-0n-yM0"/>
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qff-76-gT3">
