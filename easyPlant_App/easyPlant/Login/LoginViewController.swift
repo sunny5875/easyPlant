@@ -42,7 +42,12 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: IDField.text!, password: pwField.text!) {
             (user, error) in
             if user != nil {
-                print("로그인 성공 이름 : \(Auth.auth().currentUser?.displayName)")
+                if ((Auth.auth().currentUser?.isEmailVerified) != nil) {
+                    print("로그인 성공 이름 : \(Auth.auth().currentUser?.displayName)")
+                } else {
+                    // TODO
+                }
+                
             } else {
                 print("로그인 실패")
             }
