@@ -8,9 +8,9 @@
 import UIKit
 
 
-var imgs = ["page0","page1","page2","page3"]
+var imgs = ["page0","page1","page2","page3","page4"]
 
-
+var pageNum = 5
 
 
 class OnboardingViewController: UIViewController,UIScrollViewDelegate {
@@ -31,10 +31,6 @@ class OnboardingViewController: UIViewController,UIScrollViewDelegate {
 
     var scrollWidth: CGFloat! = 0.0
        var scrollHeight: CGFloat! = 0.0
-
-       //data for the slides
-//       var titles = ["FAST DELIVERY","EXCITING OFFERS","SECURE PAYMENT"]
-//       var descs = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.","Lorem ipsum dolor sit amet, consectetur adipiscing elit.","Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
 
 
        override func viewDidLayoutSubviews() {
@@ -57,7 +53,7 @@ class OnboardingViewController: UIViewController,UIScrollViewDelegate {
            //crete the slides and add them
            var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
 
-           for index in 0..<4 {
+           for index in 0..<pageNum {
                frame.origin.x = scrollWidth * CGFloat(index)
                frame.size = CGSize(width: scrollWidth, height: scrollHeight)
 
@@ -88,13 +84,13 @@ class OnboardingViewController: UIViewController,UIScrollViewDelegate {
            }
 
            //set width of scrollview to accomodate all the slides
-           scrollView.contentSize = CGSize(width: scrollWidth * CGFloat(4), height: scrollHeight)
+           scrollView.contentSize = CGSize(width: scrollWidth * CGFloat(pageNum), height: scrollHeight)
 
            //disable vertical scroll/bounce
            self.scrollView.contentSize.height = 1.0
 
            //initial state
-           pageControl.numberOfPages = 4
+           pageControl.numberOfPages = pageNum
            pageControl.currentPage = 0
 
        }
