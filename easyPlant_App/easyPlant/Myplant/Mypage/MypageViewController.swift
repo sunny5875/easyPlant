@@ -27,8 +27,13 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        var addButton: UIBarButtonItem = UIBarButtonItem(title: "로그아웃", style: .done, target: self, action: #selector(addTapped))
+        self.navigationItem.rightBarButtonItem = addButton
+         
         // Do any additional setup after loading the view.
     }
+    
+    
     
     override func viewWillLayoutSubviews() {
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
@@ -189,7 +194,9 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         present(secondVC, animated: true, completion: nil)
     }
     
-    @IBAction func logout(_ sender: Any) {
+    //로그아웃 함수
+    @objc func addTapped(sender: AnyObject) {
+        print("addbut tap")
         do {
             try Auth.auth().signOut()
         } catch let signOutError as NSError {
