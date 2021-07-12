@@ -29,6 +29,8 @@ class MypageViewController: UIViewController {
         guide.layer.cornerRadius = 30
         
         profileImage.layer.cornerRadius = profileImage.layer.frame.width/2
+        profileImage.backgroundColor = .clear
+
         
         myInfo.layer.shadowOpacity = 0.1
         myInfo.layer.shadowOffset = CGSize(width: 0, height: 3)

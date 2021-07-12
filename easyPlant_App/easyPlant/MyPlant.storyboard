@@ -62,7 +62,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utu-fB-yGb">
                                 <rect key="frame" x="122" y="140" width="170" height="170"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="5hU-gq-mHo"/>
+                                    <constraint firstAttribute="width" secondItem="Utu-fB-yGb" secondAttribute="height" id="uEd-0S-CMo"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="profileDefault"/>
                             </button>
@@ -103,7 +103,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BP0-r1-aL2">
                                         <rect key="frame" x="0.0" y="0.0" width="155.5" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="반려식물 추가하기">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
