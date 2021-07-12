@@ -47,7 +47,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstItem="R5Z-oK-6cW" firstAttribute="leading" secondItem="0py-NT-dip" secondAttribute="leading" constant="30" id="7Sn-OC-VUk"/>
                                     <constraint firstItem="cn0-US-70C" firstAttribute="top" secondItem="0py-NT-dip" secondAttribute="top" constant="-35" id="BDb-7K-eRp"/>
@@ -59,30 +59,31 @@
                                     <constraint firstAttribute="trailing" secondItem="R5Z-oK-6cW" secondAttribute="trailing" constant="30" id="xCG-Ie-kKH"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="NTz-Nh-r46">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utu-fB-yGb">
                                 <rect key="frame" x="122" y="140" width="170" height="170"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="170" id="NHp-8Y-dC7"/>
-                                    <constraint firstAttribute="height" constant="170" id="VhM-Wo-lDh"/>
+                                    <constraint firstAttribute="height" constant="170" id="5hU-gq-mHo"/>
                                 </constraints>
-                            </imageView>
+                                <state key="normal" title="Button" image="profileDefault"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mkb-tC-yQg"/>
                         <color key="backgroundColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Utu-fB-yGb" firstAttribute="bottom" secondItem="0py-NT-dip" secondAttribute="top" constant="-70" id="4fH-el-hHX"/>
+                            <constraint firstItem="mkb-tC-yQg" firstAttribute="top" secondItem="Utu-fB-yGb" secondAttribute="top" id="Qxm-p4-nmB"/>
+                            <constraint firstItem="Utu-fB-yGb" firstAttribute="trailing" secondItem="mkb-tC-yQg" secondAttribute="trailing" constant="-122" id="a9x-5n-b13"/>
                             <constraint firstItem="0py-NT-dip" firstAttribute="trailing" secondItem="mkb-tC-yQg" secondAttribute="trailing" id="beb-5V-uRm"/>
-                            <constraint firstItem="NTz-Nh-r46" firstAttribute="top" secondItem="mkb-tC-yQg" secondAttribute="top" id="hfc-4k-5Yp"/>
+                            <constraint firstItem="mkb-tC-yQg" firstAttribute="leading" secondItem="Utu-fB-yGb" secondAttribute="leading" constant="-122" id="mn8-d6-iAa"/>
                             <constraint firstItem="mkb-tC-yQg" firstAttribute="bottom" secondItem="0py-NT-dip" secondAttribute="bottom" id="pRV-YG-6u4"/>
                             <constraint firstItem="0py-NT-dip" firstAttribute="leading" secondItem="mkb-tC-yQg" secondAttribute="leading" id="qg8-Oz-dSm"/>
-                            <constraint firstItem="NTz-Nh-r46" firstAttribute="centerX" secondItem="5nu-rM-bZe" secondAttribute="centerX" id="vrZ-hz-auJ"/>
-                            <constraint firstItem="0py-NT-dip" firstAttribute="top" secondItem="NTz-Nh-r46" secondAttribute="bottom" constant="70" id="zEn-3K-oZe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="사용자님" largeTitleDisplayMode="always" id="Xav-Bh-axm"/>
                     <connections>
                         <outlet property="guide" destination="R5Z-oK-6cW" id="yyz-Qg-d4l"/>
                         <outlet property="myInfo" destination="cn0-US-70C" id="LB4-Z9-bT7"/>
-                        <outlet property="profileImage" destination="NTz-Nh-r46" id="ist-Eu-Qc1"/>
+                        <outlet property="profileImage" destination="Utu-fB-yGb" id="8kF-If-NPN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXb-nL-WOq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1228,8 +1229,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

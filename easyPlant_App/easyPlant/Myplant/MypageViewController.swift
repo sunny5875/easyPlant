@@ -9,8 +9,8 @@ import UIKit
 
 class MypageViewController: UIViewController {
 
-    @IBOutlet weak var profileImage: UIImageView!
     
+    @IBOutlet weak var profileImage: UIButton!
     @IBOutlet weak var myInfo: UIView!
     
     @IBOutlet weak var guide: UIView!
@@ -29,6 +29,16 @@ class MypageViewController: UIViewController {
         guide.layer.cornerRadius = 30
         
         profileImage.layer.cornerRadius = profileImage.layer.frame.width/2
+        
+        myInfo.layer.shadowOpacity = 0.1
+        myInfo.layer.shadowOffset = CGSize(width: 0, height: 3)
+        myInfo.layer.shadowRadius = 30
+        myInfo.layer.masksToBounds = false
+        
+        guide.layer.shadowOpacity = 0.1
+        guide.layer.shadowOffset = CGSize(width: 0, height: 3)
+        guide.layer.shadowRadius = 30
+        guide.layer.masksToBounds = false
     }
     /*
     // MARK: - Navigation
