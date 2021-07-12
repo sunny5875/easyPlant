@@ -313,7 +313,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         let clicked_date_string = formatter.string(from: clickedDay)
         let current_date_string = formatter.string(from: Date())
         
@@ -392,7 +392,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let item = userPlants[listPlantsIndex[indexPath.row]]
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         let clicked_date_string = formatter.string(from: clickedDay)
         let current_date_string = formatter.string(from: Date())
         
