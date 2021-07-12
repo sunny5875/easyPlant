@@ -43,10 +43,11 @@ class OnboardingViewController: UIViewController,UIScrollViewDelegate {
        }
 
        override func viewDidLoad() {
+    
            super.viewDidLoad()
            self.view.layoutIfNeeded()
         
-           print("djfdkdsjlfj-----------")
+           nextButton.layer.cornerRadius = 10
          
            self.scrollView.delegate = self
            scrollView.isPagingEnabled = true

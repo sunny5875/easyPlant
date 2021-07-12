@@ -22,7 +22,7 @@ class LevelViewController: UIViewController {
     
         super.viewDidLoad()
 
-        let attributedString = NSMutableAttributedString(string: "당신은 현재 \(myUser.level.name). \n\(myUser.level.description) 당신은 이때까지 \(myUser.growingDays)일 동안 식물을 돌보고 있으며, \(myUser.numPlants)개의 식물을 키우고 있습니다. 전체 식물의 평균 행복도는 \(myUser.hapiness)입니다.")
+        let attributedString = NSMutableAttributedString(string: "당신은 현재 \(myUser.level.name). \n\(myUser.level.description)")
 
         // *** Create instance of `NSMutableParagraphStyle`
         let paragraphStyle = NSMutableParagraphStyle()

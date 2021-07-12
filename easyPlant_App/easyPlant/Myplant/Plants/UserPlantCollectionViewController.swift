@@ -17,12 +17,15 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
 
     @IBOutlet weak var userPlantCollectionView: UICollectionView!
 
-
+    @IBOutlet weak var myProfile: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+   
    
         loadUserPlant()
         userPlantCollectionView.reloadData()
@@ -34,6 +37,16 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         super.viewWillAppear(animated)
         userPlantCollectionView.reloadData()
 
+        var imagetmp : UIImageView = UIImageView()
+        let image = UIImage(named: "profileDefault2")
+        imagetmp.image = image
+        //만약 로그인된 상태고 전에 한번 수정한적 있다면
+        if myUser.isChangeProfile == 1{
+            downloadProfileImage(imgview: imagetmp)
+        }
+        
+        myProfile.setImage(imagetmp.image, for: .normal)
+        myProfile.layer.cornerRadius = myProfile.frame.size.width/2
     }
 
    
@@ -90,6 +103,16 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
                 detailVC.editPlant = UserPlant()
                 detailVC.isEdit = false
                 print("user plant prepare2 finish")
+
+                
+                
+            }
+        }
+        
+        if segue.identifier == "toMypage"{
+            if let detailVC = segue.destination as?  MypageViewController{
+                detailVC.navigationItem.title = myUser.userName + "님"
+                print("to my page")
 
                 
                 

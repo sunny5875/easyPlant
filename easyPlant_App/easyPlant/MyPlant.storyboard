@@ -9,87 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--사용자님-->
-        <scene sceneID="eR3-WZ-f5R">
-            <objects>
-                <viewController id="kt3-OY-rau" customClass="MypageViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5nu-rM-bZe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0py-NT-dip">
-                                <rect key="frame" x="0.0" y="380" width="414" height="433"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn0-US-70C">
-                                        <rect key="frame" x="30" y="-35" width="354" height="230"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="현재 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQl-0y-IBp">
-                                                <rect key="frame" x="23" y="23" width="82" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5Z-oK-6cW">
-                                        <rect key="frame" x="30" y="220" width="354" height="188"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="가이드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCw-EO-KO5">
-                                                <rect key="frame" x="30" y="26" width="58" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <constraints>
-                                    <constraint firstItem="R5Z-oK-6cW" firstAttribute="leading" secondItem="0py-NT-dip" secondAttribute="leading" constant="30" id="7Sn-OC-VUk"/>
-                                    <constraint firstItem="cn0-US-70C" firstAttribute="top" secondItem="0py-NT-dip" secondAttribute="top" constant="-35" id="BDb-7K-eRp"/>
-                                    <constraint firstItem="R5Z-oK-6cW" firstAttribute="top" secondItem="cn0-US-70C" secondAttribute="bottom" constant="25" id="ODd-2V-cBk"/>
-                                    <constraint firstAttribute="bottom" secondItem="R5Z-oK-6cW" secondAttribute="bottom" constant="25" id="Q6G-ao-FuD"/>
-                                    <constraint firstItem="cn0-US-70C" firstAttribute="leading" secondItem="0py-NT-dip" secondAttribute="leading" constant="30" id="WkR-Sb-P2q"/>
-                                    <constraint firstItem="R5Z-oK-6cW" firstAttribute="top" secondItem="0py-NT-dip" secondAttribute="top" constant="220" id="i15-cv-WSi"/>
-                                    <constraint firstAttribute="trailing" secondItem="cn0-US-70C" secondAttribute="trailing" constant="30" id="vbr-Wa-Lym"/>
-                                    <constraint firstAttribute="trailing" secondItem="R5Z-oK-6cW" secondAttribute="trailing" constant="30" id="xCG-Ie-kKH"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utu-fB-yGb">
-                                <rect key="frame" x="122" y="140" width="170" height="170"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Utu-fB-yGb" secondAttribute="height" id="uEd-0S-CMo"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="profileDefault"/>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="mkb-tC-yQg"/>
-                        <color key="backgroundColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="Utu-fB-yGb" firstAttribute="bottom" secondItem="0py-NT-dip" secondAttribute="top" constant="-70" id="4fH-el-hHX"/>
-                            <constraint firstItem="mkb-tC-yQg" firstAttribute="top" secondItem="Utu-fB-yGb" secondAttribute="top" id="Qxm-p4-nmB"/>
-                            <constraint firstItem="Utu-fB-yGb" firstAttribute="trailing" secondItem="mkb-tC-yQg" secondAttribute="trailing" constant="-122" id="a9x-5n-b13"/>
-                            <constraint firstItem="0py-NT-dip" firstAttribute="trailing" secondItem="mkb-tC-yQg" secondAttribute="trailing" id="beb-5V-uRm"/>
-                            <constraint firstItem="mkb-tC-yQg" firstAttribute="leading" secondItem="Utu-fB-yGb" secondAttribute="leading" constant="-122" id="mn8-d6-iAa"/>
-                            <constraint firstItem="mkb-tC-yQg" firstAttribute="bottom" secondItem="0py-NT-dip" secondAttribute="bottom" id="pRV-YG-6u4"/>
-                            <constraint firstItem="0py-NT-dip" firstAttribute="leading" secondItem="mkb-tC-yQg" secondAttribute="leading" id="qg8-Oz-dSm"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="사용자님" largeTitleDisplayMode="always" id="Xav-Bh-axm"/>
-                    <connections>
-                        <outlet property="guide" destination="R5Z-oK-6cW" id="yyz-Qg-d4l"/>
-                        <outlet property="myInfo" destination="cn0-US-70C" id="LB4-Z9-bT7"/>
-                        <outlet property="profileImage" destination="Utu-fB-yGb" id="8kF-If-NPN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PXb-nL-WOq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="808.69565217391312" y="-626.11607142857144"/>
-        </scene>
         <!--나의 식물-->
         <scene sceneID="SWh-Bp-XE5">
             <objects>
@@ -102,14 +21,17 @@
                                 <rect key="frame" x="15" y="140" width="384" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BP0-r1-aL2">
-                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="vk4-3C-89x"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="반려식물 추가하기">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yak-aD-qIo" userLabel="plusButton">
-                                        <rect key="frame" x="155.5" y="0.0" width="188.5" height="40"/>
+                                        <rect key="frame" x="150" y="0.0" width="40" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button" image="plus.app" catalog="system"/>
@@ -117,18 +39,27 @@
                                             <segue destination="TcO-SJ-DT1" kind="show" identifier="makeNewUserPlant" id="gjc-S1-oBc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnX-V2-mEs">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcG-IS-pz0">
+                                        <rect key="frame" x="190" y="0.0" width="154" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnX-V2-mEs">
                                         <rect key="frame" x="344" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Eit-uy-MVU"/>
                                             <constraint firstAttribute="height" constant="40" id="kTf-gn-o0Y"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="profileDefault"/>
+                                        <state key="normal" title="Button" image="profileDefault2"/>
                                         <connections>
                                             <action selector="profileImageClicked:" destination="peC-Tm-KZZ" eventType="touchUpInside" id="pij-41-cAf"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="yak-aD-qIo" firstAttribute="width" secondItem="wnX-V2-mEs" secondAttribute="width" id="mCH-2N-lne"/>
+                                </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2G-5B-1Vm">
                                 <rect key="frame" x="0.0" y="190" width="414" height="706"/>
@@ -219,8 +150,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="나의 식물" largeTitleDisplayMode="always" id="5Aj-CX-wA7"/>
                     <connections>
+                        <outlet property="myProfile" destination="wnX-V2-mEs" id="Fkw-mF-iGH"/>
                         <outlet property="userPlantCollectionView" destination="l2G-5B-1Vm" id="0Vu-DO-QQV"/>
-                        <segue destination="kt3-OY-rau" kind="show" identifier="toMypage" id="sDv-D3-nyO"/>
+                        <segue destination="DRB-W1-V5w" kind="show" identifier="toMypage" id="8Lx-pk-DOY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ffa-Gw-aWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1242,9 +1174,19 @@
             </objects>
             <point key="canvasLocation" x="3879" y="-621"/>
         </scene>
+        <!--Mypage-->
+        <scene sceneID="kCb-LA-xDo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Mypage" id="DRB-W1-V5w" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="alh-Dc-YYN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="26v-vN-c7L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1407" y="-685"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EB6-r5-rxP"/>
+        <segue reference="1Ye-oo-bKU"/>
         <segue reference="fv4-gj-Q8Y"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1254,7 +1196,7 @@
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
-        <image name="profileDefault" width="720" height="741"/>
+        <image name="profileDefault2" width="250" height="250"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1264,9 +1206,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
