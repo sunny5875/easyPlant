@@ -17,8 +17,7 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
 
     @IBOutlet weak var userPlantCollectionView: UICollectionView!
 
-  
-   
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +130,14 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
     
     
     
+    @IBAction func profileImageClicked(_ sender: Any) {
+        //만약 로그인이 안된 상티라면
+        
+        
+        
+        //만약 로그인이 된 상태라면
+        performSegue(withIdentifier: "toMypage", sender: nil)
+    }
     
     
 }

@@ -52,7 +52,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NTz-Nh-r46">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="NTz-Nh-r46">
                                 <rect key="frame" x="122" y="162" width="170" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="NHp-8Y-dC7"/>
@@ -105,13 +105,17 @@
                                             <segue destination="TcO-SJ-DT1" kind="show" identifier="makeNewUserPlant" id="gjc-S1-oBc"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Rup-z9-vSf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnX-V2-mEs">
                                         <rect key="frame" x="344" y="0.0" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="QjP-iw-Ymi"/>
-                                            <constraint firstAttribute="width" constant="40" id="vxi-6U-Hph"/>
+                                            <constraint firstAttribute="width" constant="40" id="Eit-uy-MVU"/>
+                                            <constraint firstAttribute="height" constant="40" id="kTf-gn-o0Y"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" title="Button" image="profileDefault"/>
+                                        <connections>
+                                            <action selector="profileImageClicked:" destination="peC-Tm-KZZ" eventType="touchUpInside" id="pij-41-cAf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2G-5B-1Vm">
@@ -204,7 +208,7 @@
                     <navigationItem key="navigationItem" title="나의 식물" largeTitleDisplayMode="always" id="5Aj-CX-wA7"/>
                     <connections>
                         <outlet property="userPlantCollectionView" destination="l2G-5B-1Vm" id="0Vu-DO-QQV"/>
-                        <segue destination="kt3-OY-rau" kind="show" id="8MN-ga-UBi"/>
+                        <segue destination="kt3-OY-rau" kind="show" identifier="toMypage" id="sDv-D3-nyO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ffa-Gw-aWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
