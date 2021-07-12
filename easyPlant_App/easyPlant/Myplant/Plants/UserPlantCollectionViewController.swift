@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 private let reuseIdentifier = "userPlantCell"
 
@@ -113,11 +114,10 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
             if let detailVC = segue.destination as?  MypageViewController{
                 detailVC.navigationItem.title = myUser.userName + "님"
                 print("to my page")
-
-                
-                
             }
+            
         }
+        
         
 
 
@@ -154,14 +154,26 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
     
     
     @IBAction func profileImageClicked(_ sender: Any) {
-        //만약 로그인이 안된 상티라면
-        
-        
-        
-        //만약 로그인이 된 상태라면
-        performSegue(withIdentifier: "toMypage", sender: nil)
+        if Auth.auth().currentUser == nil {
+            //만약 로그인이 안된 상태라면
+            performSegue(withIdentifier: "toLoginPage", sender: nil)
+        } else {
+            //만약 로그인이 된 상태라면
+            myUser.userName = (Auth.auth().currentUser?.displayName)!
+            performSegue(withIdentifier: "toMypage", sender: nil)
+        }
     }
     
+    @IBAction func plusBtnClicked(_ sender: Any) {
+        if Auth.auth().currentUser == nil {
+            //만약 로그인이 안된 상태라면
+            performSegue(withIdentifier: "toLoginPage", sender: nil)
+        } else {
+            //만약 로그인이 된 상태라면
+            myUser.userName = (Auth.auth().currentUser?.displayName)!
+            performSegue(withIdentifier: "makeNewUserPlant", sender: nil)
+        }
+    }
     
 }
 
