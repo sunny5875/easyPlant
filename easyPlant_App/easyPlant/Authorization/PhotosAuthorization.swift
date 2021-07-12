@@ -8,6 +8,7 @@
 import Foundation
 import Photos
 
+
 func requestGalleryPermission(){
         PHPhotoLibrary.requestAuthorization( { status in
             switch status{

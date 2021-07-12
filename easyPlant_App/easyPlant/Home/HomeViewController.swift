@@ -191,7 +191,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         myUser.updateUser()
         calendar.reloadData()
         
-        levelLabel.text = "Lv.\(myUser.level.name)"
+        levelLabel.text = "\(myUser.level.name)"
         levelLabel.textColor = UIColor.black
         levelImage.image = UIImage(named: myUser.level.icon)
         if myUser.level.name != levels[0].name {

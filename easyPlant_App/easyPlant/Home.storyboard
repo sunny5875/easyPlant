@@ -119,7 +119,7 @@
                                         <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                         <inset key="separatorInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
                                         <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="TSc-FQ-Nr2">
-                                            <rect key="frame" x="0.0" y="164.5" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="164.5" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </stackView>
                                         <prototypes>
@@ -287,8 +287,8 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5R-kj-cpa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="778"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GTS-Kc-gS3" userLabel="Mystack">
-                                                <rect key="frame" x="20.5" y="30" width="373" height="154"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="GTS-Kc-gS3" userLabel="Mystack">
+                                                <rect key="frame" x="20.5" y="30" width="373" height="180"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJB-mn-xbK">
                                                         <rect key="frame" x="161.5" y="0.0" width="50" height="15"/>
@@ -300,19 +300,19 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="성장하는 당신" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0s-Z2-sVl">
-                                                        <rect key="frame" x="121.5" y="15" width="130" height="29"/>
+                                                        <rect key="frame" x="121.5" y="28" width="130" height="29"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="초보농부. 새롭게 농부가 되신 당신! 당신은 이때까지 ~~~일 동안 식물을 돌보고 있으며, ~~~개의 식물을 키우고 있습니다. 전체 식물의 평균 행복도는 ~~~~입니다." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVn-IW-tSH">
-                                                        <rect key="frame" x="19" y="44" width="335" height="110"/>
+                                                        <rect key="frame" x="19" y="70" width="335" height="110"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="110" id="iei-aV-k59"/>
                                                         </constraints>
                                                         <inset key="scrollIndicatorInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
@@ -322,7 +322,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="90l-iR-wwL">
-                                                <rect key="frame" x="-15" y="214" width="444" height="700"/>
+                                                <rect key="frame" x="-15" y="240" width="444" height="700"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Uvf-ic-z4l" userLabel="Level1Stack">
                                                         <rect key="frame" x="22" y="0.0" width="400" height="87"/>
@@ -586,26 +586,36 @@
                                                     <constraint firstItem="oAe-DO-zOa" firstAttribute="width" secondItem="90l-iR-wwL" secondAttribute="width" multiplier="0.9" id="rXo-CW-qsl"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qMd-IG-3dX">
+                                                <rect key="frame" x="0.0" y="30" width="414" height="153"/>
+                                                <color key="backgroundColor" red="0.73037284609999997" green="0.86348104479999999" blue="0.56297761199999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="GTS-Kc-gS3" secondAttribute="trailing" id="2I0-Me-0fy"/>
                                             <constraint firstItem="GTS-Kc-gS3" firstAttribute="top" secondItem="C5R-kj-cpa" secondAttribute="top" constant="30" id="9Yx-bC-Rjf"/>
                                             <constraint firstItem="90l-iR-wwL" firstAttribute="width" secondItem="C5R-kj-cpa" secondAttribute="width" multiplier="1.07246" id="GGa-6k-3Mh"/>
+                                            <constraint firstItem="qMd-IG-3dX" firstAttribute="top" secondItem="Nvm-so-GwY" secondAttribute="top" id="ZPZ-ur-xos"/>
                                             <constraint firstItem="GTS-Kc-gS3" firstAttribute="centerX" secondItem="90l-iR-wwL" secondAttribute="centerX" id="a9R-uE-AZ5"/>
                                             <constraint firstItem="90l-iR-wwL" firstAttribute="top" secondItem="GTS-Kc-gS3" secondAttribute="bottom" constant="30" id="cpe-np-vgZ"/>
+                                            <constraint firstItem="Nvm-so-GwY" firstAttribute="bottom" secondItem="qMd-IG-3dX" secondAttribute="bottom" constant="625" id="gA7-UB-1td"/>
                                             <constraint firstItem="90l-iR-wwL" firstAttribute="centerX" secondItem="C5R-kj-cpa" secondAttribute="centerX" id="gSb-3C-EBQ"/>
+                                            <constraint firstItem="qMd-IG-3dX" firstAttribute="trailing" secondItem="Nvm-so-GwY" secondAttribute="trailing" id="h8B-DB-mad"/>
+                                            <constraint firstItem="qMd-IG-3dX" firstAttribute="leading" secondItem="Nvm-so-GwY" secondAttribute="leading" id="rUo-cl-rek"/>
                                             <constraint firstAttribute="bottom" secondItem="90l-iR-wwL" secondAttribute="bottom" constant="30" id="uoY-dW-NBE"/>
                                         </constraints>
                                         <viewLayoutGuide key="contentLayoutGuide" id="GLQ-XC-oWj"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="Nvm-so-GwY"/>
                                     </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKF-uE-Sod">
-                                        <rect key="frame" x="186" y="778" width="42" height="30"/>
+                                        <rect key="frame" x="189.5" y="778" width="35" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="JZZ-Ic-b14"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="24"/>
-                                        <state key="normal" title="닫기"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
+                                        <state key="normal" title="닫기">
+                                            <color key="titleColor" systemColor="systemGray2Color"/>
+                                        </state>
                                         <connections>
                                             <action selector="closeModal:" destination="Cw3-IN-yga" eventType="touchUpInside" id="htG-RR-9Hb"/>
                                         </connections>
@@ -633,6 +643,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="성장하는 당신" largeTitleDisplayMode="always" id="qlD-vd-nJk"/>
                     <connections>
+                        <outlet property="bgView" destination="qMd-IG-3dX" id="Og1-1Y-rD9"/>
                         <outlet property="levelStack" destination="90l-iR-wwL" id="UcX-Xh-mBh"/>
                         <outlet property="myLevelView" destination="AVn-IW-tSH" id="ren-3u-HW9"/>
                         <outlet property="myStack" destination="GTS-Kc-gS3" id="UY2-o5-KDv"/>
@@ -673,6 +684,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
