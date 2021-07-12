@@ -131,7 +131,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         if isEdit == true {
             if let usrplant = editPlant {
                 let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy.MM.dd"
+                formatter.dateFormat = "yyyy-MM-dd"
          
             
                 //해당 식물의 이미지를 가져오기

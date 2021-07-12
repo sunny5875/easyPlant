@@ -25,13 +25,13 @@
 		12799956266E09750072E9FF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12799955266E09740072E9FF /* NotificationViewController.swift */; };
 		1279995B266E09800072E9FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1279995A266E09800072E9FF /* HomeViewController.swift */; };
 		1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */; };
+		12E3E930269BD6C5001ED3C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E92F269BD6C5001ED3C6 /* Login.storyboard */; };
+		12E3E932269BD6D7001ED3C6 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E931269BD6D7001ED3C6 /* JoinViewController.swift */; };
+		12E3E934269BD6DB001ED3C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E933269BD6DB001ED3C6 /* LoginViewController.swift */; };
 		12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */; };
 		12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */; };
 		12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */; };
 		3E86CFD9266B709400C99B13 /* PhotosAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86CFD8266B709300C99B13 /* PhotosAuthorization.swift */; };
-		3E86D031269967CC00C99B13 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86D030269967CC00C99B13 /* LoginViewController.swift */; };
-		3E86D036269969D200C99B13 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E86D035269969D200C99B13 /* Login.storyboard */; };
-		3E86D04B2699738F00C99B13 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E86D04A2699738F00C99B13 /* JoinViewController.swift */; };
 		47D8D3177E205A8A242DE88D /* Pods_easyPlant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */; };
 		A0E89ECC6A3B8C88A65010D2 /* Pods_easyPlant_easyPlantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */; };
 		D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */; };
@@ -92,15 +92,15 @@
 		12799955266E09740072E9FF /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		1279995A266E09800072E9FF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		12E3E92F269BD6C5001ED3C6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		12E3E931269BD6D7001ED3C6 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		12E3E933269BD6DB001ED3C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
 		12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
 		12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		363F6857E59255F23F5E3AD1 /* Pods_easyPlant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		369230177CD436241BC4D097 /* Pods-easyPlantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlantTests.debug.xcconfig"; path = "Target Support Files/Pods-easyPlantTests/Pods-easyPlantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E86CFD8266B709300C99B13 /* PhotosAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAuthorization.swift; sourceTree = "<group>"; };
-		3E86D030269967CC00C99B13 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../../../../../Documents/LoginViewController.swift; sourceTree = "<group>"; };
-		3E86D035269969D200C99B13 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Login.storyboard; path = ../../../../Documents/Login.storyboard; sourceTree = "<group>"; };
-		3E86D04A2699738F00C99B13 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JoinViewController.swift; path = ../../../../../Documents/JoinViewController.swift; sourceTree = "<group>"; };
 		53B379B6017A5E33457B4CF9 /* Pods-easyPlant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant.release.xcconfig"; path = "Target Support Files/Pods-easyPlant/Pods-easyPlant.release.xcconfig"; sourceTree = "<group>"; };
 		5D9888BD1B6573F596E98CCF /* Pods_easyPlantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_easyPlant_easyPlantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,7 +203,7 @@
 				12166398263BB8F700125C69 /* Main.storyboard */,
 				D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
-				3E86D035269969D200C99B13 /* Login.storyboard */,
+				12E3E92F269BD6C5001ED3C6 /* Login.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
 				1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */,
 				121663B3263BB8F800125C69 /* easyPlantUITests */,
@@ -298,8 +298,8 @@
 		3E86D01F269963D400C99B13 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				3E86D030269967CC00C99B13 /* LoginViewController.swift */,
-				3E86D04A2699738F00C99B13 /* JoinViewController.swift */,
+				12E3E933269BD6DB001ED3C6 /* LoginViewController.swift */,
+				12E3E931269BD6D7001ED3C6 /* JoinViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -430,9 +430,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12E3E930269BD6C5001ED3C6 /* Login.storyboard in Resources */,
 				1216639F263BB8F800125C69 /* LaunchScreen.storyboard in Resources */,
 				1216639C263BB8F800125C69 /* Assets.xcassets in Resources */,
-				3E86D036269969D200C99B13 /* Login.storyboard in Resources */,
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,
 				D6CC2DE62663AFF8009E5710 /* MyPlant.storyboard in Resources */,
 				1218F174265A0E19000D99F4 /* Home.storyboard in Resources */,
@@ -564,7 +564,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E86D031269967CC00C99B13 /* LoginViewController.swift in Sources */,
 				D6AEE1B52647B20200E85162 /* DiaryCollectionViewCell.swift in Sources */,
 				12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */,
 				1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */,
@@ -577,6 +576,7 @@
 				12799956266E09750072E9FF /* NotificationViewController.swift in Sources */,
 				12166393263BB8F700125C69 /* AppDelegate.swift in Sources */,
 				D6CC2DEA2663B22E009E5710 /* UserPlantCollectionViewCell.swift in Sources */,
+				12E3E934269BD6DB001ED3C6 /* LoginViewController.swift in Sources */,
 				121663D3263BC2AF00125C69 /* CellTableViewCell.swift in Sources */,
 				D6AEE1B72647B20D00E85162 /* MyPlantViewController.swift in Sources */,
 				12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */,
@@ -591,7 +591,7 @@
 				D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */,
 				12166395263BB8F700125C69 /* SceneDelegate.swift in Sources */,
 				3E86CFD9266B709400C99B13 /* PhotosAuthorization.swift in Sources */,
-				3E86D04B2699738F00C99B13 /* JoinViewController.swift in Sources */,
+				12E3E932269BD6D7001ED3C6 /* JoinViewController.swift in Sources */,
 				121663DE263BC40400125C69 /* SortTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
