@@ -27,8 +27,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.colors = [UIColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1).cgColor, UIColor.white.cgColor]
+        gradient.locations = [0.0, 1.0]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.frame = self.view.bounds
+        self.view.layer.insertSublayer(gradient, at: 0)
+        */
+        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        self.plantListTableView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
         calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
-        navigationController?.navigationItem.hidesSearchBarWhenScrolling = false
       
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
@@ -90,8 +102,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.calendar.scope = .week
         calendar.headerHeight = 50
 
-        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-        self.plantListTableView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        
+        //self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
         calendar.appearance.headerTitleColor = .black
@@ -111,12 +125,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
-        calendar.layer.cornerRadius = 30
+        calendar.layer.cornerRadius = 20
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
         
         userView.backgroundColor = .white
-        userView.layer.cornerRadius = 30
+        userView.layer.cornerRadius = 20
         
         
         
@@ -130,7 +144,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         headerView.font = UIFont.boldSystemFont(ofSize: CGFloat(22))
 
         plantListTableView.tableHeaderView = headerView
-        
+     
     }
     
     
@@ -161,20 +175,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //print("Changed color ", userPlants[0].color)
-        print("home will appear")
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.shadowImage = UIImage()
         
-        print(myUser.didWaterNum)
-        print(myUser.totalWaterNum)
-        plantListTableView.scrollsToTop = true
-
-        //navigationController?.navigationBar.shadowImage = UIImage()
         plantListTableView.reloadData()
         
         myUser.updateUser()
         calendar.reloadData()
         
         levelLabel.text = "Lv.\(myUser.level.name)"
+        levelLabel.textColor = UIColor.black
         levelImage.image = UIImage(named: myUser.level.icon)
         if myUser.level.name != levels[0].name {
             hapinessImage.isHidden = false
@@ -239,10 +249,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.minOffset = 0
         pieChart.data = chartData
         pieChart.isHidden = false
-        
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
     }
     
     func loadDummyData(){
@@ -259,7 +265,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
     
     @objc func showLevelView(sender: UIView) {
         performSegue(withIdentifier: "levelViewSegue", sender: nil)
@@ -288,20 +293,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 userPlants[i].recentWater = formatter.string(from: userPlants[i].wateringDay)
                 userPlants[i].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[i].waterPeriod, to: userPlants[i].wateringDay)!
                 
-                myUser.totalWaterNum = max(myUser.totalWaterNum + 1, 10)
-                myUser.didWaterNum = max(myUser.didWaterNum + 1, 10)
+                userPlants[i].totalWaterNum += 1
+                userPlants[i].didWaterNum += 1
                 
+                               
                 plantListTableView.reloadData()
                 calendar.reloadData()
                 userPlants[i].watered = 0
 
             } else if Calendar.current.compare(userPlants[i].wateringDay, to: Date(), toGranularity: .day) == .orderedAscending {
-                if (myUser.totalWaterNum == 10) {
-                    myUser.didWaterNum = max(myUser.didWaterNum - 1, 0)
-                }
-                myUser.totalWaterNum = min(myUser.totalWaterNum + 1, 10)
+                userPlants[i].totalWaterNum += 1
                 userPlants[i].wateringDay = Date()
-
+            }
+            
+            if userPlants[i].totalWaterNum == 5 {
+                userPlants[i].updateHappiness()
+                
+                myUser.updateUser()
             }
             //print("watering day : \(plant.wateringDay), compare : \(Calendar.current.compare(userPlants[i].wateringDay, to: Date(), toGranularity: .day) == .orderedSame)")
 
@@ -363,7 +371,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
         cell.backgroundColor = UIColor.white
-        cell.layer.cornerRadius = 100
+        cell.layer.cornerRadius = 150
         
         let wateringButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         wateringButton.contentMode = .scaleAspectFit
@@ -398,12 +406,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
            let secondStoryboard = UIStoryboard.init(name: "MyPlant", bundle: nil)
            guard let secondVC = secondStoryboard.instantiateViewController(identifier: "myPlantSB") as? MyPlantViewController else {return indexPath}
            secondVC.myPlant = userPlants[listPlantsIndex[indexPath.row]]
-           
-           self.navigationController?.pushViewController(secondVC, animated: true)
+
+        navigationController?.pushViewController(secondVC, animated: true)
            
            return indexPath
        }
- 
  
     @objc func watering(sender: UITapGestureRecognizer){
         //sender.image = UIImage(named: "watering_fill")
@@ -429,9 +436,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Use data from the view controller which initiated the unwind segue
         
         plantListTableView.reloadData()
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
     }
 }
 

@@ -43,7 +43,6 @@ struct UserPlant : Codable {
     var alarmTime : Date
     var plantImage : String
     var watered : Int
-    
     var totalWaterNum: Int
     var didWaterNum: Int
     
@@ -51,6 +50,11 @@ struct UserPlant : Codable {
     private enum CodingKeys : String, CodingKey{
         case name,location,recentWater,registedDate,waterPeriod, wateringDay,plantSpecies, diarylist,color,happeniess,alarmTime,plantImage,watered,  totalWaterNum, didWaterNum}
     
+    mutating func updateHappiness() {
+        happeniess.append(Int(didWaterNum * 100 / totalWaterNum))
+        didWaterNum = 0
+        totalWaterNum = 0
+    }
     
     init(from decoder: Decoder) throws {
         
@@ -114,11 +118,11 @@ struct UserPlant : Codable {
         plantImage = "plant"
         watered = Int()
         recentWater = ""
-        
-        
+        totalWaterNum = 0
+        didWaterNum = 0
     }
     
-    init(name : String, location : String, recentWater : String, registedDate : String, waterPeriod : Int, wateringDay : Date, plantSpecies : String, diarylist : [Diary], color : Color, happeniess : [Int], alarmTime : Date, plantImage : String, watered : Int) {
+    init(name : String, location : String, recentWater : String, registedDate : String, waterPeriod : Int, wateringDay : Date, plantSpecies : String, diarylist : [Diary], color : Color, happeniess : [Int], alarmTime : Date, plantImage : String, watered : Int, totalWaterNum : Int, didWaterNum : Int) {
         self.name = name
         self.location = location
         self.registedDate = registedDate
@@ -132,6 +136,8 @@ struct UserPlant : Codable {
         self.plantImage = plantImage
         self.watered = watered
         self.recentWater = recentWater
+        self.totalWaterNum = totalWaterNum
+        self.didWaterNum = didWaterNum
     }
     
     
@@ -143,10 +149,10 @@ struct UserPlant : Codable {
   
 var listPlantsIndex: [Int] = []
 
-var userPlants : [UserPlant] = [UserPlant(name: "Stuckyi", location: "샘플 위", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Stuckyi", watered: 0),
-                                UserPlant(name: "Hoya", location: "샘플", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "샘플",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Hoya", watered: 0),
-                                UserPlant(name: "Syngonium", location: "샘플", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium", watered: 0),
-                                UserPlant(name: "ParlourPalm", location: "샘플", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "ParlourPalm", watered: 0)]
+var userPlants : [UserPlant] = [UserPlant(name: "초록콩", location: "샘플 위", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Corokia", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "까망콩", location: "샘플", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "샘플",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "CornPlant", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "연두콩", location: "샘플", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "파란콩", location: "샘플", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "Monstrous", watered: 0, totalWaterNum: 0, didWaterNum: 0)]
 
 
 func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
@@ -205,31 +211,68 @@ func loadUserPlant(){
 
 
 func downloadUserPlantImage(imgview:UIImageView, title : String){
-    print("down load user plant image")
+    print("download user plant image")
     print(title)
-    /*
-     Storage.storage().reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL { (url, error) in
-            print("download error")
-        let data = NSData(contentsOf: url!)
-        let image = UIImage(data: data! as Data)
-         imgview.image = image
-         }
+    let urlString:String = documentsDirectory.absoluteString + "localPlant/\(title)"
+    let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    let localURL = URL(string: encodedString)!
     
     
-    */
-    print("gs://easyplant-8649d.appspot.com/userPlant/\(title)")
-    storage.reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL{ (url, error) in
-            if let error = error{
-             
-                print("download error + \(error)")
-            }else{
-                let data = NSData(contentsOf: url!)
-                let image = UIImage(data: data! as Data)
-                 imgview.image = image
+    //로컬에 없다면 원격 저장소에서 받아온다
+    if let data = NSData(contentsOf: localURL){
+        //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
+        print("exist and download fast")
+        let image = UIImage(data: data as Data)
+        imgview.image = image
+        
+    }
+    else {
+        let localURL = documentsDirectory.appendingPathComponent("localPlant/\(title)")
+        print("download to local start")
+        // Create a reference to the file you want to download
+        let filePath = "/userPlant/\(title)"
+        let imgRef = storageRef.child(filePath)
+        
+
+        // print local filesystem URL
+        print(localURL)
+
+        // Download to the local filesystem
+        imgRef.write(toFile: localURL) { url, error in
+          if let error = error {
+            print("download to local error : \(error)")
+
+          } else {
+            print("download to local success!!")
+            print(url)
+            let data = NSData(contentsOf: url!)
+            let image = UIImage(data: data! as Data)
+            imgview.image = image
+          }
+          
         }
-                        
-           }
-    //print(imgview.image!)
+        print("download to local finish")
+
+        
+    }
+    
+    
+    /*
+    원래 코드
+     print("gs://easyplant-8649d.appspot.com/userPlant/\(title)")
+     storage.reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL{ (url, error) in
+             if let error = error{
+              
+                 print("download error + \(error)")
+             }else{
+                 let data = NSData(contentsOf: url!)
+                 let image = UIImage(data: data! as Data)
+                  imgview.image = image
+         }
+                         
+            }
+     */
+    
  }
  
  
@@ -237,7 +280,7 @@ func uploadUserPlantImage(img :UIImage, title: String){
     
      
      var data = Data()
-     data = img.jpegData(compressionQuality: 0.7)!
+    data = img.jpegData(compressionQuality: 0.7)!
      let filePath = "/userPlant/\(title)"
      let metaData = StorageMetadata()
      metaData.contentType = "image/png"
@@ -266,6 +309,9 @@ func deleteUserPlantImage(title : String){
         print("delete user plant success")
       }
     }
+    
+    
+ 
 }
  
 
