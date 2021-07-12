@@ -17,11 +17,19 @@ class MypageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateUI()
         // Do any additional setup after loading the view.
     }
     
-
+    func updateUI(){
+        myInfo.layer.zPosition = 100
+        guide.layer.zPosition = 100
+        
+        myInfo.layer.cornerRadius = 30
+        guide.layer.cornerRadius = 30
+        
+        profileImage.layer.cornerRadius = profileImage.layer.frame.width/2
+    }
     /*
     // MARK: - Navigation
 
@@ -32,4 +40,6 @@ class MypageViewController: UIViewController {
     }
     */
 
+    
+    
 }

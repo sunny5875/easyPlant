@@ -127,7 +127,7 @@
                                                 <rect key="frame" x="20" y="49.5" width="374" height="91"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fco-2B-cry" id="PFF-ur-4X5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="330" height="91"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="333.5" height="91"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ecg-sn-tUs">
@@ -206,9 +206,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KpP-1z-yy8">
                                         <rect key="frame" x="144.5" y="594" width="125" height="30"/>
                                         <state key="normal" title="로그인창 테스트 버튼"/>
-                                        <connections>
-                                            <segue destination="IFo-1R-CdR" kind="show" id="aKr-xg-jMR"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
