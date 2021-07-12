@@ -125,12 +125,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
-        calendar.layer.cornerRadius = 10
+        calendar.layer.cornerRadius = 20
         //calendarView.appearance.selectionColor = UICo
         // Do any additional setup after loading the view.
         
         userView.backgroundColor = .white
-        userView.layer.cornerRadius = 10
+        userView.layer.cornerRadius = 20
         
         
         
