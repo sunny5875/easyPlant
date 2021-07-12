@@ -351,12 +351,17 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         if checking1 == 0 && sender == registerationTextField{
             formatLabels[0].textColor = .red
+            if sender.text == "" {
+                formatLabels[0].textColor = .white
+
+            }
             
         }
         else if checking1 == 1 && sender == registerationTextField{
             formatLabels[0].textColor = .white
 
         }
+       
        
         //최근 물준 날짜 형식 검사
         var checking2 = 1
@@ -395,11 +400,16 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         if checking2 == 0 && sender == recentlyWateringDayTextField{
             formatLabels[1].textColor = .red
+            if sender.text == "" {
+                formatLabels[1].textColor = .white
+
+            }
         }
         else if checking2 == 1 && sender == recentlyWateringDayTextField{
             formatLabels[1].textColor = .white
 
         }
+      
             
         //물주기 형식 검사
         var checking3 = 1
@@ -412,12 +422,17 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
 
         if checking3 == 0 && sender == wateringDayTextField{
             formatLabels[2].textColor = .red
+            if sender.text == "" {
+                formatLabels[2].textColor = .white
+
+            }
            
         }
         else if checking3 == 1 && sender == wateringDayTextField{
             formatLabels[2].textColor = .white
 
         }
+     
         
         if checking1 == 1 && checking2 == 1 && checking3 == 1 {
             return 1
