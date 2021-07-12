@@ -242,7 +242,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             //이미지 불러오기
             //imageView.image = UIImage(named: myPlant.plantImage)
             print(myPlant.name)
-            downloadUserPlantImage(imgview: imageView, title: myPlant.name)
+            downloadUserPlantImage(imgview: imageView, title: myPlant.plantImage)
             imageView.layer.cornerRadius = imageView.frame.width / 2.0
             imageView.layer.masksToBounds = true
             

@@ -26,6 +26,9 @@
 		1279995B266E09800072E9FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1279995A266E09800072E9FF /* HomeViewController.swift */; };
 		1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */; };
 		12E3E938269BE19F001ED3C6 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E937269BE19F001ED3C6 /* MypageViewController.swift */; };
+		12E3E940269BFAF4001ED3C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E93F269BFAF4001ED3C6 /* Login.storyboard */; };
+		12E3E943269BFB10001ED3C6 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E941269BFB10001ED3C6 /* JoinViewController.swift */; };
+		12E3E944269BFB10001ED3C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E942269BFB10001ED3C6 /* LoginViewController.swift */; };
 		12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */; };
 		12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */; };
 		12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */; };
@@ -91,6 +94,9 @@
 		1279995A266E09800072E9FF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12E3E937269BE19F001ED3C6 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
+		12E3E93F269BFAF4001ED3C6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		12E3E941269BFB10001ED3C6 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		12E3E942269BFB10001ED3C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
 		12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
 		12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 				1218F173265A0E19000D99F4 /* Home.storyboard */,
 				12166398263BB8F700125C69 /* Main.storyboard */,
 				D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */,
+				12E3E93F269BFAF4001ED3C6 /* Login.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
 				1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */,
@@ -294,6 +301,8 @@
 		3E86D01F269963D400C99B13 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				12E3E941269BFB10001ED3C6 /* JoinViewController.swift */,
+				12E3E942269BFB10001ED3C6 /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -426,6 +435,7 @@
 			files = (
 				1216639F263BB8F800125C69 /* LaunchScreen.storyboard in Resources */,
 				1216639C263BB8F800125C69 /* Assets.xcassets in Resources */,
+				12E3E940269BFAF4001ED3C6 /* Login.storyboard in Resources */,
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,
 				D6CC2DE62663AFF8009E5710 /* MyPlant.storyboard in Resources */,
 				1218F174265A0E19000D99F4 /* Home.storyboard in Resources */,
@@ -575,7 +585,9 @@
 				12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */,
 				D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */,
 				D6AEE1B32647B1F600E85162 /* UserPlant.swift in Sources */,
+				12E3E944269BFB10001ED3C6 /* LoginViewController.swift in Sources */,
 				1279995B266E09800072E9FF /* HomeViewController.swift in Sources */,
+				12E3E943269BFB10001ED3C6 /* JoinViewController.swift in Sources */,
 				D6CC2DE026636215009E5710 /* PushAlarmViewController.swift in Sources */,
 				D6119B2C265F92A400D947A0 /* EditUserPlantTableViewController.swift in Sources */,
 				121663CB263BBDE200125C69 /* PlantDetailViewController.swift in Sources */,
