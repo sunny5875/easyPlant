@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var IDField: UITextField!
@@ -31,9 +31,22 @@ class LoginViewController: UIViewController {
         border2.frame = CGRect(x: 0, y: pwField.frame.size.height-1, width: pwField.frame.width, height: 1)
         border2.backgroundColor = UIColor.lightGray.cgColor
         pwField.layer.addSublayer((border2))
+        
+        if let user = Auth.auth().currentUser {
+            IDField.placeholder = "이미 로그인 된 상태입니다."
+            pwField.placeholder = "그럼 이 창 띄우지 말아야하겠지??"
+        }
     }
     
     @IBAction func loginBtnTapped(_ sender: Any) {
+        Auth.auth().signIn(withEmail: IDField.text!, password: pwField.text!) {
+            (user, error) in
+            if user != nil {
+                print("로그인 성공 이름 : \(Auth.auth().currentUser?.displayName)")
+            } else {
+                print("로그인 실패")
+            }
+        }
     }
     
     @IBAction func findBtnTapped(_ sender: Any) {
