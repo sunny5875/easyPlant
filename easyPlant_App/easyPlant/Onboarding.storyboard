@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6eT-4A-ARb">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding View Controller-->
+        <scene sceneID="nFY-uJ-gQq">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingViewController" id="6eT-4A-ARb" customClass="OnboardingViewController" customModule="easyPlant" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aKW-kn-IIs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wd9-zo-55V">
+                                <rect key="frame" x="20" y="44" width="374" height="615"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="NQJ-Cv-5dB"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="aFG-ei-wDU"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHl-Uw-ThQ">
+                                <rect key="frame" x="57" y="731" width="300" height="48"/>
+                                <color key="backgroundColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="iUB-Ja-A3o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Start EasyPlant">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pageChanged:" destination="6eT-4A-ARb" eventType="touchUpInside" id="31K-3E-vbe"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="oLu-In-BtF">
+                                <rect key="frame" x="137.5" y="675" width="139" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="pageIndicatorTintColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemGreenColor"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="e5O-As-okV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lHl-Uw-ThQ" firstAttribute="top" secondItem="e5O-As-okV" secondAttribute="top" constant="687" id="79O-cb-Ix7"/>
+                            <constraint firstItem="oLu-In-BtF" firstAttribute="top" secondItem="Wd9-zo-55V" secondAttribute="bottom" constant="16" id="7W2-yS-if2"/>
+                            <constraint firstItem="Wd9-zo-55V" firstAttribute="top" secondItem="e5O-As-okV" secondAttribute="top" id="bib-Zh-Kbw"/>
+                            <constraint firstItem="lHl-Uw-ThQ" firstAttribute="centerX" secondItem="oLu-In-BtF" secondAttribute="centerX" id="c8h-hx-8em"/>
+                            <constraint firstItem="Wd9-zo-55V" firstAttribute="leading" secondItem="e5O-As-okV" secondAttribute="leading" constant="20" id="dzd-sV-TlI"/>
+                            <constraint firstItem="oLu-In-BtF" firstAttribute="top" secondItem="e5O-As-okV" secondAttribute="top" constant="631" id="iHW-sx-dQY"/>
+                            <constraint firstItem="Wd9-zo-55V" firstAttribute="top" secondItem="e5O-As-okV" secondAttribute="top" id="iqe-2e-dm0"/>
+                            <constraint firstItem="e5O-As-okV" firstAttribute="trailing" secondItem="Wd9-zo-55V" secondAttribute="trailing" constant="20" id="nNR-SC-P5n"/>
+                            <constraint firstItem="oLu-In-BtF" firstAttribute="centerX" secondItem="aKW-kn-IIs" secondAttribute="centerX" id="ye7-20-8t9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="lHl-Uw-ThQ" id="VcU-4t-7Qh"/>
+                        <outlet property="pageControl" destination="oLu-In-BtF" id="kko-oM-F2D"/>
+                        <outlet property="scrollView" destination="Wd9-zo-55V" id="3cN-bR-Leh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ba9-YV-Nh0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-157" y="-15"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

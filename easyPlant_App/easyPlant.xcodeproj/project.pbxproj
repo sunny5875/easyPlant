@@ -37,6 +37,8 @@
 		A0E89ECC6A3B8C88A65010D2 /* Pods_easyPlant_easyPlantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734210460CCC0320E2F9C52E /* Pods_easyPlant_easyPlantUITests.framework */; };
 		D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */; };
 		D6119B2C265F92A400D947A0 /* EditUserPlantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */; };
+		D65F95B8269C0DDF00E1115F /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65F95B7269C0DDF00E1115F /* Onboarding.storyboard */; };
+		D65F95BB269C0E6100E1115F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65F95BA269C0E6100E1115F /* OnboardingViewController.swift */; };
 		D6AEE1B12647B1EB00E85162 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B02647B1EB00E85162 /* Diary.swift */; };
 		D6AEE1B32647B1F600E85162 /* UserPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B22647B1F600E85162 /* UserPlant.swift */; };
 		D6AEE1B52647B20200E85162 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */; };
@@ -110,6 +112,8 @@
 		C5736244340C238EC96D6221 /* Pods-easyPlant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-easyPlant.debug.xcconfig"; path = "Target Support Files/Pods-easyPlant/Pods-easyPlant.debug.xcconfig"; sourceTree = "<group>"; };
 		D6119B29265F929300D947A0 /* WriteDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteDiaryViewController.swift; sourceTree = "<group>"; };
 		D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserPlantTableViewController.swift; sourceTree = "<group>"; };
+		D65F95B7269C0DDF00E1115F /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		D65F95BA269C0E6100E1115F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		D6AEE1B02647B1EB00E85162 /* Diary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		D6AEE1B22647B1F600E85162 /* UserPlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlant.swift; sourceTree = "<group>"; };
 		D6AEE1B42647B20200E85162 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 		12166386263BB8F700125C69 = {
 			isa = PBXGroup;
 			children = (
+				D65F95B9269C0E4000E1115F /* Onboarding */,
 				12166391263BB8F700125C69 /* easyPlant */,
 				121663A8263BB8F800125C69 /* easyPlantTests */,
 				12166390263BB8F700125C69 /* Products */,
@@ -205,6 +210,7 @@
 				12166398263BB8F700125C69 /* Main.storyboard */,
 				D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */,
 				12E3E93F269BFAF4001ED3C6 /* Login.storyboard */,
+				D65F95B7269C0DDF00E1115F /* Onboarding.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
 				1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */,
@@ -349,6 +355,14 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		D65F95B9269C0E4000E1115F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D65F95BA269C0E6100E1115F /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -464,6 +478,7 @@
 				D6CC2DE62663AFF8009E5710 /* MyPlant.storyboard in Resources */,
 				1218F174265A0E19000D99F4 /* Home.storyboard in Resources */,
 				1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */,
+				D65F95B8269C0DDF00E1115F /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +629,7 @@
 				12E3E943269BFB10001ED3C6 /* JoinViewController.swift in Sources */,
 				D6CC2DE026636215009E5710 /* PushAlarmViewController.swift in Sources */,
 				D6119B2C265F92A400D947A0 /* EditUserPlantTableViewController.swift in Sources */,
+				D65F95BB269C0E6100E1115F /* OnboardingViewController.swift in Sources */,
 				121663CB263BBDE200125C69 /* PlantDetailViewController.swift in Sources */,
 				1218F192265A3384000D99F4 /* CustomTabBarController.swift in Sources */,
 				12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */,
