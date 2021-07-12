@@ -28,6 +28,7 @@
 		12E3E930269BD6C5001ED3C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E92F269BD6C5001ED3C6 /* Login.storyboard */; };
 		12E3E932269BD6D7001ED3C6 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E931269BD6D7001ED3C6 /* JoinViewController.swift */; };
 		12E3E934269BD6DB001ED3C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E933269BD6DB001ED3C6 /* LoginViewController.swift */; };
+		12E3E938269BE19F001ED3C6 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E937269BE19F001ED3C6 /* MypageViewController.swift */; };
 		12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */; };
 		12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */; };
 		12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */; };
@@ -95,6 +96,7 @@
 		12E3E92F269BD6C5001ED3C6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		12E3E931269BD6D7001ED3C6 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		12E3E933269BD6DB001ED3C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		12E3E937269BE19F001ED3C6 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
 		12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
 		12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				D6119B2B265F92A400D947A0 /* EditUserPlantTableViewController.swift */,
 				D6CC2DE92663B22D009E5710 /* UserPlantCollectionViewCell.swift */,
 				D6CC2DE72663B14C009E5710 /* UserPlantCollectionViewController.swift */,
+				12E3E937269BE19F001ED3C6 /* MypageViewController.swift */,
 			);
 			path = Myplant;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				12E3E934269BD6DB001ED3C6 /* LoginViewController.swift in Sources */,
 				121663D3263BC2AF00125C69 /* CellTableViewCell.swift in Sources */,
 				D6AEE1B72647B20D00E85162 /* MyPlantViewController.swift in Sources */,
+				12E3E938269BE19F001ED3C6 /* MypageViewController.swift in Sources */,
 				12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */,
 				D6119B2A265F929300D947A0 /* WriteDiaryViewController.swift in Sources */,
 				D6AEE1B32647B1F600E85162 /* UserPlant.swift in Sources */,
