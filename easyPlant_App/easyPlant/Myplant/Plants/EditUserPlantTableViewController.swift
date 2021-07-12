@@ -285,8 +285,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     //모든 내용이 다 채워져야 저장하기 버튼을 활성화 한다
     @IBAction func checkTextComplete(_ sender: UITextField) {
-       
-        if checkTextEmpty()==1 && checkTextFormat()==1{
+       print("complete check start")
+        if checkTextFormat(sender)==1 && checkTextEmpty()==1  {
             saveBarButton.isEnabled = true
         }
         else {
@@ -307,7 +307,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         return 0
     }
     
-    func checkTextFormat() -> Int {
+    func checkTextFormat(_ sender: UITextField) -> Int {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
@@ -318,40 +318,42 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         var textSplit = registerationTextField.text?.split(separator: "-")
         print(textSplit)
         if textSplit==nil || textSplit!.count != 3{
-            return 0
+            checking1 = 0
         }
         
-        if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
-            if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
-                checking1 = 0
-            }
-            else if yearInt<1900 {
-                checking1 = 0
-            }
-            else if monthInt<1 || monthInt>12 {
-                checking1 = 0
-            }
-            else if dayInt>31 || dayInt<1 {
-                checking1 = 0
-            }
-            else {
-                let dateRegister:Date = dateFormatter.date(from:  registerationTextField.text!)!
-                if dateRegister > Date() {
-                    print("미래야그건")
+        if checking1 == 1 {
+            if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
+                if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
                     checking1 = 0
                 }
+                else if yearInt<1900 {
+                    checking1 = 0
+                }
+                else if monthInt<1 || monthInt>12 {
+                    checking1 = 0
+                }
+                else if dayInt>31 || dayInt<1 {
+                    checking1 = 0
+                }
+                else {
+                    let dateRegister:Date = dateFormatter.date(from:  registerationTextField.text!)!
+                    if dateRegister > Date() {
+                        print("미래야그건")
+                        checking1 = 0
+                    }
+                }
             }
-        }
-        else {
-            checking1 = 0
+            else {
+                checking1 = 0
+            }
         }
      
         
-        if checking1 == 0{
+        if checking1 == 0 && sender == registerationTextField{
             formatLabels[0].textColor = .red
             
         }
-        else{
+        else if checking1 == 1 && sender == registerationTextField{
             formatLabels[0].textColor = .white
 
         }
@@ -361,38 +363,40 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         textSplit = recentlyWateringDayTextField.text?.split(separator: "-")
         print(textSplit)
         if textSplit==nil || textSplit!.count != 3{
-            return 0
-        }
-        
-        if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
-            if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
-                checking2 = 0
-            }
-            else if yearInt<1900 {
-                checking2 = 0
-            }
-            else if monthInt<1 || monthInt>12 {
-                checking2 = 0
-            }
-            else if dayInt>31 || dayInt<1 {
-                checking2 = 0
-            }
-            else{
-                let dateRecent:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
-                if dateRecent > Date() {
-                    print("미래야그건")
-                    checking2 = 0
-                }
-            }
-        }
-        else {
             checking2 = 0
         }
         
-        if checking2 == 0{
+        if checking2 == 1 {
+            if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
+                if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
+                    checking2 = 0
+                }
+                else if yearInt<1900 {
+                    checking2 = 0
+                }
+                else if monthInt<1 || monthInt>12 {
+                    checking2 = 0
+                }
+                else if dayInt>31 || dayInt<1 {
+                    checking2 = 0
+                }
+                else{
+                    let dateRecent:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
+                    if dateRecent > Date() {
+                        print("미래야그건")
+                        checking2 = 0
+                    }
+                }
+            }
+            else {
+                checking2 = 0
+            }
+        }
+        
+        if checking2 == 0 && sender == recentlyWateringDayTextField{
             formatLabels[1].textColor = .red
         }
-        else{
+        else if checking2 == 1 && sender == recentlyWateringDayTextField{
             formatLabels[1].textColor = .white
 
         }
@@ -402,14 +406,15 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         let perToInt = Int(wateringDayTextField.text!)
         print(perToInt)
         if perToInt == nil || perToInt! <= 0 {
+            print("checking 3 = 0")
             checking3 = 0
         }
 
-        if checking3 == 0{
+        if checking3 == 0 && sender == wateringDayTextField{
             formatLabels[2].textColor = .red
            
         }
-        else{
+        else if checking3 == 1 && sender == wateringDayTextField{
             formatLabels[2].textColor = .white
 
         }
