@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8B2-zf-AOF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8B2-zf-AOF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -36,7 +36,7 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button" image="plus.app" catalog="system"/>
                                         <connections>
-                                            <segue destination="TcO-SJ-DT1" kind="show" identifier="makeNewUserPlant" id="gjc-S1-oBc"/>
+                                            <action selector="plusBtnClicked:" destination="peC-Tm-KZZ" eventType="touchUpInside" id="p38-UW-3E0"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcG-IS-pz0">
@@ -153,6 +153,8 @@
                         <outlet property="myProfile" destination="wnX-V2-mEs" id="Fkw-mF-iGH"/>
                         <outlet property="userPlantCollectionView" destination="l2G-5B-1Vm" id="0Vu-DO-QQV"/>
                         <segue destination="DRB-W1-V5w" kind="show" identifier="toMypage" id="8Lx-pk-DOY"/>
+                        <segue destination="pfL-aM-X7Q" kind="show" identifier="toLoginPage" id="AeD-yN-guI"/>
+                        <segue destination="TcO-SJ-DT1" kind="show" identifier="makeNewUserPlant" id="6ci-lE-3OF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ffa-Gw-aWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1099,7 +1101,7 @@
                             <tableViewSection id="e12-cn-rlO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="rkw-H7-LSt">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rkw-H7-LSt" id="BIH-Mb-XND">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1130,7 +1132,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="Peo-EB-Jq1">
-                                        <rect key="frame" x="0.0" y="124.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="128" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Peo-EB-Jq1" id="49H-0e-4qp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1184,10 +1186,20 @@
             </objects>
             <point key="canvasLocation" x="1407" y="-685"/>
         </scene>
+        <!--Login-->
+        <scene sceneID="TR7-bf-8Ko">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="pfL-aM-X7Q" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="b9J-Qt-6wA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hKx-IZ-olj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1515" y="-579"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="1Ye-oo-bKU"/>
-        <segue reference="fv4-gj-Q8Y"/>
+        <segue reference="6ci-lE-3OF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

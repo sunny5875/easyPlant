@@ -115,7 +115,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="owf-qX-XP8">
-                                        <rect key="frame" x="0.0" y="381" width="414" height="205"/>
+                                        <rect key="frame" x="0.0" y="381" width="414" height="243"/>
                                         <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
                                         <inset key="separatorInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
                                         <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="TSc-FQ-Nr2">
@@ -203,13 +203,6 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="mmk-D2-mYe"/>
                                         </connections>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KpP-1z-yy8">
-                                        <rect key="frame" x="144.5" y="594" width="125" height="30"/>
-                                        <state key="normal" title="로그인창 테스트 버튼"/>
-                                        <connections>
-                                            <segue destination="IFo-1R-CdR" kind="show" id="vQ0-MC-qY8"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="owf-qX-XP8" firstAttribute="centerX" secondItem="vZl-nR-zYl" secondAttribute="centerX" id="1OI-GG-YuB"/>
@@ -242,6 +235,7 @@
                         <outlet property="plantListTableView" destination="owf-qX-XP8" id="w1S-cH-VXC"/>
                         <outlet property="userView" destination="GNE-r7-qch" id="M41-9Q-ARQ"/>
                         <segue destination="Cw3-IN-yga" kind="presentation" identifier="levelViewSegue" id="Xsw-P8-9Mb"/>
+                        <segue destination="IFo-1R-CdR" kind="show" identifier="toLoginPage" id="EAT-I5-MhZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -8,9 +8,11 @@
 import UIKit
 import FirebaseStorage
 import Photos
+import FirebaseAuth
 
 class MypageViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
 
+    @IBOutlet weak var logoutBtn: UIButton!
     @IBOutlet var infoLabels: [UILabel]!
     
     @IBOutlet weak var myInfo: UIView!
@@ -185,6 +187,16 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         let secondVC = storyboard.instantiateViewController(identifier: "OnboardingViewController")
         
         present(secondVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func logout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

@@ -10,6 +10,7 @@ import FSCalendar
 import Charts
 import UserNotifications
 import Photos
+import FirebaseAuth
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -274,7 +275,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func showLevelView(sender: UIView) {
-        performSegue(withIdentifier: "levelViewSegue", sender: nil)
+        if Auth.auth().currentUser == nil {
+            //만약 로그인이 안된 상태라면
+            performSegue(withIdentifier: "toLoginPage", sender: nil)
+        } else {
+            //만약 로그인이 된 상태라면
+            myUser.userName = (Auth.auth().currentUser?.displayName)!
+            performSegue(withIdentifier: "levelViewSegue", sender: nil)
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

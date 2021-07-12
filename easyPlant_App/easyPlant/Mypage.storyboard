@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="usN-mi-2BR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="usN-mi-2BR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -197,11 +197,22 @@
                                     <constraint firstAttribute="height" constant="30" id="VNb-a5-mFN"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txM-3g-0j0">
+                                <rect key="frame" x="342" y="44" width="52" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="usN-mi-2BR" eventType="touchUpInside" id="UpW-XG-xnW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Id5-Rw-GsK"/>
                         <color key="backgroundColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="sII-lc-xbG" firstAttribute="leading" secondItem="Id5-Rw-GsK" secondAttribute="leading" id="2Xe-XT-Brg"/>
+                            <constraint firstItem="txM-3g-0j0" firstAttribute="top" secondItem="Id5-Rw-GsK" secondAttribute="top" id="2mV-Zd-Ucu"/>
                             <constraint firstItem="Id5-Rw-GsK" firstAttribute="trailing" secondItem="Bj9-F4-gq4" secondAttribute="trailing" constant="110" id="6be-q1-78c"/>
                             <constraint firstItem="Id5-Rw-GsK" firstAttribute="bottom" secondItem="sII-lc-xbG" secondAttribute="bottom" id="8oD-91-y6v"/>
                             <constraint firstItem="IxN-zY-0XT" firstAttribute="centerY" secondItem="mr1-C6-UA9" secondAttribute="centerY" id="BYX-xy-Mgy"/>
@@ -211,6 +222,7 @@
                             <constraint firstItem="mr1-C6-UA9" firstAttribute="leading" secondItem="Bj9-F4-gq4" secondAttribute="leading" multiplier="2.5" id="TJ8-eQ-fuV"/>
                             <constraint firstItem="Bj9-F4-gq4" firstAttribute="top" secondItem="Id5-Rw-GsK" secondAttribute="top" id="dNF-Qh-DP5"/>
                             <constraint firstItem="Bj9-F4-gq4" firstAttribute="leading" secondItem="Id5-Rw-GsK" secondAttribute="leading" constant="110" id="kuq-dw-GLC"/>
+                            <constraint firstItem="Id5-Rw-GsK" firstAttribute="trailing" secondItem="txM-3g-0j0" secondAttribute="trailing" constant="20" id="oEb-kB-Ed9"/>
                             <constraint firstItem="Bj9-F4-gq4" firstAttribute="bottom" secondItem="sII-lc-xbG" secondAttribute="top" constant="-60" id="saW-44-QMD"/>
                         </constraints>
                     </view>
@@ -221,6 +233,7 @@
                         <outlet property="guide" destination="LNl-gK-Y3j" id="IZN-oh-zHp"/>
                         <outlet property="guideButton" destination="C6c-Gq-6Kh" id="Pa8-2O-4GS"/>
                         <outlet property="guideImage" destination="Ki1-RO-Kic" id="kMH-dh-yv2"/>
+                        <outlet property="logoutBtn" destination="txM-3g-0j0" id="kTa-ZY-qqE"/>
                         <outlet property="myInfo" destination="mCF-k0-UbK" id="j7h-r8-TgF"/>
                         <outlet property="profileImage" destination="Bj9-F4-gq4" id="mLN-rr-iWM"/>
                         <outletCollection property="infoLabels" destination="oo4-Z8-9Ea" collectionClass="NSMutableArray" id="RxY-9A-dtc"/>
