@@ -107,7 +107,7 @@
             </objects>
             <point key="canvasLocation" x="-745" y="86"/>
         </scene>
-        <!--Join View Controller-->
+        <!--회원가입-->
         <scene sceneID="ex7-Hl-lEG">
             <objects>
                 <viewController id="KVH-xD-GWD" customClass="JoinViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
@@ -160,7 +160,7 @@
                             <constraint firstItem="rPX-lw-8HI" firstAttribute="leading" secondItem="kKd-xA-3xX" secondAttribute="leading" constant="40" id="Zh7-QJ-1TT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="IYK-nh-mZ5"/>
+                    <navigationItem key="navigationItem" title="회원가입" id="IYK-nh-mZ5"/>
                     <connections>
                         <outlet property="IDField" destination="avB-4U-qCW" id="gMq-O9-Zd7"/>
                         <outlet property="joinBtn" destination="gx5-cm-slp" id="otu-dx-lNV"/>
@@ -173,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="1006" y="18"/>
         </scene>
-        <!--Find View Controller-->
+        <!--비밀번호 재설정-->
         <scene sceneID="j3p-XS-cAi">
             <objects>
                 <viewController id="MEV-63-oqM" customClass="FindViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
@@ -212,7 +212,7 @@
                             <constraint firstItem="F5n-u4-fEc" firstAttribute="centerX" secondItem="180-ur-xhu" secondAttribute="centerX" id="yQR-Tz-vIL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4Wf-2g-73U"/>
+                    <navigationItem key="navigationItem" title="비밀번호 재설정" id="4Wf-2g-73U"/>
                     <connections>
                         <outlet property="IDField" destination="edO-WU-dux" id="5NO-qd-HKT"/>
                     </connections>
