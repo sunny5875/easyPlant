@@ -166,9 +166,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         formatter.dateFormat = "yyyy-MM-dd"
         dateString = formatter.string(from: Date())
         
-        if let image = imageView.image, let title = myPlant?.name {
-            uploadDiaryImage(img: image, title: "\(title)\(dateString)")
-        }
+        
         dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "pickImageSegue", sender: self)
     }
@@ -203,6 +201,8 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         if let sourceVC = sourceViewController as? EditUserPlantTableViewController {
             myPlant = sourceVC.editPlant
             updateUI()
+            diaryCollectionView.reloadData()
+
         }
         // Use data from the view controller which initiated the unwind segue
     }
@@ -332,6 +332,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 for i in 0...(userPlants.count-1) {
                     if(userPlants[i].name == self.myPlant!.name){
                         print("deleteplant success")
+                        deleteUserPlantDiaryImage(title: "\(self.myPlant!.name)")
                         userPlants.remove(at: i)
                         deleteUserPlantImage(title: "\(self.myPlant!.name)")
                         break

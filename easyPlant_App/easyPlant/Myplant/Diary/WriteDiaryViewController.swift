@@ -42,14 +42,15 @@ class WriteDiaryViewController: UIViewController {
 //        sender.resignFirstResponder()
         
         //새로 만들기였다면
-        if(isEdit == false){
-            if titleTextField.text != "", contentTextField.text != "" {
-                saveBarButton.isEnabled = true
-            
-            
+        
+        if titleTextField.text != "", contentTextField.text != "" {
+            saveBarButton.isEnabled = true
                 
-            }
         }
+        else {
+            saveBarButton.isEnabled = false
+        }
+        
         
     }
     
@@ -62,7 +63,24 @@ class WriteDiaryViewController: UIViewController {
                 if(userPlants[i].name == userplant?.name){
                     for j in 0...userPlants[i].diarylist.count-1 {
                         if(userPlants[i].diarylist[j].date == editDiary?.date){
-                            editDiary?.title = titleTextField.text!
+                            
+                            
+                            print("find userplant index")
+                            if let image = imageView.image, let title = userplant?.name {
+                                deleteDiaryImage(title: "\(title)-\((editDiary!.title))-\(editDiary!.date)")
+                                
+                                editDiary?.title = titleTextField.text!
+                                print("edit save diary")
+                                
+                                uploadDiaryImage(img: image, title: "\(title)-\(editDiary!.title)-\(editDiary!.date)")
+                                
+                                let tmpDate = editDiary!.date
+                                let tmpTitle = editDiary!.title
+                                editDiary?.picture =  "\(title)-\(tmpTitle)-\(tmpDate)"
+                                
+                                
+                            }
+                         
                             editDiary?.story = contentTextField.text!
                             
                             userPlants[i].diarylist[j] = editDiary!
@@ -161,6 +179,8 @@ class WriteDiaryViewController: UIViewController {
         
         if(isEdit == true){
             saveBarButton.isEnabled = true
+            imageView.image = image
+
         }
         
         

@@ -82,6 +82,7 @@ class MyDiaryViewController: UIViewController {
             if let detailVC = segue.destination as? WriteDiaryViewController{
                 detailVC.editDiary = diary
                 detailVC.userplant = myplant
+                detailVC.image = imageLabel.image
                 detailVC.isEdit = true
             }
         }

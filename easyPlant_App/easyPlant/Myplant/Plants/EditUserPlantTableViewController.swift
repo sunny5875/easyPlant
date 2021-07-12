@@ -176,7 +176,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 if(userPlants[i].name == editPlant?.name){
                     //식물의 정보를 수정한다 & 입력 형식 검사
                     editPlant = userPlants[i]
-                    editPlant?.name = nameTextField.text!
                     editPlant?.location = locationTextField.text!
                     editPlant?.plantSpecies = speciesTextField.text!
                     editPlant?.recentWater = recentlyWateringDayTextField.text!
@@ -191,15 +190,24 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                     if(isChangePhoto == true){
                         editPlant?.plantImage = imageView.image!.debugDescription
                         if let name = editPlant?.name , let img = imageView.image{
-                            uploadUserPlantImage(img: img, title: name)
+                            deleteUserPlantImage(title: name)
+                            editPlant?.name = nameTextField.text!
+                            uploadUserPlantImage(img: img, title: editPlant!.name)
                             print("image save -1")
                         }
                         editPlant?.plantImage = nameTextField.text!
+                        print("image change")
 
                     }
-                    //아니라면 그 이미지 그대로
+                    //아니라면
                     else{
-                        editPlant?.plantImage = userPlants[i].plantImage
+                        if let name = editPlant?.name , let img = imageView.image{
+                            deleteUserPlantImage(title: name)
+                            editPlant?.name = nameTextField.text!
+                            uploadUserPlantImage(img: img, title: editPlant!.name)
+                            print("image save -2")
+                        }
+                        editPlant?.plantImage = nameTextField.text!
                     }
                     
 
@@ -262,6 +270,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             }
             
             if let name = editPlant?.name , let img = imageView.image{
+                deleteUserPlantImage(title: name)
                 uploadUserPlantImage(img: img, title: name)
                 print("image save -2")
             }
@@ -450,6 +459,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         imageView.image = selectedImage
         if let name = editPlant?.name , let img = imageView.image{
+            deleteUserPlantImage(title: name)
             uploadUserPlantImage(img: img, title: name)
             print("image save -0")
         }

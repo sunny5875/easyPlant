@@ -298,6 +298,7 @@ func uploadUserPlantImage(img :UIImage, title: String){
  }
 
 func deleteUserPlantImage(title : String){
+    //식물 사진 지우기
     // Create a reference to the file to delete
     let desertRef = storageRef.child("/userPlant/\(title)")
 
@@ -310,8 +311,40 @@ func deleteUserPlantImage(title : String){
       }
     }
     
+    // 1. 인스턴스 생성 - 동일
+    let fileManager = FileManager.default
+    let urlString:String = documentsDirectory.absoluteString + "localPlant/\(title)"
+    let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    let localURL = URL(string: encodedString)!
+   
+    // Try Catch
+    do {
+        // 5-1. 삭제하기
+        try fileManager.removeItem(at: localURL)
+    } catch let e {
+        // 5-2. 에러처리
+        print(e.localizedDescription)
+    }
+    
+    
+    
     
  
 }
  
+func deleteUserPlantDiaryImage(title : String){
+    //해당 식물 찾아오기
+    var targetPlant : UserPlant?
+    for i in 0...(userPlants.count-1) {
+        if(userPlants[i].name == title){
+            targetPlant = userPlants[i]
+        }
+    }
+    
+    //해당 식물의 다이어리 지우기
+    for diary in targetPlant!.diarylist {
+        deleteDiaryImage(title: diary.picture)
+    }
+    
+}
 
