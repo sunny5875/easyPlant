@@ -736,7 +736,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="올바른 형식으로 입력해주세요   " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qL-Fw-OWZ">
                                                                     <rect key="frame" x="105.5" y="9" width="268.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -793,7 +793,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바른 형식으로 입력해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLI-FR-yhU">
                                                                     <rect key="frame" x="208.5" y="9" width="165.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -941,7 +941,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바른 형식으로 입력해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofw-cS-Xqr">
                                                                     <rect key="frame" x="208.5" y="9" width="165.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -1005,6 +1005,9 @@
                         <outlet property="saveBarButton" destination="6ao-sp-BQq" id="rkv-5Z-GWz"/>
                         <outlet property="speciesTextField" destination="HUr-P5-vL6" id="sqA-zi-qpT"/>
                         <outlet property="wateringDayTextField" destination="crQ-0J-KiK" id="Jwd-cG-xiU"/>
+                        <outletCollection property="formatLabels" destination="4qL-Fw-OWZ" collectionClass="NSMutableArray" id="nKM-EY-sVP"/>
+                        <outletCollection property="formatLabels" destination="NLI-FR-yhU" collectionClass="NSMutableArray" id="bRD-UZ-UnF"/>
+                        <outletCollection property="formatLabels" destination="ofw-cS-Xqr" collectionClass="NSMutableArray" id="Hdq-22-WL3"/>
                         <segue destination="Tbh-Dk-QRp" kind="unwind" identifier="edituesrPlant" unwindAction="unwindToSetting:" id="oer-RP-b9X"/>
                         <segue destination="Tbh-Dk-QRp" kind="unwind" identifier="makeNewPlant" unwindAction="unwindToNewPlantsList:" id="bwn-C8-F6X"/>
                     </connections>

@@ -18,6 +18,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet var formatLabels: [UILabel]!
     
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -136,7 +137,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             
                 //해당 식물의 이미지를 가져오기
                 //imageView.image = UIImage(named : usrplant.plantImage)
-                downloadUserPlantImage(imgview: imageView!, title: "\(editPlant!.name)")
+                downloadUserPlantImage(imgview: imageView!, title: "\(editPlant!.plantImage)")
                 
                 //해당 식물의 정보를 불러오기
                 nameTextField.text = usrplant.name
@@ -168,11 +169,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     //저장 버튼을 눌렀을 경우
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if checkTextFormat()==0{
-            print("format error")
-            sendFailMsg()
-            return
-        }
+       
         //수정하기 였다면
         if(isEdit == true){
             for i in 0...(userPlants.count-1) {
@@ -289,7 +286,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     //모든 내용이 다 채워져야 저장하기 버튼을 활성화 한다
     @IBAction func checkTextComplete(_ sender: UITextField) {
        
-        if checkTextEmpty()==1 {
+        if checkTextEmpty()==1 && checkTextFormat()==1{
             saveBarButton.isEnabled = true
         }
         else {
@@ -317,6 +314,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         
         //등록일 형식 검사
+        var checking1 = 1
         var textSplit = registerationTextField.text?.split(separator: "-")
         print(textSplit)
         if textSplit==nil || textSplit!.count != 3{
@@ -325,29 +323,41 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
             if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
-                return 0
+                checking1 = 0
             }
-            if yearInt<1900 {
-                return 0
+            else if yearInt<1900 {
+                checking1 = 0
             }
-            if monthInt<1 || monthInt>12 {
-                return 0
+            else if monthInt<1 || monthInt>12 {
+                checking1 = 0
             }
-            if dayInt>31 || dayInt<1 {
-                return 0
+            else if dayInt>31 || dayInt<1 {
+                checking1 = 0
             }
-            let dateRegister:Date = dateFormatter.date(from:  registerationTextField.text!)!
-            if dateRegister > Date() {
-                print("미래야그건")
-                return 0
+            else {
+                let dateRegister:Date = dateFormatter.date(from:  registerationTextField.text!)!
+                if dateRegister > Date() {
+                    print("미래야그건")
+                    checking1 = 0
+                }
             }
         }
         else {
-            return 0
+            checking1 = 0
         }
      
+        
+        if checking1 == 0{
+            formatLabels[0].textColor = .red
+            
+        }
+        else{
+            formatLabels[0].textColor = .white
+
+        }
        
         //최근 물준 날짜 형식 검사
+        var checking2 = 1
         textSplit = recentlyWateringDayTextField.text?.split(separator: "-")
         print(textSplit)
         if textSplit==nil || textSplit!.count != 3{
@@ -356,47 +366,63 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         if let yearText = textSplit?[0],let yearInt = Int(yearText),let monthText = textSplit?[1],let monthInt = Int(monthText),let dayText = textSplit?[2],let dayInt = Int(dayText){
             if yearText.count != 4 || monthText.count != 2 || dayText.count != 2 {
-                return 0
+                checking2 = 0
             }
-            if yearInt<1900 {
-                return 0
+            else if yearInt<1900 {
+                checking2 = 0
             }
-            if monthInt<1 || monthInt>12 {
-                return 0
+            else if monthInt<1 || monthInt>12 {
+                checking2 = 0
             }
-            if dayInt>31 || dayInt<1 {
-                return 0
+            else if dayInt>31 || dayInt<1 {
+                checking2 = 0
             }
-            let dateRecent:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
-            if dateRecent > Date() {
-                print("미래야그건")
-                return 0
+            else{
+                let dateRecent:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
+                if dateRecent > Date() {
+                    print("미래야그건")
+                    checking2 = 0
+                }
             }
+        }
+        else {
+            checking2 = 0
+        }
+        
+        if checking2 == 0{
+            formatLabels[1].textColor = .red
+        }
+        else{
+            formatLabels[1].textColor = .white
+
+        }
+            
+        //물주기 형식 검사
+        var checking3 = 1
+        let perToInt = Int(wateringDayTextField.text!)
+        print(perToInt)
+        if perToInt == nil || perToInt! <= 0 {
+            checking3 = 0
+        }
+
+        if checking3 == 0{
+            formatLabels[2].textColor = .red
+           
+        }
+        else{
+            formatLabels[2].textColor = .white
+
+        }
+        
+        if checking1 == 1 && checking2 == 1 && checking3 == 1 {
+            return 1
         }
         else {
             return 0
         }
-            
-        //물주기 형식 검사
-        let perToInt = Int(wateringDayTextField.text!)
-        print(perToInt)
-        if perToInt == nil || perToInt! <= 0 {
-            return 0
-        }
-
-        return 1
     }
     
-    func sendFailMsg(){
-        let alert = UIAlertController(title: "제목뭐하지", message: "올바른 형식으로 입력해주세요", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-
-        }
-        alert.addAction(okAction)
-
-        present(alert, animated: false, completion: nil)
-
-    }
+ 
     
     //이미지 피커 컨트롤러
     func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
