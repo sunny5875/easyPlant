@@ -173,7 +173,6 @@
 		12166386263BB8F700125C69 = {
 			isa = PBXGroup;
 			children = (
-				D65F95B9269C0E4000E1115F /* Onboarding */,
 				12166391263BB8F700125C69 /* easyPlant */,
 				121663A8263BB8F800125C69 /* easyPlantTests */,
 				12166390263BB8F700125C69 /* Products */,
@@ -198,6 +197,7 @@
 			children = (
 				12166392263BB8F700125C69 /* AppDelegate.swift */,
 				12166394263BB8F700125C69 /* SceneDelegate.swift */,
+				D65F95B9269C0E4000E1115F /* Onboarding */,
 				3E86D01F269963D400C99B13 /* Login */,
 				12799938266E07BD0072E9FF /* Authorization */,
 				1279993A266E07CD0072E9FF /* Custom */,
