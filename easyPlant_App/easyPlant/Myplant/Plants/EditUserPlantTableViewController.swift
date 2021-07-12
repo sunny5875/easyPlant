@@ -76,7 +76,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             switch photoAuthorizationStatus {
             case .authorized: print("접근 허가")
                 let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
-                    imagePicker.sourceType = .photoLibrary
+                    imagePicker.sourceType = .savedPhotosAlbum
                     self.present(imagePicker,animated: true,completion: nil)
                     })
                     alertController.addAction(photoLibraryAction)
@@ -84,6 +84,16 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 //팝오버로 보여준다
                 alertController.popoverPresentationController?.sourceView = sender as! UIButton
                 present(alertController, animated: true, completion: nil)
+                /*
+            case .limited: print("제한된 접근 허가")
+                let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
+                    imagePicker.sourceType = .savedPhotosAlbum
+                    self.present(imagePicker, animated: true, completion: nil)
+                    alertController.addAction(photoLibraryAction)
+                    
+                    alertController.popoverPresentationController?.sourceView = sender as! UIButton
+                    present(alertController, animated: true, completion: nil)
+ */
             case .denied: print("접근 거부")
                 setAuthAlertAction()
             case .notDetermined: requestGalleryPermission()
