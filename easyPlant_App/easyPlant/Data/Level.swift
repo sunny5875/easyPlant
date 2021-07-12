@@ -26,3 +26,4 @@ let levels: [Level] = [Level(name: "일반인", hapiness: 0, numPlants: 0,growin
                        Level(name: "숙련된 농부", hapiness: 90, numPlants: 10, growingDays: 360, icon: "apple", description: "1년동안 당신의 식물들과 행복한 시간 보내셨나요? 이제 식물들을 돌보는 것에 익숙해졌을거라 생각해요."),
                        Level(name: "진정한 농부", hapiness: 95, numPlants: 15, growingDays: 720, icon: "tree", description: "축하드립니다. 이제 당신도 진정한 농부! 1년동안 식물의 행복을 유지해서 Easy Planter에 도전하세요!"),
                        Level(name: "Easy Planter", hapiness: 95, numPlants: 15, growingDays: 1080, icon: "forest", description: "여기까지 오셨네요! 앞으로는 쭉 Easy Planter로서 식물을 행복하게 해주세요 (해당 단계 이후로는 단계가 떨어지지 않습니다.)")]
+//

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class JoinViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
@@ -47,7 +47,64 @@ class JoinViewController: UIViewController {
     }
     
     @IBAction func joinBtnTapped(_ sender: Any) {
+        if nameField.text! == "" {
+            showAlert(message: "이름을 입력해주세요")
+            return
+        }
+        if IDField.text! == "" {
+            showAlert(message: "아이디를 입력해주세요")
+            return
+        }
         
+        if pwField.text! == "" {
+            showAlert(message: "비밀번호를 입력해주세요")
+            return
+        }
+        
+        if pwCheckField.text! == "" {
+            showAlert(message: "비밀번호 확인란을 입력해주세요")
+            return
+        }
+        
+        if pwField.text! != pwCheckField.text! {
+            showAlert(message: "비밀번호가 맞지 않습니다")
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: IDField.text!, password: pwField.text!) {
+            (user, error) in
+            
+            if error != nil {
+                if let errorNo = AuthErrorCode(rawValue: (error?._code)!) {
+                    switch errorNo {
+                    case AuthErrorCode.invalidEmail:
+                        self.showAlert(message: "유효하지 않은 이메일 입니다")
+                    case AuthErrorCode.emailAlreadyInUse:
+                        self.showAlert(message: "이미 가입된 아이디입니다.")
+                    case AuthErrorCode.weakPassword:
+                        self.showAlert(message: "6자리 이상의 비밀번호를 입력해주세요")
+                    default:
+                        print(errorNo)
+                    }
+                }
+            } else {
+                if user != nil {
+                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                    changeRequest?.displayName = self.nameField.text!
+                    changeRequest?.commitChanges(completion: nil)
+                    Auth.auth().currentUser?.sendEmailVerification(completion: nil)
+                    print("회원가입 성공")
+                } else {
+                    print("회원가입 실패")
+                }
+            }
+        }
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "회원가입에 실패하였습니다", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
+        self.present(alert, animated: true, completion: nil)
     }
     
 

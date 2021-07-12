@@ -299,7 +299,7 @@ func uploadUserPlantImage(img :UIImage, title: String){
 
 func deleteUserPlantImage(title : String){
     // Create a reference to the file to delete
-    let desertRef = storageRef.child("\(title)")
+    let desertRef = storageRef.child("/userPlant/\(title)")
 
     // Delete the file
     desertRef.delete { error in
