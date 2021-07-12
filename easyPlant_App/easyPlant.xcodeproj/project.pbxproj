@@ -25,7 +25,6 @@
 		12799956266E09750072E9FF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12799955266E09740072E9FF /* NotificationViewController.swift */; };
 		1279995B266E09800072E9FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1279995A266E09800072E9FF /* HomeViewController.swift */; };
 		1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */; };
-		12E3E930269BD6C5001ED3C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E92F269BD6C5001ED3C6 /* Login.storyboard */; };
 		12E3E938269BE19F001ED3C6 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E937269BE19F001ED3C6 /* MypageViewController.swift */; };
 		12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */; };
 		12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */; };
@@ -91,7 +90,6 @@
 		12799955266E09740072E9FF /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		1279995A266E09800072E9FF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		12E3E92F269BD6C5001ED3C6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		12E3E937269BE19F001ED3C6 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
 		12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 				12166398263BB8F700125C69 /* Main.storyboard */,
 				D6CC2DE52663AFF8009E5710 /* MyPlant.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
-				12E3E92F269BD6C5001ED3C6 /* Login.storyboard */,
 				121663A0263BB8F800125C69 /* Info.plist */,
 				1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */,
 				121663B3263BB8F800125C69 /* easyPlantUITests */,
@@ -427,7 +424,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12E3E930269BD6C5001ED3C6 /* Login.storyboard in Resources */,
 				1216639F263BB8F800125C69 /* LaunchScreen.storyboard in Resources */,
 				1216639C263BB8F800125C69 /* Assets.xcassets in Resources */,
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,

@@ -17,13 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0py-NT-dip">
-                                <rect key="frame" x="0.0" y="405" width="414" height="408"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0py-NT-dip">
+                                <rect key="frame" x="0.0" y="380" width="414" height="433"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cn0-US-70C">
-                                        <rect key="frame" x="59" y="-38" width="296" height="188"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn0-US-70C">
+                                        <rect key="frame" x="30" y="-35" width="354" height="230"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="현재 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQl-0y-IBp">
                                                 <rect key="frame" x="23" y="23" width="82" height="27"/>
@@ -35,9 +33,8 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R5Z-oK-6cW">
-                                        <rect key="frame" x="59" y="176" width="296" height="205"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5Z-oK-6cW">
+                                        <rect key="frame" x="30" y="220" width="354" height="188"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="가이드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCw-EO-KO5">
                                                 <rect key="frame" x="30" y="26" width="58" height="27"/>
@@ -50,10 +47,20 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstItem="R5Z-oK-6cW" firstAttribute="leading" secondItem="0py-NT-dip" secondAttribute="leading" constant="30" id="7Sn-OC-VUk"/>
+                                    <constraint firstItem="cn0-US-70C" firstAttribute="top" secondItem="0py-NT-dip" secondAttribute="top" constant="-35" id="BDb-7K-eRp"/>
+                                    <constraint firstItem="R5Z-oK-6cW" firstAttribute="top" secondItem="cn0-US-70C" secondAttribute="bottom" constant="25" id="ODd-2V-cBk"/>
+                                    <constraint firstAttribute="bottom" secondItem="R5Z-oK-6cW" secondAttribute="bottom" constant="25" id="Q6G-ao-FuD"/>
+                                    <constraint firstItem="cn0-US-70C" firstAttribute="leading" secondItem="0py-NT-dip" secondAttribute="leading" constant="30" id="WkR-Sb-P2q"/>
+                                    <constraint firstItem="R5Z-oK-6cW" firstAttribute="top" secondItem="0py-NT-dip" secondAttribute="top" constant="220" id="i15-cv-WSi"/>
+                                    <constraint firstAttribute="trailing" secondItem="cn0-US-70C" secondAttribute="trailing" constant="30" id="vbr-Wa-Lym"/>
+                                    <constraint firstAttribute="trailing" secondItem="R5Z-oK-6cW" secondAttribute="trailing" constant="30" id="xCG-Ie-kKH"/>
+                                </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="NTz-Nh-r46">
-                                <rect key="frame" x="122" y="162" width="170" height="170"/>
+                                <rect key="frame" x="122" y="140" width="170" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="NHp-8Y-dC7"/>
                                     <constraint firstAttribute="height" constant="170" id="VhM-Wo-lDh"/>
@@ -63,8 +70,12 @@
                         <viewLayoutGuide key="safeArea" id="mkb-tC-yQg"/>
                         <color key="backgroundColor" red="0.68235294120000001" green="0.83529411760000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="NTz-Nh-r46" firstAttribute="top" secondItem="mkb-tC-yQg" secondAttribute="top" constant="22" id="hfc-4k-5Yp"/>
+                            <constraint firstItem="0py-NT-dip" firstAttribute="trailing" secondItem="mkb-tC-yQg" secondAttribute="trailing" id="beb-5V-uRm"/>
+                            <constraint firstItem="NTz-Nh-r46" firstAttribute="top" secondItem="mkb-tC-yQg" secondAttribute="top" id="hfc-4k-5Yp"/>
+                            <constraint firstItem="mkb-tC-yQg" firstAttribute="bottom" secondItem="0py-NT-dip" secondAttribute="bottom" id="pRV-YG-6u4"/>
+                            <constraint firstItem="0py-NT-dip" firstAttribute="leading" secondItem="mkb-tC-yQg" secondAttribute="leading" id="qg8-Oz-dSm"/>
                             <constraint firstItem="NTz-Nh-r46" firstAttribute="centerX" secondItem="5nu-rM-bZe" secondAttribute="centerX" id="vrZ-hz-auJ"/>
+                            <constraint firstItem="0py-NT-dip" firstAttribute="top" secondItem="NTz-Nh-r46" secondAttribute="bottom" constant="70" id="zEn-3K-oZe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="사용자님" largeTitleDisplayMode="always" id="Xav-Bh-axm"/>
@@ -1216,6 +1227,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
