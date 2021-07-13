@@ -68,7 +68,9 @@ struct User : Codable{
     
     mutating func updateUser() {
         //여기에 사용자이름 업데이트 해주기 - 회원가입시에
-               userName = (Auth.auth().currentUser?.displayName)!
+        if let updateName = (Auth.auth().currentUser?.displayName){
+            userName = updateName
+        }
                
         numPlants = userPlants.count
         print("%%%%%%%%%% register : \(registeredDate), date : \(Date())")
