@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class FindViewController: UIViewController {
+class FindViewController: UIViewController ,UITextViewDelegate{
 
     @IBOutlet weak var findBut: UIButton!
     @IBOutlet weak var IDField: UITextField!
@@ -52,4 +52,7 @@ class FindViewController: UIViewController {
     }
     */
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

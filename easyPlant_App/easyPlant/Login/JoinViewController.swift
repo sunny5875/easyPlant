@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class JoinViewController: UIViewController {
+class JoinViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var IDField: UITextField!
     @IBOutlet weak var pwField: UITextField!
@@ -116,15 +116,8 @@ class JoinViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
-    */
 
 }
