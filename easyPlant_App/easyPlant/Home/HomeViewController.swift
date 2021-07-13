@@ -63,6 +63,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             
+            if Auth.auth().currentUser != nil {
+                do {
+                    try Auth.auth().signOut()
+                } catch let signOutError as NSError {
+                    print ("Error signing out: %@", signOutError)
+                }
+                
+                self.navigationController?.popViewController(animated: true)
+            }
             
             let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "OnboardingViewController")
