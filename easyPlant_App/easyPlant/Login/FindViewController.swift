@@ -14,7 +14,7 @@ class FindViewController: UIViewController {
     @IBOutlet weak var IDField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        findBut.layer.cornerRadius = findBut.frame.height / 5
+        findBut.layer.cornerRadius = 15
         // Do any additional setup after loading the view.
     }
     
