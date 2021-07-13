@@ -299,7 +299,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             performSegue(withIdentifier: "toLoginPage", sender: nil)
         } else {
             //만약 로그인이 된 상태라면
-            myUser.userName = (Auth.auth().currentUser?.displayName)!
+            myUser.userName = (Auth.auth().currentUser?.displayName) ?? "오류"
             performSegue(withIdentifier: "levelViewSegue", sender: nil)
         }
     }
@@ -323,7 +323,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let current_date_string = formatter.string(from: Date())
         
         listPlantsIndex = []
-        for i in 0...userPlants.count-1 {
+        
+        for i in 0..<userPlants.count {
             var watering_day_string = formatter.string(from: userPlants[i].wateringDay)
             
             if watering_day_string < current_date_string && userPlants[i].watered == 1 {
@@ -493,7 +494,7 @@ extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance
         let calendarDate = formatter.string(from: date)
         
         var dotNum = 0
-        for i in 0...userPlants.count-1 {
+        for i in 0..<userPlants.count {
             let wateringDate = formatter.string(from: userPlants[i].wateringDay)
             if wateringDate == calendarDate {
                 dotNum += 1

@@ -201,6 +201,10 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
             print ("Error signing out: %@", signOutError)
         }
         
+        // local에 데이터 다 지우기..
+        
+        loadUserPlant()
+        loadUserInfo()
         self.navigationController?.popViewController(animated: true)
     }
     
