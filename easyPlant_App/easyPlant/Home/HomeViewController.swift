@@ -87,6 +87,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
        
         for (i, plant) in userPlants.enumerated() {
+            if Auth.auth().currentUser == nil {
+                break
+            }
             let notiContent = UNMutableNotificationContent()
             let userNotificationCenter = UNUserNotificationCenter.current()
             userNotificationCenter.delegate = self
