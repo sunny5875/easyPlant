@@ -22,13 +22,13 @@ class LoginViewController: UIViewController {
         
         IDField.borderStyle = .none
         let border = CALayer()
-        border.frame = CGRect(x: 0, y: IDField.frame.size.height-1, width: IDField.frame.width, height: 1)
+        border.frame = CGRect(x: 0, y: IDField.frame.size.height-1, width: IDField.frame.size.width, height: 1)
         IDField.layer.addSublayer((border))
         border.backgroundColor = UIColor.lightGray.cgColor
         
         pwField.borderStyle = .none
         let border2 = CALayer()
-        border2.frame = CGRect(x: 0, y: pwField.frame.size.height-1, width: pwField.frame.width, height: 1)
+        border2.frame = CGRect(x: 0, y: pwField.frame.size.height-1, width: pwField.frame.size.width, height: 1)
         border2.backgroundColor = UIColor.lightGray.cgColor
         pwField.layer.addSublayer((border2))
         

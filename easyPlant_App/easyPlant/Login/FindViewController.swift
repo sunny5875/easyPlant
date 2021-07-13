@@ -10,10 +10,11 @@ import FirebaseAuth
 
 class FindViewController: UIViewController {
 
+    @IBOutlet weak var findBut: UIButton!
     @IBOutlet weak var IDField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        findBut.layer.cornerRadius = findBut.frame.height / 5
         // Do any additional setup after loading the view.
     }
     
