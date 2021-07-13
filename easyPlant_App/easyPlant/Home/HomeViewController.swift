@@ -327,7 +327,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             var watering_day_string = formatter.string(from: userPlants[i].wateringDay)
             
             if watering_day_string < current_date_string && userPlants[i].watered == 1 {
-                
+                print("=======변경=====")
                 userPlants[i].recentWater = formatter.string(from: userPlants[i].wateringDay)
                 userPlants[i].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[i].waterPeriod, to: userPlants[i].wateringDay)!
                 

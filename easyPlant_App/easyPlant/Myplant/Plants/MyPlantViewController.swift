@@ -150,7 +150,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func setAuthAlertAction() {
         let authAlertController: UIAlertController
-        authAlertController = UIAlertController(title: "갤러리 권한 요청", message: "갤러리 권한을 허용해야 앱을 정상적으로 이용할 수 있습니다.", preferredStyle: UIAlertController.Style.alert)
+        authAlertController = UIAlertController(title: "갤러리 권한 요청", message: "사진 기능을 사용하기 원하시다면 '사진' 접근권한을 허용해야 합니다.", preferredStyle: UIAlertController.Style.alert)
         let getAuthAction: UIAlertAction
         getAuthAction = UIAlertAction(title: "권한 허용", style: UIAlertAction.Style.default, handler: {_ in
             if let appSettings = URL(string: UIApplication.openSettingsURLString){
