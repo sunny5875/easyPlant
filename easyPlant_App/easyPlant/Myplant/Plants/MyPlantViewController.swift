@@ -90,13 +90,15 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         //사진 앨범으로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            
+            var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
             let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
             
             switch photoAuthorizationStatus {
             case .limited:
                 print("limit access")
-                PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+                showLimittedAccessUI()
+
+                
                 let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
                     imagePicker.sourceType = .photoLibrary
                     self.present(imagePicker,animated: true,completion: nil)
@@ -137,7 +139,14 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         
     }
+
     
+    func showLimittedAccessUI() {
+        
+        
+        let photoCount = PHAsset.fetchAssets(with: nil).count
+        print("Status: limited\nPhotos: \(photoCount)")
+    }
     
     func setAuthAlertAction() {
         let authAlertController: UIAlertController
@@ -208,16 +217,27 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
         //이미지를 선택했으면 imageView에 보여주는 함수
         guard let sImage = info[.originalImage] as? UIImage else { return }
-        
-        selectedImage = sImage
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        dateString = formatter.string(from: Date())
+  
         
         
-        dismiss(animated: true, completion: nil)
-        performSegue(withIdentifier: "pickImageSegue", sender: self)
+            selectedImage = sImage
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            dateString = formatter.string(from: Date())
+            dismiss(animated: true, completion: nil)
+            performSegue(withIdentifier: "pickImageSegue", sender: self)
+      
     }
+    
+    /*
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "사진 접근 불가", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
+        self.present(alert, animated: true, completion: nil)
+    }
+    */
+    
+  
     
     //이 화면으로 돌아올 수있게 하는 길 만들어두기
     @IBAction func unwindToMyPlant(_ unwindSegue: UIStoryboardSegue) {
@@ -411,3 +431,4 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     }
 }
+

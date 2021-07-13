@@ -103,7 +103,7 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == userplant?.name){
                     for j in 0...userPlants[i].diarylist.count-1 {
-                        if(userPlants[i].diarylist[j].date == editDiary?.date){
+                        if(userPlants[i].diarylist[j].picture == editDiary?.picture){
                             
                             
                             print("find userplant index")
@@ -123,7 +123,8 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
                             }
                          
                             editDiary?.story = contentTextField.text!
-                            
+                            print(userPlants[i].diarylist[j])
+
                             userPlants[i].diarylist[j] = editDiary!
                             print("unwindto edit DiarySegue")
                             
@@ -235,6 +236,11 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         contentTextField.layer.cornerRadius =  10
         
         contentTextField.delegate = self
+        
+        if contentTextField.text.isEmpty {
+            contentTextField.text = "Enter the text"
+            contentTextField.textColor = UIColor.lightGray
+        }
         
         
     }

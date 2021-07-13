@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.white
+        //self.view.backgroundColor = UIColor.white
         
         //self.plantListTableView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         self.plantListTableView.backgroundColor = UIColor.clear
@@ -121,7 +121,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         
         
-        //self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
