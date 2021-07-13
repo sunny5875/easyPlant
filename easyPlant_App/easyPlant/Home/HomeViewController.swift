@@ -153,22 +153,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //그림자 설정
         firstStack.layer.zPosition = 101
         userView.layer.zPosition = 102
-        calendar.layer.zPosition = 103
+        calendar.layer.zPosition = 102
         plantListTableView.layer.zPosition = 100
         bgView.layer.zPosition = 0
         
         userView.layer.shadowOpacity = 0.2
-        userView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        userView.layer.shadowOffset = CGSize(width: 0, height: 5)
         userView.layer.shadowRadius = 30
         userView.layer.masksToBounds = false
         
         calendar.layer.shadowOpacity = 0.2
-        calendar.layer.shadowOffset = CGSize(width: 0, height: 10)
+        calendar.layer.shadowOffset = CGSize(width: 0, height: 5)
         calendar.layer.shadowRadius = 30
         calendar.layer.masksToBounds = false
         
         plantListTableView.layer.shadowOpacity = 0.2
-        plantListTableView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        plantListTableView.layer.shadowOffset = CGSize(width: 0, height: 5)
         plantListTableView.layer.shadowRadius = 30
         plantListTableView.layer.masksToBounds = false
 
