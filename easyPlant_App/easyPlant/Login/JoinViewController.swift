@@ -92,8 +92,14 @@ class JoinViewController: UIViewController,UITextViewDelegate {
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                     changeRequest?.displayName = self.nameField.text!
                     changeRequest?.commitChanges(completion: nil)
+                    
+                    myUser = User(Date())
+                    userPlants = []
+                    myUser.updateUser()
+                    saveUserInfo(user: myUser)
+                    saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+                    
                     Auth.auth().currentUser?.sendEmailVerification(completion: nil)
-
                     let alert = UIAlertController(title: "환영합니다! 회원가입이 완료되었습니다", message: "가입하신 이메일로 가입완료메일 확인 후 지금 바로 easyPlant를 시작해보세요!", preferredStyle: .alert)
 
                     alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in

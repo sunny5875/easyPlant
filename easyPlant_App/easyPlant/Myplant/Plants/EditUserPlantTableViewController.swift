@@ -275,6 +275,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             userPlants.append(editPlant!)
             
             //수정하고 저장하기
+            myUser.updateUser()
             saveUserInfo(user: myUser)
             saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
            
