@@ -203,6 +203,7 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         
         // local에 데이터 다 지우기..
         
+        
         loadUserPlant()
         loadUserInfo()
         self.navigationController?.popViewController(animated: true)

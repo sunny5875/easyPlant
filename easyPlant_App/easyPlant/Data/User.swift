@@ -114,7 +114,7 @@ func loadUserInfo(){
     let localURL = URL(string: encodedString)!
     */
     let jsonDecoder = JSONDecoder()
-    
+    /*
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: userInfoURL){
         //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
@@ -126,6 +126,7 @@ func loadUserInfo(){
         }
     }
     else {
+ */
         //let localURL = documentsDirectory.appendingPathComponent("localDiary/\(title)")
         print("download to local userInfo start")
         // Create a reference to the file you want to download
@@ -153,7 +154,7 @@ func loadUserInfo(){
             }
           }
         }
-    }
+   // }
 
     print("download user info finish")
 }

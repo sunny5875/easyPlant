@@ -157,8 +157,6 @@ var userPlants : [UserPlant] = [UserPlant(name: "초록콩", location: "샘플 �
 
 
 func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
-
-    print("save user plant")
     let jsonEncoder = JSONEncoder()
     
     do{
@@ -168,6 +166,7 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
         // 원격에 저장
         var filePath = ""
         if let user = Auth.auth().currentUser {
+            print("Save New User Plant in user \(user.uid), \(plantsList)")
             filePath = "/\(user.uid)/userPlantList/plants"
         } else {
             filePath = "/sampleUser/userPlantList/plants"
@@ -192,15 +191,12 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
           print(error)
       }
 
-    print("save user plant complete")
 }
 
 
 func loadUserPlant(){
-    print("load user plant start")
-    
     let jsonDecoder = JSONDecoder()
-    
+    /*
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: archiveURL){
         //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
@@ -211,8 +207,7 @@ func loadUserPlant(){
             print(error)
         }
     }
-    else {
-        print("download to local userPlants start")
+    else {*/
         // Create a reference to the file you want to download
         var filePath = ""
         if let user = Auth.auth().currentUser {
@@ -237,11 +232,7 @@ func loadUserPlant(){
             }
           }
         }
-    }
-    
-    print("load user plant complete")
-    
-    
+    //}
 
 }
 
@@ -249,7 +240,6 @@ func loadUserPlant(){
 
 
 func downloadUserPlantImage(imgview:UIImageView, title : String){
-    print("download user plant image")
     print(title)
     let urlString:String = documentsDirectory.absoluteString + "localPlant/\(title)"
     let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -259,14 +249,12 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
-        print("exist and download fast")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
     }
     else {
         let localURL = documentsDirectory.appendingPathComponent("localPlant/\(title)")
-        print("download to local start")
         // Create a reference to the file you want to download
         var filePath = ""
         if let user = Auth.auth().currentUser {
@@ -287,15 +275,12 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
             print("download to local error : \(error)")
 
           } else {
-            print("download to local success!!")
-            print(url)
             let data = NSData(contentsOf: url!)
             let image = UIImage(data: data! as Data)
             imgview.image = image
           }
           
         }
-        print("download to local finish")
 
         
     }
@@ -338,9 +323,6 @@ func uploadUserPlantImage(img :UIImage, title: String){
              print(error.localizedDescription)
              return
                  
-         }
-         else{
-             print("성공")
          }
      }
 
