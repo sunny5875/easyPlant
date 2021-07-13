@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseStorage
+import FirebaseAuth
 let storage = Storage.storage()
 let storageRef =  Storage.storage().reference()
 
@@ -159,23 +160,36 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
 
     print("save user plant")
     let jsonEncoder = JSONEncoder()
-
-      do{
-          let encodeData = try jsonEncoder.encode(plantsList)
-          do{
-              try encodeData.write(to: archiveURL, options: .noFileProtection)
-               
-          }
-          catch let error as NSError {
-              print(error)
-          }
-          
-          
+    
+    do{
+        let encodeData = try jsonEncoder.encode(plantsList)
+        print(userInfoURL)
+        
+        // 원격에 저장
+        var filePath = ""
+        if let user = Auth.auth().currentUser {
+            filePath = "/\(user.uid)/userPlantList/plants"
+        } else {
+            filePath = "/sampleUser/userPlantList/plants"
+        }
+        let metaData = StorageMetadata()
+        metaData.contentType = "application/json"
+        storageRef.child(filePath).putData(encodeData ,metadata: metaData){
+            (metaData,error) in if let error = error{
+                print(error.localizedDescription)
+                return
+            }
+            else{
+                print("성공")
+            }
+        }
+        
+        // 로컬에 저장
+        try encodeData.write(to: archiveURL, options: .noFileProtection)
       }
       catch {
           print(error)
       }
-    
 
     print("save user plant complete")
 }
@@ -183,27 +197,50 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
 
 func loadUserPlant(){
     print("load user plant start")
-
+    
     let jsonDecoder = JSONDecoder()
-        
-        do{
-           
-            
-            let jsonData  = try Data(contentsOf: archiveURL, options: .mappedIfSafe)
-            let decoded = try jsonDecoder.decode([UserPlant].self, from: jsonData)
-
-           userPlants = decoded
-            
-            
-            
-        }
-        catch {
-            print("에러")
+    
+    //로컬에 없다면 원격 저장소에서 받아온다
+    if let data = NSData(contentsOf: archiveURL){
+        //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
+        do {
+            let decoded = try jsonDecoder.decode([UserPlant].self, from: data as Data)
+            userPlants = decoded
+        } catch {
             print(error)
-           
         }
+    }
+    else {
+        print("download to local userPlants start")
+        // Create a reference to the file you want to download
+        var filePath = ""
+        if let user = Auth.auth().currentUser {
+            filePath = "/\(user.uid)/userPlantList/plants"
+        } else {
+            filePath = "/sampleUser/userPlantList/plants"
+        }
+        let infoRef = storageRef.child(filePath)
 
+        // Download to the local filesystem
+        infoRef.write(toFile: archiveURL) { url, error in
+          if let error = error {
+            print("download to local userPlants error : \(error)")
+
+          } else {
+            let data = NSData(contentsOf: url!)
+            do {
+                let decoded = try jsonDecoder.decode(User.self, from: data! as Data)
+                myUser = decoded
+            } catch {
+                print(error)
+            }
+          }
+        }
+    }
+    
     print("load user plant complete")
+    
+    
 
 }
 
@@ -230,7 +267,13 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
         let localURL = documentsDirectory.appendingPathComponent("localPlant/\(title)")
         print("download to local start")
         // Create a reference to the file you want to download
-        let filePath = "/userPlant/\(title)"
+        var filePath = ""
+        if let user = Auth.auth().currentUser {
+            filePath = "/\(user.uid)/userPlant/\(title)"
+        } else {
+            filePath = "/sampleUser/userPlant/\(title)"
+        }
+        
         let imgRef = storageRef.child(filePath)
         
 
@@ -281,7 +324,12 @@ func uploadUserPlantImage(img :UIImage, title: String){
      
      var data = Data()
     data = img.jpegData(compressionQuality: 0.7)!
-     let filePath = "/userPlant/\(title)"
+    var filePath = ""
+    if let user = Auth.auth().currentUser {
+        filePath = "/\(user.uid)/userPlant/\(title)"
+    } else {
+        filePath = "/sampleUser/userPlant/\(title)"
+    }
      let metaData = StorageMetadata()
      metaData.contentType = "image/png"
      storageRef.child(filePath).putData(data,metadata: metaData){
@@ -300,7 +348,12 @@ func uploadUserPlantImage(img :UIImage, title: String){
 func deleteUserPlantImage(title : String){
     //식물 사진 지우기
     // Create a reference to the file to delete
-    let desertRef = storageRef.child("/userPlant/\(title)")
+    var desertRef = storageRef.child("")
+    if let user = Auth.auth().currentUser {
+        desertRef = storageRef.child("/\(user.uid)/userPlant/\(title)")
+    } else {
+        desertRef = storageRef.child("/sampleUser/userPlant/\(title)")
+    }
 
     // Delete the file
     desertRef.delete { error in

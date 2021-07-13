@@ -68,7 +68,12 @@ struct User : Codable{
     
     mutating func updateUser() {
         //여기에 사용자이름 업데이트 해주기 - 회원가입시에
-               userName = (Auth.auth().currentUser?.displayName)!
+        if let user = Auth.auth().currentUser {
+            userName = user.displayName ?? "오류"
+        } else {
+            userName = "사용자"
+        }
+               
                
         numPlants = userPlants.count
         print("%%%%%%%%%% register : \(registeredDate), date : \(Date())")
@@ -87,7 +92,11 @@ struct User : Codable{
             
         }
         
-        hapiness /= userPlants.count
+        if userPlants.count != 0 {
+            hapiness /= userPlants.count
+        } else {
+            hapiness = 100
+        }
         
         for standard in levels {
             if Int(standard.hapiness) <= hapiness && standard.numPlants <= numPlants && standard.growingDays <= growingDays {
@@ -102,55 +111,92 @@ struct User : Codable{
 
 
 func loadUserInfo(){
+    /*
+    let urlString:String = documentsDirectory.absoluteString + "localDiary/\(title)"
+    let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    let localURL = URL(string: encodedString)!
+    */
     let jsonDecoder = JSONDecoder()
-    print("load user info start")
-        
-        do{
-           
-            
-            let jsonData  = try Data(contentsOf: userInfoURL, options: .mappedIfSafe)
-            let decoded = try jsonDecoder.decode(User.self, from: jsonData)
-
-           myUser = decoded
-            
-            
-            
-        }
-        catch {
-            print("에러")
+    
+    //로컬에 없다면 원격 저장소에서 받아온다
+    if let data = NSData(contentsOf: userInfoURL){
+        //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
+        do {
+            let decoded = try jsonDecoder.decode(User.self, from: data as Data)
+            myUser = decoded
+        } catch {
             print(error)
-           
         }
+    }
+    else {
+        //let localURL = documentsDirectory.appendingPathComponent("localDiary/\(title)")
+        print("download to local userInfo start")
+        // Create a reference to the file you want to download
+        var filePath = ""
+        if let user = Auth.auth().currentUser {
+            filePath = "/\(user.uid)/userInfo/info"
+        } else {
+            filePath = "/sampleUser/userInfo/info"
+        }
+        
+        let infoRef = storageRef.child(filePath)
 
-    print("load user info finish")
+        // Download to the local filesystem
+        infoRef.write(toFile: userInfoURL) { url, error in
+          if let error = error {
+            print("download to local user info error : \(error)")
+
+          } else {
+            let data = NSData(contentsOf: url!)
+            do {
+                let decoded = try jsonDecoder.decode(User.self, from: data! as Data)
+                myUser = decoded
+            } catch {
+                print(error)
+            }
+          }
+        }
+    }
+
+    print("download user info finish")
 }
 
 
 func  saveUserInfo(user : User) {
-
     
     let jsonEncoder = JSONEncoder()
-
-      do{
-          let encodeData = try jsonEncoder.encode(user)
-     
-         print("user info save")
-          print(userInfoURL)
+    
+    do{
+        let encodeData = try jsonEncoder.encode(user)
+        print(userInfoURL)
         
-          do{
-              try encodeData.write(to: userInfoURL, options: .noFileProtection)
-               
-          }
-          catch let error as NSError {
-              print(error)
-          }
-          
-          
+        // 원격에 저장
+        
+        var filePath = ""
+        if let user = Auth.auth().currentUser {
+            filePath = "/\(user.uid)/userInfo/info"
+        } else {
+            filePath = "/sampleUser/userInfo/info"
+        }
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "application/json"
+        storageRef.child(filePath).putData(encodeData ,metadata: metaData){
+            (metaData,error) in if let error = error{
+                print(error.localizedDescription)
+                return
+            }
+            else{
+                print("성공")
+            }
+        }
+        
+        // 로컬에 저장
+        try encodeData.write(to: userInfoURL, options: .noFileProtection)
       }
       catch {
           print(error)
       }
-    
 
     print("user info save complete")
 }
@@ -176,7 +222,13 @@ func downloadProfileImage(imgview:UIImageView){
         let localURL = documentsDirectory.appendingPathComponent("localProfile/profile")
         print("download to local start")
         // Create a reference to the file you want to download
-        let filePath = "/profile/profile"
+        var filePath = "/profile/profile"
+        
+        if let user = Auth.auth().currentUser {
+            filePath = "/\(user.uid)/profile/profile"
+        } else {
+            filePath = "/sampleUser/profile/profile"
+        }
         let imgRef = storageRef.child(filePath)
         
 
@@ -212,7 +264,14 @@ func uploadProfileImage(img :UIImage){
      
      var data = Data()
     data = img.jpegData(compressionQuality: 0.7)!
-     let filePath = "/profile/profile"
+    var filePath = "/profile/profile"
+    
+    if let user = Auth.auth().currentUser {
+        filePath = "/\(user.uid)/profile/profile"
+    } else {
+        filePath = "/sampleUser/profile/profile"
+    }
+    
      let metaData = StorageMetadata()
      metaData.contentType = "image/png"
      storageRef.child(filePath).putData(data,metadata: metaData){
@@ -230,7 +289,13 @@ func uploadProfileImage(img :UIImage){
 
 func deleteProfileImage(){
     // Create a reference to the file to delete
-    let desertRef = storageRef.child("/profile/profile")
+    var desertRef = storageRef.child("/")
+    if let user = Auth.auth().currentUser {
+        desertRef = storageRef.child("/\(user.uid)/profile/profile")
+    } else {
+        desertRef = storageRef.child("/sampleUser/profile/profile")
+    }
+    
 
     // Delete the file
     desertRef.delete { error in

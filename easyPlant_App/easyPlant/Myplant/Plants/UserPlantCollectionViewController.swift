@@ -160,7 +160,6 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
             performSegue(withIdentifier: "toLoginPage", sender: nil)
         } else {
             //만약 로그인이 된 상태라면
-            myUser.userName = (Auth.auth().currentUser?.displayName)!
             performSegue(withIdentifier: "toMypage", sender: nil)
         }
     }
@@ -171,7 +170,6 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
             performSegue(withIdentifier: "toLoginPage", sender: nil)
         } else {
             //만약 로그인이 된 상태라면
-            myUser.userName = (Auth.auth().currentUser?.displayName)!
             performSegue(withIdentifier: "makeNewUserPlant", sender: nil)
         }
     }
