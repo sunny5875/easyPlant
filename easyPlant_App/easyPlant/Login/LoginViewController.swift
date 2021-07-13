@@ -14,6 +14,7 @@ class LoginViewController: UIViewController ,UITextViewDelegate{
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var findBtn: UIButton!
     @IBOutlet weak var joinBtn: UIButton!
+    var plantCollectionView: UserPlantCollectionViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +63,16 @@ class LoginViewController: UIViewController ,UITextViewDelegate{
             (user, error) in
             if user != nil {
                 if ((Auth.auth().currentUser?.isEmailVerified == true)) {
+                    deleteLocalData()
+                    
                     loadUserInfo()
                     loadUserPlant()
+                    
+                    if let view = self.plantCollectionView {
+                        print("reload data!!!!!!@#!#@!$!$# \(userPlants)")
+                        view.userPlantCollectionView.reloadData()
+                    }
+                    
                     print("로그인 성공 이름 : \(String(describing: Auth.auth().currentUser?.displayName))")
                     self.dismiss(animated: true, completion: nil)
                 } else {

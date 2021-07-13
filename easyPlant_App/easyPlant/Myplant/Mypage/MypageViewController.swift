@@ -201,8 +201,8 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
             print ("Error signing out: %@", signOutError)
         }
         
-        // local에 데이터 다 지우기..
-        
+        // local 데이터 다 지우기
+        deleteLocalData()
         
         loadUserPlant()
         loadUserInfo()

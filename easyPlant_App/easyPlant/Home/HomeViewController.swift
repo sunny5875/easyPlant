@@ -61,6 +61,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             
+            deleteLocalData()
             if Auth.auth().currentUser != nil {
                 do {
                     try Auth.auth().signOut()
@@ -83,7 +84,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadUserPlant()
         myUser.updateUser()
         saveUserInfo(user: myUser)
-        
 
        
         for (i, plant) in userPlants.enumerated() {

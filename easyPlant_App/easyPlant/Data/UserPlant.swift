@@ -150,10 +150,10 @@ struct UserPlant : Codable {
   
 var listPlantsIndex: [Int] = []
 
-var userPlants : [UserPlant] = [UserPlant(name: "초록콩", location: "샘플 위", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 200/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Corokia", watered: 0, totalWaterNum: 0, didWaterNum: 0),
-                                UserPlant(name: "까망콩", location: "샘플", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "샘플",  diarylist: diarys, color: Color(uiColor: UIColor(red: 70/255, green: 100/255, blue: 180/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "CornPlant", watered: 0, totalWaterNum: 0, didWaterNum: 0),
-                                UserPlant(name: "연두콩", location: "샘플", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium", watered: 0, totalWaterNum: 0, didWaterNum: 0),
-                                UserPlant(name: "파란콩", location: "샘플", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "Monstrous", watered: 0, totalWaterNum: 0, didWaterNum: 0)]
+var userPlants : [UserPlant] = [UserPlant(name: "초록콩", location: "샘플", recentWater : "2021-06-02", registedDate: "2010-10-30",  waterPeriod: 5, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 200/255, green: 1/255, blue: 1/255, alpha: 1)), happeniess: [86,65,67,98,87,68,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "Corokia.jpeg", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "까망콩", location: "샘플", recentWater : "2021-06-04", registedDate: "2010-10-30", waterPeriod: 3, wateringDay: Date(), plantSpecies: "샘플",  diarylist: diarys, color: Color(uiColor: UIColor(red: 255/255, green: 255/255, blue: 0/255, alpha: 1)), happeniess: [86,65,57,76], alarmTime: Date(timeIntervalSinceNow: 66) ,plantImage: "CornPlant.jpeg", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "연두콩", location: "샘플", recentWater : "2021-06-06",registedDate: "2010-10-30", waterPeriod: 1, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 20/255, green: 180/255, blue: 30/255, alpha: 1)), happeniess:  [86,65,67,98,87,64,76,77,89,76], alarmTime: Date(timeIntervalSinceNow: 15), plantImage: "Syngonium.jpeg", watered: 0, totalWaterNum: 0, didWaterNum: 0),
+                                UserPlant(name: "파란콩", location: "샘플", recentWater : "2021-06-05",registedDate: "2010-10-30", waterPeriod: 2, wateringDay: Date(), plantSpecies: "샘플", diarylist: diarys, color: Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1)), happeniess:  [86,65,67,98,87,68,76,77,89,74], alarmTime: Date(timeIntervalSinceNow: 66) , plantImage: "Monstrous.jpeg", watered: 0, totalWaterNum: 0, didWaterNum: 0)]
 
 
 func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
@@ -196,18 +196,20 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
 
 func loadUserPlant(){
     let jsonDecoder = JSONDecoder()
-    /*
+    
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: archiveURL){
         //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
         do {
             let decoded = try jsonDecoder.decode([UserPlant].self, from: data as Data)
             userPlants = decoded
+            print("로컬에 플랜트 json 존재한다!! \(userPlants)")
         } catch {
             print(error)
         }
     }
-    else {*/
+    else {
+        print("원격에서 플랜트 리스트 받아온다!!!!")
         // Create a reference to the file you want to download
         var filePath = ""
         if let user = Auth.auth().currentUser {
@@ -217,6 +219,7 @@ func loadUserPlant(){
         }
         let infoRef = storageRef.child(filePath)
 
+        
         // Download to the local filesystem
         infoRef.write(toFile: archiveURL) { url, error in
           if let error = error {
@@ -232,7 +235,7 @@ func loadUserPlant(){
             }
           }
         }
-    //}
+    }
 
 }
 
@@ -249,11 +252,13 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
+        print("로컬에 이미지 존재!!")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
     }
     else {
+        print("원격에서 받아온다")
         let localURL = documentsDirectory.appendingPathComponent("localPlant/\(title)")
         // Create a reference to the file you want to download
         var filePath = ""
