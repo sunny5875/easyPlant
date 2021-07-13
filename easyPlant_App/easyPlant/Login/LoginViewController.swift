@@ -64,7 +64,7 @@ class LoginViewController: UIViewController ,UITextViewDelegate{
                 if ((Auth.auth().currentUser?.isEmailVerified == true)) {
                     loadUserInfo()
                     loadUserPlant()
-                    print("로그인 성공 이름 : \(Auth.auth().currentUser?.displayName)")
+                    print("로그인 성공 이름 : \(String(describing: Auth.auth().currentUser?.displayName))")
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     self.showAlert(message: "이메일 인증을 완료해주세요")

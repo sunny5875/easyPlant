@@ -225,8 +225,8 @@ func loadUserPlant(){
           } else {
             let data = NSData(contentsOf: url!)
             do {
-                let decoded = try jsonDecoder.decode(User.self, from: data! as Data)
-                myUser = decoded
+                let decoded = try jsonDecoder.decode([UserPlant].self, from: data! as Data)
+                userPlants = decoded
             } catch {
                 print(error)
             }

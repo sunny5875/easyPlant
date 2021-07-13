@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseStorage
+import FirebaseAuth
 
 
 struct Diary : Codable {
@@ -47,7 +48,12 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
         let localURL = documentsDirectory.appendingPathComponent("localDiary/\(title)")
         print("download to local diary start")
         // Create a reference to the file you want to download
-        let filePath = "/diary/\(title)"
+        var filePath = ""
+        if let user = Auth.auth().currentUser {
+            filePath = "/\(user.uid)/diary/\(title)"
+        } else {
+            filePath = "/sampleUser/diary/\(title)"
+        }
         let imgRef = storageRef.child(filePath)
         
 
@@ -58,19 +64,13 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
         imgRef.write(toFile: localURL) { url, error in
           if let error = error {
             print("download to local diary error : \(error)")
-
           } else {
-            print("download to local diary success!!")
-            print(url)
             let data = NSData(contentsOf: url!)
             let image = UIImage(data: data! as Data)
             imgview.image = image
           }
           
         }
-        print("download to local diary finish")
-
-        
     }
     
     /*
@@ -91,7 +91,12 @@ func uploadDiaryImage(img :UIImage, title: String){
     
     var data = Data()
     data = img.jpegData(compressionQuality: 0.7)!
-    let filePath = "/diary/\(title)"
+    var filePath = ""
+    if let user = Auth.auth().currentUser {
+        filePath = "/\(user.uid)/diary/\(title)"
+    } else {
+        filePath = "/sampleUser/diary/\(title)"
+    }
     let metaData = StorageMetadata()
     metaData.contentType = "image/png"
     storageRef.child(filePath).putData(data,metadata: metaData){
@@ -109,7 +114,12 @@ func uploadDiaryImage(img :UIImage, title: String){
 
 func deleteDiaryImage(title : String){
     // Create a reference to the file to delete
-    let desertRef = storageRef.child("/diary/\(title)")
+    var desertRef = storageRef.child("")
+    if let user = Auth.auth().currentUser {
+        desertRef = storageRef.child("/\(user.uid)/diary/\(title)")
+    } else {
+        desertRef = storageRef.child("/sampleUser/diary/\(title)")
+    }
 
     // Delete the file
     desertRef.delete { error in
