@@ -22,6 +22,7 @@ class LoginViewController: UIViewController ,UITextViewDelegate{
         IDField.borderStyle = .none
         let border = CALayer()
         border.frame = CGRect(x: 0, y: IDField.frame.size.height-10, width: IDField.layer.frame.width, height: 1)
+        //print(IDField.layer.frame.width)
         IDField.layer.addSublayer((border))
         border.backgroundColor = UIColor.lightGray.cgColor
         
