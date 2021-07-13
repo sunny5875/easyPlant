@@ -32,7 +32,7 @@ struct Color : Codable {
 struct UserPlant : Codable {
     var name: String
     var location: String
-    var recentWater : String
+    var recentWater : String {didSet(old) {print("===========최근 물준 날짜 변경=======")}}
     var registedDate : String
     var waterPeriod : Int
     var wateringDay : Date
@@ -159,6 +159,7 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
 
     print("save user plant")
     let jsonEncoder = JSONEncoder()
+    print(archiveURL)
 
       do{
           let encodeData = try jsonEncoder.encode(plantsList)
