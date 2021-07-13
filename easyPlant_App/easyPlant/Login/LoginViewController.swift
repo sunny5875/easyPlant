@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController ,UITextViewDelegate{
     @IBOutlet weak var IDField: UITextField!
     @IBOutlet weak var pwField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
@@ -18,17 +18,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginBtn.layer.cornerRadius = loginBtn.frame.height / 5
-        
+        loginBtn.layer.cornerRadius = 15
         IDField.borderStyle = .none
         let border = CALayer()
-        border.frame = CGRect(x: 0, y: IDField.frame.size.height-1, width: IDField.frame.width, height: 1)
+        border.frame = CGRect(x: 0, y: IDField.frame.size.height-10, width: IDField.layer.frame.width, height: 1)
         IDField.layer.addSublayer((border))
         border.backgroundColor = UIColor.lightGray.cgColor
         
         pwField.borderStyle = .none
         let border2 = CALayer()
-        border2.frame = CGRect(x: 0, y: pwField.frame.size.height-1, width: pwField.frame.width, height: 1)
+        border2.frame = CGRect(x: 0, y: pwField.frame.size.height-10, width: pwField.frame.size.width, height: 1)
         border2.backgroundColor = UIColor.lightGray.cgColor
         pwField.layer.addSublayer((border2))
         
@@ -36,6 +35,15 @@ class LoginViewController: UIViewController {
             IDField.placeholder = "이미 로그인 된 상태입니다."
             pwField.placeholder = "이미 로그인 된 상태입니다."
         }
+        
+        //findBtn.layer.borderColor = UIColor.systemGray4.cgColor
+        //findBtn.layer.borderWidth = 1
+        findBtn.layer.cornerRadius = 15
+        
+        //joinBtn.layer.borderColor = UIColor.systemGray4.cgColor
+        //joinBtn.layer.borderWidth = 1
+        joinBtn.layer.cornerRadius = 15
+
     }
     
     @IBAction func loginBtnTapped(_ sender: Any) {
@@ -81,14 +89,9 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
         self.present(alert, animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
-    */
 
 }

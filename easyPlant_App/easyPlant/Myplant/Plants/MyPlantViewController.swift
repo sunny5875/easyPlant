@@ -9,6 +9,7 @@ import UIKit
 import Charts
 import FirebaseStorage
 import Photos
+import PhotosUI
 private let reuseIdentifier = "diaryCell"
 
 
@@ -62,7 +63,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
  
     //다이어리 생성 화면으로 이동
     @IBAction func plusButtonTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "add new Diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
+        let alertController = UIAlertController(title: "Add new diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
         requestCameraPermission()
         requestGalleryPermission()
@@ -89,22 +90,69 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         //사진 앨범으로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-        let photoLibraryAction = UIAlertAction(title: "PhotoLibrary", style: .default, handler: { action in
-            imagePicker.sourceType = .photoLibrary
-            self.present(imagePicker,animated: true,completion: nil)
-            })
-            alertController.addAction(photoLibraryAction)
+            
+            let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+            
+            switch photoAuthorizationStatus {
+            case .limited:
+                print("limit access")
+                PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+                let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
+                    imagePicker.sourceType = .photoLibrary
+                    self.present(imagePicker,animated: true,completion: nil)
+                    })
+                    alertController.addAction(photoLibraryAction)
+                
+                //팝오버로 보여준다
+                
+                alertController.popoverPresentationController?.sourceView = sender as! UIButton
+                present(alertController, animated: true, completion: nil)
+                break
+            case .authorized:
+                print("접근 허가")
+                let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
+                    imagePicker.sourceType = .photoLibrary
+                    self.present(imagePicker,animated: true,completion: nil)
+                    })
+                    alertController.addAction(photoLibraryAction)
+                
+                //팝오버로 보여준다
+                
+                alertController.popoverPresentationController?.sourceView = sender as! UIButton
+                present(alertController, animated: true, completion: nil)
+                break
+            case .denied:
+                print("접근 거부")
+                setAuthAlertAction()
+                break
+            case .notDetermined:
+                requestGalleryPermission()
+                break
+            
+                
+            default: break
+            }
+            
         }
-        
-       //팝오버 띄우기
-        alertController.popoverPresentationController?.sourceView = sender as! UIButton
-        
-        present(alertController, animated: true, completion: nil)
-        
         
         
     }
     
+    
+    func setAuthAlertAction() {
+        let authAlertController: UIAlertController
+        authAlertController = UIAlertController(title: "갤러리 권한 요청", message: "갤러리 권한을 허용해야 앱을 정상적으로 이용할 수 있습니다.", preferredStyle: UIAlertController.Style.alert)
+        let getAuthAction: UIAlertAction
+        getAuthAction = UIAlertAction(title: "권한 허용", style: UIAlertAction.Style.default, handler: {_ in
+            if let appSettings = URL(string: UIApplication.openSettingsURLString){
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+            
+        })
+        
+        authAlertController.addAction(getAuthAction)
+        self.present(authAlertController, animated: true, completion: nil)
+    }
          func numberOfSections(in collectionView: UICollectionView) -> Int {
             // #warning Incomplete implementation, return the number of sections
             return 1

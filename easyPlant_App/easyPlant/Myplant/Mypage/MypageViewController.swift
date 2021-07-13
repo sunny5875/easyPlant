@@ -87,41 +87,34 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
   
     //사진 변경 버튼을 눌렀을 경우 실행
     @IBAction func cameraClicked(_ sender: Any) {
-        print("camera click")
+     
+        let alertController = UIAlertController(title: "Change profile", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
-        let alertController = UIAlertController(title: "Change plant's image", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
-        
-        
+        requestCameraPermission()
+        requestGalleryPermission()
+
         
         //다음 세개를 action sheet에 추가할 것
         //cancel로 정하면 맨 밑에 생기고 default면 그냥 위에 생김
-        
-        //취소버튼 만들기
         let cancelAction = UIAlertAction(title: "Cancel",style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        //이미지 피커 생성
         let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
 
-    
-        //사용자가 카메라 버튼을 누른 경우
+        //카메라로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            requestCameraPermission()
+
             let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
                 imagePicker.sourceType = .camera
-                self.present(imagePicker,animated: true,completion: nil)//보여주고 나서 추가작언 없으니까 nil
+                self.present(imagePicker,animated: true,completion: nil)
             })
             alertController.addAction(cameraAction)
-            
-            //팝오버로 보여준다
-            alertController.popoverPresentationController?.sourceView = sender as! UIButton
-            present(alertController, animated: true, completion: nil)
         }
         
-        //사용자가 사진앨범 버튼을 누른 경우
+        
+        //사진 앨범으로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            requestGalleryPermission()
             
             let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
             
@@ -134,15 +127,20 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
                     alertController.addAction(photoLibraryAction)
                 
                 //팝오버로 보여준다
+                
                 alertController.popoverPresentationController?.sourceView = sender as! UIButton
                 present(alertController, animated: true, completion: nil)
+ 
             case .denied: print("접근 거부")
                 setAuthAlertAction()
             case .notDetermined: requestGalleryPermission()
             default: break
             }
-        
+            
         }
+   
+        
+ 
     }
     
 

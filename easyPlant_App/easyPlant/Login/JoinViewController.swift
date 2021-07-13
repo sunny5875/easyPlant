@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class JoinViewController: UIViewController {
+class JoinViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var IDField: UITextField!
     @IBOutlet weak var pwField: UITextField!
@@ -18,29 +18,29 @@ class JoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        joinBtn.layer.cornerRadius = joinBtn.frame.height / 5
+        joinBtn.layer.cornerRadius = 15
         
         IDField.borderStyle = .none
         let border = CALayer()
-        border.frame = CGRect(x: 0, y: IDField.frame.size.height-1, width: IDField.frame.width, height: 1)
+        border.frame = CGRect(x: 0, y: IDField.frame.size.height, width: IDField.layer.frame.width, height: 1)
         IDField.layer.addSublayer((border))
         border.backgroundColor = UIColor.lightGray.cgColor
         
         pwField.borderStyle = .none
         let border2 = CALayer()
-        border2.frame = CGRect(x: 0, y: pwField.frame.size.height-1, width: pwField.frame.width, height: 1)
+        border2.frame = CGRect(x: 0, y: pwField.frame.size.height-1, width: pwField.layer.frame.width, height: 1)
         border2.backgroundColor = UIColor.lightGray.cgColor
         pwField.layer.addSublayer((border2))
         
         nameField.borderStyle = .none
         let border3 = CALayer()
-        border3.frame = CGRect(x: 0, y: nameField.frame.size.height-1, width: nameField.frame.width, height: 1)
+        border3.frame = CGRect(x: 0, y: nameField.frame.size.height-1, width: nameField.layer.frame.width, height: 1)
         border3.backgroundColor = UIColor.lightGray.cgColor
         nameField.layer.addSublayer((border3))
         
         pwCheckField.borderStyle = .none
         let border4 = CALayer()
-        border4.frame = CGRect(x: 0, y: pwCheckField.frame.size.height-1, width: pwCheckField.frame.width, height: 1)
+        border4.frame = CGRect(x: 0, y: pwCheckField.frame.size.height-1, width: pwCheckField.layer.frame.width, height: 1)
         border4.backgroundColor = UIColor.lightGray.cgColor
         pwCheckField.layer.addSublayer((border4))
         // Do any additional setup after loading the view.
@@ -93,8 +93,9 @@ class JoinViewController: UIViewController {
                     changeRequest?.displayName = self.nameField.text!
                     changeRequest?.commitChanges(completion: nil)
                     Auth.auth().currentUser?.sendEmailVerification(completion: nil)
-                    
-                    let alert = UIAlertController(title: "환영합니다! 회원가입이 완료되었습니다", message: "해당 메일에서 인증을 완료해주세요", preferredStyle: .alert)
+
+                    let alert = UIAlertController(title: "환영합니다! 회원가입이 완료되었습니다", message: "가입하신 이메일로 가입완료메일 확인 후 지금 바로 easyPlant를 시작해보세요!", preferredStyle: .alert)
+
                     alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
                         self.navigationController?.popViewController(animated: true)
 
@@ -116,15 +117,8 @@ class JoinViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
-    */
 
 }

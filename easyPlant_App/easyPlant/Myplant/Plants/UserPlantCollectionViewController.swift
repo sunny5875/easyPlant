@@ -42,9 +42,10 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         let image = UIImage(named: "profileDefault2")
         imagetmp.image = image
         //만약 로그인된 상태고 전에 한번 수정한적 있다면
-        if myUser.isChangeProfile == 1{
+        if Auth.auth().currentUser != nil && myUser.isChangeProfile == 1{
             downloadProfileImage(imgview: imagetmp)
         }
+       
         
         myProfile.setImage(imagetmp.image, for: .normal)
         myProfile.layer.cornerRadius = myProfile.frame.size.width/2

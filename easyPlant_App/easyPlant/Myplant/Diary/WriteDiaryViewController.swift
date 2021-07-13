@@ -11,7 +11,7 @@ import Firebase
 
 //var storage : Storage = FirebaseStorage.Storage.storage()
 
-class WriteDiaryViewController: UIViewController {
+class WriteDiaryViewController: UIViewController,UITextViewDelegate {
     
     var userplant: UserPlant?
     var editDiary : Diary?
@@ -31,9 +31,7 @@ class WriteDiaryViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
-    
-    @IBOutlet weak var contentTextField: UITextField!
-    
+    @IBOutlet weak var contentTextField: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
     
     
@@ -54,6 +52,49 @@ class WriteDiaryViewController: UIViewController {
         
     }
     
+    func placeholderSetting() {
+        contentTextField.delegate = self // txtvReview가 유저가 선언한 outlet
+        contentTextField.text = "Enter the text"
+        contentTextField.textColor = UIColor.lightGray
+            
+    }
+        
+        
+        // TextView Place Holder
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("textview begin edit")
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+        if titleTextField.text != "", contentTextField.text != "" {
+            saveBarButton.isEnabled = true
+                
+        }
+        else {
+            saveBarButton.isEnabled = false
+        }
+        
+    }
+    // TextView Place Holder
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print("textviewdidendEdit")
+        if textView.text.isEmpty {
+            textView.text = "Enter the text"
+            textView.textColor = UIColor.lightGray
+        }
+        
+        if titleTextField.text != "", contentTextField.text != "" {
+            saveBarButton.isEnabled = true
+                
+        }
+        else {
+            saveBarButton.isEnabled = false
+        }
+    }
+
+
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         //편집중이었다면
@@ -188,6 +229,12 @@ class WriteDiaryViewController: UIViewController {
         imageView.layer.zPosition = 99
         stackView.layer.cornerRadius = 20
         contentView.layer.cornerRadius = 30
+        
+        contentTextField.layer.borderWidth = 1
+        contentTextField.layer.borderColor = UIColor.systemGray5.cgColor
+        contentTextField.layer.cornerRadius =  10
+        
+        contentTextField.delegate = self
         
         
     }
