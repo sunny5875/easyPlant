@@ -18,14 +18,14 @@ struct Diary : Codable {
 
 
 var diarys : [Diary] = [Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "ParlourPalm"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Moonshine"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Monstrous"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Violet"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Hoya"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Syngonium"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "DwarfUmbrellaTree"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Treean"),
-                        Diary(title: "초록콩 데려온 날",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Eucalyptus")]
+                        Diary(title: "초록콩 데려온 날1",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Moonshine"),
+                        Diary(title: "초록콩 데려온 날2",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Monstrous"),
+                        Diary(title: "초록콩 데려온 날3",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Violet"),
+                        Diary(title: "초록콩 데려온 날4",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Hoya"),
+                        Diary(title: "초록콩 데려온 날5",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Syngonium"),
+                        Diary(title: "초록콩 데려온 날6",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "DwarfUmbrellaTree"),
+                        Diary(title: "초록콩 데려온 날7",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Treean"),
+                        Diary(title: "초록콩 데려온 날8",date: "2020-10-31", story: "오늘은 초록콩이 온지 하루가 된날이다. 앞으로 건강하게 잘 키워보자!", picture: "Eucalyptus")]
 
 
 func downloadDiaryImage(imgview:UIImageView, title : String){
@@ -38,6 +38,7 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
+        print("exist and download fast")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
