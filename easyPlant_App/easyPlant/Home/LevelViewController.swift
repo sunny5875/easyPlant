@@ -53,8 +53,8 @@ class LevelViewController: UIViewController {
 
         //myLevelView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
-        myStack.backgroundColor = UIColor.white
-        myLevelView.backgroundColor = UIColor.clear
+        //myStack.backgroundColor = UIColor.white
+        //myLevelView.backgroundColor = UIColor.clear
         
         myStack.layer.shadowOpacity = 0.2
         myStack.layer.shadowOffset = CGSize(width: 0, height: 10)
