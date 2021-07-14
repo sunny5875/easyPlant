@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>User Interface Style</key>
-	<string>Light</string>
 	<key>CLIENT_ID</key>
-	<string>895763504447-rnca69ots53fcinle22gpcrlttdd1u2m.apps.googleusercontent.com</string>
+	<string>895763504447-ek4c5ukvbjug4t492dsd6svh14n84oas.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.895763504447-rnca69ots53fcinle22gpcrlttdd1u2m</string>
+	<string>com.googleusercontent.apps.895763504447-ek4c5ukvbjug4t492dsd6svh14n84oas</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC-bBb6g3ZlVKmK53yQLiySuQqlInvhqok</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,22 +13,24 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.codershigh.easyPlant</string>
+	<string>com.codershigh.HYUEasyPlant</string>
 	<key>PROJECT_ID</key>
 	<string>easyplant-8649d</string>
 	<key>STORAGE_BUCKET</key>
 	<string>easyplant-8649d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:895763504447:ios:32c474d5912a59ef93478a</string>
+	<string>1:895763504447:ios:5411015b2ebcb26293478a</string>
+	<key>DATABASE_URL</key>
+	<string>https://easyplant-8649d-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

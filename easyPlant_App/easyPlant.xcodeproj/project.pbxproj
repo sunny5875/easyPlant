@@ -24,12 +24,12 @@
 		1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F211265FE3CB000D99F4 /* LevelViewController.swift */; };
 		12799956266E09750072E9FF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12799955266E09740072E9FF /* NotificationViewController.swift */; };
 		1279995B266E09800072E9FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1279995A266E09800072E9FF /* HomeViewController.swift */; };
-		1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */; };
 		12E3E938269BE19F001ED3C6 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E937269BE19F001ED3C6 /* MypageViewController.swift */; };
 		12E3E940269BFAF4001ED3C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E93F269BFAF4001ED3C6 /* Login.storyboard */; };
 		12E3E943269BFB10001ED3C6 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E941269BFB10001ED3C6 /* JoinViewController.swift */; };
 		12E3E944269BFB10001ED3C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E942269BFB10001ED3C6 /* LoginViewController.swift */; };
 		12E3E949269C27DA001ED3C6 /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E948269C27DA001ED3C6 /* Mypage.storyboard */; };
+		12E3E94B269EB97B001ED3C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E94A269EB97B001ED3C6 /* GoogleService-Info.plist */; };
 		12EA1D2D2647950E009A0A5E /* UserPlantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */; };
 		12EA1D4F264795D5009A0A5E /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */; };
 		12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */; };
@@ -96,12 +96,12 @@
 		1218F211265FE3CB000D99F4 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		12799955266E09740072E9FF /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		1279995A266E09800072E9FF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12E3E937269BE19F001ED3C6 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		12E3E93F269BFAF4001ED3C6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		12E3E941269BFB10001ED3C6 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		12E3E942269BFB10001ED3C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		12E3E948269C27DA001ED3C6 /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
+		12E3E94A269EB97B001ED3C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12EA1D2C2647950E009A0A5E /* UserPlantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPlantTableViewCell.swift; sourceTree = "<group>"; };
 		12EA1D4E264795D5009A0A5E /* MyDiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
 		12EA1DD626510B9A009A0A5E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -219,8 +219,8 @@
 				12E3E93F269BFAF4001ED3C6 /* Login.storyboard */,
 				D65F95B7269C0DDF00E1115F /* Onboarding.storyboard */,
 				1216639D263BB8F800125C69 /* LaunchScreen.storyboard */,
+				12E3E94A269EB97B001ED3C6 /* GoogleService-Info.plist */,
 				121663A0263BB8F800125C69 /* Info.plist */,
-				1296838C2669E9EB00463FD6 /* GoogleService-Info.plist */,
 				121663B3263BB8F800125C69 /* easyPlantUITests */,
 			);
 			path = easyPlant;
@@ -481,12 +481,12 @@
 			files = (
 				1216639F263BB8F800125C69 /* LaunchScreen.storyboard in Resources */,
 				1216639C263BB8F800125C69 /* Assets.xcassets in Resources */,
+				12E3E94B269EB97B001ED3C6 /* GoogleService-Info.plist in Resources */,
 				12E3E940269BFAF4001ED3C6 /* Login.storyboard in Resources */,
 				1216639A263BB8F700125C69 /* Main.storyboard in Resources */,
 				12E3E949269C27DA001ED3C6 /* Mypage.storyboard in Resources */,
 				D6CC2DE62663AFF8009E5710 /* MyPlant.storyboard in Resources */,
 				1218F174265A0E19000D99F4 /* Home.storyboard in Resources */,
-				1296838D2669E9EB00463FD6 /* GoogleService-Info.plist in Resources */,
 				D65F95B8269C0DDF00E1115F /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -186,6 +186,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
             }
+            print("test0")
             guard let appleIDToken = appleIDCredential.identityToken else {
                 print("Unable to fetch identity token")
                 return
@@ -194,23 +195,28 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
+            print("test01")
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
+            print("test1")
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 if (error != nil) {
                     // Error. If error.code == .MissingOrInvalidNonce, make sure
                     // you're sending the SHA256-hashed nonce as a hex string with
                     // your request to Apple.
+                    print("error")
                     print(error?.localizedDescription ?? "")
                     return
                 }
+                print("test2")
                 guard (authResult?.user) != nil else { return }
                 
                 deleteLocalData()
                 print("delete local date after")
                 loadUserInfo()
                 loadUserPlant()
+                print("test3")
             }
         }
     }
