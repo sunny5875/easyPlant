@@ -10,7 +10,7 @@ import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
 
-class LoginViewController: UIViewController ,UITextViewDelegate, ASAuthorizationControllerPresentationContextProviding{
+class LoginViewController: UIViewController ,UITextViewDelegate {
     
     @IBOutlet weak var IDField: UITextField!
     @IBOutlet weak var pwField: UITextField!
@@ -181,6 +181,7 @@ class LoginViewController: UIViewController ,UITextViewDelegate, ASAuthorization
 @available(iOS 13.0, *)
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        print("authorization controller 호출!!!")
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -218,7 +219,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         // Handle error.
         print("Sign in with Apple errored: \(error)")
     }
-    
+}
+
+extension LoginViewController : ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
