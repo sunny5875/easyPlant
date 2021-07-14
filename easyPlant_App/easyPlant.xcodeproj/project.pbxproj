@@ -336,8 +336,8 @@
 		3E86D01F269963D400C99B13 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				12E3E941269BFB10001ED3C6 /* JoinViewController.swift */,
 				12E3E942269BFB10001ED3C6 /* LoginViewController.swift */,
+				12E3E941269BFB10001ED3C6 /* JoinViewController.swift */,
 				3E86D0DB269C6C0000C99B13 /* FindViewController.swift */,
 			);
 			path = Login;

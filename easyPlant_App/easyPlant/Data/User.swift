@@ -105,16 +105,25 @@ struct User : Codable{
 
 // 사용자가 처음 식물을 등록한 날로 바꿔야 함.
 
-
+func deleteLocalData() {
+    let fileManager = FileManager.default
+   
+    // Try Catch
+    do {
+        // 5-1. 삭제하기
+        // User info 삭제
+        try fileManager.removeItem(at: userInfoURL)
+        // Plant list 삭제
+        try fileManager.removeItem(at: archiveURL)
+    } catch let e {
+        // 5-2. 에러처리
+        print(e.localizedDescription)
+    }
+}
 
 func loadUserInfo(){
-    /*
-    let urlString:String = documentsDirectory.absoluteString + "localDiary/\(title)"
-    let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-    let localURL = URL(string: encodedString)!
-    */
     let jsonDecoder = JSONDecoder()
-    /*
+    
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: userInfoURL){
         //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
@@ -126,7 +135,7 @@ func loadUserInfo(){
         }
     }
     else {
- */
+ 
         //let localURL = documentsDirectory.appendingPathComponent("localDiary/\(title)")
         print("download to local userInfo start")
         // Create a reference to the file you want to download
@@ -154,7 +163,7 @@ func loadUserInfo(){
             }
           }
         }
-   // }
+   }
 
     print("download user info finish")
 }

@@ -36,6 +36,7 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("view will appear!!!! hihi")
         userPlantCollectionView.reloadData()
 
         var imagetmp : UIImageView = UIImageView()
@@ -119,6 +120,12 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
             
         }
         
+        if segue.identifier == "toLoginPage" {
+            print("toLoginPage destination : \(segue.destination)")
+            if let nav = segue.destination as? CustomNavigationController, let detailVC = nav.topViewController as? LoginViewController{
+                detailVC.plantCollectionView = self
+            }
+        }
         
 
 
