@@ -207,7 +207,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 guard (authResult?.user) != nil else { return }
                 
                 deleteLocalData()
-                
+                print("delete local date after")
                 loadUserInfo()
                 loadUserPlant()
             }
