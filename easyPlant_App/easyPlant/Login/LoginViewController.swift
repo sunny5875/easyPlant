@@ -212,20 +212,50 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 print("test2")
                 guard (authResult?.user) != nil else { return }
                 
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = appleIDCredential.fullName?.givenName
+                changeRequest?.commitChanges(completion: { (error) in
+                    if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            print("Updated display name: \(Auth.auth().currentUser!.displayName!)")
+                        }
+                    })
+                
                 deleteLocalData()
-                print("delete local date after")
-                loadUserInfo()
-                loadUserPlant()
-                print("test3")
+                
+                let provider = ASAuthorizationAppleIDProvider()
+                provider.getCredentialState(forUserID: appleIDCredential.user) {
+                    (getCredentialState, error) in
+                        switch (getCredentialState) {
+                        case .revoked:
+                            // 이미 애플 로그인을 한 적 있는 경우
+                            loadUserInfo()
+                            loadUserPlant()
+                            print("test3")
+                            break
+                        case .notFound:
+                            // 첫 애플 로그인인 경우 (=회원가입)
+                            myUser = User(Date())
+                            userPlants = []
+                            myUser.updateUser()
+                            saveUserInfo(user: myUser)
+                            saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+                            break
+                        default:
+                            print("\(getCredentialState)")
+                        }
+                    }
+                }
             }
         }
-    }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
         print("Sign in with Apple errored: \(error)")
     }
 }
+
 
 extension LoginViewController : ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
