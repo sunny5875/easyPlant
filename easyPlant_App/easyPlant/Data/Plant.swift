@@ -22,6 +22,8 @@ struct Plant {
 
 }
 
+var plantTotal: [Plant] = []
+
 
 var plantsClearAir: [Plant] = [
     Plant(korName: "홍콩야자", engName: "DwarfUmbrellaTree",from: "중국,대만",sciName: "두릅나무과",temp: "20-25도", light: "어떤 광도나 무난(300~10,000 Lux)하여 실내 어두운 곳, 거실 또는 발코니에서 키우기 좋음", water: "봄, 여름, 가을에는 토양 표면이 말랐을때 충분히 관수하고 겨울에는 화분 흙이 대부분 말랐을때 충분히 관수함", chara: "실내공기정화력이 우수한, 특히 담배연기를 잘 흡수하는 식물로 알려져 있으며 키가 큰 종류의 쉐플레라(야자)와 키가 작은 왜성종 쉐플레라가 있음.\n\n물 꽂이 화분에 심어도 뿌리가 내리는 적응력이 강한 식물이지만, 추위에는 약함. \n\n수건으로 잎을 닦아 주면 잎에서 윤기가 생겨 관상하기 좋음.", def: "  대표 공기정화 식물"),
@@ -97,8 +99,8 @@ struct PlantType {
 
 
 var plantType = PlantType(
-    type : ["공기정화","그늘에서","다육식물","귀차니즘","인테리어","반려동물"],
-    plantAll : [plantsClearAir,plantsShade,plantsDry,plantsLazy,plantsInterior,plantsAnimal]
+    type : ["전체검색","공기정화","그늘에서","다육식물","귀차니즘","인테리어","반려동물"],
+    plantAll : [plantTotal,plantsClearAir,plantsShade,plantsDry,plantsLazy,plantsInterior,plantsAnimal]
 
 )
 
