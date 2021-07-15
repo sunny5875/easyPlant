@@ -218,14 +218,15 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 let provider = ASAuthorizationAppleIDProvider()
                 provider.getCredentialState(forUserID: appleIDCredential.user) {
                     (getCredentialState, error) in
+                    print("State : \(getCredentialState)")
                         switch (getCredentialState) {
-                        case .authorized, .revoked:
+                        case .authorized:
                             // 이미 애플 로그인을 한 적 있는 경우
                             loadUserInfo()
                             loadUserPlant()
                             print("test3")
                             break
-                        case .notFound:
+                        case .notFound, .revoked:
                             // 첫 애플 로그인인 경우 (=회원가입)
                             
                             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -249,6 +250,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                             print("\(getCredentialState)")
                         }
                     }
+                
+                self.dismiss(animated: true, completion: nil)
                 }
             }
         }
