@@ -170,6 +170,16 @@
             </objects>
             <point key="canvasLocation" x="1800.0000000000002" y="-171.42857142857142"/>
         </scene>
+        <!--EditPlant-->
+        <scene sceneID="fJb-Kh-q3D">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyPlant" referencedIdentifier="EditPlant" id="GvI-tb-3ey" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="oNn-jd-gtP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QxL-OY-7gc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5685" y="-171"/>
+        </scene>
         <!--식물 이름-->
         <scene sceneID="f3w-Py-7S7">
             <objects>
@@ -415,7 +425,14 @@
                             <constraint firstAttribute="bottom" secondItem="Qa4-o7-hgY" secondAttribute="bottom" id="qp6-oQ-aAQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="식물 이름" largeTitleDisplayMode="always" id="pCm-Kt-h0s"/>
+                    <navigationItem key="navigationItem" title="식물 이름" largeTitleDisplayMode="always" id="pCm-Kt-h0s">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus.rectangle.on.folder" catalog="system" id="aZi-AQ-ooA">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="GvI-tb-3ey" kind="show" id="q8n-BZ-iEc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="qEf-3D-tyG" id="U7X-VY-6o5"/>
                         <outlet property="plantDetailImage" destination="tuM-a2-gTk" id="5VN-wL-yQ9"/>
@@ -664,6 +681,7 @@
         <image name="menuDry" width="570" height="154"/>
         <image name="menuInterior" width="612" height="206"/>
         <image name="menuShadow" width="344" height="124"/>
+        <image name="plus.rectangle.on.folder" catalog="system" width="128" height="96"/>
         <image name="search2" width="608" height="170"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

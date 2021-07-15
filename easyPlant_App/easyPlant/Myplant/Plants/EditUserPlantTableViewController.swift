@@ -14,6 +14,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     var editPlant : UserPlant?
     var isChangePhoto : Bool = false
     var isEdit : Bool = true
+    var speciesTmp : String?
+    
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -149,6 +151,9 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         //새로 만들기 화면일 경우
         else{
             saveBarButton.isEnabled = false
+            if let spe = speciesTmp{
+                speciesTextField.text = spe
+            }
         }
         
         

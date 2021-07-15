@@ -7,20 +7,56 @@
 
 import Foundation
 import Alamofire
+var metaParam = [String:Any]()
+var plantParam = [String:Any]()
+
 let apiDecoder = JSONDecoder()
+let nongsaroApiKey:String = "20210714VEVXFVNHSKPNIVDN3EUQ"
 
-let param: Parameters = [
-    "apiKey" : "20210714VEVXFVNHSKPNIVDN3EUQ",
-    "sType" : "한명",
-    "sText" : "야자",
-    "pageNo": 1,
-    "numOfRows" : 300
-]
 
-var dataSource : [plantData] = []
+func initMetaPara(_ search : String){
+    metaParam = [
+        "apiKey" : nongsaroApiKey,
+        "sText" : search,
+        "pageNo": 1,
+        "numOfRows" : 300
 
-struct APIresponse: Codable{
+    ]
+    
+}
+
+func initPlantParam(_ cntntsNo : Int){
+    plantParam = [
+        
+        "apiKey" : nongsaroApiKey,
+        "cntntsNo" : cntntsNo
+    ]
+
+}
+
+var plantSource : [plantData] = []
+var metaSource : [metaData] = []
+
+struct plantAPIresponse: Codable{
     let plantList : [plantData]
+}
+
+struct metaAPIresponse: Codable{
+    let metaList : [metaData]
+}
+
+struct metaData: Codable{
+    let cntntsNo : Int
+    let cntntsSj : String
+    let rtnFileSeCode : Int
+    let rtnFileSn : Int
+    let rtnOrginlFileNm : String
+    let rtnStreFileNm : String
+    let rtnFileCours : String
+    let rtnImageDc : String
+    let rtnThumbFileNm : String
+    let rtnImgSeCode : Int
+
 }
 
 struct plantData: Codable{

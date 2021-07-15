@@ -547,7 +547,7 @@
         <!--Edit User Plant Table View Controller-->
         <scene sceneID="tyg-3j-oGT">
             <objects>
-                <tableViewController id="TcO-SJ-DT1" customClass="EditUserPlantTableViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditPlant" id="TcO-SJ-DT1" customClass="EditUserPlantTableViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="AIZ-Sj-OhM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
