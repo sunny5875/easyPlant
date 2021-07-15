@@ -121,6 +121,7 @@ class PlantDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
         
         if let vc = segue.destination as? EditUserPlantTableViewController {
+            vc.editPlant = UserPlant()
             vc.speciesTmp = self.detailPlantName
             vc.isEdit = false
        
