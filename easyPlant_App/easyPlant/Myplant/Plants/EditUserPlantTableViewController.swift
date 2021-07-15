@@ -15,11 +15,10 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     var isChangePhoto : Bool = false
     var isEdit : Bool = true
     var speciesTmp : String?
-<<<<<<< HEAD
+
     var isFromSearch : Bool?
-=======
+
     let monthPerDay: [Int] = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
->>>>>>> d3c1bfb3e428c6a8329b912c310d944ff099c4ce
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
