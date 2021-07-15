@@ -15,6 +15,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     var isChangePhoto : Bool = false
     var isEdit : Bool = true
     var speciesTmp : String?
+    var isFromSearch : Bool?
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
@@ -284,8 +285,14 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             saveUserInfo(user: myUser)
             saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
            
-            
+          
             performSegue(withIdentifier: "makeNewPlant", sender: self)
+            
+            if let isfrom = isFromSearch, isfrom == true{
+                self.navigationController?.popViewController(animated: false)
+                
+
+            }
         }
         
     

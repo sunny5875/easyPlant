@@ -124,6 +124,7 @@ class PlantDetailViewController: UIViewController {
             vc.editPlant = UserPlant()
             vc.speciesTmp = self.detailPlantName
             vc.isEdit = false
+            vc.isFromSearch = true
        
         }
         
