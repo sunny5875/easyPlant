@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class MyDiaryViewController: UIViewController {
     var myplant : UserPlant?
     var diary : Diary?
@@ -64,6 +64,10 @@ class MyDiaryViewController: UIViewController {
     
     //공유 버튼이 눌렸다면
     @IBAction func shareButtonTapped(_ sender: Any) {
+        if Auth.auth().currentUser == nil {
+            showAlert()
+            return
+        }
         
         guard let image = imageLabel.image else { return }
             let activityController = UIActivityViewController(activityItems: [image],applicationActivities: nil)
@@ -99,7 +103,11 @@ class MyDiaryViewController: UIViewController {
     
     //다이어리 수정하기 버튼이 눌렸다면
     @IBAction func editButtonTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)
+        if Auth.auth().currentUser == nil {
+            showAlert()
+            return
+        }
+        let alert = UIAlertController(title: "다이어리 관리", message: "", preferredStyle: .actionSheet)
             
 //            alert.addAction(UIAlertAction(title: "Approve", style: .default , handler:{ (UIAlertAction)in
 //                print("User click Approve button")
@@ -107,7 +115,7 @@ class MyDiaryViewController: UIViewController {
             
         
         //수정하기
-            alert.addAction(UIAlertAction(title: "Edit", style: .default , handler:{ (UIAlertAction) in
+            alert.addAction(UIAlertAction(title: "다이어리 수정하기", style: .default , handler:{ (UIAlertAction) in
                 
                 //수정하고 저장하기
                 saveUserInfo(user: myUser)
@@ -116,7 +124,7 @@ class MyDiaryViewController: UIViewController {
             }))
 
         //삭제하기
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+            alert.addAction(UIAlertAction(title: "다이어리 지우기", style: .destructive , handler:{ (UIAlertAction)in
                 if let picture = self.diary?.picture{
                     deleteDiaryImage(title: picture)
                     self.myplant?.diarylist.remove(at: self.index!)
@@ -139,7 +147,7 @@ class MyDiaryViewController: UIViewController {
             }))
             
         //해제하기 버튼
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler:{ (UIAlertAction)in
                 print("User click Dismiss button")
             }))
 
@@ -164,7 +172,11 @@ class MyDiaryViewController: UIViewController {
     
     
 
-    
+    func showAlert() {
+        let alert = UIAlertController(title: "로그인이 필요한 서비스입니다", message: "로그인 후 이용바랍니다", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }
 

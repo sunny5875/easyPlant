@@ -10,6 +10,7 @@ import Charts
 import FirebaseStorage
 import Photos
 import PhotosUI
+import FirebaseAuth
 private let reuseIdentifier = "diaryCell"
 
 
@@ -63,7 +64,11 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
  
     //다이어리 생성 화면으로 이동
     @IBAction func plusButtonTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "Add new diary", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
+        if Auth.auth().currentUser == nil {
+            showAlert()
+            return
+        }
+        let alertController = UIAlertController(title: "다이어리 추가", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
         requestCameraPermission()
         requestGalleryPermission()
@@ -71,7 +76,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         //다음 세개를 action sheet에 추가할 것
         //cancel로 정하면 맨 밑에 생기고 default면 그냥 위에 생김
-        let cancelAction = UIAlertAction(title: "Cancel",style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소",style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
         let imagePicker = UIImagePickerController()
@@ -80,7 +85,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         //카메라로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
 
-            let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
+            let cameraAction = UIAlertAction(title: "카메라 선택하기",style: .default, handler: { action in
                 imagePicker.sourceType = .camera
                 self.present(imagePicker,animated: true,completion: nil)
             })
@@ -209,6 +214,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 
             }
         }
+        
     }
 
     
@@ -382,6 +388,10 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
  
    //식물 정보 수정버튼이 눌리게 되면
     @IBAction func editButtonTapped(_ sender: Any) {
+        if Auth.auth().currentUser == nil {
+            showAlert()
+            return
+        }
         let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)
             
 //            alert.addAction(UIAlertAction(title: "Approve", style: .default , handler:{ (UIAlertAction)in
@@ -429,6 +439,12 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 print("completion block")
             })
     
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "로그인이 필요한 서비스입니다", message: "로그인 후 이용바랍니다", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
