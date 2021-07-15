@@ -195,6 +195,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
+
             
             deleteLocalData()
             //
@@ -267,6 +268,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                             }
                             print("test2")
                             guard (authResult?.user) != nil else { return }
+
                         }
                         
                         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
