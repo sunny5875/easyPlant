@@ -17,20 +17,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LsL-u8-txK">
-                                <rect key="frame" x="40" y="86" width="520" height="428"/>
+                                <rect key="frame" x="40" y="208" width="310" height="428"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디 (이메일)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uH8-d9-VNm">
-                                        <rect key="frame" x="0.0" y="0.0" width="520" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FHl-Gi-Zsd">
-                                        <rect key="frame" x="0.0" y="54" width="520" height="34"/>
+                                        <rect key="frame" x="0.0" y="54" width="310" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVw-eb-i87">
-                                        <rect key="frame" x="0.0" y="108" width="520" height="42"/>
+                                        <rect key="frame" x="0.0" y="108" width="310" height="42"/>
                                         <color key="backgroundColor" red="0.72941176470000002" green="0.86274509799999999" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="12"/>
@@ -42,10 +42,10 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="z3y-Xw-sOf">
-                                        <rect key="frame" x="0.0" y="170" width="520" height="38"/>
+                                        <rect key="frame" x="0.0" y="170" width="310" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFR-FR-m3e">
-                                                <rect key="frame" x="0.0" y="0.0" width="255" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                                 <state key="normal" title="비밀번호 재설정">
@@ -56,7 +56,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg1-Pm-AC6">
-                                                <rect key="frame" x="265" y="0.0" width="255" height="38"/>
+                                                <rect key="frame" x="160" y="0.0" width="150" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                                 <state key="normal" title="회원가입">
@@ -69,16 +69,21 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="exs-UD-0F5">
-                                        <rect key="frame" x="0.0" y="228" width="520" height="200"/>
+                                        <rect key="frame" x="0.0" y="228" width="310" height="200"/>
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mJj-zV-14L">
+                                <rect key="frame" x="176.66666666666666" y="403.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fGm-TZ-Udv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LsL-u8-txK" firstAttribute="centerY" secondItem="NQJ-VK-KQn" secondAttribute="centerY" id="Q6h-b1-xar"/>
+                            <constraint firstItem="mJj-zV-14L" firstAttribute="centerX" secondItem="NQJ-VK-KQn" secondAttribute="centerX" id="UPy-ST-cqP"/>
                             <constraint firstItem="fGm-TZ-Udv" firstAttribute="trailing" secondItem="LsL-u8-txK" secondAttribute="trailing" constant="40" id="aQc-kB-SKS"/>
+                            <constraint firstItem="mJj-zV-14L" firstAttribute="centerY" secondItem="NQJ-VK-KQn" secondAttribute="centerY" id="aZ4-Tl-62l"/>
                             <constraint firstItem="LsL-u8-txK" firstAttribute="leading" secondItem="fGm-TZ-Udv" secondAttribute="leading" constant="40" id="qZh-Yc-56N"/>
                         </constraints>
                     </view>
@@ -86,6 +91,7 @@
                     <connections>
                         <outlet property="IDField" destination="uH8-d9-VNm" id="TCL-7a-4jW"/>
                         <outlet property="findBtn" destination="BFR-FR-m3e" id="na4-rb-uga"/>
+                        <outlet property="indicatorView" destination="mJj-zV-14L" id="PtS-Zs-Ifl"/>
                         <outlet property="joinBtn" destination="Yg1-Pm-AC6" id="ekS-1U-ucI"/>
                         <outlet property="loginBtn" destination="mVw-eb-i87" id="a8w-SS-wN2"/>
                         <outlet property="pwField" destination="FHl-Gi-Zsd" id="9Iu-Ge-HJA"/>
@@ -121,30 +127,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="rPX-lw-8HI">
-                                <rect key="frame" x="40" y="151" width="520" height="298"/>
+                                <rect key="frame" x="40" y="273" width="310" height="298"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이름" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KaM-8u-4WL">
-                                        <rect key="frame" x="0.0" y="0.0" width="520" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디(이메일)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="avB-4U-qCW">
-                                        <rect key="frame" x="0.0" y="64" width="520" height="34"/>
+                                        <rect key="frame" x="0.0" y="64" width="310" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WvJ-k9-f8r">
-                                        <rect key="frame" x="0.0" y="128" width="520" height="34"/>
+                                        <rect key="frame" x="0.0" y="128" width="310" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호 확인" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MHj-hc-f9l">
-                                        <rect key="frame" x="0.0" y="192" width="520" height="34"/>
+                                        <rect key="frame" x="0.0" y="192" width="310" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gx5-cm-slp">
-                                        <rect key="frame" x="0.0" y="256" width="520" height="42"/>
+                                        <rect key="frame" x="0.0" y="256" width="310" height="42"/>
                                         <color key="backgroundColor" red="0.72941176470000002" green="0.86274509799999999" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="12"/>
@@ -188,15 +194,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="F5n-u4-fEc">
-                                <rect key="frame" x="40" y="254.5" width="520" height="91"/>
+                                <rect key="frame" x="40" y="376.66666666666669" width="310" height="91"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디 (이메일)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="edO-WU-dux">
-                                        <rect key="frame" x="0.0" y="0.0" width="520" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyK-xg-I6j">
-                                        <rect key="frame" x="0.0" y="49" width="520" height="42"/>
+                                        <rect key="frame" x="0.0" y="49" width="310" height="42"/>
                                         <color key="backgroundColor" red="0.73037284609999997" green="0.86348104479999999" blue="0.56297761199999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="12"/>

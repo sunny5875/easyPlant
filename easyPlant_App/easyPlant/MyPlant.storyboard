@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8B2-zf-AOF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8B2-zf-AOF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -419,6 +419,7 @@
                         <segue destination="6XQ-O8-JIb" kind="show" identifier="pickImageSegue" id="EB6-r5-rxP"/>
                         <segue destination="TcO-SJ-DT1" kind="show" identifier="editPlantSegue" id="fv4-gj-Q8Y"/>
                         <segue destination="5Dk-Al-IGD" kind="unwind" identifier="unwindToUserPlants" unwindAction="unwindToUserPlants:" id="YLO-aL-qaF"/>
+                        <segue destination="pfL-aM-X7Q" kind="show" identifier="toLoginPage" id="Pf3-h8-v3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9pc-EN-1sV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1103,7 +1104,7 @@
                             <tableViewSection id="e12-cn-rlO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="rkw-H7-LSt">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rkw-H7-LSt" id="BIH-Mb-XND">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1134,7 +1135,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="Peo-EB-Jq1">
-                                        <rect key="frame" x="0.0" y="124.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="128" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Peo-EB-Jq1" id="49H-0e-4qp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -1200,8 +1201,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Pf3-h8-v3p"/>
         <segue reference="1Ye-oo-bKU"/>
-        <segue reference="6ci-lE-3OF"/>
+        <segue reference="fv4-gj-Q8Y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

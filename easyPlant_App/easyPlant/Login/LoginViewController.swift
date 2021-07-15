@@ -14,6 +14,7 @@ import Charts
 
 class LoginViewController: UIViewController ,UITextViewDelegate {
     
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var IDField: UITextField!
     @IBOutlet weak var pwField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
@@ -26,6 +27,8 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.bringSubviewToFront(indicatorView)
+        indicatorView.isHidden = true
         loginBtn.layer.cornerRadius = 15
         IDField.borderStyle = .none
         let border = CALayer()
@@ -133,16 +136,22 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
             showAlert(message: "비밀번호를 입력해주세요")
             return
         }
+        self.indicatorView.isHidden = false
+        self.indicatorView.startAnimating()
         
         Auth.auth().signIn(withEmail: IDField.text!, password: pwField.text!) {
             (user, error) in
             if user != nil {
                 if ((Auth.auth().currentUser?.isEmailVerified == true)) {
+                    
+                    
                     deleteLocalData()
                     
                     self.loadUserInfoAndUpdateValue()
                     self.loadUserPlantAndDismiss()
                 } else {
+                    self.indicatorView.stopAnimating()
+                    self.indicatorView.isHidden = true
                     self.showAlert(message: "이메일 인증을 완료해주세요")
                     do {
                         try Auth.auth().signOut()
@@ -155,6 +164,8 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
             } else {
                 self.showAlert(message: "아이디와 비밀번호를 다시 입력해주세요")
                 print("로그인 실패")
+                self.indicatorView.stopAnimating()
+                self.indicatorView.isHidden = true
             }
         }
     }
@@ -199,6 +210,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     return
                 }
                 guard (authResult?.user) != nil else { return }
+                
+                self.indicatorView.isHidden = false
+                self.indicatorView.startAnimating()
                 
                 deleteLocalData()
                 
@@ -259,8 +273,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             let infoRef = storageRef.child(filePath)
 
-            print("HIHIHIHIHI \(filePath)")
-            
             // Download to the local filesystem
             infoRef.write(toFile: archiveURL) { url, error in
               if let error = error {
@@ -280,6 +292,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                         view.plantListTableView.reloadData()
                         view.calendar.reloadData()
                     }
+                    self.indicatorView.stopAnimating()
+                    self.indicatorView.isHidden = true
                     self.dismiss(animated: true, completion: nil)
                 } catch {
                     print(error)

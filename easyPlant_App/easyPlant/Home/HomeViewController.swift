@@ -230,11 +230,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let value_fill = PieChartDataEntry(value: 0)
         let value_empty = PieChartDataEntry(value: 0)
         
+        /*
         pieChart.chartDescription?.text = "행복도"
         pieChart.chartDescription?.font = UIFont.boldSystemFont(ofSize: CGFloat(12))
         pieChart.chartDescription?.textColor = .lightGray
-        pieChart.chartDescription?.textAlign = .center
-        
+        pieChart.chartDescription?.textAlign = .right
+        */
         value_fill.value = Double(myUser.hapiness)
         value_fill.label = ""
         value_empty.value = 100 - value_fill.value
@@ -257,21 +258,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.rotationEnabled = false
         chartDataSet.colors = colors
         chartDataSet.drawValuesEnabled = false
-        chartDataSet.selectionShift = 8
+        chartDataSet.selectionShift =  4
         pieChart.transparentCircleRadiusPercent = 0
         pieChart.holeRadiusPercent = 50
         pieChart.legend.enabled = false
         pieChart.chartDescription?.enabled = true
         pieChart.drawHoleEnabled = false
         pieChart.drawCenterTextEnabled = true
-        pieChart.centerText = "\(value_fill.value)%"
         
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize),
             .foregroundColor: UIColor.gray
         ]
         
-        let attributedString = NSAttributedString(string: String(value_fill.value), attributes: attributes)
+        let attributedString = NSAttributedString(string: "\(Int(value_fill.value))%", attributes: attributes)
         
         pieChart.centerAttributedText = attributedString
         
