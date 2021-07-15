@@ -210,18 +210,23 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 }
                 guard (authResult?.user) != nil else { return }
                 
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                changeRequest?.displayName = appleIDCredential.fullName?.givenName
-                changeRequest?.commitChanges(completion: { (error) in
-                    if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            print("Updated display name: \(Auth.auth().currentUser?.displayName)")
-                        }
-                    })
+                if let _ = Auth.auth().currentUser?.displayName {
+                    loadUserInfo()
+                    loadUserPlant()
+                } else {
+                    myUser = User(Date())
+                    userPlants = []
+                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                    changeRequest?.displayName = appleIDCredential.fullName?.givenName ?? Auth.auth().currentUser?.displayName
+                    changeRequest?.commitChanges(completion: { (error) in
+                        if let error = error {
+                                print(error.localizedDescription)
+                            } else {
+                                print("Updated display name: \(Auth.auth().currentUser?.displayName)")
+                            }
+                        })
+                }
                 
-                myUser = User(Date())
-                userPlants = []
                 myUser.updateUser()
                 saveUserInfo(user: myUser)
                 saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
