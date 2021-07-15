@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PlantDetailViewController: UIViewController {
 
@@ -131,5 +132,18 @@ class PlantDetailViewController: UIViewController {
         
     }
  
-
+    @IBAction func addPlantBtnTapped(_ sender: Any) {
+        if Auth.auth().currentUser == nil {
+            showAlert()
+            return
+        }
+        
+        performSegue(withIdentifier: "toEditPlant", sender: self)
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "로그인이 필요한 서비스입니다", message: "로그인 후 이용바랍니다", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
+        self.present(alert, animated: true, completion: nil)
+    }
 }

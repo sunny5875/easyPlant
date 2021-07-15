@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -429,7 +429,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus.rectangle.on.folder" catalog="system" id="aZi-AQ-ooA">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="GvI-tb-3ey" kind="show" id="q8n-BZ-iEc"/>
+                                <action selector="addPlantBtnTapped:" destination="84U-Yc-eil" id="Rel-9x-0ua"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -447,6 +447,7 @@
                         <outletCollection property="subtext" destination="6O2-Cm-8uX" collectionClass="NSMutableArray" id="hXW-Zw-vlO"/>
                         <outletCollection property="subtext" destination="JDT-VX-W8P" collectionClass="NSMutableArray" id="4kp-PJ-XHv"/>
                         <outletCollection property="subtext" destination="Zro-Oe-Yzg" collectionClass="NSMutableArray" id="0HF-E2-MBq"/>
+                        <segue destination="GvI-tb-3ey" kind="show" identifier="toEditPlant" id="Nfv-Fj-Fvr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndr-9H-hgr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -464,7 +465,7 @@
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plantCell" rowHeight="265" id="V2F-no-dcX" customClass="CellTableViewCell" customModule="easyPlant" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="265"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="265"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V2F-no-dcX" id="kay-kN-ibc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="265"/>
