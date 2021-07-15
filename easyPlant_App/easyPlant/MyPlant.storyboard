@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="peC-Tm-KZZ" customClass="UserPlantCollectionViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4KV-24-a5G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmV-Dj-Ubw" userLabel="PlantAdd">
-                                <rect key="frame" x="15" y="140" width="384" height="40"/>
+                                <rect key="frame" x="15" y="0.0" width="384" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BP0-r1-aL2">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
@@ -65,7 +65,7 @@
                                 </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2G-5B-1Vm">
-                                <rect key="frame" x="0.0" y="190" width="414" height="706"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="792"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="P5A-VW-W1n">
                                     <size key="itemSize" width="150" height="150"/>
@@ -169,11 +169,11 @@
             <objects>
                 <viewController storyboardIdentifier="myPlantSB" id="Rli-Ho-JN6" customClass="MyPlantViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0TC-Zs-dST">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qz5-vX-pcd">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gO-CG-dig">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
@@ -342,7 +342,7 @@
                                         </constraints>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qto-ep-3ia">
-                                        <rect key="frame" x="0.0" y="420" width="414" height="305"/>
+                                        <rect key="frame" x="0.0" y="420" width="414" height="388"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <edgeInsets key="layoutMargins" top="1" left="1" bottom="1" right="1"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="xTc-Pm-9Nj">
@@ -432,11 +432,11 @@
             <objects>
                 <viewController id="H8H-v3-owa" customClass="MyDiaryViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R2A-BZ-Ijc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFO-jO-oYr">
-                                <rect key="frame" x="0.0" y="340" width="414" height="576"/>
+                                <rect key="frame" x="0.0" y="335" width="414" height="576"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-9s-2EJ">
                                         <rect key="frame" x="30" y="30" width="354" height="470"/>
@@ -499,7 +499,7 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UMc-yQ-dYg">
-                                <rect key="frame" x="0.0" y="88" width="414" height="312"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="395"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ieG-ED-eaM"/>
@@ -550,7 +550,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="EditPlant" id="TcO-SJ-DT1" customClass="EditUserPlantTableViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="AIZ-Sj-OhM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -948,6 +948,7 @@
                         <outletCollection property="formatLabels" destination="ofw-cS-Xqr" collectionClass="NSMutableArray" id="Hdq-22-WL3"/>
                         <segue destination="Tbh-Dk-QRp" kind="unwind" identifier="edituesrPlant" unwindAction="unwindToSetting:" id="oer-RP-b9X"/>
                         <segue destination="Tbh-Dk-QRp" kind="unwind" identifier="makeNewPlant" unwindAction="unwindToNewPlantsList:" id="bwn-C8-F6X"/>
+                        <segue destination="peC-Tm-KZZ" kind="show" identifier="fromSearchMake" id="Qay-f1-YqC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycz-2W-Ef2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -960,14 +961,14 @@
             <objects>
                 <viewController id="6XQ-O8-JIb" customClass="WriteDiaryViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DAN-oV-0eP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ksd-zl-xs8">
-                                <rect key="frame" x="0.0" y="238" width="414" height="575"/>
+                                <rect key="frame" x="0.0" y="150" width="414" height="658"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="MPB-K7-kCD">
-                                        <rect key="frame" x="30" y="30" width="354" height="515"/>
+                                        <rect key="frame" x="30" y="30" width="354" height="598"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tY4-2S-LC1">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="30"/>
@@ -1001,7 +1002,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ty7-rt-625">
-                                                <rect key="frame" x="0.0" y="100" width="354" height="415"/>
+                                                <rect key="frame" x="0.0" y="100" width="354" height="498"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1028,7 +1029,7 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOr-ss-A1C">
-                                <rect key="frame" x="0.0" y="88" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="wQ1-Yx-hHO"/>
                                 </constraints>
@@ -1097,7 +1098,7 @@
             <objects>
                 <tableViewController id="Nse-79-5Gm" customClass="NotificationViewController" customModule="easyPlant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iN2-GH-DYh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -1197,13 +1198,14 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKx-IZ-olj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1515" y="-579"/>
+            <point key="canvasLocation" x="1638" y="-581"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AeD-yN-guI"/>
+        <segue reference="Pf3-h8-v3p"/>
         <segue reference="1Ye-oo-bKU"/>
         <segue reference="6ci-lE-3OF"/>
+        <segue reference="Qay-f1-YqC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

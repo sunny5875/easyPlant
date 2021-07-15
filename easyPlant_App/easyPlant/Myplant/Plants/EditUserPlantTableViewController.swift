@@ -289,11 +289,15 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             saveNewUserPlant(plantsList: userPlants , archiveURL: archiveURL)
            
           
-            performSegue(withIdentifier: "makeNewPlant", sender: self)
             
             if let isfrom = isFromSearch, isfrom == true{
-                self.navigationController?.popViewController(animated: false)
+                performSegue(withIdentifier: "fromSearchMake", sender: nil)
+                //self.navigationController?.popViewController(animated: false)
                 
+
+            }
+            else{
+                performSegue(withIdentifier: "makeNewPlant", sender: self)
 
             }
         }
