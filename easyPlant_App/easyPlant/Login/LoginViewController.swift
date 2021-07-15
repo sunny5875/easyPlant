@@ -159,9 +159,6 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
         }
     }
     
-    @IBAction func findBtnTapped(_ sender: Any) {
-    }
-    
     func showAlert(message: String) {
         let alert = UIAlertController(title: "잘못된 로그인입니다.", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
@@ -223,10 +220,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 myUser.updateUser()
                 saveUserInfo(user: myUser)
                 saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
-                }
-            
-            loadUserInfoAndUpdateValue()
-            loadUserPlantAndDismiss()
+                
+                self.loadUserInfoAndUpdateValue()
+                self.loadUserPlantAndDismiss()
+            }   
         }
     }
     
