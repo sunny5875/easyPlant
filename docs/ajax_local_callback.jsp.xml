@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><response><header><resultCode>91</resultCode><resultMsg>요청하신 서비스 실행 시, 시스템 오류가 발생하였습니다.계속 오류가 발생하면 농사로(http://www.nongsaro.go.kr) 관리자에게 문의하십시오.</resultMsg><requestParameter><serviceAddress>agchmSafeManual</serviceAddress><svcTypeCode>281001</svcTypeCode></requestParameter></header></response>
