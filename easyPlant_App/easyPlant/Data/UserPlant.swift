@@ -183,6 +183,7 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
             }
         }
         
+        
         // 로컬에 저장
         try encodeData.write(to: archiveURL, options: .noFileProtection)
 

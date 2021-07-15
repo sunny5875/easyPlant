@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
+import FirebaseStorage
 
 class LoginViewController: UIViewController ,UITextViewDelegate {
     
@@ -138,15 +139,8 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
                     deleteLocalData()
                     
                     loadUserInfo()
-                    loadUserPlant()
                     
-                    if let view = self.plantCollectionView {
-                        print("reload data!!!!!!@#!#@!$!$# \(userPlants)")
-                        view.userPlantCollectionView.reloadData()
-                    }
-                    
-                    print("로그인 성공 이름 : \(String(describing: Auth.auth().currentUser?.displayName))")
-                    self.dismiss(animated: true, completion: nil)
+                    self.loadUserPlantAndDismiss()
                 } else {
                     self.showAlert(message: "이메일 인증을 완료해주세요")
                     do {
@@ -227,84 +221,69 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                         })
                 }
                 
+                
                 myUser.updateUser()
                 saveUserInfo(user: myUser)
                 saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
-            }
-            
-            
-            //
-            
-            /*
-            let provider = ASAuthorizationAppleIDProvider()
-            provider.getCredentialState(forUserID: appleIDCredential.user) {
-                (getCredentialState, error) in
-                    switch (getCredentialState) {
-                    case .authorized:
-                        // 이미 애플 로그인을 한 적 있는 경우
-                        let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                                  idToken: idTokenString,
-                                                                  rawNonce: nonce)
-                        Auth.auth().signIn(with: credential) { (authResult, error) in
-                            if (error != nil) {
-                                print("error")
-                                print(error?.localizedDescription ?? "")
-                                return
-                            }
-                            print("test2")
-                            guard (authResult?.user) != nil else { return }
-                        }
-                        
-                        loadUserInfo()
-                        loadUserPlant()
-                        print("test3")
-                        
-                        break
-                    case .notFound, .revoked:
-                        // 첫 애플 로그인인 경우 (=회원가입)
-                        let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                                  idToken: idTokenString,
-                                                                  rawNonce: nonce)
-                        Auth.auth().signIn(with: credential) { (authResult, error) in
-                            if (error != nil) {
-                                print("error")
-                                print(error?.localizedDescription ?? "")
-                                return
-                            }
-                            print("test2")
-                            guard (authResult?.user) != nil else { return }
-
-                        }
-                        
-                        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                        changeRequest?.displayName = appleIDCredential.fullName?.givenName
-                        changeRequest?.commitChanges(completion: { (error) in
-                            if let error = error {
-                                    print(error.localizedDescription)
-                                } else {
-                                    print("Updated display name: \(Auth.auth().currentUser?.displayName)")
-                                }
-                            })
-                        
-                        myUser = User(Date())
-                        userPlants = []
-                        myUser.updateUser()
-                        saveUserInfo(user: myUser)
-                        saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
-                        
-                        break
-                    default:
-                        print("\(getCredentialState)")
-                    }
                 }
-            */
-            self.dismiss(animated: true, completion: nil)
-            }
+            
+            loadUserPlantAndDismiss()
         }
+    }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
         print("Sign in with Apple errored: \(error)")
+    }
+    
+    
+    
+    func loadUserPlantAndDismiss(){
+        let jsonDecoder = JSONDecoder()
+        
+        //로컬에 없다면 원격 저장소에서 받아온다
+        if let data = NSData(contentsOf: archiveURL){
+            //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
+            do {
+                let decoded = try jsonDecoder.decode([UserPlant].self, from: data as Data)
+                userPlants = decoded
+            } catch {
+                print(error)
+            }
+        }
+        else {
+            // Create a reference to the file you want to download
+            var filePath = ""
+            if let user = Auth.auth().currentUser {
+                filePath = "/\(user.uid)/userPlantList/plants"
+            } else {
+                filePath = "/sampleUser/userPlantList/plants"
+            }
+            let infoRef = storageRef.child(filePath)
+
+            
+            // Download to the local filesystem
+            infoRef.write(toFile: archiveURL) { url, error in
+              if let error = error {
+                print("download to local userPlants error : \(error)")
+
+              } else {
+                let data = NSData(contentsOf: url!)
+                do {
+                    let decoded = try jsonDecoder.decode([UserPlant].self, from: data! as Data)
+                    userPlants = decoded
+                    
+                    if let view = self.plantCollectionView {
+                        print("reload data!!!!!!@#!#@!$!$# \(userPlants)")
+                        view.userPlantCollectionView.reloadData()
+                    }
+                    self.dismiss(animated: true, completion: nil)
+                } catch {
+                    print(error)
+                }
+              }
+            }
+        }
     }
 }
 
