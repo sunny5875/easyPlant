@@ -15,6 +15,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     var isChangePhoto : Bool = false
     var isEdit : Bool = true
     var speciesTmp : String?
+    let monthPerDay: [Int] = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
@@ -39,7 +40,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         isChangePhoto = true
         
-        let alertController = UIAlertController(title: "Change photo", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
+        let alertController = UIAlertController(title: "사진 변경하기", message: nil, preferredStyle: .actionSheet)//action sheet 이름을 choose imageSource로 스타일은 actionsheet
         
         requestCameraPermission()
         requestGalleryPermission()
@@ -47,7 +48,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         //다음 세개를 action sheet에 추가할 것
         //cancel로 정하면 맨 밑에 생기고 default면 그냥 위에 생김
-        let cancelAction = UIAlertAction(title: "Cancel",style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소",style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
         let imagePicker = UIImagePickerController()
@@ -56,7 +57,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         //카메라로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
 
-            let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
+            let cameraAction = UIAlertAction(title: "카메라 선택하기",style: .default, handler: { action in
                 imagePicker.sourceType = .camera
                 self.present(imagePicker,animated: true,completion: nil)
             })
@@ -342,7 +343,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 else if monthInt<1 || monthInt>12 {
                     checking1 = 0
                 }
-                else if dayInt>31 || dayInt<1 {
+                else if dayInt>monthPerDay[monthInt] || dayInt<1 {
                     checking1 = 0
                 }
                 else {
