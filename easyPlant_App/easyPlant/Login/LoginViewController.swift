@@ -218,6 +218,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     if let error = error {
                             print(error.localizedDescription)
                         } else {
+                            print(appleIDCredential.fullName?.givenName!)
                             print("Updated display name: \(Auth.auth().currentUser!.displayName!)")
                         }
                     })
