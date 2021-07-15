@@ -147,7 +147,7 @@ func loadUserInfo(){
         }
         
         let infoRef = storageRef.child(filePath)
-
+        
         // Download to the local filesystem
         infoRef.write(toFile: userInfoURL) { url, error in
           if let error = error {

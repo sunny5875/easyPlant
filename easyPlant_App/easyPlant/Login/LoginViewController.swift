@@ -64,6 +64,7 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
             request.requestedScopes = [.fullName, .email]
             request.nonce = sha256(nonce)
             
+            
             let authorizationController = ASAuthorizationController(authorizationRequests: [request])
             authorizationController.delegate = self
             authorizationController.presentationContextProvider = self
@@ -196,11 +197,42 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             
             deleteLocalData()
+            //
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                      idToken: idTokenString,
+                                                      rawNonce: nonce)
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if (error != nil) {
+                    print("error")
+                    print(error?.localizedDescription ?? "")
+                    return
+                }
+                guard (authResult?.user) != nil else { return }
+                
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = appleIDCredential.fullName?.givenName
+                changeRequest?.commitChanges(completion: { (error) in
+                    if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            print("Updated display name: \(Auth.auth().currentUser?.displayName)")
+                        }
+                    })
+                
+                myUser = User(Date())
+                userPlants = []
+                myUser.updateUser()
+                saveUserInfo(user: myUser)
+                saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+            }
             
+            
+            //
+            
+            /*
             let provider = ASAuthorizationAppleIDProvider()
             provider.getCredentialState(forUserID: appleIDCredential.user) {
                 (getCredentialState, error) in
-                print("State : \(getCredentialState)")
                     switch (getCredentialState) {
                     case .authorized:
                         // 이미 애플 로그인을 한 적 있는 경우
@@ -258,7 +290,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                         print("\(getCredentialState)")
                     }
                 }
-            
+            */
             self.dismiss(animated: true, completion: nil)
             }
         }
