@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,8 @@
 		1218F212265FE3CB000D99F4 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F211265FE3CB000D99F4 /* LevelViewController.swift */; };
 		12799956266E09750072E9FF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12799955266E09740072E9FF /* NotificationViewController.swift */; };
 		1279995B266E09800072E9FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1279995A266E09800072E9FF /* HomeViewController.swift */; };
+		12BFBA4A26A056B2007825E8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 12BFBA4926A056B2007825E8 /* Alamofire */; };
+		12BFBA4C26A056EB007825E8 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFBA4B26A056EB007825E8 /* RestAPI.swift */; };
 		12E3E938269BE19F001ED3C6 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E937269BE19F001ED3C6 /* MypageViewController.swift */; };
 		12E3E940269BFAF4001ED3C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E93F269BFAF4001ED3C6 /* Login.storyboard */; };
 		12E3E943269BFB10001ED3C6 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E941269BFB10001ED3C6 /* JoinViewController.swift */; };
@@ -96,6 +98,7 @@
 		1218F211265FE3CB000D99F4 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		12799955266E09740072E9FF /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		1279995A266E09800072E9FF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		12BFBA4B26A056EB007825E8 /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
 		12E3E937269BE19F001ED3C6 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		12E3E93F269BFAF4001ED3C6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		12E3E941269BFB10001ED3C6 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47D8D3177E205A8A242DE88D /* Pods_easyPlant.framework in Frameworks */,
+				12BFBA4A26A056B2007825E8 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +310,7 @@
 		12E3E94E26A03B42001ED3C6 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				12BFBA4B26A056EB007825E8 /* RestAPI.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -397,6 +402,9 @@
 			dependencies = (
 			);
 			name = easyPlant;
+			packageProductDependencies = (
+				12BFBA4926A056B2007825E8 /* Alamofire */,
+			);
 			productName = easyPlant;
 			productReference = 1216638F263BB8F700125C69 /* easyPlant.app */;
 			productType = "com.apple.product-type.application";
@@ -471,6 +479,9 @@
 				Base,
 			);
 			mainGroup = 12166386263BB8F700125C69;
+			packageReferences = (
+				12BFBA4826A056B2007825E8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 12166390263BB8F700125C69 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -653,6 +664,7 @@
 				12EA1DD726510B9A009A0A5E /* CustomNavigationController.swift in Sources */,
 				D6AEE1C72647E76000E85162 /* homePlantSettingTableViewController.swift in Sources */,
 				12166395263BB8F700125C69 /* SceneDelegate.swift in Sources */,
+				12BFBA4C26A056EB007825E8 /* RestAPI.swift in Sources */,
 				3E86CFD9266B709400C99B13 /* PhotosAuthorization.swift in Sources */,
 				121663DE263BC40400125C69 /* SortTableViewController.swift in Sources */,
 			);
@@ -991,6 +1003,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		12BFBA4826A056B2007825E8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		12BFBA4926A056B2007825E8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12BFBA4826A056B2007825E8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 12166387263BB8F700125C69 /* Project object */;
 }
