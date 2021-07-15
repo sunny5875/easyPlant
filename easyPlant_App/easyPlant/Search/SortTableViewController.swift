@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Alamofire
 
 
 
@@ -56,6 +56,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidload")
+        fetchData("http://api.nongsaro.go.kr/service/garden/gardenList")
         findArray()
         setUI()
         setDelegate()
@@ -338,7 +339,47 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     
-    
+    //Get
+    func fetchData(_ url:String){
+        /*
+        AF.request(url, parameters: param ).validate().responseJSON() { response in
+          switch response.result {
+              case .success(let res):
+                do{
+                    
+                    let jsonData = try JSONSerialization.data(withJSONObject: res, options: .prettyPrinted)
+                    
+                    let json = try apiDecoder.decode(APIresponse.self, from: jsonData)
+                    dataSource  = json.plantList
+                    print(dataSource)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+ 
+                    //print(try? response.result.get() )
+                }catch(let err){
+                    print(err.localizedDescription)
+                }
+                
+              case .failure(let err):
+                print(err.localizedDescription)
+           
+          }
+        }
+        */
+        AF.request(url, parameters: param ,encoding: URLEncoding.default).responseString(){ response in
+          
+            //print(response.request)
+            //print(response.response)
+            //print(response.result)
+            //print(response.data)
+            print(response.value)
+            //print(response.error)
+
+
+        }
+    }
+
     //셀을 누르면 화면 전환하고 싶으면 selection segue way에 show 사용
 
   
@@ -359,4 +400,5 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     
    
 }
+
 
