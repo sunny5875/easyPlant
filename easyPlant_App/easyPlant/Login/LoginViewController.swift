@@ -188,8 +188,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
 
-            
-            deleteLocalData()
             //
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
@@ -201,6 +199,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     return
                 }
                 guard (authResult?.user) != nil else { return }
+                
+                deleteLocalData()
                 
                 if Auth.auth().currentUser?.displayName == nil {
                     myUser = User(Date())
@@ -214,15 +214,17 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                                 print("Updated display name: \(Auth.auth().currentUser?.displayName)")
                             }
                         })
+                    
+                    myUser.updateUser()
+                    saveUserInfo(user: myUser)
+                    saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
                 }
-                
-                
-                myUser.updateUser()
-                saveUserInfo(user: myUser)
-                saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
                 
                 self.loadUserInfoAndUpdateValue()
                 self.loadUserPlantAndDismiss()
+                
+                
+                
             }   
         }
     }
