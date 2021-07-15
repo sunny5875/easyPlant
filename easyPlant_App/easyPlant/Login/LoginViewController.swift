@@ -217,6 +217,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 let provider = ASAuthorizationAppleIDProvider()
                 provider.getCredentialState(forUserID: appleIDCredential.user) {
                     (getCredentialState, error) in
+                    print("State : \(getCredentialState)")
                         switch (getCredentialState) {
                         case .authorized:
                             // 이미 애플 로그인을 한 적 있는 경우
