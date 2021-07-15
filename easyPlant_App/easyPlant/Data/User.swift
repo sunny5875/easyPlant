@@ -182,24 +182,22 @@ func  saveUserInfo(user : User) {
         var filePath = ""
         if let user = Auth.auth().currentUser {
             filePath = "/\(user.uid)/userInfo/info"
-        } else {
-            filePath = "/sampleUser/userInfo/info"
-        }
-        
-        let metaData = StorageMetadata()
-        metaData.contentType = "application/json"
-        storageRef.child(filePath).putData(encodeData ,metadata: metaData){
-            (metaData,error) in if let error = error{
-                print(error.localizedDescription)
-                return
+            
+            let metaData = StorageMetadata()
+            metaData.contentType = "application/json"
+            storageRef.child(filePath).putData(encodeData ,metadata: metaData){
+                (metaData,error) in if let error = error{
+                    print(error.localizedDescription)
+                    return
+                }
+                else{
+                    print("성공")
+                }
             }
-            else{
-                print("성공")
-            }
+            
+            // 로컬에 저장
+            try encodeData.write(to: userInfoURL, options: .noFileProtection)
         }
-        
-        // 로컬에 저장
-        try encodeData.write(to: userInfoURL, options: .noFileProtection)
       }
       catch {
           print(error)
