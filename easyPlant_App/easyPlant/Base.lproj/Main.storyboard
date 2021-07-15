@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-oT-hy5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,10 +26,33 @@
                                 <rect key="frame" x="15" y="169" width="384" height="644"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="iUR-zW-ciJ">
-                                        <rect key="frame" x="0.0" y="8" width="384" height="691"/>
+                                        <rect key="frame" x="0.0" y="8" width="384" height="810"/>
                                         <subviews>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="u15-hj-KXq">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf7-2N-ofp" userLabel="전체검색">
                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="96"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <inset key="contentEdgeInsets" minX="130" minY="20" maxX="130" maxY="20"/>
+                                                <state key="normal" title="전체검색" backgroundImage="search2">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectTotalSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SqB-Vx-uo8"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuk-Sl-pYT">
+                                                <rect key="frame" x="0.0" y="119" width="384" height="96"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                <state key="normal" title="다육식물" backgroundImage="menuDry">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERH-FH-TrT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="u15-hj-KXq">
+                                                <rect key="frame" x="0.0" y="238" width="384" height="96"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="96" id="ZSX-64-aTp"/>
@@ -45,7 +68,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pf1-Kh-nJI">
-                                                <rect key="frame" x="0.0" y="119" width="384" height="96"/>
+                                                <rect key="frame" x="0.0" y="357" width="384" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -56,19 +79,8 @@
                                                     <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ksY-La-GGi"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuk-Sl-pYT">
-                                                <rect key="frame" x="0.0" y="238" width="384" height="96"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="다육식물" backgroundImage="menuDry">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERH-FH-TrT"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfE-2Z-YPV">
-                                                <rect key="frame" x="0.0" y="357" width="384" height="96"/>
+                                                <rect key="frame" x="0.0" y="476" width="384" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                 <state key="normal" title="귀차니즘" backgroundImage="menuBed">
@@ -79,7 +91,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJC-Yd-usB">
-                                                <rect key="frame" x="0.0" y="476" width="384" height="96"/>
+                                                <rect key="frame" x="0.0" y="595" width="384" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -91,7 +103,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-D1-vM7">
-                                                <rect key="frame" x="0.0" y="595" width="384" height="96"/>
+                                                <rect key="frame" x="0.0" y="714" width="384" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="130" minY="20" maxX="130" maxY="20"/>
@@ -113,6 +125,7 @@
                                             <constraint firstItem="l6U-D1-vM7" firstAttribute="height" secondItem="u15-hj-KXq" secondAttribute="height" id="XYi-EY-hSQ"/>
                                             <constraint firstItem="uuk-Sl-pYT" firstAttribute="height" secondItem="l6U-D1-vM7" secondAttribute="height" id="fAa-1O-bXg"/>
                                             <constraint firstItem="yfE-2Z-YPV" firstAttribute="width" secondItem="uuk-Sl-pYT" secondAttribute="width" id="lFm-B4-UKB"/>
+                                            <constraint firstItem="Qf7-2N-ofp" firstAttribute="height" secondItem="l6U-D1-vM7" secondAttribute="height" id="whF-8E-BRH"/>
                                             <constraint firstItem="pf1-Kh-nJI" firstAttribute="height" secondItem="uuk-Sl-pYT" secondAttribute="height" id="yaW-aQ-evg"/>
                                         </constraints>
                                     </stackView>
@@ -142,6 +155,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="검색" largeTitleDisplayMode="always" id="j4P-kW-cxq"/>
                     <connections>
+                        <outlet property="totalSearch" destination="Qf7-2N-ofp" id="Kun-l4-JEh"/>
                         <outletCollection property="menuButtons" destination="uuk-Sl-pYT" collectionClass="NSMutableArray" id="fiN-nj-anu"/>
                         <outletCollection property="menuButtons" destination="yfE-2Z-YPV" collectionClass="NSMutableArray" id="J8m-fe-yIn"/>
                         <outletCollection property="menuButtons" destination="aJC-Yd-usB" collectionClass="NSMutableArray" id="hC2-D8-Tne"/>
@@ -149,6 +163,7 @@
                         <outletCollection property="menuButtons" destination="pf1-Kh-nJI" collectionClass="NSMutableArray" id="9Rh-Fz-S7h"/>
                         <outletCollection property="menuButtons" destination="l6U-D1-vM7" collectionClass="NSMutableArray" id="LE5-ud-1Yl"/>
                         <segue destination="ma7-xl-PRu" kind="show" identifier="selectMenu" id="w0C-hf-xBF"/>
+                        <segue destination="ma7-xl-PRu" kind="show" identifier="selectTotalSearch" id="C6T-Vv-qdp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -432,7 +447,7 @@
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plantCell" rowHeight="265" id="V2F-no-dcX" customClass="CellTableViewCell" customModule="easyPlant" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="265"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="265"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V2F-no-dcX" id="kay-kN-ibc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="265"/>
@@ -637,6 +652,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="C6T-Vv-qdp"/>
         <segue reference="kMl-6a-qfj"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="labelColor"/>
@@ -648,6 +664,7 @@
         <image name="menuDry" width="570" height="154"/>
         <image name="menuInterior" width="612" height="206"/>
         <image name="menuShadow" width="344" height="124"/>
+        <image name="search2" width="608" height="170"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

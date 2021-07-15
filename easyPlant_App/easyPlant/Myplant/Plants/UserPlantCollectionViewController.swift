@@ -37,6 +37,7 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("view will appear!!!! hihi")
+        loadUserPlant()
         userPlantCollectionView.reloadData()
 
         var imagetmp : UIImageView = UIImageView()

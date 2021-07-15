@@ -11,6 +11,7 @@ class SearchTabViewController: UIViewController {
 
     
     @IBOutlet var menuButtons: [UIButton]!
+    @IBOutlet weak var totalSearch: UIButton!
     var titleSend: String?
 
     override func viewDidLoad() {
@@ -41,6 +42,10 @@ class SearchTabViewController: UIViewController {
         
         }
         
+        totalSearch.layer.cornerRadius = 20
+        totalSearch.layer.backgroundColor = UIColor.white.cgColor
+        totalSearch.setTitle(totalSearch.currentTitle, for: .normal)
+        
     }
 
     @IBAction func searchMenuTab(_ sender: Any) {
@@ -50,18 +55,28 @@ class SearchTabViewController: UIViewController {
         
     }
     
+    @IBAction func selectTotalSearch(_ sender: Any) {
+        let butSelect:UIButton = sender as! UIButton
+        titleSend = butSelect.title(for: .normal)
+    performSegue(withIdentifier: "selectTotalSearch", sender: nil)
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
         if let sortTable = segue.destination as? SortTableViewController {
-                if segue.identifier == "selectMenu" {
+            if segue.identifier == "selectMenu" {
+                //print(titleSend)
                 sortTable.navigationItem.title = titleSend
             }
+            else if segue.identifier == "selectTotalSearch" {
+                //print(titleSend)
+                sortTable.navigationItem.title = titleSend
+                //print(sortTable.navigationItem.title)
+
+            }
         }
-      
     }
-   
 
 }
