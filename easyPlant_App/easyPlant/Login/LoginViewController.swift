@@ -257,6 +257,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             let infoRef = storageRef.child(filePath)
 
+            print("HIHIHIHIHI \(filePath)")
             
             // Download to the local filesystem
             infoRef.write(toFile: archiveURL) { url, error in
