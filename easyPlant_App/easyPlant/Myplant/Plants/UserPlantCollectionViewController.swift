@@ -117,6 +117,7 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         if segue.identifier == "toMypage"{
             if let detailVC = segue.destination as?  MypageViewController{
                 detailVC.navigationItem.title = myUser.userName + "님"
+                detailVC.plantCollectionView = self
                 print("to my page")
             }
             

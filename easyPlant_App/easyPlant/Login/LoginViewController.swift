@@ -10,6 +10,7 @@ import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
 import FirebaseStorage
+import Charts
 
 class LoginViewController: UIViewController ,UITextViewDelegate {
     
@@ -20,6 +21,7 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
     @IBOutlet weak var joinBtn: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     var plantCollectionView: UserPlantCollectionViewController?
+    var homeView: HomeViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,8 +140,7 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
                 if ((Auth.auth().currentUser?.isEmailVerified == true)) {
                     deleteLocalData()
                     
-                    loadUserInfo()
-                    
+                    self.loadUserInfoAndUpdateValue()
                     self.loadUserPlantAndDismiss()
                 } else {
                     self.showAlert(message: "이메일 인증을 완료해주세요")
@@ -204,10 +205,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 }
                 guard (authResult?.user) != nil else { return }
                 
-                if let _ = Auth.auth().currentUser?.displayName {
-                    loadUserInfo()
-                    loadUserPlant()
-                } else {
+                if Auth.auth().currentUser?.displayName == nil {
                     myUser = User(Date())
                     userPlants = []
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -227,6 +225,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
                 }
             
+            loadUserInfoAndUpdateValue()
             loadUserPlantAndDismiss()
         }
     }
@@ -277,6 +276,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                         print("reload data!!!!!!@#!#@!$!$# \(userPlants)")
                         view.userPlantCollectionView.reloadData()
                     }
+                    if let view = self.homeView {
+                        view.plantListTableView.reloadData()
+                        view.calendar.reloadData()
+                    }
                     self.dismiss(animated: true, completion: nil)
                 } catch {
                     print(error)
@@ -284,6 +287,114 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
               }
             }
         }
+    }
+    
+    
+    func loadUserInfoAndUpdateValue() {
+        let jsonDecoder = JSONDecoder()
+        
+        //로컬에 없다면 원격 저장소에서 받아온다
+        if let data = NSData(contentsOf: userInfoURL){
+            //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
+            do {
+                let decoded = try jsonDecoder.decode(User.self, from: data as Data)
+                myUser = decoded
+            } catch {
+                print(error)
+            }
+        }
+        else {
+            // Create a reference to the file you want to download
+            var filePath = ""
+            if let user = Auth.auth().currentUser {
+                filePath = "/\(user.uid)/userInfo/info"
+            } else {
+                filePath = "/sampleUser/userInfo/info"
+            }
+            
+            let infoRef = storageRef.child(filePath)
+            
+            // Download to the local filesystem
+            infoRef.write(toFile: userInfoURL) { url, error in
+              if let error = error {
+                print("download to local user info error : \(error)")
+
+              } else {
+                let data = NSData(contentsOf: url!)
+                do {
+                    let decoded = try jsonDecoder.decode(User.self, from: data! as Data)
+                    myUser = decoded
+                    
+                    if let view = self.homeView {
+                        view.levelLabel.text = "\(myUser.level.name)"
+                        view.levelLabel.textColor = UIColor.black
+                        view.levelImage.image = UIImage(named: myUser.level.icon)
+                        if myUser.level.name != levels[0].name {
+                            view.hapinessImage.isHidden = false
+                            if myUser.hapiness < 70 {
+                                view.hapinessImage.image = UIImage(named: "sadPlant")
+                            } else {
+                                view.hapinessImage.image = UIImage(named: "happyPlant")
+                            }
+                        } else {
+                            view.hapinessImage.isHidden = true
+                        }
+                        
+                        var ChartEntry : [ChartDataEntry] = []
+                        let value_fill = PieChartDataEntry(value: 0)
+                        let value_empty = PieChartDataEntry(value: 0)
+                        
+                        value_fill.value = Double(myUser.hapiness)
+                        value_fill.label = ""
+                        value_empty.value = 100 - value_fill.value
+                        value_empty.label = ""
+                        
+                        ChartEntry.append(value_fill)
+                        ChartEntry.append(value_empty)
+                        
+                        let chartDataSet = PieChartDataSet(entries: ChartEntry, label: nil)
+                        let chartData = PieChartData(dataSet: chartDataSet)
+                        
+                        var colors: [NSUIColor] = []
+                        var color = UIColor(red: CGFloat(189.0/255), green: CGFloat(236.0/255), blue: CGFloat(182.0/255), alpha: 1)
+                        colors.append(color)
+                        color = UIColor(red: CGFloat(189.0/255), green: CGFloat(236.0/255), blue: CGFloat(182.0/255), alpha: 0.3)
+                        colors.append(color)
+                        
+                        view.pieChart.highlightPerTapEnabled =  false
+                        chartDataSet.drawIconsEnabled = false
+                        view.pieChart.rotationEnabled = false
+                        chartDataSet.colors = colors
+                        chartDataSet.drawValuesEnabled = false
+                        chartDataSet.selectionShift = 8
+                        view.pieChart.transparentCircleRadiusPercent = 0
+                        view.pieChart.holeRadiusPercent = 50
+                        view.pieChart.legend.enabled = false
+                        view.pieChart.chartDescription?.enabled = true
+                        view.pieChart.drawHoleEnabled = false
+                        view.pieChart.drawCenterTextEnabled = true
+                        view.pieChart.centerText = "\(value_fill.value)%"
+                        
+                        let attributes: [NSAttributedString.Key: Any] = [
+                            .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize),
+                            .foregroundColor: UIColor.gray
+                        ]
+                        
+                        let attributedString = NSAttributedString(string: String(value_fill.value), attributes: attributes)
+                        
+                        view.pieChart.centerAttributedText = attributedString
+                        
+                        view.pieChart.minOffset = 0
+ 
+                        view.pieChart.data = chartData
+                        view.pieChart.isHidden = false
+                    }
+                } catch {
+                    print(error)
+                }
+              }
+            }
+       }
     }
 }
 
@@ -293,3 +404,22 @@ extension LoginViewController : ASAuthorizationControllerPresentationContextProv
         return self.view.window!
     }
 }
+
+
+
+
+/*
+ levelLabel.text = "\(myUser.level.name)"
+ levelLabel.textColor = UIColor.black
+ levelImage.image = UIImage(named: myUser.level.icon)
+ if myUser.level.name != levels[0].name {
+     hapinessImage.isHidden = false
+     if myUser.hapiness < 70 {
+         hapinessImage.image = UIImage(named: "sadPlant")
+     } else {
+         hapinessImage.image = UIImage(named: "happyPlant")
+     }
+ } else {
+     hapinessImage.isHidden = true
+ }
+ */

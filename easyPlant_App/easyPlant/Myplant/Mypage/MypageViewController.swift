@@ -24,6 +24,9 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
     @IBOutlet weak var cameraBackground: UIImageView!
     @IBOutlet weak var guideImage: UIButton!
     @IBOutlet weak var guideButton: UIButton!
+    
+    var plantCollectionView: UserPlantCollectionViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
@@ -204,9 +207,56 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         // local 데이터 다 지우기
         deleteLocalData()
         
-        loadUserPlant()
+        
         loadUserInfo()
-        self.navigationController?.popViewController(animated: true)
+        loadUserPlantAndDismiss()
     }
     
+    func loadUserPlantAndDismiss(){
+        let jsonDecoder = JSONDecoder()
+        
+        //로컬에 없다면 원격 저장소에서 받아온다
+        if let data = NSData(contentsOf: archiveURL){
+            //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
+            do {
+                let decoded = try jsonDecoder.decode([UserPlant].self, from: data as Data)
+                userPlants = decoded
+            } catch {
+                print(error)
+            }
+        }
+        else {
+            // Create a reference to the file you want to download
+            var filePath = ""
+            if let user = Auth.auth().currentUser {
+                filePath = "/\(user.uid)/userPlantList/plants"
+            } else {
+                filePath = "/sampleUser/userPlantList/plants"
+            }
+            let infoRef = storageRef.child(filePath)
+
+            
+            // Download to the local filesystem
+            infoRef.write(toFile: archiveURL) { url, error in
+              if let error = error {
+                print("download to local userPlants error : \(error)")
+
+              } else {
+                let data = NSData(contentsOf: url!)
+                do {
+                    let decoded = try jsonDecoder.decode([UserPlant].self, from: data! as Data)
+                    userPlants = decoded
+                    
+                    if let view = self.plantCollectionView {
+                        print("reload data!!!!!!@#!#@!$!$# \(userPlants)")
+                        view.userPlantCollectionView.reloadData()
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                } catch {
+                    print(error)
+                }
+              }
+            }
+        }
+    }
 }

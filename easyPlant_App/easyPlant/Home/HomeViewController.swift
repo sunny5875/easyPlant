@@ -31,7 +31,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //self.view.backgroundColor = UIColor.white
         
         //self.plantListTableView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
@@ -234,8 +233,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.chartDescription?.text = "행복도"
         pieChart.chartDescription?.font = UIFont.boldSystemFont(ofSize: CGFloat(12))
         pieChart.chartDescription?.textColor = .lightGray
+        pieChart.chartDescription?.textAlign = .center
         
-        // TODO 수정 필요 (행복도 평균 계산)
         value_fill.value = Double(myUser.hapiness)
         value_fill.label = ""
         value_empty.value = 100 - value_fill.value
@@ -304,6 +303,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             //만약 로그인이 된 상태라면
             myUser.userName = (Auth.auth().currentUser?.displayName) ?? "오류"
             performSegue(withIdentifier: "levelViewSegue", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toLoginPage" {
+            print("toLoginPage destination : \(segue.destination)")
+            if let nav = segue.destination as? CustomNavigationController, let detailVC = nav.topViewController as? LoginViewController{
+                detailVC.homeView = self
+            }
         }
     }
     
