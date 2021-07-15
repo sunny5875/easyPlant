@@ -212,23 +212,13 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 print("test2")
                 guard (authResult?.user) != nil else { return }
                 
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                changeRequest?.displayName = appleIDCredential.fullName?.givenName
-                changeRequest?.commitChanges(completion: { (error) in
-                    if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            print("Updated display name: \(Auth.auth().currentUser!.displayName!)")
-                        }
-                    })
-                
                 deleteLocalData()
                 
                 let provider = ASAuthorizationAppleIDProvider()
                 provider.getCredentialState(forUserID: appleIDCredential.user) {
                     (getCredentialState, error) in
                         switch (getCredentialState) {
-                        case .revoked:
+                        case .authorized, .revoked:
                             // 이미 애플 로그인을 한 적 있는 경우
                             loadUserInfo()
                             loadUserPlant()
@@ -236,11 +226,23 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                             break
                         case .notFound:
                             // 첫 애플 로그인인 경우 (=회원가입)
+                            
+                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                            changeRequest?.displayName = appleIDCredential.fullName?.givenName
+                            changeRequest?.commitChanges(completion: { (error) in
+                                if let error = error {
+                                        print(error.localizedDescription)
+                                    } else {
+                                        print("Updated display name: \(Auth.auth().currentUser?.displayName)")
+                                    }
+                                })
+                            
                             myUser = User(Date())
                             userPlants = []
                             myUser.updateUser()
                             saveUserInfo(user: myUser)
                             saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+                            
                             break
                         default:
                             print("\(getCredentialState)")
