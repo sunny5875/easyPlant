@@ -51,6 +51,7 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         
         myProfile.setImage(imagetmp.image, for: .normal)
         myProfile.layer.cornerRadius = myProfile.frame.size.width/2
+
     }
 
    

@@ -211,6 +211,7 @@
 				12EA1D7426479699009A0A5E /* Home */,
 				12EA1D76264796AE009A0A5E /* Myplant */,
 				12EA1D77264796BA009A0A5E /* Search */,
+				12E3E94E26A03B42001ED3C6 /* Database */,
 				1216639B263BB8F800125C69 /* Assets.xcassets */,
 				1218F173265A0E19000D99F4 /* Home.storyboard */,
 				12166398263BB8F700125C69 /* Main.storyboard */,
@@ -300,6 +301,13 @@
 				D6CC2DE72663B14C009E5710 /* UserPlantCollectionViewController.swift */,
 			);
 			path = Plants;
+			sourceTree = "<group>";
+		};
+		12E3E94E26A03B42001ED3C6 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		12EA1D7426479699009A0A5E /* Home */ = {
