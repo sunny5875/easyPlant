@@ -181,12 +181,11 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
 @available(iOS 13.0, *)
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        print("authorization controller 호출!!!")
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
             }
-            print("test0")
+            
             guard let appleIDToken = appleIDCredential.identityToken else {
                 print("Unable to fetch identity token")
                 return
@@ -195,63 +194,72 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            print("test01")
-            let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                      idToken: idTokenString,
-                                                      rawNonce: nonce)
-            print("test1")
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if (error != nil) {
-                    // Error. If error.code == .MissingOrInvalidNonce, make sure
-                    // you're sending the SHA256-hashed nonce as a hex string with
-                    // your request to Apple.
-                    print("error")
-                    print(error?.localizedDescription ?? "")
-                    return
-                }
-                print("test2")
-                guard (authResult?.user) != nil else { return }
-                
-                deleteLocalData()
-                
-                let provider = ASAuthorizationAppleIDProvider()
-                provider.getCredentialState(forUserID: appleIDCredential.user) {
-                    (getCredentialState, error) in
-                    print("State : \(getCredentialState)")
-                        switch (getCredentialState) {
-                        case .authorized:
-                            // 이미 애플 로그인을 한 적 있는 경우
-                            loadUserInfo()
-                            loadUserPlant()
-                            print("test3")
-                            break
-                        case .notFound, .revoked:
-                            // 첫 애플 로그인인 경우 (=회원가입)
-                            
-                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                            changeRequest?.displayName = appleIDCredential.fullName?.givenName
-                            changeRequest?.commitChanges(completion: { (error) in
-                                if let error = error {
-                                        print(error.localizedDescription)
-                                    } else {
-                                        print("Updated display name: \(Auth.auth().currentUser?.displayName)")
-                                    }
-                                })
-                            
-                            myUser = User(Date())
-                            userPlants = []
-                            myUser.updateUser()
-                            saveUserInfo(user: myUser)
-                            saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
-                            
-                            break
-                        default:
-                            print("\(getCredentialState)")
+            
+            deleteLocalData()
+            
+            let provider = ASAuthorizationAppleIDProvider()
+            provider.getCredentialState(forUserID: appleIDCredential.user) {
+                (getCredentialState, error) in
+                print("State : \(getCredentialState)")
+                    switch (getCredentialState) {
+                    case .authorized:
+                        // 이미 애플 로그인을 한 적 있는 경우
+                        let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                                  idToken: idTokenString,
+                                                                  rawNonce: nonce)
+                        Auth.auth().signIn(with: credential) { (authResult, error) in
+                            if (error != nil) {
+                                print("error")
+                                print(error?.localizedDescription ?? "")
+                                return
+                            }
+                            print("test2")
+                            guard (authResult?.user) != nil else { return }
                         }
+                        
+                        loadUserInfo()
+                        loadUserPlant()
+                        print("test3")
+                        
+                        break
+                    case .notFound, .revoked:
+                        // 첫 애플 로그인인 경우 (=회원가입)
+                        let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                                  idToken: idTokenString,
+                                                                  rawNonce: nonce)
+                        Auth.auth().signIn(with: credential) { (authResult, error) in
+                            if (error != nil) {
+                                print("error")
+                                print(error?.localizedDescription ?? "")
+                                return
+                            }
+                            print("test2")
+                            guard (authResult?.user) != nil else { return }
+                        }
+                        
+                        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                        changeRequest?.displayName = appleIDCredential.fullName?.givenName
+                        changeRequest?.commitChanges(completion: { (error) in
+                            if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    print("Updated display name: \(Auth.auth().currentUser?.displayName)")
+                                }
+                            })
+                        
+                        myUser = User(Date())
+                        userPlants = []
+                        myUser.updateUser()
+                        saveUserInfo(user: myUser)
+                        saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
+                        
+                        break
+                    default:
+                        print("\(getCredentialState)")
                     }
-                
-                self.dismiss(animated: true, completion: nil)
                 }
+            
+            self.dismiss(animated: true, completion: nil)
             }
         }
     
