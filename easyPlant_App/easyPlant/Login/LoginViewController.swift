@@ -159,9 +159,6 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
         }
     }
     
-    @IBAction func findBtnTapped(_ sender: Any) {
-    }
-    
     func showAlert(message: String) {
         let alert = UIAlertController(title: "잘못된 로그인입니다.", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
@@ -191,8 +188,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
 
-            
-            deleteLocalData()
             //
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
@@ -204,6 +199,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     return
                 }
                 guard (authResult?.user) != nil else { return }
+                
+                deleteLocalData()
                 
                 if Auth.auth().currentUser?.displayName == nil {
                     myUser = User(Date())
@@ -217,16 +214,18 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                                 print("Updated display name: \(Auth.auth().currentUser?.displayName)")
                             }
                         })
+                    
+                    myUser.updateUser()
+                    saveUserInfo(user: myUser)
+                    saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
                 }
                 
+                self.loadUserInfoAndUpdateValue()
+                self.loadUserPlantAndDismiss()
                 
-                myUser.updateUser()
-                saveUserInfo(user: myUser)
-                saveNewUserPlant(plantsList: userPlants, archiveURL: archiveURL)
-                }
-            
-            loadUserInfoAndUpdateValue()
-            loadUserPlantAndDismiss()
+                
+                
+            }   
         }
     }
     
@@ -260,6 +259,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             let infoRef = storageRef.child(filePath)
 
+            print("HIHIHIHIHI \(filePath)")
             
             // Download to the local filesystem
             infoRef.write(toFile: archiveURL) { url, error in
