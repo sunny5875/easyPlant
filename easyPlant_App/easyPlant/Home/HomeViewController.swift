@@ -42,7 +42,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
         
        
-        
+        loadPlantSearchList()
+
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             print("Not first launch.")
@@ -280,8 +281,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pieChart.isHidden = false
     }
     
+    
     func loadDummyData(){
         print("load dummy data")
+        /*
         for type in plantType.plantAll{
             for plant in type {
                 
@@ -293,6 +296,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
  
             }
         }
+ */
     }
     
     @objc func showLevelView(sender: UIView) {

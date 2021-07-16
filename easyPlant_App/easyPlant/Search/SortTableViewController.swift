@@ -7,7 +7,8 @@
 
 import UIKit
 import Alamofire
-
+import SwiftyJSON
+import SWXMLHash
 
 
 //버튼에 함수 확장
@@ -29,10 +30,16 @@ extension SortTableViewController : UISearchBarDelegate {
         searchController.searchBar.delegate = self
     }
     
+  
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("search button click")
-        searchController.searchBar.resignFirstResponder()
+        print("result")
+
+        
     }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("end edit")
+    }
+    
     
 }
 
@@ -56,8 +63,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidload")
-        fetchData("http://api.nongsaro.go.kr/service/garden/gardenList")
         findArray()
+        
         setUI()
         setDelegate()
         //updateSegControl()
@@ -72,7 +79,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         super.viewWillAppear(animated)
         print("search view will appear")
         self.navigationItem.largeTitleDisplayMode =  .never
-      
+
 
     }
     
@@ -129,32 +136,55 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     
     //서치바에서 검색하면 새로 테이블 뷰를 세팅한다
     func updateSearchResults(for searchController: UISearchController) {
-        print("result")
-        resultSearch(for: searchController.searchBar.text ?? "")
-    }
-    
-    private func resultSearch(for searchText: String) {
-        //아직 검색한게 없다면 - 임의의 셀을 추가 -> 그냥 디자인 때문
-        if searchText != ""{
+        
+        print("upate search result")
+        /*
+        if searchController.searchBar.text != "", nowTitle == "전체검색"{
+            let text = searchController.searchBar.text
+            print("search total : \(text)")
+            plantType.plantAll[0] = []
+            fetchData(metaURL,plantURL,text!,plantArrayIndex)
+            findArray()
+            
+            
+            print(resultPlantArray)
+            if resultPlantArray.count == 0{
+                print("count 0")
+                var newPlant = Plant()
+                newPlant.initDic()
+                resultPlantArray.append(newPlant)
+            }
+            tableView.reloadData()
+        }
+ */
+       
+            //아직 검색한게 없다면 - 임의의 셀을 추가 -> 그냥 디자인 때문
+        if searchController.searchBar.text != ""{
+            
             resultPlantArray = plantArray.filter { plant in
             return
-                plant.korName.lowercased().contains(searchText.lowercased())
+                plant.dic["cntntsSj"]!.lowercased().contains(searchController.searchBar.text!.lowercased())
             }
+            print(resultPlantArray.count)
             if resultPlantArray.count == 0{
-                resultPlantArray.append(Plant(korName: "", engName: "", from: "", sciName: "", temp: "", light: "", water: "", chara: "", def: "" ))
+                print("count 0")
+                var newPlant = Plant()
+                newPlant.initDic()
+                resultPlantArray.append(newPlant)
             }
             tableView.reloadData()
           
         }
-        //검색을 완료했다면
         else {
             resultPlantArray = plantArray
             tableView.reloadData()
-
-    
-
         }
+
     }
+    
+   
+    
+    
     
 
     //현재 식물 분류 배열이 뭔지 찾아둔다
@@ -212,35 +242,38 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         
         //segment 값에따라 데이터 정렬
         var plants: [Plant] = []
-        plants = resultPlantArray.sorted{ $0.korName.lowercased() < $1.korName.lowercased()}
+        plants = resultPlantArray.sorted{ $0.dic["cntntsSj"]!.lowercased() < $1.dic["cntntsSj"]!.lowercased()}
        
         
         //셀에서 완쪽 항목 불러오기
         let itemLeft = plants[indexPath.row*2]
         //이미지만들어두기
+        /*
         let leftImage : UIImage? = UIImage(named: itemLeft.engName)
         //위의 이미지로 이미지 버튼의 이미지 설정
         if let leftImage = leftImage  {
             cell.leftImageButton?.setImage(leftImage, for: .normal)
            
         }
+ */
         //이미지버튼의 타이틀 설정
-        cell.leftImageButton?.setTitle(itemLeft.korName, for: .normal)
+        cell.leftImageButton?.setTitle(itemLeft.dic["cntntsSj"], for: .normal)
         //이름버튼의 타이틀 설정
-        cell.leftButton?.setTitle(itemLeft.korName, for: .normal)
+        cell.leftButton?.setTitle(itemLeft.dic["cntntsSj"], for: .normal)
         //ui 업데이트
         greenLeftUIUpdate(cell)
         //각 버튼을 눌렀을 시 호출할 함수 설정
         cell.leftButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         cell.leftImageButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         
-        if itemLeft.def != "" {
-            cell.leftLabel.text = itemLeft.def
-        }
+      
         
         //검색결과가 없다면
-        if resultPlantArray.count == 1 && resultPlantArray[0].korName == "" {
+        print(resultPlantArray.count )
+        print(resultPlantArray[0].dic["cntntsSj"])
+        if resultPlantArray.count == 1 && resultPlantArray[0].dic["cntntsSj"] == "" {
             //ui 업데이트
+            print("uiupdate because empty")
             whiteLeftUIUpdate(cell)
             whiteRightUIUpdate(cell)
 
@@ -251,25 +284,24 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         if (indexPath.row*2+1) < plants.count{
             let itemRight = plants[indexPath.row*2+1]
             //이미지 설정
+            /*
             let rightImage: UIImage? = UIImage(named: itemRight.engName)
             
-            if let rightImage = rightImage{
+           if let rightImage = rightImage{
                 cell.rightImageButton?.setImage(rightImage, for: .normal)
             }
-            
+            */
             //이미지 버튼의 타이틀 설정
-            cell.rightImageButton?.setTitle(itemRight.korName, for: .normal)
+            cell.rightImageButton?.setTitle(itemRight.dic["cntntsSj"], for: .normal)
             //이름버튼의 타이틀 설정
-            cell.rightButton?.setTitle(itemRight.korName, for: .normal)
+            cell.rightButton?.setTitle(itemRight.dic["cntntsSj"], for: .normal)
             //ui 업데이트
             greenRightUIUpdate(cell)
             
             //각 버튼을 눌렀을 시 호출할 함수 설정
             cell.rightButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
             cell.rightImageButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
-            if itemRight.def != "" {
-                cell.rightLabel.text = itemRight.def
-            }
+       
                 
 
 
@@ -302,7 +334,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         
         cell.rightCellView.backgroundColor = UIColor.white
         cell.rightButton.backgroundColor = UIColor.white
-        cell.rightLabel.text = ""
         
         //각 버튼을 눌렀을 시 호출할 함수 설정
         cell.rightButton?.removeTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
@@ -322,7 +353,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         
         cell.leftCellView.backgroundColor = UIColor.white
         cell.leftButton.backgroundColor = UIColor.white
-        cell.leftLabel.text = ""
         
         //각 버튼을 눌렀을 시 호출할 함수 설정
         cell.leftButton?.removeTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
@@ -340,52 +370,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     
     
     //Get
-    func fetchData(_ url:String){
-        initMetaPara("야자")
-        //메타 정보 가져오기
-        AF.request(url, parameters: metaParam ).validate().responseJSON() { response in
-          switch response.result {
-              case .success(let res):
-                do{
-                    print("meta success")
-                    let jsonData = try JSONSerialization.data(withJSONObject: res, options: .prettyPrinted)
-                    
-                    let json = try apiDecoder.decode(metaAPIresponse.self, from: jsonData)
-                    metaSource  = json.metaList
-                    print(metaSource)
-                    
-                    self.tableView.reloadData()
-                    
- 
-                    //print(try? response.result.get() )
-                }catch(let err){
-                    print("error1")
-                    print(err.localizedDescription)
-                }
-                
-              case .failure(let err):
-                print("error2")
-
-                print(err.localizedDescription)
-           
-          }
-        }
-        
-        
-        AF.request(url, parameters: metaParam ,encoding: URLEncoding.default).responseData(){ response in
-          
-            //print(response.request)
-            print(response.response)
-            print(response.result)
-            print(response.data)
-            print(response.value)
-            //print(response.error)
-
-
-        }
- 
-    }
-
+    
     //셀을 누르면 화면 전환하고 싶으면 selection segue way에 show 사용
 
   

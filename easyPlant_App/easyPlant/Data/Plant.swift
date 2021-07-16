@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/*
 struct Plant {
     var korName: String
     var engName: String
@@ -21,10 +22,64 @@ struct Plant {
     var def : String
 
 }
+ */
+
+struct Plant {
+    var dic : [String: String] = [:]
+    
+    mutating func initDic(){
+        for key in plantKey.keys{
+            self.dic.updateValue("", forKey: key)
+        }
+    }
+    /*
+    var plntbneNm : String = ""
+    var distbNm: String = ""
+    var fmlNm: String = ""
+    var orgplceInfo: String = ""
+    var adviseInfo: String = ""
+    var growthHgInfo: String = ""
+    var growthAraInfo: String = ""
+    var lefStleInfo: String = ""
+    var smellCode: String = ""
+    var toxctyInfo: String = ""
+    var prpgtEraInfo: String = ""
+    var etcEraInfo: String = ""
+    var managelevelCode: String = ""
+    var grwtveCode: String = ""
+    var grwhTpCode: String = ""
+    var winterLwetTpCode: String = ""
+    var hdCode: String = ""
+    var frtlzrInfo: String = ""
+    var soilInfo: String = ""
+    var watercycleSummerCode: String = ""
+    var watercycleAutumnCode: String = ""
+    var watercycleWinterCode: String = ""
+    var dlthtsManageInfo: String = ""
+    var speclmanageInfo: String = ""
+    var fncltyInfo: String = ""
+    var managedemanddoCode: String = ""
+    var clCode: String = ""
+    var grwhstleCode: String = ""
+    var indoorpsncpacompositionCode: String = ""
+    var eclgyCode: String = ""
+    var lefmrkCode: String = ""
+    var lefcolrCode: String = ""
+    var ignSeasonCode: String = ""
+    var flclrCode: String = ""
+    var fmldeSeasonCode: String = ""
+    var fmldecolrCode: String = ""
+    var prpgtmthCode: String = ""
+    var lighttdemanddoCode: String = ""
+    var postngplaceCode: String = ""
+    var dlthtsCode: String = ""
+ */
+}
+
 
 var plantTotal: [Plant] = []
 
-
+/*
 var plantsClearAir: [Plant] = [
     Plant(korName: "홍콩야자", engName: "DwarfUmbrellaTree",from: "중국,대만",sciName: "두릅나무과",temp: "20-25도", light: "어떤 광도나 무난(300~10,000 Lux)하여 실내 어두운 곳, 거실 또는 발코니에서 키우기 좋음", water: "봄, 여름, 가을에는 토양 표면이 말랐을때 충분히 관수하고 겨울에는 화분 흙이 대부분 말랐을때 충분히 관수함", chara: "실내공기정화력이 우수한, 특히 담배연기를 잘 흡수하는 식물로 알려져 있으며 키가 큰 종류의 쉐플레라(야자)와 키가 작은 왜성종 쉐플레라가 있음.\n\n물 꽂이 화분에 심어도 뿌리가 내리는 적응력이 강한 식물이지만, 추위에는 약함. \n\n수건으로 잎을 닦아 주면 잎에서 윤기가 생겨 관상하기 좋음.", def: "  대표 공기정화 식물"),
     Plant(korName: "관음죽", engName: "BroadleafLadyPalm",from: "한국,일본,중국남부",sciName: "야자과",temp: "16-20도", light: "낮은 광도(300~800 Lux),중간 광도(800~1,500 Lux),높은 광도(1,500~10,000 Lux)", water: "봄, 여름, 가을에는 토양 표면이 말랐을때 충분히 관수하고 겨울에는 화분 흙이 대부분 말랐을때 충분히 관수함", chara: "손바닥 모양의 잎을 가진 집에서 기르기 쉽고 그늘과 추위에도 잘 견디고 병해충에도 강하기기 때문에 기르기 쉬운 식물임.\n\n자라는 속도가 느려서 관리가 편함. 반엽이 들어있는 종은 색상이 더욱 아름다움. 2년에 한 번씩 분갈이를 해 주면 좋음.", def: "  음지에서 잘자라요"),
@@ -85,8 +140,36 @@ var plantsAnimal: [Plant] = [
   
 ]
 
+*/
+
+var plantsClearAir: [Plant] = [
+    
+  
+]
+var plantsShade: [Plant] = [
+   
+]
+var plantsDry: [Plant] = [
+
+  
+]
 
 
+var plantsLazy: [Plant] = [
+   
+  
+]
+
+var plantsInterior: [Plant] = [
+  
+  
+]
+
+
+var plantsAnimal: [Plant] = [
+   
+  
+]
 
 
 

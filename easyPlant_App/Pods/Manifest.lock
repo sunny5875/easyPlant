@@ -106,6 +106,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Charts
@@ -113,6 +114,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
   - FSCalendar
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
@@ -131,6 +133,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
@@ -148,7 +151,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 7ee76255302ba6b4e136db0ada6a006e6d54320b
+PODFILE CHECKSUM: a5be09fd6b446af5fd3fdc9ce25c03ee9f377330
 
 COCOAPODS: 1.10.1

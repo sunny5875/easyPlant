@@ -12,6 +12,7 @@ target 'easyPlant' do
   pod 'Firebase/Storage'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'SwiftyJSON'
 
   target 'easyPlantTests' do
     inherit! :search_paths

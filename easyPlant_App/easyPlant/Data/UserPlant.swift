@@ -203,7 +203,7 @@ func loadUserPlant(){
         do {
             let decoded = try jsonDecoder.decode([UserPlant].self, from: data as Data)
             userPlants = decoded
-            print("로컬에 플랜트 json 존재한다!! \(userPlants)")
+           // print("로컬에 플랜트 json 존재한다!! \(userPlants)")
         } catch {
             print(error)
         }

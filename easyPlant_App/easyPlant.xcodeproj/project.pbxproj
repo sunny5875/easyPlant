@@ -26,6 +26,7 @@
 		1279995B266E09800072E9FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1279995A266E09800072E9FF /* HomeViewController.swift */; };
 		12BFBA4A26A056B2007825E8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 12BFBA4926A056B2007825E8 /* Alamofire */; };
 		12BFBA4C26A056EB007825E8 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFBA4B26A056EB007825E8 /* RestAPI.swift */; };
+		12BFBA4F26A14682007825E8 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 12BFBA4E26A14682007825E8 /* SWXMLHash */; };
 		12E3E938269BE19F001ED3C6 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E937269BE19F001ED3C6 /* MypageViewController.swift */; };
 		12E3E940269BFAF4001ED3C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3E93F269BFAF4001ED3C6 /* Login.storyboard */; };
 		12E3E943269BFB10001ED3C6 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3E941269BFB10001ED3C6 /* JoinViewController.swift */; };
@@ -142,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12BFBA4F26A14682007825E8 /* SWXMLHash in Frameworks */,
 				47D8D3177E205A8A242DE88D /* Pods_easyPlant.framework in Frameworks */,
 				12BFBA4A26A056B2007825E8 /* Alamofire in Frameworks */,
 			);
@@ -404,6 +406,7 @@
 			name = easyPlant;
 			packageProductDependencies = (
 				12BFBA4926A056B2007825E8 /* Alamofire */,
+				12BFBA4E26A14682007825E8 /* SWXMLHash */,
 			);
 			productName = easyPlant;
 			productReference = 1216638F263BB8F700125C69 /* easyPlant.app */;
@@ -481,6 +484,7 @@
 			mainGroup = 12166386263BB8F700125C69;
 			packageReferences = (
 				12BFBA4826A056B2007825E8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				12BFBA4D26A14682007825E8 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 			);
 			productRefGroup = 12166390263BB8F700125C69 /* Products */;
 			projectDirPath = "";
@@ -1013,6 +1017,14 @@
 				minimumVersion = 5.4.3;
 			};
 		};
+		12BFBA4D26A14682007825E8 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/drmohundro/SWXMLHash";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1020,6 +1032,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 12BFBA4826A056B2007825E8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		12BFBA4E26A14682007825E8 /* SWXMLHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12BFBA4D26A14682007825E8 /* XCRemoteSwiftPackageReference "SWXMLHash" */;
+			productName = SWXMLHash;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
