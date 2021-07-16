@@ -52,7 +52,7 @@ struct UserPlant : Codable {
         case name,location,recentWater,registedDate,waterPeriod, wateringDay,plantSpecies, diarylist,color,happeniess,alarmTime,plantImage,watered,  totalWaterNum, didWaterNum}
     
     mutating func updateHappiness() {
-        happeniess.append(Int(didWaterNum * 100 / totalWaterNum))
+        happeniess.append(Int((didWaterNum * 100 ) / totalWaterNum))
         didWaterNum = 0
         totalWaterNum = 0
     }
