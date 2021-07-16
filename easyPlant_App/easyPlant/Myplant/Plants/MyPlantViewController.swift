@@ -331,20 +331,49 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             
         }
 
-                
+        var value : ChartDataEntry
+        ChartEntry = []
+        
+        var x = 0
         // chart data array 에 데이터 추가
         for i in 0..<months.count {
-            let value : ChartDataEntry
-            if(numbers.count > i){
-                value = ChartDataEntry(x: Double(i), y: Double(numbers[i]))
+            let lastIndex = numbers.count-1
+            print("last")
+            print(lastIndex)
+            let nowIndex = lastIndex - (months.count-1-i)
+            print("now")
+            print(nowIndex)
+            if(numbers.count > nowIndex && nowIndex >= 0){
+                value = ChartDataEntry(x: Double(x), y: Double(numbers[nowIndex]))
+                x += 1
+                print(value)
+                ChartEntry.append(value)
+
+
             }
-            else{
-                value = ChartDataEntry(x: Double(i), y: 0.0)
-            }
-            ChartEntry.append(value)
+       
+         
         }
+        print("before")
+        print(ChartEntry )
+        print(ChartEntry.count)
         
-        
+        if ChartEntry.count < 12 {
+            
+            let extra = 12 - ChartEntry.count
+            print("extra")
+            print(extra)
+            
+            for i in 1...extra{
+                print("extra insert")
+                value = ChartDataEntry(x: Double(x), y: 0.0)
+                ChartEntry.append(value)
+                x += 1
+            }
+        }
+        print("now")
+        print(ChartEntry )
+ 
         //차트 설정
         let chartDataset = LineChartDataSet(entries: ChartEntry, label: "올해의 행복도 변화")
                let chartData = LineChartData(dataSet: chartDataset)
