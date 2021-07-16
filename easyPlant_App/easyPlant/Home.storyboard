@@ -142,13 +142,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="초록콩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDf-Xe-WAT">
-                                                            <rect key="frame" x="70" y="20" width="44.5" height="20.5"/>
+                                                            <rect key="frame" x="70" y="25" width="44.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="R32-hj-C3d">
-                                                            <rect key="frame" x="70" y="56" width="243.5" height="22"/>
+                                                            <rect key="frame" x="70" y="49" width="243.5" height="22"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-kR-STg">
                                                                     <rect key="frame" x="0.0" y="0.0" width="121.5" height="22"/>
@@ -186,10 +186,10 @@
                                                         <constraint firstItem="SDf-Xe-WAT" firstAttribute="leading" secondItem="ecg-sn-tUs" secondAttribute="trailing" constant="10" id="NqB-m3-RlV"/>
                                                         <constraint firstItem="qaP-90-Kxw" firstAttribute="centerX" secondItem="PFF-ur-4X5" secondAttribute="centerX" id="R0j-SQ-org"/>
                                                         <constraint firstItem="ecg-sn-tUs" firstAttribute="centerY" secondItem="PFF-ur-4X5" secondAttribute="centerY" id="X1w-Uq-flv"/>
-                                                        <constraint firstItem="SDf-Xe-WAT" firstAttribute="top" secondItem="PFF-ur-4X5" secondAttribute="top" constant="20" symbolic="YES" id="bJ8-HT-NvQ"/>
+                                                        <constraint firstItem="SDf-Xe-WAT" firstAttribute="top" secondItem="PFF-ur-4X5" secondAttribute="top" constant="25" id="bJ8-HT-NvQ"/>
                                                         <constraint firstItem="ecg-sn-tUs" firstAttribute="leading" secondItem="PFF-ur-4X5" secondAttribute="leading" constant="10" id="jSF-LE-sB6"/>
                                                         <constraint firstItem="R32-hj-C3d" firstAttribute="width" secondItem="PFF-ur-4X5" secondAttribute="width" multiplier="0.73" id="kQu-eC-2JO"/>
-                                                        <constraint firstAttribute="bottom" secondItem="R32-hj-C3d" secondAttribute="bottom" constant="13" id="yW1-XU-C2O"/>
+                                                        <constraint firstAttribute="bottom" secondItem="R32-hj-C3d" secondAttribute="bottom" constant="20" id="yW1-XU-C2O"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
