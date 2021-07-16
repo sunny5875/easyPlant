@@ -25,6 +25,7 @@ class PlantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("1")
+        //stackElement.isHidden = true
         if let nameData = detailPlantName, let typeData = detailPlantType{
 
             print("2")
@@ -42,14 +43,39 @@ class PlantDetailViewController: UIViewController {
                 }
             }
             print("4")
-            //plantDetailImage.image = UIImage(named: plantType.plantAll[index1][index2].engName)
+            
+            
+            let tmpImage = UIImageView()
+            do{
+                print(imageURL+plantType.plantAll[index1][index2].dic["rtnStreFileNm"]!)
+                let data = try Data(contentsOf: URL(string: imageURL+plantType.plantAll[index1][index2].dic["rtnStreFileNm"]!)!)
+                tmpImage.image = UIImage(data: data)
+                let newWidth = self.view.frame.size.width
+              
+                let scale = (newWidth / tmpImage.image!.size.width)
+                let newHeight = tmpImage.image!.size.height * scale
+                UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+                
+                tmpImage.image!.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+                let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                plantDetailImage.image = newImage
+
+
+              
+
+            }catch let err{
+                print(err.localizedDescription)
+            }
+            
+            
             plantDetailImage.layer.cornerRadius = 0
             plantDetailImage.layer.borderColor = UIColor.lightGray.cgColor
             plantDetailImage.layer.borderWidth = 0.5
             
      
             contentView.layer.cornerRadius = 30
-            contentView.layer.borderColor = UIColor.systemGray5.cgColor
+            contentView.layer.borderColor = UIColor.white.cgColor
             contentView.layer.borderWidth = 1
             contentView.layer.zPosition = 2
             plantDetailImage.layer.zPosition = 1

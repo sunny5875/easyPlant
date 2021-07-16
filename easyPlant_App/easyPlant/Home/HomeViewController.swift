@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             
             print("this is first launch")
-            //loadDummyData()
+            //downloadAllData()
             do {
                 try Auth.auth().signOut()
             } catch let signOutError as NSError {

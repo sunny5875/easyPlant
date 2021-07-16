@@ -64,7 +64,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         print("viewDidload")
         findArray()
-        
         setUI()
         setDelegate()
         //updateSegControl()
@@ -165,11 +164,12 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
             return
                 plant.dic["cntntsSj"]!.lowercased().contains(searchController.searchBar.text!.lowercased())
             }
-            print(resultPlantArray.count)
+            print(resultPlantArray)
             if resultPlantArray.count == 0{
                 print("count 0")
                 var newPlant = Plant()
                 newPlant.initDic()
+                newPlant.dic["cntntsSj"] = "trash"
                 resultPlantArray.append(newPlant)
             }
             tableView.reloadData()
@@ -216,7 +216,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 265
+        return 220
     }
 
         //색션에 몇개의 셀이 있는가
@@ -248,14 +248,37 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         //셀에서 완쪽 항목 불러오기
         let itemLeft = plants[indexPath.row*2]
         //이미지만들어두기
+        let leftImage = UIImageView()
         /*
-        let leftImage : UIImage? = UIImage(named: itemLeft.engName)
-        //위의 이미지로 이미지 버튼의 이미지 설정
-        if let leftImage = leftImage  {
-            cell.leftImageButton?.setImage(leftImage, for: .normal)
-           
-        }
- */
+        do{
+            print(itemLeft.dic["rtnStreFileNm"]!)
+            let data = try Data(contentsOf: URL(string: imageURL+itemLeft.dic["rtnStreFileNm"]!)!)
+            leftImage.image = UIImage(data: data)
+            let newWidth = cell.leftImageButton.fs_width * 1.3
+          
+            let scale = (newWidth / leftImage.image!.size.width)
+            let newHeight = leftImage.image!.size.height * scale * 1.1
+            UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+            
+            leftImage.image!.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            leftImage.image = newImage
+         
+         
+
+       }catch let err{
+           print(err.localizedDescription)
+       }
+            */
+        downloadPlantDataImage(imgview: leftImage, title: itemLeft.dic["cntntsSj"]!)
+
+
+       
+        
+        cell.leftImageButton?.setImage(leftImage.image, for: .normal)
+        cell.leftImageButton.imageView?.contentMode = .scaleAspectFill
+ 
         //이미지버튼의 타이틀 설정
         cell.leftImageButton?.setTitle(itemLeft.dic["cntntsSj"], for: .normal)
         //이름버튼의 타이틀 설정
@@ -269,9 +292,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
       
         
         //검색결과가 없다면
-        print(resultPlantArray.count )
-        print(resultPlantArray[0].dic["cntntsSj"])
-        if resultPlantArray.count == 1 && resultPlantArray[0].dic["cntntsSj"] == "" {
+       
+        if resultPlantArray.count == 1 && resultPlantArray[0].dic["cntntsSj"] == "trash" {
             //ui 업데이트
             print("uiupdate because empty")
             whiteLeftUIUpdate(cell)
@@ -284,13 +306,36 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         if (indexPath.row*2+1) < plants.count{
             let itemRight = plants[indexPath.row*2+1]
             //이미지 설정
-            /*
-            let rightImage: UIImage? = UIImage(named: itemRight.engName)
             
-           if let rightImage = rightImage{
-                cell.rightImageButton?.setImage(rightImage, for: .normal)
-            }
-            */
+            let rightImage = UIImageView()
+            rightImage.contentMode = .scaleAspectFit
+            /*
+            do{
+                let data = try Data(contentsOf: URL(string: imageURL+itemRight.dic["rtnStreFileNm"]!)!)
+                rightImage.image = UIImage(data: data)
+                let newWidth = cell.rightImageButton.fs_width * 1.3
+              
+                let scale = (newWidth / rightImage.image!.size.width)
+                let newHeight = rightImage.image!.size.height * scale * 1.1
+                UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+                
+                rightImage.image!.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+                let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                rightImage.image = newImage
+             }catch let err{
+                 print(err.localizedDescription)
+             }
+ 
+ */
+            downloadPlantDataImage(imgview: rightImage, title: itemRight.dic["cntntsSj"]!)
+                
+
+           
+            cell.rightImageButton?.setImage(rightImage.image, for: .normal)
+            cell.rightImageButton.imageView?.contentMode = .scaleAspectFill
+            
+            
             //이미지 버튼의 타이틀 설정
             cell.rightImageButton?.setTitle(itemRight.dic["cntntsSj"], for: .normal)
             //이름버튼의 타이틀 설정
@@ -393,3 +438,17 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 }
 
 
+extension UIImageView {
+    func downloadImageFrom(_ link:String, contentMode: UIView.ContentMode) {
+        URLSession.shared.dataTask( with: URL(string:link)!, completionHandler: {
+            (data, response, error) -> Void in
+            DispatchQueue.main.async {
+                self.contentMode =  contentMode
+                if let data = data {
+                    print("download image from url success")
+                    self.image = UIImage(data: data) }
+            }
+        }).resume()
+    }
+    
+}

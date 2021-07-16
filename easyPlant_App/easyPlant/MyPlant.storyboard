@@ -214,7 +214,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="호야" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Rs-8l-V5U">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="호야" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Rs-8l-V5U">
                                                                 <rect key="frame" x="0.0" y="16" width="76" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="idS-j5-i67"/>
@@ -234,7 +234,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책상위" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWh-Hi-ZE8">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책상위" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWh-Hi-ZE8">
                                                                 <rect key="frame" x="0.0" y="16" width="76" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="yud-NE-eIN"/>
@@ -1203,8 +1203,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Pf3-h8-v3p"/>
-        <segue reference="1Ye-oo-bKU"/>
-        <segue reference="6ci-lE-3OF"/>
+        <segue reference="EB6-r5-rxP"/>
+        <segue reference="fv4-gj-Q8Y"/>
         <segue reference="Qay-f1-YqC"/>
     </inferredMetricsTieBreakers>
     <resources>

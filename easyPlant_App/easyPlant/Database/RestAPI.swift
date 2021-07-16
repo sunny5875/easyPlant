@@ -15,52 +15,62 @@ import SWXMLHash
 let nongsaroApiKey:String = "20210714VEVXFVNHSKPNIVDN3EUQ"
 let metaURL = "http://api.nongsaro.go.kr/service/garden/gardenList"
 let plantURL = "http://api.nongsaro.go.kr/service/garden/gardenDtl"
+let imageURL = "https://www.nongsaro.go.kr/cms_contents/301/"
 
 
 let plantKey :[String:String] = [
+    //디테일뷰에 표시 - 40개
     "plntbneNm" : "식물 학명",
     "plntzrNm" : "식물 영명",
     "distbNm" :  "유통명",
     "fmlCodeNm" : "과명",
     "orgplceInfo" : "원산지",
+    
     "adviseInfo" : "조언",
     "growthHgInfo" : "성장 높이",
     "growthAraInfo" : "성장 넓이",
     "lefStleInfo": "잎 형태",
     "smellCodeNm": "냄새",
+    
     "toxctyInfo": "독성",
     "prpgtEraInfo": "번식 시기",
     "managelevelCodeNm": "관리 수준",
     "managedemanddoCodeNm" : "관리요구도",
     "grwtveCodeNm": "생장 속도",
+    
     "grwhTpCodeNm" :"생육 온도",
     "winterLwetTpCodeNm" : "겨울 최저 온도",
     "hdCodeNm" : "습도",
     "frtlzrInfo" : "비료",
     "soilInfo" : "토양",
+    
     "watercycleSpringCodeNm": "봄 물주기",
     "watercycleSummerCodeNm": "여름 물주기",
     "watercycleAutumnCodeNm" : "가을 물주기",
     "watercycleWinterCodeNm": "겨울 물주기",
     "speclmanageInfo" : "특별관리",
+    
     "fncltyInfo" : "기능" ,
     "clCodeNm" : "분류",
     "grwhstleCodeNm" : "생육형태",
-    "indoorpsncpacompositionCodeNm" : "실내정원 구성",
+    "postngplaceCodeNm" : "배치 장소",
     "eclgyCodeNm": "생태",
+    
     "lefmrkCodeNm" : "잎 무늬",
     "lefcolrCodeNm" : "잎색",
     "ignSeasonCodeNm": "발화 계절",
     "flclrCodeNm": "꽃색",
     "fmldeSeasonCodeNm" : "과일 계절",
+    
     "fmldecolrCodeNm" : "과일 색",
     "prpgtmthCodeNm" : "번식 방법",
     "lighttdemanddoCodeNm": "광요구도",
-    "postngplaceCodeNm" : "배치 장소",
     "dlthtsCodeNm" : "병충해",
     "dlthtsManageInfo" : "병충해 관리",
     
-    "rtnImgSeCodeNm" : "이미지",
+    
+    //디테일 뷰 표시 x
+    "rtnStreFileNm" : "이미지",
     "cntntsSj" : "식물명"
 
 
@@ -146,11 +156,14 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
                 let body = xml["response"]["body"]["items"]["item"]
                 
                 for item in body.all{
-
-                    if let itemNo = item["cntntsNo"].element?.text, let toInt = Int(itemNo), let imagecode = item["rtnImgSeCode"].element?.text,let name = item["cntntsSj"].element?.text{
+                    //print(item)
+                    if let itemNo = item["cntntsNo"].element?.text, let toInt = Int(itemNo), let imagecode = item["rtnStreFileNm"].element?.text,let name = item["cntntsSj"].element?.text{
                         cntntsNoExtract.append(toInt)
                         imageCodeExtract.append(imagecode)
                         nameExtract.append(name)
+                        
+                        downloadPlantDataImage(imgview: UIImageView(), title: "\(name)")
+
                         
                     }
                 }
@@ -182,7 +195,13 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
                                             tmpDic.updateValue(element.text, forKey: key)
                                         }
                                     }
-                                tmpDic["rtnImgSeCodeNm"] = imageCodeExtract[index]
+                               
+                                let count = imageCodeExtract[index].split(separator: "|").count
+                                let split = String( imageCodeExtract[index].split(separator: "|")[count-1])
+                                
+                                //print(split)
+                                
+                                tmpDic["rtnStreFileNm"] = split
                                 tmpDic["cntntsSj"] = nameExtract[index]
                                 
                                     
@@ -195,7 +214,7 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
                         
                     
                 }
-                print("adding process all clear")
+               // print("adding process all clear")
               
 
         }
@@ -218,6 +237,11 @@ func addPlantElement(_ detail: [String: String], _ index : Int){
     plantType.plantAll[index].append(newPlant)
    // print( plantType.plantAll[index])
 
-    print("add finish")
+    //print("add finish")
 }
+
+
+
+
+
 

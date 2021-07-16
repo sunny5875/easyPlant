@@ -6,6 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+import FirebaseStorage
+import FirebaseAuth
+
 /*
 struct Plant {
     var korName: String
@@ -188,5 +193,81 @@ var plantType = PlantType(
 )
 
 
+func downloadPlantDataImage(imgview:UIImageView, title : String){
+    print(title)
+    let urlString:String = documentsDirectory.absoluteString + "localData/\(title)"
+    let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    let localURL = URL(string: encodedString)!
+    
+    
+    //로컬에 없다면 원격 저장소에서 받아온다
+    if let data = NSData(contentsOf: localURL){
+        //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
+        print("로컬에 이미지 존재!!")
+        let image = UIImage(data: data as Data)
+        imgview.image = image
+        
+    }
+    else {
+        print("원격에서 받아온다")
+        let localURL = documentsDirectory.appendingPathComponent("localData/\(title)")
+        // Create a reference to the file you want to download
+        var filePath = ""
+       
+        filePath = "/PlantData/\(title)"
+     
+        
+        let imgRef = storageRef.child(filePath)
+        
+
+        // print local filesystem URL
+        print(localURL)
+
+        // Download to the local filesystem
+        imgRef.write(toFile: localURL) { url, error in
+          if let error = error {
+            print("download to local error : \(error)")
+
+          } else {
+            let data = NSData(contentsOf: url!)
+            let image = UIImage(data: data! as Data)
+            imgview.image = image
+          }
+          
+        }
+
+        
+    }
+    
+    
+   
+    
+ }
+
+func downloadAllData(){
+    //json 파일 만들고 덮어씌운 후 진행
+    for plant in plantType.plantAll[0]{
+        downloadPlantDataImage(imgview: UIImageView(), title: plant.dic["cntntsSj"]!)
+    }
+}
 
 
+func uploadPlantDataImage(img : UIImage, title: String){
+    
+     
+     var data = Data()
+    data = img.jpegData(compressionQuality: 0.8)!
+    var filePath = ""
+    
+    filePath = "/PlantData/\(title)"
+    let metaData = StorageMetadata()
+    metaData.contentType = "image/jpg"
+    storageRef.child(filePath).putData(data,metadata: metaData){
+             (metaData,error) in if let error = error{
+             print(error.localizedDescription)
+             return
+                 
+         }
+     }
+
+ }
