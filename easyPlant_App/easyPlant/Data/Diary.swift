@@ -52,7 +52,7 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
         if let user = Auth.auth().currentUser {
             filePath = "/\(user.uid)/diary/\(title)"
         } else {
-            filePath = "/sampleUser/diary/\(title)"
+            filePath = "/sampleUser/diary/\(title).jpeg"
         }
         let imgRef = storageRef.child(filePath)
         
@@ -95,7 +95,7 @@ func uploadDiaryImage(img :UIImage, title: String){
     if let user = Auth.auth().currentUser {
         filePath = "/\(user.uid)/diary/\(title)"
     } else {
-        filePath = "/sampleUser/diary/\(title)"
+        filePath = "/sampleUser/diary/\(title).jpeg"
     }
     let metaData = StorageMetadata()
     metaData.contentType = "image/png"
@@ -118,7 +118,7 @@ func deleteDiaryImage(title : String){
     if let user = Auth.auth().currentUser {
         desertRef = storageRef.child("/\(user.uid)/diary/\(title)")
     } else {
-        desertRef = storageRef.child("/sampleUser/diary/\(title)")
+        desertRef = storageRef.child("/sampleUser/diary/\(title).jpeg")
     }
 
     // Delete the file
