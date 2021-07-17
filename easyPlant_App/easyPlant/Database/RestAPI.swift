@@ -276,6 +276,9 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
     //cntntsNo 뽑아내기
     AF.request(urlMeta, parameters: metaParam)
             .responseData { response in
+                if response.value == nil {
+                    return
+                }
                 let xml = SWXMLHash.parse(response.value!)
                 let head = xml["response"]["header"]
                // print(head)
