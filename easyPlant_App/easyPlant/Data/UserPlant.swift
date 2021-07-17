@@ -265,8 +265,10 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
         if let user = Auth.auth().currentUser {
             filePath = "/\(user.uid)/userPlant/\(title)"
         } else {
-            filePath = "/sampleUser/userPlant/\(title)"
+            filePath = "/sampleUser/userPlant/\(title).jpeg"
         }
+        
+        print("유저 플랜트 이미지 다운로드!! \(filePath)")
         
         let imgRef = storageRef.child(filePath)
         
