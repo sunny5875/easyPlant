@@ -23,34 +23,16 @@ extension UIButton {
 }
 
 
-//서치바에서 포커스가 벗어나면 내려가게 할려고 해본건데 효과 없음ㅠ
-extension SortTableViewController : UISearchBarDelegate {
-    
-    func setDelegate(){
-        print("setDelegate")
-        searchController.searchBar.delegate = self
-    }
-    
-  
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("result")
-
-        
-    }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("end edit")
-    }
-    
-    
-}
 
 
-class SortTableViewController: UITableViewController, UISearchResultsUpdating {
+
+class SortTableViewController: UITableViewController, UISearchResultsUpdating,UISearchBarDelegate {
 
 
 
     @IBOutlet weak var searchBar: UISearchBar!
     var searchController = UISearchController(searchResultsController: nil)
+    
     
     
     var nowTitle  = ""
@@ -61,17 +43,69 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     //이것도 키보드 내려가게 할려고 한건데 실패
     let gesture = UITapGestureRecognizer(target: self, action:  #selector(checkAction))
     //일단 가장 먼저 스토리보드의 테이블 뷰 컨트롤러를 클릭한 후 class 칸에 TablViewController를 적어줘야 연결이 됨
+   
+    let recognizer = UITapGestureRecognizer()
+    
+   
+  
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar){
+
+        recognizer.addTarget(self, action: Selector(("handleTap:")))
+        self.view.addGestureRecognizer(recognizer)
+
+    }
+
+   func handleTap(recognizer: UITapGestureRecognizer) {
+       searchBar.resignFirstResponder()
+   }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar)
+   {
+        print("키보드야 내려가랍!")
+        self.view .removeGestureRecognizer(recognizer)
+
+   }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+//        self.view .removeGestureRecognizer(recognizer)
+//    }
+    
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+//        self.view.endEditing(true)
+        self.searchBar.endEditing(true)
+        
+    }
+    
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidload")
         findArray()
         setUI()
-        setDelegate()
+     //   setDelegate()
         //self.navigationItem.titleView = searchController.searchBar
         //self.navigationItem.searchController = searchController
         //updateSegControl()
 
         self.view.backgroundColor = greenColor
+        
+        //이부분읻 자꾸 에러나는데 이유가 뭘까..?
+        //self.searchBar.delegate = self
+        
+    
+  
+        
+
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+
+            //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+            //tap.cancelsTouchesInView = false
+
+
+        view.addGestureRecognizer(tap)
         
 
     }
@@ -82,7 +116,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         super.viewWillAppear(animated)
         print("search view will appear")
         self.navigationItem.largeTitleDisplayMode =  .never
-
+       
+   
 
     }
     
@@ -110,8 +145,10 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 
     //UI 디자인 설정
     func setUI(){
-
-    
+       
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        
         searchController.searchBar.placeholder = ""
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.layer.borderWidth = 0
@@ -481,6 +518,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 }
 
 
+
 extension UIImageView {
     func downloadImageFrom(_ link:String, contentMode: UIView.ContentMode) {
         URLSession.shared.dataTask( with: URL(string:link)!, completionHandler: {
@@ -494,4 +532,6 @@ extension UIImageView {
         }).resume()
     }
     
+    
+
 }
