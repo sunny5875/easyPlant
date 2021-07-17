@@ -24,6 +24,7 @@ class CellTableViewCell: UITableViewCell {
     @IBOutlet weak var rightLabel: UILabel!
     
     
+    
     //셀의 디자인 설정
     override func awakeFromNib() {
         super.awakeFromNib()

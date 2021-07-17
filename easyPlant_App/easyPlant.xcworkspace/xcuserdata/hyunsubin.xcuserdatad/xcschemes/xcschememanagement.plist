@@ -6,6 +6,7 @@
 	<dict>
 		<key>SWXMLHashPlayground (Playground) 1.xcscheme</key>
 		<dict>
+<<<<<<< HEAD
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
@@ -22,23 +23,41 @@
 			<integer>23</integer>
 		</dict>
 		<key>SWXMLHashPlayground (Playground) 4.xcscheme</key>
+=======
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>SWXMLHashPlayground (Playground) 2.xcscheme</key>
+>>>>>>> subin
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>24</integer>
 		</dict>
 		<key>SWXMLHashPlayground (Playground) 5.xcscheme</key>
+=======
+			<integer>22</integer>
+		</dict>
+		<key>SWXMLHashPlayground (Playground).xcscheme</key>
+>>>>>>> subin
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>25</integer>
 		</dict>
 		<key>SWXMLHashPlayground (Playground).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>17</integer>
+=======
+			<integer>20</integer>
+>>>>>>> subin
 		</dict>
 	</dict>
 </dict>
