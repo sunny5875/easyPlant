@@ -39,12 +39,12 @@ var plantType = PlantType(
 
 )
 
+
 let plantDataURL = documentsDirectory.appendingPathComponent("plantData.json")
-
-
 func loadPlantData(){
     let jsonDecoder = JSONDecoder()
-    
+   
+
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: plantDataURL){
         //로컬에 정보가 존재할 경우 로컬 저장소에서 사용
@@ -60,11 +60,9 @@ func loadPlantData(){
         print("download to local plant data json file tart")
         // Create a reference to the file you want to download
         var filePath = ""
-        if let user = Auth.auth().currentUser {
-            filePath = "/\(user.uid)/userInfo/info"
-        } else {
-            filePath = "/sampleUser/userInfo/info"
-        }
+       
+        filePath = "/PlantData/plantData.json"
+        
         
         let infoRef = storageRef.child(filePath)
         
@@ -85,24 +83,24 @@ func loadPlantData(){
         }
    }
 
-    print("download user info finish")
+    print("download plant data finish")
 }
 
 
-func  savePlantData(user : User) {
+func  savePlantData(plantData : PlantType) {
     
     let jsonEncoder = JSONEncoder()
     
     do{
-        let encodeData = try jsonEncoder.encode(user)
-        print(userInfoURL)
+        let encodeData = try jsonEncoder.encode(plantData)
+        print(plantDataURL)
         
         // 원격에 저장
         
         var filePath = ""
-        if let user = Auth.auth().currentUser {
-            filePath = "/\(user.uid)/userInfo/info"
-            
+        
+            filePath = "/PlantData/plantData.json"
+
             let metaData = StorageMetadata()
             metaData.contentType = "application/json"
             storageRef.child(filePath).putData(encodeData ,metadata: metaData){
@@ -116,14 +114,14 @@ func  savePlantData(user : User) {
             }
             
             // 로컬에 저장
-            try encodeData.write(to: userInfoURL, options: .noFileProtection)
-        }
+            try encodeData.write(to: plantDataURL, options: .noFileProtection)
+        
       }
       catch {
           print(error)
       }
 
-    print("user info save complete")
+    print("save plant data complete")
 }
 
 

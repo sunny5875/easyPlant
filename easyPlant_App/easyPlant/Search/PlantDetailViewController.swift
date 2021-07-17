@@ -97,8 +97,8 @@ class PlantDetailViewController: UIViewController {
             if plant.dic[key] != "" {
                 stackViewList[index].subviews[0].setValue(plantKey[key], forKey: "text")
                 stackViewList[index].subviews[1].setValue(plant.dic[key], forKey: "text")
-                print(stackViewList[index].subviews[0])
-                print(stackViewList[index].subviews[1])
+                //print(stackViewList[index].subviews[0])
+                //print(stackViewList[index].subviews[1])
 
             }
             else{

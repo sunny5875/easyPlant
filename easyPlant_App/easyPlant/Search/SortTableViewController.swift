@@ -130,6 +130,9 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
 
     }
     
+    @IBAction func saveClicked(_ sender: Any) {
+        savePlantData(plantData: plantType)
+    }
     
     
     
@@ -162,7 +165,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
             
             resultPlantArray = plantArray.filter { plant in
             return
-                plant.dic["cntntsSj"]!.lowercased().contains(searchController.searchBar.text!.lowercased())
+                plant.dic["cntntsSj"]!.lowercased().contains(searchController.searchBar.text!.lowercased()) || plant.dic["distbNm"]!.lowercased().contains(searchController.searchBar.text!.lowercased())
             }
             print(resultPlantArray)
             if resultPlantArray.count == 0{

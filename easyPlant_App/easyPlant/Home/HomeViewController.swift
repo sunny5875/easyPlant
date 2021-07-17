@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
         
        
-        loadPlantSearchList()
+        //loadPlantSearchList()
 
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             
             print("this is first launch")
-            //downloadAllData()
+            loadPlantData()
             do {
                 try Auth.auth().signOut()
             } catch let signOutError as NSError {
@@ -72,6 +72,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.navigationController?.popViewController(animated: true)
             }
             
+            downloadAllData()
+
             let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "OnboardingViewController")
             

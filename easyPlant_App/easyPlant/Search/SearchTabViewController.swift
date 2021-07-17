@@ -31,6 +31,7 @@ class SearchTabViewController: UIViewController {
     }
 
     
+    
     func setUI(){
         for but in menuButtons{
             but.layer.borderWidth = 0.5
