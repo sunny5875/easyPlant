@@ -68,7 +68,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         setDelegate()
         //updateSegControl()
 
-
+        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
 
     }
     
@@ -117,9 +118,10 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         self.tableView.tableHeaderView = searchController.searchBar
        
 
-        searchController.searchBar.layer.borderWidth = 1
-        searchController.searchBar.layer.borderColor = UIColor.white.cgColor
+        searchController.searchBar.layer.borderWidth = 0
         searchController.searchBar.tintColor = UIColor.black
+        searchController.searchBar.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        searchController.searchBar.layer.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1)).cgColor
     
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
@@ -235,9 +237,10 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         print("table view change")
         let cell: CellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! CellTableViewCell
         //셀 디자인 설정
-        cell.layer.borderWidth = 1
+        cell.layer.borderWidth = 0
         cell.layer.borderColor = UIColor.white.cgColor
-        cell.layer.backgroundColor = UIColor.white.cgColor
+        //cell.layer.backgroundColor = UIColor.white.cgColor
+        cell.layer.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 0.5)).cgColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.contView.addGestureRecognizer(gesture)
 
@@ -372,6 +375,13 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     func greenRightUIUpdate(_ cell: CellTableViewCell){
         cell.rightCellView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         cell.rightButton.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        cell.rightCellView.backgroundColor = UIColor.white
+        cell.rightButton.backgroundColor = UIColor.white
+        cell.rightCellView.layer.shadowOpacity = 0.4
+        cell.rightCellView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        cell.rightCellView.layer.shadowRadius = 5
+        cell.rightCellView.layer.masksToBounds = false
     }
     
     func whiteRightUIUpdate(_ cell : CellTableViewCell) {
@@ -391,6 +401,13 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     func greenLeftUIUpdate(_ cell: CellTableViewCell){
         cell.leftCellView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         cell.leftButton.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        
+        cell.leftCellView.backgroundColor = UIColor.white
+        cell.leftButton.backgroundColor = UIColor.white
+        cell.leftCellView.layer.shadowOpacity = 0.4
+        cell.leftCellView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        cell.leftCellView.layer.shadowRadius = 5
+        cell.leftCellView.layer.masksToBounds = false
     }
     
     func whiteLeftUIUpdate(_ cell : CellTableViewCell) {

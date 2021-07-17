@@ -31,7 +31,7 @@ class CellTableViewCell: UITableViewCell {
         self.layer.borderWidth = 1
         self.selectionStyle = UITableViewCell.SelectionStyle.none
         //self.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         rightCellView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         rightCellView.layer.cornerRadius = 30
         leftCellView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
