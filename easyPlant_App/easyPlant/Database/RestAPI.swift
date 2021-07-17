@@ -313,6 +313,9 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
                         AF.request(urlPlant, parameters: plantParam)
                             .responseData { response in
                                 var tmpDic = initDetailDic()
+                                    if response.value == nil {
+                                        return
+                                    }
 
                                     let xml = SWXMLHash.parse(response.value!)
                                     //print(xml)
