@@ -108,7 +108,7 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         //카메라로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
 
-            let cameraAction = UIAlertAction(title: "Camera",style: .default, handler: { action in
+            let cameraAction = UIAlertAction(title: "카메라",style: .default, handler: { action in
                 imagePicker.sourceType = .camera
                 self.present(imagePicker,animated: true,completion: nil)
             })

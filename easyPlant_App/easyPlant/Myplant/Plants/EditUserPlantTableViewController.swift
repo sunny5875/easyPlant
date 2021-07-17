@@ -318,6 +318,15 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
 
         }
         
+        //새로 만드는 중이었다면
+        if isEdit == false{
+            if imageView.image == nil {
+                print("image null")
+                saveBarButton.isEnabled = false
+
+            }
+        }
+        
     }
     
     func checkTextEmpty() -> Int {
