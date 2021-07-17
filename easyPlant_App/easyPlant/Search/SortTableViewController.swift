@@ -206,6 +206,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
     
         var cnt : Int = 0
         for type in plantType.type {
+       
             if type == nowTitle{ break}
             cnt += 1
         }

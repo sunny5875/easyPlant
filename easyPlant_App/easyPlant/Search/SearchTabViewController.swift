@@ -73,7 +73,7 @@ class SearchTabViewController: UIViewController {
         
         if let sortTable = segue.destination as? SortTableViewController {
             if segue.identifier == "selectMenu" {
-                //print(titleSend)
+                print(titleSend)
                 sortTable.navigationItem.title = titleSend
             }
             else if segue.identifier == "selectTotalSearch" {
