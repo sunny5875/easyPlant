@@ -27,7 +27,10 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         navigationController?.navigationBar.prefersLargeTitles = true
         
         
-        //loadPlantExtraList()
+        // json 만들고나서 지우기
+        loadPlantExtraList()
+        
+        
         loadUserPlant()
         
         

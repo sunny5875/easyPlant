@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
         
        
-        //loadPlantSearchList()
+        loadPlantSearchList()
         //앱껏다키면 로컬 데이터는 사라져서 매번 원격에서 json 파일 읽어야될 거 같애
         loadPlantData()
         
