@@ -19,6 +19,7 @@ class SearchTabViewController: UIViewController {
      
         setUI()
         self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        //self.view.backgroundColor = UIColor.white
         
         // Do any additional setup after loading the view.
     }

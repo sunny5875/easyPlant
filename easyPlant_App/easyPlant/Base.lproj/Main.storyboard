@@ -40,19 +40,31 @@
                                                     <action selector="selectTotalSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SqB-Vx-uo8"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuk-Sl-pYT">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuk-Sl-pYT">
                                                 <rect key="frame" x="0.0" y="119" width="360" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                <state key="normal" title="다육식물" backgroundImage="menuDry">
+                                                <state key="normal" title="꽃과열매" backgroundImage="flower11">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERH-FH-TrT"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="u15-hj-KXq">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-D1-vM7">
                                                 <rect key="frame" x="0.0" y="238" width="360" height="96"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <inset key="contentEdgeInsets" minX="130" minY="20" maxX="130" maxY="20"/>
+                                                <state key="normal" title="성장속도" backgroundImage="sprout-1">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XLI-hd-utj"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="u15-hj-KXq">
+                                                <rect key="frame" x="0.0" y="357" width="360" height="96"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="96" id="ZSX-64-aTp"/>
@@ -68,7 +80,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pf1-Kh-nJI">
-                                                <rect key="frame" x="0.0" y="357" width="360" height="96"/>
+                                                <rect key="frame" x="0.0" y="476" width="360" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -80,7 +92,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfE-2Z-YPV">
-                                                <rect key="frame" x="0.0" y="476" width="360" height="96"/>
+                                                <rect key="frame" x="0.0" y="595" width="360" height="96"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                 <state key="normal" title="귀차니즘" backgroundImage="menuBed">
@@ -91,7 +103,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJC-Yd-usB">
-                                                <rect key="frame" x="0.0" y="595" width="360" height="96"/>
+                                                <rect key="frame" x="0.0" y="714" width="360" height="96"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
@@ -100,18 +112,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PfK-h0-9k4"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-D1-vM7">
-                                                <rect key="frame" x="0.0" y="714" width="360" height="96"/>
-                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <inset key="contentEdgeInsets" minX="130" minY="20" maxX="130" maxY="20"/>
-                                                <state key="normal" title="반려동물" backgroundImage="menuCat">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="searchMenuTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XLI-hd-utj"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1358,7 +1358,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
                         <prototypes>
-
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="plantCell" id="V2F-no-dcX" customClass="CellTableViewCell" customModule="easyPlant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="245"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1556,15 +1555,15 @@
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="Limeade" width="1280" height="800"/>
+        <image name="flower11" width="718" height="210"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="menuBed" width="410" height="124"/>
-        <image name="menuCat" width="466" height="134"/>
         <image name="menuCleanAir" width="372" height="128"/>
-        <image name="menuDry" width="570" height="154"/>
         <image name="menuInterior" width="612" height="206"/>
         <image name="menuShadow" width="344" height="124"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="128" height="96"/>
         <image name="search2" width="608" height="170"/>
+        <image name="sprout-1" width="696" height="160"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
