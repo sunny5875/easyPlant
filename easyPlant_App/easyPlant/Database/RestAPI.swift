@@ -209,10 +209,6 @@ func loadPlantSearchList(){
     fetchData(metaURL, plantURL, "아레카야자" , 1)
     fetchData(metaURL, plantURL, "아이비" , 2)
     fetchData(metaURL, plantURL, "안수리움" , 1)
-    fetchData(metaURL, plantURL, "무늬쉐플레라'홍콩'" , 1)
-    fetchData(metaURL, plantURL, "무늬쉐플레라'홍콩'" , 1)
-    fetchData(metaURL, plantURL, "무늬쉐플레라'홍콩'" , 1)
-    fetchData(metaURL, plantURL, "무늬쉐플레라'홍콩'" , 1)
     
     
     
