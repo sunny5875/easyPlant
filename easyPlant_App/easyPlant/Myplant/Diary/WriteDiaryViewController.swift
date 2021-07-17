@@ -41,7 +41,7 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         
         //새로 만들기였다면
         
-        if titleTextField.text != "", contentTextField.text != "" {
+        if titleTextField.text != "", contentTextField.text != "", contentTextField.text != "Enter the text"{
             saveBarButton.isEnabled = true
                 
         }
