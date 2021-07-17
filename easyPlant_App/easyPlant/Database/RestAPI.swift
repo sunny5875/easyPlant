@@ -30,7 +30,7 @@ let plantKey :[String:String] = [
     "growthHgInfo" : "성장 높이",
     "growthAraInfo" : "성장 넓이",
     "lefStleInfo": "잎 형태",
-    "smellCodeNm": "냄새",
+    "smellCodeNm": "냄새", //10
     
     "toxctyInfo": "독성",
     "prpgtEraInfo": "번식 시기",
@@ -42,7 +42,7 @@ let plantKey :[String:String] = [
     "winterLwetTpCodeNm" : "겨울 최저 온도",
     "hdCodeNm" : "습도",
     "frtlzrInfo" : "비료",
-    "soilInfo" : "토양",
+    "soilInfo" : "토양", // 20
     
     "watercycleSpringCodeNm": "봄 물주기",
     "watercycleSummerCodeNm": "여름 물주기",
@@ -54,7 +54,7 @@ let plantKey :[String:String] = [
     "clCodeNm" : "분류",
     "grwhstleCodeNm" : "생육형태",
     "postngplaceCodeNm" : "배치 장소",
-    "eclgyCodeNm": "생태",
+    "eclgyCodeNm": "생태", //30
     
     "lefmrkCodeNm" : "잎 무늬",
     "lefcolrCodeNm" : "잎색",
@@ -66,7 +66,7 @@ let plantKey :[String:String] = [
     "prpgtmthCodeNm" : "번식 방법",
     "lighttdemanddoCodeNm": "광요구도",
     "dlthtsCodeNm" : "병충해",
-    "dlthtsManageInfo" : "병충해 관리",
+    "dlthtsManageInfo" : "병충해 관리", //40
     
     
     //디테일 뷰 표시 x
@@ -75,6 +75,54 @@ let plantKey :[String:String] = [
 
 
 ]
+
+let keyArray = ["plntbneNm" ,
+                "plntzrNm" ,
+                "distbNm" ,
+                "fmlCodeNm" ,
+                "orgplceInfo" ,
+                
+                "adviseInfo" ,
+                "growthHgInfo" ,
+                "growthAraInfo",
+                "lefStleInfo",
+                "smellCodeNm",
+                
+                "toxctyInfo",
+                "prpgtEraInfo",
+                "managelevelCodeNm",
+                "managedemanddoCodeNm" ,
+                "grwtveCodeNm",
+                
+                "grwhTpCodeNm",
+                "winterLwetTpCodeNm",
+                "hdCodeNm" ,
+                "frtlzrInfo" ,
+                "soilInfo" ,
+                
+                "watercycleSpringCodeNm",
+                "watercycleSummerCodeNm",
+                "watercycleAutumnCodeNm" ,
+                "watercycleWinterCodeNm",
+                "speclmanageInfo" ,
+                
+                "fncltyInfo"  ,
+                "clCodeNm" ,
+                "grwhstleCodeNm" ,
+                "postngplaceCodeNm" ,
+                "eclgyCodeNm",
+                
+                "lefmrkCodeNm" ,
+                "lefcolrCodeNm" ,
+                "ignSeasonCodeNm",
+                "flclrCodeNm",
+                "fmldeSeasonCodeNm" ,
+                
+                "fmldecolrCodeNm",
+                "prpgtmthCodeNm",
+                "lighttdemanddoCodeNm",
+                "dlthtsCodeNm",
+                "dlthtsManageInfo" ]
 
 
 func initDetailDic()-> [String:String]{
