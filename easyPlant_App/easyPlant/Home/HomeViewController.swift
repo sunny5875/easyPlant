@@ -43,14 +43,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
        
         //loadPlantSearchList()
-
+        loadPlantData()
+        
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             print("Not first launch.")
         } else {
             
             print("this is first launch")
-            loadPlantData()
+            
             do {
                 try Auth.auth().signOut()
             } catch let signOutError as NSError {

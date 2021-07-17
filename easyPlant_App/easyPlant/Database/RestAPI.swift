@@ -210,15 +210,23 @@ func loadPlantSearchList(){
     fetchData(metaURL, plantURL, "아이비" , 2)
     fetchData(metaURL, plantURL, "안수리움" , 1)
     
+    fetchData(metaURL, plantURL, "익소라" , 5)
+    fetchData(metaURL, plantURL, "칼랑코에" , 4)
+    fetchData(metaURL, plantURL, "크립탄서스" , 4)
+    fetchData(metaURL, plantURL, "테이블야자" , 1)
+    fetchData(metaURL, plantURL, "폴리시아스" , 5)
+    fetchData(metaURL, plantURL, "프테리스" , 5)
+    fetchData(metaURL, plantURL, "피토니아 핑크스타" , 2)
+    fetchData(metaURL, plantURL, "피토니아 화이트스타" , 2)
+    fetchData(metaURL, plantURL, "해마리아" , 2)
+    fetchData(metaURL, plantURL, "야자" , 5)
+    fetchData(metaURL, plantURL, "야자" , 5)
+    fetchData(metaURL, plantURL, "야자" , 5)
+    fetchData(metaURL, plantURL, "야자" , 5)
+    fetchData(metaURL, plantURL, "야자" , 5)
+    fetchData(metaURL, plantURL, "야자" , 5)
     
     
-    
-    //fetchData(metaURL, plantURL, "야자" , 5)
-    
-    //fetchData(metaURL, plantURL, "야자" , 6)
-    
-    //saveUserInfo(user: myUser)
-    //saveNewUserPlant(plantsList: uearPlants, archiveURL: <#T##URL#>)
 
     
 }
