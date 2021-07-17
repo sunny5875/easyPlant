@@ -16,7 +16,9 @@ class SearchTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        print("download plant all data")
+        print(plantType)
+        downloadAllData()
         setUI()
         self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         

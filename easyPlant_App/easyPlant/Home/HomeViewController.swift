@@ -43,6 +43,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
        
         //loadPlantSearchList()
+        //앱껏다키면 로컬 데이터는 사라져서 매번 원격에서 json 파일 읽어야될 거 같애
         loadPlantData()
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
@@ -51,7 +52,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             
             print("this is first launch")
-            
             do {
                 try Auth.auth().signOut()
             } catch let signOutError as NSError {
@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.navigationController?.popViewController(animated: true)
             }
             
-            downloadAllData()
+            
 
             let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "OnboardingViewController")

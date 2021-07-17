@@ -26,9 +26,11 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-   
+        
    
         loadUserPlant()
+        
+        
         userPlantCollectionView.reloadData()
         print("user plant reload data finish")
 
