@@ -133,6 +133,7 @@ func initDetailDic()-> [String:String]{
     return detailDic
 }
 
+// 안 씀 (파이어베이스에 json 파일 만드는 용도)
 func loadPlantExtraList() {
     for plant in plantType.plantAll[0] {
         if plant.dic["grwtveCodeNm"]!.contains("빠름") {
@@ -213,7 +214,7 @@ func loadPlantSearchList(){
     fetchData(metaURL, plantURL, "세이프릿지 야자" , 1)
     fetchData(metaURL, plantURL, "수박필레아" , 2)
     fetchData(metaURL, plantURL, "쉐플레라 '홍콩'" , 1)
-    fetchData(metaURL, plantURL, "스킨답서스" , 4)
+    //fetchData(metaURL, plantURL, "스킨답서스" , 4)
     fetchData(metaURL, plantURL, "심비디움" , 5)
     fetchData(metaURL, plantURL, "싱고니움" , 2)
     fetchData(metaURL, plantURL, "아라우카리아" , 1)
@@ -223,7 +224,7 @@ func loadPlantSearchList(){
     
     fetchData(metaURL, plantURL, "익소라" , 5)
     //fetchData(metaURL, plantURL, "칼랑코에" , 4)
-    fetchData(metaURL, plantURL, "크립탄서스" , 4)
+    //fetchData(metaURL, plantURL, "크립탄서스" , 4)
     fetchData(metaURL, plantURL, "테이블야자" , 1)
     fetchData(metaURL, plantURL, "폴리시아스" , 5)
     fetchData(metaURL, plantURL, "프테리스" , 5)

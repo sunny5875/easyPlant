@@ -26,14 +26,6 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        
-        // json 만들고나서 지우기
-        loadPlantExtraList()
-        
-        
-        loadUserPlant()
-        
-        
         userPlantCollectionView.reloadData()
         print("user plant reload data finish")
 
@@ -42,6 +34,8 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("view will appear!!!! hihi")
+        
+        //loadPlantExtraList()
         loadUserPlant()
         userPlantCollectionView.reloadData()
 

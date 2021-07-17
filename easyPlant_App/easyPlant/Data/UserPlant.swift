@@ -166,7 +166,6 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
         // 원격에 저장
         var filePath = ""
         if let user = Auth.auth().currentUser {
-            print("Save New User Plant in user \(user.uid), \(plantsList)")
             filePath = "/\(user.uid)/userPlantList/plants"
             
             let metaData = StorageMetadata()
@@ -203,13 +202,11 @@ func loadUserPlant(){
         do {
             let decoded = try jsonDecoder.decode([UserPlant].self, from: data as Data)
             userPlants = decoded
-           // print("로컬에 플랜트 json 존재한다!! \(userPlants)")
         } catch {
             print(error)
         }
     }
     else {
-        print("원격에서 플랜트 리스트 받아온다!!!!")
         // Create a reference to the file you want to download
         var filePath = ""
         if let user = Auth.auth().currentUser {
@@ -243,7 +240,6 @@ func loadUserPlant(){
 
 
 func downloadUserPlantImage(imgview:UIImageView, title : String){
-    print(title)
     let urlString:String = documentsDirectory.absoluteString + "localPlant/\(title)"
     let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     let localURL = URL(string: encodedString)!
@@ -252,13 +248,11 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
-        print("로컬에 이미지 존재!!")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
     }
     else {
-        print("원격에서 받아온다")
         let localURL = documentsDirectory.appendingPathComponent("localPlant/\(title)")
         // Create a reference to the file you want to download
         var filePath = ""
@@ -267,8 +261,6 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
         } else {
             filePath = "/sampleUser/userPlant/\(title).jpeg"
         }
-        
-        print("유저 플랜트 이미지 다운로드!! \(filePath)")
         
         let imgRef = storageRef.child(filePath)
         
