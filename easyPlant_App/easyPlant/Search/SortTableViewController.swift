@@ -380,7 +380,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         
         cell.rightCellView.backgroundColor = UIColor.white
         cell.rightButton.backgroundColor = UIColor.white
-        cell.rightCellView.layer.shadowOpacity = 0.4
+        cell.rightCellView.layer.shadowOpacity = 0.2
         cell.rightCellView.layer.shadowOffset = CGSize(width: 0, height: 3)
         cell.rightCellView.layer.shadowRadius = 5
         cell.rightCellView.layer.masksToBounds = false
@@ -403,7 +403,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating {
         
         cell.leftCellView.backgroundColor = UIColor.white
         cell.leftButton.backgroundColor = UIColor.white
-        cell.leftCellView.layer.shadowOpacity = 0.4
+        cell.leftCellView.layer.shadowOpacity = 0.2
         cell.leftCellView.layer.shadowOffset = CGSize(width: 0, height: 3)
         cell.leftCellView.layer.shadowRadius = 5
         cell.leftCellView.layer.masksToBounds = false

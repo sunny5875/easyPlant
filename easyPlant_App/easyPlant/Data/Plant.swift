@@ -23,10 +23,10 @@ struct Plant: Codable {
 var plantTotal: [Plant] = []
 var plantsClearAir: [Plant] = []
 var plantsShade: [Plant] = []
-var plantsDry: [Plant] = []
+var plantsFast: [Plant] = []
 var plantsLazy: [Plant] = []
 var plantsInterior: [Plant] = []
-var plantsAnimal: [Plant] = []
+var plantsFlower: [Plant] = []
 
 struct PlantType:Codable{
     var type: [String]
@@ -34,8 +34,8 @@ struct PlantType:Codable{
     
 }
 var plantType = PlantType(
-    type : ["전체검색","공기정화","그늘에서","다육식물","귀차니즘","인테리어","반려동물"],
-    plantAll : [plantTotal,plantsClearAir,plantsShade,plantsDry,plantsLazy,plantsInterior,plantsAnimal]
+    type : ["전체검색","공기정화","그늘에서","성장속도","귀차니즘","인테리어","꽃과열매"],
+    plantAll : [plantTotal,plantsClearAir,plantsShade,plantsFast,plantsLazy,plantsInterior,plantsFlower]
 
 )
 
