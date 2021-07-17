@@ -141,8 +141,6 @@ func loadPlantSearchList(){
     
     //["전체검색","공기정화","그늘에서","다육식물","귀차니즘","인테리어","반려동물"]
     fetchData(metaURL, plantURL, "" , 0)
-
-    fetchData(metaURL, plantURL, "야자" , 1)
     
     fetchData(metaURL, plantURL, "나한송", 4)
     
