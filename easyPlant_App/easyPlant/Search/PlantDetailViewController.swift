@@ -15,7 +15,9 @@ class PlantDetailViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var superstackView: UIStackView!
-    @IBOutlet weak var stackElement: UIStackView!
+
+    @IBOutlet var stackViewList: [UIStackView]!
+    
     
     var detailPlantName: String?
     var detailPlantType: String?
@@ -87,33 +89,23 @@ class PlantDetailViewController: UIViewController {
   
     
     func contentLoad(_ plant :Plant){
-        print("content load")
-        for key in plant.dic.keys {
+        for (index,key) in keyArray.enumerated() {
+            if index > 39 {
+                break
+            }
+            
             if plant.dic[key] != "" {
-                print("content exist")
-                var stackView   = UIStackView()
-                stackView = stackElement
-                /*
-                stackView.axis  = NSLayoutConstraint.Axis.vertical
-                stackView.distribution  = UIStackView.Distribution.equalSpacing
-                stackView.alignment = UIStackView.Alignment.center
-                stackView.spacing   = 0
-                
-                let newlabel = UILabel()
-                let newtext = UITextView()
-                
-                newlabel.text = "test"
-                newtext.text = "test view"
-                
-                
-                stackView.addArrangedSubview(newlabel)
-                stackView.addArrangedSubview(newtext)
-                stackView.translatesAutoresizingMaskIntoConstraints = false
- */
-                superstackView.addSubview(stackView)
-                //print(superstackView)
+                stackViewList[index].subviews[0].setValue(plantKey[key], forKey: "text")
+                stackViewList[index].subviews[1].setValue(plant.dic[key], forKey: "text")
+                print(stackViewList[index].subviews[0])
+                print(stackViewList[index].subviews[1])
+
+            }
+            else{
+                stackViewList[index].isHidden = true
             }
         }
+        
     }
         
     override func viewWillAppear(_ animated: Bool) {
