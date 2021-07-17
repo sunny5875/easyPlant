@@ -27,7 +27,7 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         navigationController?.navigationBar.prefersLargeTitles = true
         
         
-   
+        //loadPlantExtraList()
         loadUserPlant()
         
         

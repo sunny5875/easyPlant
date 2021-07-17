@@ -133,16 +133,29 @@ func initDetailDic()-> [String:String]{
     return detailDic
 }
 
+func loadPlantExtraList() {
+    for plant in plantType.plantAll[0] {
+        if plant.dic["grwtveCodeNm"]!.contains("빠름") {
+            fetchData(metaURL, plantURL, plant.dic["cntntsSj"]!, 3)
+        }
+        if plant.dic["managelevelCodeNm"]!.contains("초보자") {
+            fetchData(metaURL, plantURL, plant.dic["cntntsSj"]!, 4)
+        }
+        if plant.dic["flclrCodeNm"] != "" || plant.dic["fmldecolrCodeNm"] != "" {
+            fetchData(metaURL, plantURL, plant.dic["cntntsSj"]!, 6)
+        }
+    }
+}
 
 func loadPlantSearchList(){
     for i in 0...6{
     plantType.plantAll[i] = []
     }
     
-    //["전체검색","공기정화","그늘에서","다육식물","귀차니즘","인테리어","반려동물"]
+    //["전체검색","공기정화","그늘에서","성장속도","귀차니즘","인테리어","꽃과열매"]
     fetchData(metaURL, plantURL, "" , 0)
     
-    fetchData(metaURL, plantURL, "나한송", 4)
+    //fetchData(metaURL, plantURL, "나한송", 4)
     
     fetchData(metaURL, plantURL, "네마탄투스" , 5)
     
@@ -191,10 +204,10 @@ func loadPlantSearchList(){
     
     fetchData(metaURL, plantURL, "무늬쉐플레라'홍콩'" , 1)
     
-    fetchData(metaURL, plantURL, "뮤렌베키아" , 4)
+    //fetchData(metaURL, plantURL, "뮤렌베키아" , 4)
     fetchData(metaURL, plantURL, "보스톤고사리" , 5)
     fetchData(metaURL, plantURL, "산세베리아" , 1)
-    fetchData(metaURL, plantURL, "산호수" , 4)
+    //fetchData(metaURL, plantURL, "산호수" , 4)
     fetchData(metaURL, plantURL, "삼색데코라고무나무" , 5)
     fetchData(metaURL, plantURL, "세네시오 라디칸스" , 5)
     fetchData(metaURL, plantURL, "세이프릿지 야자" , 1)
@@ -209,7 +222,7 @@ func loadPlantSearchList(){
     fetchData(metaURL, plantURL, "안수리움" , 1)
     
     fetchData(metaURL, plantURL, "익소라" , 5)
-    fetchData(metaURL, plantURL, "칼랑코에" , 4)
+    //fetchData(metaURL, plantURL, "칼랑코에" , 4)
     fetchData(metaURL, plantURL, "크립탄서스" , 4)
     fetchData(metaURL, plantURL, "테이블야자" , 1)
     fetchData(metaURL, plantURL, "폴리시아스" , 5)
@@ -217,12 +230,6 @@ func loadPlantSearchList(){
     fetchData(metaURL, plantURL, "피토니아 핑크스타" , 2)
     fetchData(metaURL, plantURL, "피토니아 화이트스타" , 2)
     fetchData(metaURL, plantURL, "해마리아" , 2)
-    fetchData(metaURL, plantURL, "야자" , 5)
-    fetchData(metaURL, plantURL, "야자" , 5)
-    fetchData(metaURL, plantURL, "야자" , 5)
-    fetchData(metaURL, plantURL, "야자" , 5)
-    fetchData(metaURL, plantURL, "야자" , 5)
-    fetchData(metaURL, plantURL, "야자" , 5)
     
     
 
