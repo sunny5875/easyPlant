@@ -138,15 +138,80 @@ func loadPlantSearchList(){
     for i in 0...6{
     plantType.plantAll[i] = []
     }
+    
+    //["전체검색","공기정화","그늘에서","다육식물","귀차니즘","인테리어","반려동물"]
     fetchData(metaURL, plantURL, "" , 0)
 
     fetchData(metaURL, plantURL, "야자" , 1)
     
-    //fetchData(metaURL, plantURL, "야자" , 2)
+    fetchData(metaURL, plantURL, "나한송", 4)
     
-    //fetchData(metaURL, plantURL, "야자" , 3)
+    fetchData(metaURL, plantURL, "네마탄투스" , 5)
     
-   //fetchData(metaURL, plantURL, "야자" , 4)
+    fetchData(metaURL, plantURL, "네오레겔리아" , 5)
+    
+    fetchData(metaURL, plantURL, "뉴기니아봉선화" , 5)
+    
+    fetchData(metaURL, plantURL, "더피고사리" , 5)
+    
+    fetchData(metaURL, plantURL, "녹영" , 5)
+    
+    fetchData(metaURL, plantURL, "데코라고무나무" , 2)
+    
+    fetchData(metaURL, plantURL, "동백" , 5)
+    
+    fetchData(metaURL, plantURL, "드라세나 '와네끼'" , 1)
+    fetchData(metaURL, plantURL, "드라세나 '송오브인디아'" , 5)
+    
+    fetchData(metaURL, plantURL, "드라세나 '자바'" , 1)
+    
+    fetchData(metaURL, plantURL, "드라세나 '콤팩타'" , 1)
+    
+    fetchData(metaURL, plantURL, "드라세나 드라코" , 1)
+    
+    fetchData(metaURL, plantURL, "드라세나 마지나타" , 1)
+    
+    fetchData(metaURL, plantURL, "드라세나 맛상게아나" , 5)
+    
+    fetchData(metaURL, plantURL, "드라세나 산다레아나" , 1)
+    
+    fetchData(metaURL, plantURL, "떡갈잎 고무나무" , 2)
+    
+    fetchData(metaURL, plantURL, "러브체인" , 5)
+    
+    fetchData(metaURL, plantURL, "렉스베고니아" , 5)
+    
+    fetchData(metaURL, plantURL, "루스커스" , 2)
+    
+    fetchData(metaURL, plantURL, "만데빌라" , 5)
+    
+    fetchData(metaURL, plantURL, "몬스테라" , 2)
+    
+    fetchData(metaURL, plantURL, "무늬관음죽" , 1)
+    
+    fetchData(metaURL, plantURL, "무늬벤자민고무나무" , 1)
+    
+    fetchData(metaURL, plantURL, "무늬쉐플레라'홍콩'" , 1)
+    
+    fetchData(metaURL, plantURL, "뮤렌베키아" , 4)
+    fetchData(metaURL, plantURL, "보스톤고사리" , 5)
+    fetchData(metaURL, plantURL, "산세베리아" , 1)
+    fetchData(metaURL, plantURL, "산호수" , 4)
+    fetchData(metaURL, plantURL, "삼색데코라고무나무" , 5)
+    fetchData(metaURL, plantURL, "세네시오 라디칸스" , 5)
+    fetchData(metaURL, plantURL, "세이프릿지 야자" , 1)
+    fetchData(metaURL, plantURL, "수박필레아" , 2)
+    fetchData(metaURL, plantURL, "쉐플레라 '홍콩'" , 1)
+    fetchData(metaURL, plantURL, "스킨답서스" , 4)
+    fetchData(metaURL, plantURL, "심비디움" , 5)
+    fetchData(metaURL, plantURL, "싱고니움" , 2)
+    fetchData(metaURL, plantURL, "아라우카리아" , 1)
+    fetchData(metaURL, plantURL, "아레카야자" , 1)
+    fetchData(metaURL, plantURL, "아이비" , 2)
+    fetchData(metaURL, plantURL, "안수리움" , 1)
+    
+    
+    
     
     //fetchData(metaURL, plantURL, "야자" , 5)
     
