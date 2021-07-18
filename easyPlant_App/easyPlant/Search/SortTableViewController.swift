@@ -26,11 +26,10 @@ extension UIButton {
 
 
 
-class SortTableViewController: UITableViewController, UISearchResultsUpdating,UISearchBarDelegate {
+class SortTableViewController: UITableViewController, UISearchResultsUpdating,UISearchBarDelegate{
 
 
 
-    @IBOutlet weak var searchBar: UISearchBar!
     var searchController = UISearchController(searchResultsController: nil)
     
     
@@ -41,45 +40,12 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     var resultPlantArray: [Plant] = []
 
     //이것도 키보드 내려가게 할려고 한건데 실패
-    let gesture = UITapGestureRecognizer(target: self, action:  #selector(checkAction))
+    //let gesture = UITapGestureRecognizer(target: self, action:  #selector(checkAction))
     //일단 가장 먼저 스토리보드의 테이블 뷰 컨트롤러를 클릭한 후 class 칸에 TablViewController를 적어줘야 연결이 됨
    
-    let recognizer = UITapGestureRecognizer()
-    
-   
-  
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar){
-
-        recognizer.addTarget(self, action: Selector(("handleTap:")))
-        self.view.addGestureRecognizer(recognizer)
-
-    }
-
-   func handleTap(recognizer: UITapGestureRecognizer) {
-       searchBar.resignFirstResponder()
-   }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar)
-   {
-        print("키보드야 내려가랍!")
-        self.view .removeGestureRecognizer(recognizer)
-
-   }
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-//        self.view .removeGestureRecognizer(recognizer)
-//    }
-    
-    
-    @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-//        self.view.endEditing(true)
-        self.searchBar.endEditing(true)
-        
-    }
+   let recognizer = UITapGestureRecognizer()
     
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidload")
@@ -99,16 +65,18 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
   
         
 
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
 
             //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
             //tap.cancelsTouchesInView = false
 
 
-        view.addGestureRecognizer(tap)
+       // view.addGestureRecognizer(tap)
         
 
     }
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +88,22 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
    
 
     }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("scroll begin dragging")
+        self.view.removeGestureRecognizer(recognizer)
+        searchController.searchBar.resignFirstResponder()
+
+
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar){
+        print("서치바가 수정 시작")
+        recognizer.addTarget(self, action: Selector(("handleTap")))
+        self.view.addGestureRecognizer(recognizer)
+
+    }
+
     
     //서치바 커스텀하는 함수
     func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
@@ -135,12 +119,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
 
     
   
-    //서치바에서 키보드 내려갈려고 추가 한건데 실패
-    @objc func checkAction(sender : UITapGestureRecognizer) {
-        print("checkaction")
-        searchController.searchBar.resignFirstResponder()
-
-    }
 
 
     //UI 디자인 설정
@@ -171,7 +149,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
-
+        
       
 
     }
@@ -285,7 +263,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         cell.layer.borderWidth = 0
         cell.layer.backgroundColor = greenCG
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.contView.addGestureRecognizer(gesture)
+       // cell.contView.addGestureRecognizer(gesture)
 
         
         

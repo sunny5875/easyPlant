@@ -128,7 +128,7 @@ func  savePlantData(plantData : PlantType) {
 
 
 func downloadPlantDataImage(imgview:UIImageView, title : String){
-    print(title)
+    //print(title)
     let urlString:String = documentsDirectory.absoluteString + "localData/\(title)"
     let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     let localURL = URL(string: encodedString)!
@@ -137,7 +137,7 @@ func downloadPlantDataImage(imgview:UIImageView, title : String){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
-        print("로컬에 이미지 존재!!")
+       // print("로컬에 이미지 존재!!")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
