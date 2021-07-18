@@ -65,8 +65,6 @@ class LevelViewController: UIViewController {
         levelStack.backgroundColor = UIColor.clear
     
         for (i, level) in levelLables.enumerated() {
-            print(i)
-            print(levels[i].name)
             level.text = levels[i].name
         }
         //myLevel.backgroundColor = UIColor.blue

@@ -27,15 +27,16 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         navigationController?.navigationBar.prefersLargeTitles = true
         
         userPlantCollectionView.reloadData()
-        print("user plant reload data finish")
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("view will appear!!!! hihi")
+        
         
         //loadPlantExtraList()
+        //print("load plant extra list")
+        
         loadUserPlant()
         userPlantCollectionView.reloadData()
 
@@ -97,7 +98,6 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
         if let detailVC = segue.destination as? MyPlantViewController,let cell = sender as? UICollectionViewCell,
            let indexPath =  userPlantCollectionView.indexPath(for: cell) {
             detailVC.myPlant = userPlants[indexPath.item]
-            print("user plant prepare1 finish")
 
         }
         
@@ -106,7 +106,6 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
             if let detailVC = segue.destination as?  EditUserPlantTableViewController{
                 detailVC.editPlant = UserPlant()
                 detailVC.isEdit = false
-                print("user plant prepare2 finish")
 
                 
                 
@@ -117,13 +116,11 @@ class UserPlantCollectionViewController: UIViewController,UICollectionViewDelega
             if let detailVC = segue.destination as?  MypageViewController{
                 detailVC.navigationItem.title = myUser.userName + "님"
                 detailVC.plantCollectionView = self
-                print("to my page")
             }
             
         }
         
         if segue.identifier == "toLoginPage" {
-            print("toLoginPage destination : \(segue.destination)")
             if let nav = segue.destination as? CustomNavigationController, let detailVC = nav.topViewController as? LoginViewController{
                 detailVC.plantCollectionView = self
             }

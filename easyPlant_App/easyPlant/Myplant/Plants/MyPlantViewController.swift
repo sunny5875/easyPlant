@@ -42,7 +42,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("myplant will appear")
         self.navigationItem.title = myPlant?.name
         
         myPlantUpdate()
@@ -100,7 +99,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             
             switch photoAuthorizationStatus {
             case .limited:
-                print("limit access")
                 showLimittedAccessUI()
 
                 
@@ -115,9 +113,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 alertController.popoverPresentationController?.sourceView = sender as! UIButton
                 present(alertController, animated: true, completion: nil)
                 break
-            case .authorized:
-                print("접근 허가")
-                let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
+            case .authorized:                let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
                     imagePicker.sourceType = .photoLibrary
                     self.present(imagePicker,animated: true,completion: nil)
                     })
@@ -129,7 +125,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 present(alertController, animated: true, completion: nil)
                 break
             case .denied:
-                print("접근 거부")
                 setAuthAlertAction()
                 break
             case .notDetermined:
@@ -150,7 +145,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         
         let photoCount = PHAsset.fetchAssets(with: nil).count
-        print("Status: limited\nPhotos: \(photoCount)")
     }
     
     func setAuthAlertAction() {
@@ -247,7 +241,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     //이 화면으로 돌아올 수있게 하는 길 만들어두기
     @IBAction func unwindToMyPlant(_ unwindSegue: UIStoryboardSegue) {
-        print("unwind to my plant")
         //다이어리를 삭제했었던 경우
         if(isDeleteDiary == true){
             for i in 0...(userPlants.count-1) {
@@ -315,7 +308,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             
             //이미지 불러오기
             //imageView.image = UIImage(named: myPlant.plantImage)
-            print(myPlant.name)
+            //print(myPlant.name)
             downloadUserPlantImage(imgview: imageView, title: myPlant.plantImage)
             imageView.layer.cornerRadius = imageView.frame.width / 2.0
             imageView.layer.masksToBounds = true
@@ -338,15 +331,15 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         // chart data array 에 데이터 추가
         for i in 0..<months.count {
             let lastIndex = numbers.count-1
-            print("last")
-            print(lastIndex)
+            
+           // print(lastIndex)
             let nowIndex = lastIndex - (months.count-1-i)
-            print("now")
-            print(nowIndex)
+            
+           // print(nowIndex)
             if(numbers.count > nowIndex && nowIndex >= 0){
                 value = ChartDataEntry(x: Double(x), y: Double(numbers[nowIndex]))
                 x += 1
-                print(value)
+                //print(value)
                 ChartEntry.append(value)
 
 
@@ -354,25 +347,18 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
        
          
         }
-        print("before")
-        print(ChartEntry )
-        print(ChartEntry.count)
         
         if ChartEntry.count < 12 {
             
             let extra = 12 - ChartEntry.count
-            print("extra")
-            print(extra)
             
             for i in 1...extra{
-                print("extra insert")
+                
                 value = ChartDataEntry(x: Double(x), y: 0.0)
                 ChartEntry.append(value)
                 x += 1
             }
         }
-        print("now")
-        print(ChartEntry )
  
         //차트 설정
         let chartDataset = LineChartDataSet(entries: ChartEntry, label: "올해의 행복도 변화")
@@ -438,7 +424,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
                 //해당 식물 삭제하기
                 for i in 0...(userPlants.count-1) {
                     if(userPlants[i].name == self.myPlant!.name){
-                        print("deleteplant success")
                         deleteUserPlantDiaryImage(title: "\(self.myPlant!.name)")
                         userPlants.remove(at: i)
                         deleteUserPlantImage(title: "\(self.myPlant!.name)")
@@ -457,7 +442,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         //해제 버튼
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
-                print("User click Dismiss button")
             }))
 
             
@@ -465,7 +449,6 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             //alert.popoverPresentationController?.sourceView = self.view
 
             self.present(alert, animated: true, completion: {
-                print("completion block")
             })
     
     }

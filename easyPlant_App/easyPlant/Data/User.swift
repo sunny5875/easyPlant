@@ -73,7 +73,7 @@ struct User : Codable{
         }
                
         numPlants = userPlants.count
-        print("%%%%%%%%%% register : \(registeredDate), date : \(Date())")
+        //print("%%%%%%%%%% register : \(registeredDate), date : \(Date())")
         growingDays = Calendar.current.dateComponents([.day], from: registeredDate, to: Date()).day!
         
         hapiness = 0
@@ -137,7 +137,6 @@ func loadUserInfo(){
     else {
  
         //let localURL = documentsDirectory.appendingPathComponent("localDiary/\(title)")
-        print("download to local userInfo start")
         // Create a reference to the file you want to download
         var filePath = ""
         if let user = Auth.auth().currentUser {
@@ -165,7 +164,6 @@ func loadUserInfo(){
         }
    }
 
-    print("download user info finish")
 }
 
 
@@ -175,7 +173,7 @@ func  saveUserInfo(user : User) {
     
     do{
         let encodeData = try jsonEncoder.encode(user)
-        print(userInfoURL)
+        //print(userInfoURL)
         
         // 원격에 저장
         
@@ -191,7 +189,7 @@ func  saveUserInfo(user : User) {
                     return
                 }
                 else{
-                    print("성공")
+                    //print("성공")
                 }
             }
             
@@ -202,14 +200,11 @@ func  saveUserInfo(user : User) {
       catch {
           print(error)
       }
-
-    print("user info save complete")
 }
 
 
 
 func downloadProfileImage(imgview:UIImageView){
-    print("download profile image")
     let urlString:String = documentsDirectory.absoluteString + "localProfile/profile"
     let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     let localURL = URL(string: encodedString)!
@@ -218,14 +213,12 @@ func downloadProfileImage(imgview:UIImageView){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
-        print("exist and download fast")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
     }
     else {
         let localURL = documentsDirectory.appendingPathComponent("localProfile/profile")
-        print("download to local start")
         // Create a reference to the file you want to download
         var filePath = "/profile/profile"
         
@@ -238,7 +231,7 @@ func downloadProfileImage(imgview:UIImageView){
         
 
         // print local filesystem URL
-        print(localURL)
+        //print(localURL)
 
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in
@@ -246,15 +239,13 @@ func downloadProfileImage(imgview:UIImageView){
             print("download to local error : \(error)")
 
           } else {
-            print("download to local success!!")
-            print(url)
+            //print(url)
             let data = NSData(contentsOf: url!)
             let image = UIImage(data: data! as Data)
             imgview.image = image
           }
           
         }
-        print("download to local finish")
 
         
     }
@@ -286,7 +277,7 @@ func uploadProfileImage(img :UIImage){
                  
          }
          else{
-             print("성공")
+             //print("성공")
          }
      }
 
@@ -307,7 +298,7 @@ func deleteProfileImage(){
       if let error = error {
             print("delete user plant error + \(error)")
       } else {
-        print("delete user plant success")
+        //print("delete user plant success")
       }
     }
     

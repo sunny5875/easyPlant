@@ -82,7 +82,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        print("search view will appear")
         self.navigationItem.largeTitleDisplayMode =  .never
        
    
@@ -90,7 +89,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     }
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print("scroll begin dragging")
         self.view.removeGestureRecognizer(recognizer)
         searchController.searchBar.resignFirstResponder()
 
@@ -98,7 +96,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar){
-        print("서치바가 수정 시작")
         recognizer.addTarget(self, action: Selector(("handleTap")))
         self.view.addGestureRecognizer(recognizer)
 
@@ -163,7 +160,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     //서치바에서 검색하면 새로 테이블 뷰를 세팅한다
     func updateSearchResults(for searchController: UISearchController) {
         
-        print("upate search result")
         /*
         if searchController.searchBar.text != "", nowTitle == "전체검색"{
             let text = searchController.searchBar.text
@@ -191,9 +187,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
             return
                 plant.dic["cntntsSj"]!.lowercased().contains(searchController.searchBar.text!.lowercased()) || plant.dic["distbNm"]!.lowercased().contains(searchController.searchBar.text!.lowercased())
             }
-            print(resultPlantArray)
             if resultPlantArray.count == 0{
-                print("count 0")
                 var newPlant = Plant()
                 newPlant.initDic()
                 newPlant.dic["cntntsSj"] = "trash"
@@ -227,7 +221,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         }
         
         plantArrayIndex = cnt
-        print(plantArrayIndex)
         plantArray = plantType.plantAll[plantArrayIndex]
         resultPlantArray = plantArray
            
@@ -257,7 +250,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     
     //인덱스 패스에 어떤 셀로 화면 상에 출력 되는지
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("table view change")
         let cell: CellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! CellTableViewCell
         //셀 디자인 설정
         cell.layer.borderWidth = 0
@@ -322,7 +314,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
        
         if resultPlantArray.count == 1 && resultPlantArray[0].dic["cntntsSj"] == "trash" {
             //ui 업데이트
-            print("uiupdate because empty")
             greenLeftUIUpdate(cell)
             greenRightUIUpdate(cell)
             
@@ -463,11 +454,9 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     }
     
     @objc func leftButtonTapped(_ sender:UIButton!){
-        print("leftsegue")
         self.performSegue(withIdentifier: "leftSegue", sender: sender)
     }
     @objc func rightButtonTapped(_ sender:UIButton!){
-        print("rightsegue")
         self.performSegue(withIdentifier: "rightSegue", sender: sender)
     }
     
@@ -504,7 +493,6 @@ extension UIImageView {
             DispatchQueue.main.async {
                 self.contentMode =  contentMode
                 if let data = data {
-                    print("download image from url success")
                     self.image = UIImage(data: data) }
             }
         }).resume()

@@ -137,13 +137,15 @@ func initDetailDic()-> [String:String]{
 func loadPlantExtraList() {
     for plant in plantType.plantAll[0] {
         if plant.dic["grwtveCodeNm"]!.contains("빠름") {
-            fetchData(metaURL, plantURL, plant.dic["cntntsSj"]!, 3)
+            fetchDataUnique(metaURL, plantURL, plant.dic["cntntsSj"]!, 3)
         }
-        if plant.dic["managelevelCodeNm"]!.contains("초보자") {
-            fetchData(metaURL, plantURL, plant.dic["cntntsSj"]!, 4)
+        if plant.dic["managelevelCodeNm"] == "초보자" {
+            fetchDataUnique(metaURL, plantURL, plant.dic["cntntsSj"]!, 4)
+            print("Debug(귀차니즘): name(\(plant.dic["cntntsSj"])), 관리수준(\(plant.dic["managelevelCodeNm"]))")
         }
         if plant.dic["flclrCodeNm"] != "" || plant.dic["fmldecolrCodeNm"] != "" {
-            fetchData(metaURL, plantURL, plant.dic["cntntsSj"]!, 6)
+            print("Debug(꽃과열매): name(\(plant.dic["cntntsSj"])), flower(\(plant.dic["flclrCodeNm"])), fruit(\(plant.dic["fmldecolrCodeNm"]))")
+            fetchDataUnique(metaURL, plantURL, plant.dic["cntntsSj"]!, 6)
         }
     }
 }
@@ -272,7 +274,6 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
         ]
     }
     
-    print("fetch start")
      
     //cntntsNo 뽑아내기
     AF.request(urlMeta, parameters: metaParam)
@@ -354,6 +355,126 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
 
 
 }
+
+func fetchDataUnique(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArray : Int){
+    //필요한 변수 선언
+    var cntntsNoExtract : [Int] = []
+    var imageCodeExtract : [String] = []
+    var nameExtract : [String] = []
+    var metaParam = [String:Any] ()
+    var plantParam = [String:Any] ()
+    
+    //메타 매개 변수 초기화
+    
+    
+    if text == "" {
+        metaParam = [
+            "apiKey" : nongsaroApiKey,
+            "sText" : text,
+            "pageNo": 1,
+            "numOfRows" : 300
+
+        ]
+    }
+    else{
+        metaParam = [
+            "apiKey" : nongsaroApiKey,
+
+            "sType" : "sCntntsSj",
+            "sText" : text,
+
+            
+            "pageNo": 1,
+            "numOfRows" : 300
+
+        ]
+    }
+    
+     
+    //cntntsNo 뽑아내기
+    AF.request(urlMeta, parameters: metaParam)
+            .responseData { response in
+                if response.value == nil {
+                    return
+                }
+                let xml = SWXMLHash.parse(response.value!)
+                let head = xml["response"]["header"]
+               // print(head)
+                let body = xml["response"]["body"]["items"]["item"]
+                
+                for item in body.all{
+                    //print(item)
+                    if let itemNo = item["cntntsNo"].element?.text, let toInt = Int(itemNo), let imagecode = item["rtnStreFileNm"].element?.text,let name = item["cntntsSj"].element?.text{
+                        if name != text {
+                            continue
+                        }
+                        cntntsNoExtract.append(toInt)
+                        imageCodeExtract.append(imagecode)
+                        nameExtract.append(name)
+                        
+                        downloadPlantDataImage(imgview: UIImageView(), title: "\(name)")
+
+                        
+                    }
+                }
+                
+                //print(cntntsNoExtract)
+                //print(imageCodeExtract)
+                //print(nameExtract)
+                
+                for (index,num) in cntntsNoExtract.enumerated(){
+                    
+                    //매개변수 초기화
+                    plantParam = [
+                        
+                        "apiKey" : nongsaroApiKey,
+                        "cntntsNo" : num
+                    ]
+                        //식물 상세정보 가져오기
+                        AF.request(urlPlant, parameters: plantParam)
+                            .responseData { response in
+                                var tmpDic = initDetailDic()
+                                    if response.value == nil {
+                                        return
+                                    }
+
+                                    let xml = SWXMLHash.parse(response.value!)
+                                    //print(xml)
+                                    let body = xml["response"]["body"]["item"]
+                                    
+                                for key in plantKey.keys{
+                                        if let element = body[key].element{
+                                            
+                                            tmpDic.updateValue(element.text, forKey: key)
+                                        }
+                                    }
+                               
+                                let count = imageCodeExtract[index].split(separator: "|").count
+                                let split = String( imageCodeExtract[index].split(separator: "|")[count-1])
+                                
+                                //print(split)
+                                
+                                tmpDic["rtnStreFileNm"] = split
+                                tmpDic["cntntsSj"] = nameExtract[index]
+                                
+                                    
+                                addPlantElement(tmpDic, indexArray)
+                                        
+                                  
+                                    
+
+                            }
+                        
+                    
+                }
+               // print("adding process all clear")
+              
+
+        }
+
+
+}
+
 
 func addPlantElement(_ detail: [String: String], _ index : Int){
    // print("add print element")

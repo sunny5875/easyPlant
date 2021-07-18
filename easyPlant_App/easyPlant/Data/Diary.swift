@@ -30,7 +30,6 @@ var diarys : [Diary] = [Diary(title: "초록콩 데려온 날",date: "2020-10-31
 
 
 func downloadDiaryImage(imgview:UIImageView, title : String){
-    print("download diary image")
     print(title)
     let urlString:String = documentsDirectory.absoluteString + "localDiary/\(title)"
     let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -39,14 +38,12 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
-        print("exist and download fast")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
     }
     else {
         let localURL = documentsDirectory.appendingPathComponent("localDiary/\(title)")
-        print("download to local diary start")
         // Create a reference to the file you want to download
         var filePath = ""
         if let user = Auth.auth().currentUser {
@@ -58,7 +55,7 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
         
 
         // print local filesystem URL
-        print(localURL)
+        //print(localURL)
 
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in
@@ -106,7 +103,7 @@ func uploadDiaryImage(img :UIImage, title: String){
                 
         }
         else{
-            print("성공")
+            //print("성공")
         }
     }
 
@@ -126,7 +123,7 @@ func deleteDiaryImage(title : String){
       if let error = error {
             print("delete diary error + \(error)")
       } else {
-        print("delete diary success")
+        //print("delete diary success")
       }
     }
     

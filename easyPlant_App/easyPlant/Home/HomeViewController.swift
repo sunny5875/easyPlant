@@ -43,6 +43,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
        
         //loadPlantSearchList()
+        //print("load plant search list")
 
         //앱껏다키면 로컬 데이터는 사라져서 매번 원격에서 json 파일 읽어야될 거 같애
         loadPlantData()
@@ -108,7 +109,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             dateComponents.hour = Calendar.current.component(.hour, from: plant.alarmTime)
             dateComponents.minute = Calendar.current.component(.minute, from: plant.alarmTime)
             
-            print("\(plant.name) \(dateComponents)")
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "watering_notification\(i)", content: notiContent, trigger: trigger)
                 
@@ -196,7 +196,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             dateComponents.hour = Calendar.current.component(.hour, from: plant.alarmTime)
             dateComponents.minute = Calendar.current.component(.minute, from: plant.alarmTime)
             
-            print("\(plant.name) \(dateComponents)")
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "watering_notification\(i)", content: notiContent, trigger: trigger)
                 
@@ -287,7 +286,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func loadDummyData(){
-        print("load dummy data")
         /*
         for type in plantType.plantAll{
             for plant in type {
@@ -316,7 +314,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLoginPage" {
-            print("toLoginPage destination : \(segue.destination)")
             if let nav = segue.destination as? CustomNavigationController, let detailVC = nav.topViewController as? LoginViewController{
                 detailVC.homeView = self
             }
@@ -347,7 +344,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             var watering_day_string = formatter.string(from: userPlants[i].wateringDay)
             
             if watering_day_string < current_date_string && userPlants[i].watered == 1 {
-                print("=======변경=====")
+               
                 userPlants[i].recentWater = formatter.string(from: userPlants[i].wateringDay)
                 userPlants[i].wateringDay = Calendar.current.date(byAdding: .day, value: userPlants[i].waterPeriod, to: userPlants[i].wateringDay)!
                 

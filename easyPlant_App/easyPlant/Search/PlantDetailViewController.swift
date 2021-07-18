@@ -26,30 +26,26 @@ class PlantDetailViewController: UIViewController {
     @IBOutlet weak var plantDetailImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("1")
+        //savePlantData(plantData: plantType)
+        //print("Save plant data to firebase")
         //stackElement.isHidden = true
         if let nameData = detailPlantName, let typeData = detailPlantType{
-
-            print("2")
             for (i,typeString) in plantType.type.enumerated(){
                 if typeString == typeData {
                     index1 = i
                     break
                 }
             }
-            print("3")
             for (i,plant) in plantType.plantAll[index1].enumerated(){
                 if plant.dic["cntntsSj"] == nameData {
                     index2 = i
                     break
                 }
             }
-            print("4")
-            
             
             let tmpImage = UIImageView()
             do{
-                print(imageURL+plantType.plantAll[index1][index2].dic["rtnStreFileNm"]!)
+                //print(imageURL+plantType.plantAll[index1][index2].dic["rtnStreFileNm"]!)
                 let data = try Data(contentsOf: URL(string: imageURL+plantType.plantAll[index1][index2].dic["rtnStreFileNm"]!)!)
                 tmpImage.image = UIImage(data: data)
                 let newWidth = self.view.frame.size.width
@@ -83,7 +79,6 @@ class PlantDetailViewController: UIViewController {
             plantDetailImage.layer.zPosition = 1
             contentLoad(plantType.plantAll[index1][index2])
         }
-        print("5")
         // Do any additional setup after loading the view.
     }
   
@@ -111,7 +106,6 @@ class PlantDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.largeTitleDisplayMode =  .never
-        print("will appear")
         
         
     }
@@ -146,7 +140,6 @@ class PlantDetailViewController: UIViewController {
     }
     
     func showAlert() {
-        print("show alear - detail view")
         let alert = UIAlertController(title: "로그인이 필요한 서비스입니다", message: "로그인 후 이용바랍니다", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default))
         self.present(alert, animated: true, completion: nil)

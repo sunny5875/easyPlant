@@ -74,7 +74,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
             
             switch photoAuthorizationStatus {
-            case .authorized: print("접근 허가")
+            case .authorized:
                 let photoLibraryAction = UIAlertAction(title: "사진 선택하기", style: .default, handler: { action in
                     imagePicker.sourceType = .photoLibrary
                     self.present(imagePicker,animated: true,completion: nil)
@@ -86,7 +86,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 alertController.popoverPresentationController?.sourceView = sender as! UIButton
                 present(alertController, animated: true, completion: nil)
  
-            case .denied: print("접근 거부")
+            case .denied:
                 setAuthAlertAction()
             case .notDetermined: requestGalleryPermission()
             default: break
@@ -197,10 +197,10 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                             deleteUserPlantImage(title: name)
                             editPlant?.name = nameTextField.text!
                             uploadUserPlantImage(img: img, title: editPlant!.name)
-                            print("image save -1")
+                            
                         }
                         editPlant?.plantImage = nameTextField.text!
-                        print("image change")
+                        
 
                     }
                     //아니라면
@@ -209,7 +209,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                             deleteUserPlantImage(title: name)
                             editPlant?.name = nameTextField.text!
                             uploadUserPlantImage(img: img, title: editPlant!.name)
-                            print("image save -2")
+                            
                         }
                         editPlant?.plantImage = nameTextField.text!
                     }
@@ -276,7 +276,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             if let name = editPlant?.name , let img = imageView.image{
                 deleteUserPlantImage(title: name)
                 uploadUserPlantImage(img: img, title: name)
-                print("image save -2")
+                
             }
             editPlant?.plantImage = nameTextField.text!
 
@@ -309,7 +309,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     //모든 내용이 다 채워져야 저장하기 버튼을 활성화 한다
     @IBAction func checkTextComplete(_ sender: UITextField) {
-       print("complete check start")
         if checkTextFormat(sender)==1 && checkTextEmpty()==1  {
             saveBarButton.isEnabled = true
         }
@@ -321,7 +320,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         //새로 만드는 중이었다면
         if isEdit == false{
             if imageView.image == nil {
-                print("image null")
                 saveBarButton.isEnabled = false
 
             }
@@ -349,7 +347,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         //등록일 형식 검사
         var checking1 = 1
         var textSplit = registerationTextField.text?.split(separator: "-")
-        print(textSplit)
+        
         if textSplit==nil || textSplit!.count != 3{
             checking1 = 0
         }
@@ -371,7 +369,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 else {
                     let dateRegister:Date = dateFormatter.date(from:  registerationTextField.text!)!
                     if dateRegister > Date() {
-                        print("미래야그건")
                         checking1 = 0
                     }
                 }
@@ -399,7 +396,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         //최근 물준 날짜 형식 검사
         var checking2 = 1
         textSplit = recentlyWateringDayTextField.text?.split(separator: "-")
-        print(textSplit)
+        
         if textSplit==nil || textSplit!.count != 3{
             checking2 = 0
         }
@@ -421,7 +418,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
                 else{
                     let dateRecent:Date = dateFormatter.date(from:  recentlyWateringDayTextField.text!)!
                     if dateRecent > Date() {
-                        print("미래야그건")
                         checking2 = 0
                     }
                 }
@@ -447,9 +443,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         //물주기 형식 검사
         var checking3 = 1
         let perToInt = Int(wateringDayTextField.text!)
-        print(perToInt)
+        
         if perToInt == nil || perToInt! <= 0 {
-            print("checking 3 = 0")
             checking3 = 0
         }
 
@@ -485,7 +480,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         if let name = editPlant?.name , let img = imageView.image{
             deleteUserPlantImage(title: name)
             uploadUserPlantImage(img: img, title: name)
-            print("image save -0")
         }
         dismiss(animated: true, completion: nil)
     }

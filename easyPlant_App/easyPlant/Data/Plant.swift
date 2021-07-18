@@ -56,8 +56,6 @@ func loadPlantData(){
         }
     }
     else {
- 
-        print("download to local plant data json file tart")
         // Create a reference to the file you want to download
         var filePath = ""
        
@@ -83,7 +81,6 @@ func loadPlantData(){
         }
    }
 
-    print("download plant data finish")
 }
 
 
@@ -93,8 +90,6 @@ func  savePlantData(plantData : PlantType) {
     
     do{
         let encodeData = try jsonEncoder.encode(plantData)
-        print(plantDataURL)
-        
         // 원격에 저장
         
         var filePath = ""
@@ -109,19 +104,18 @@ func  savePlantData(plantData : PlantType) {
                     return
                 }
                 else{
-                    print("성공")
+                    //print("성공")
                 }
             }
             
             // 로컬에 저장
             try encodeData.write(to: plantDataURL, options: .noFileProtection)
-        
+        print(plantDataURL)
       }
       catch {
           print(error)
       }
 
-    print("save plant data complete")
 }
 
 
@@ -143,7 +137,6 @@ func downloadPlantDataImage(imgview:UIImageView, title : String){
         
     }
     else {
-        print("원격에서 받아온다")
         let localURL = documentsDirectory.appendingPathComponent("localData/\(title)")
         // Create a reference to the file you want to download
         var filePath = ""
@@ -155,7 +148,7 @@ func downloadPlantDataImage(imgview:UIImageView, title : String){
         
 
         // print local filesystem URL
-        print(localURL)
+        //print(localURL)
 
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in

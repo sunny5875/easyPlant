@@ -161,7 +161,7 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
     
     do{
         let encodeData = try jsonEncoder.encode(plantsList)
-        print(userInfoURL)
+        //print(userInfoURL)
         
         // 원격에 저장
         var filePath = ""
@@ -176,7 +176,7 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
                     return
                 }
                 else{
-                    print("성공")
+                    //print("성공")
                 }
             }
             // 로컬에 저장
@@ -266,7 +266,7 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
         
 
         // print local filesystem URL
-        print(localURL)
+        //print(localURL)
 
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in
@@ -342,7 +342,7 @@ func deleteUserPlantImage(title : String){
       if let error = error {
             print("delete user plant error + \(error)")
       } else {
-        print("delete user plant success")
+        //print("delete user plant success")
       }
     }
     
