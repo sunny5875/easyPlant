@@ -26,6 +26,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     
     @IBOutlet var formatLabels: [UILabel]!
     
+    @IBOutlet weak var changeBtn: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var locationTextField: UITextField!
@@ -128,7 +129,9 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     //처음 뷰가 로드 됐을 때 실행
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        changeBtn.layer.cornerRadius = changeBtn.frame.height/2
+        changeBtn.layer.borderWidth = 1
+        changeBtn.layer.borderColor = UIColor(red: CGFloat(174.0/255), green: CGFloat(213.0/255), blue: CGFloat(129.0/255), alpha: 1).cgColor
         //수정하기 화면을 경우
         if isEdit == true {
             if let usrplant = editPlant {
@@ -162,7 +165,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         
         //이미지 뷰의 바운더리 설정
-        imageView.layer.borderWidth = 3
+        imageView.layer.borderWidth = 0
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = imageView.layer.frame.width / 2
         

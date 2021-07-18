@@ -41,7 +41,7 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         
         //새로 만들기였다면
         
-        if titleTextField.text != "", contentTextField.text != "", contentTextField.text != "Enter the text"{
+        if titleTextField.text != "", contentTextField.text != "", contentTextField.text != "내용을 입력하세요"{
             saveBarButton.isEnabled = true
                 
         }
@@ -54,7 +54,7 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
     
     func placeholderSetting() {
         contentTextField.delegate = self // txtvReview가 유저가 선언한 outlet
-        contentTextField.text = "Enter the text"
+        contentTextField.text = "내용을 입력하세요"
         contentTextField.textColor = UIColor.lightGray
             
     }
@@ -81,7 +81,7 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         print("textviewdidendEdit")
         if textView.text.isEmpty {
-            textView.text = "Enter the text"
+            textView.text = "내용을 입력하세요"
             textView.textColor = UIColor.lightGray
         }
         
@@ -238,7 +238,7 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         contentTextField.delegate = self
         
         if contentTextField.text.isEmpty {
-            contentTextField.text = "Enter the text"
+            contentTextField.text = "내용을 입력하세요"
             contentTextField.textColor = UIColor.lightGray
         }
         

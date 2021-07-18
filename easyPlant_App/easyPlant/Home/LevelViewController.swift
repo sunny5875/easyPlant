@@ -29,7 +29,8 @@ class LevelViewController: UIViewController {
         
         
         
-        let attributedString = NSMutableAttributedString(string: "당신은 현재 \(myUser.level.name)! \n\(myUser.level.description)")
+        let string = "\(myUser.userName)님은 현재 \(myUser.level.name)입니다 \n\(myUser.level.description)"
+        let attributedString = NSMutableAttributedString(string: string)
 
         // *** Create instance of `NSMutableParagraphStyle`
         let paragraphStyle = NSMutableParagraphStyle()
@@ -41,8 +42,9 @@ class LevelViewController: UIViewController {
         
         // *** Apply attribute to string ***
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(.foregroundColor, value: UIColor.white, range: (string as NSString).range(of: string))
 
-        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 15), range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: NSMakeRange(0, attributedString.length))
 
         myLevelView.textColor = UIColor.white
         myLevelView.attributedText = attributedString
@@ -72,7 +74,7 @@ class LevelViewController: UIViewController {
             if i == 0 {
                 level.text = "식물을 등록하세요!"
             } else {
-                level.text = "평균  행복도: \(levels[i].hapiness) 키운 식물수: \(levels[i].numPlants) 키운 기간: \(levels[i].growingDays)"
+                level.text = "평균  행복도: \(levels[i].hapiness)%  키운 식물수: \(levels[i].numPlants)개  키운 기간: \(levels[i].growingDays)일"
             }
             //level.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             level.backgroundColor =  UIColor.clear

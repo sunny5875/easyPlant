@@ -38,6 +38,9 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     @IBOutlet weak var labelStackView: UIStackView!
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var speciesLabel2: UILabel!
+    @IBOutlet weak var locationLabel2: UILabel!
+    @IBOutlet weak var happinessLabel2: UILabel!
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -287,14 +290,17 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func updateUI(){
 
-        imageView.layer.borderWidth = 3
+        imageView.layer.borderWidth = 0
         imageView.layer.borderColor = UIColor.white.cgColor
         
        
         if let myPlant = myPlant {
           
             //등록일 위치 종류 데이터 불러오기
+            
+            
             dDayLabel.text = myPlant.registedDate
+            dDayLabel.text = "\(myPlant.registedDate) 부터 함께했어요!"
             locationLabel.text = myPlant.location
             speciesLabel.text = myPlant.plantSpecies
             
@@ -394,6 +400,15 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        speciesLabel2.layer.borderWidth = 2
+        speciesLabel2.layer.borderColor = UIColor.white.cgColor
+        speciesLabel2.textColor = UIColor.white
+        locationLabel2.layer.borderWidth = 2
+        locationLabel2.layer.borderColor = UIColor.white.cgColor
+        locationLabel2.textColor = UIColor.white
+        happinessLabel2.layer.borderWidth = 2
+        happinessLabel2.layer.borderColor = UIColor.white.cgColor
+        happinessLabel2.textColor = UIColor.white
         updateUI()
         loadUserPlant()
 
@@ -407,7 +422,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             showAlert()
             return
         }
-        let alert = UIAlertController(title: "Manage", message: "Manage your plant", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "식물 관리하기", message: "당신의 식물을 관리하세요", preferredStyle: .actionSheet)
             
 //            alert.addAction(UIAlertAction(title: "Approve", style: .default , handler:{ (UIAlertAction)in
 //                print("User click Approve button")
@@ -415,12 +430,12 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             
         
         //수정하기 버튼
-            alert.addAction(UIAlertAction(title: "Edit", style: .default , handler:{ (UIAlertAction) in
+            alert.addAction(UIAlertAction(title: "수정하기", style: .default , handler:{ (UIAlertAction) in
                 self.performSegue(withIdentifier: "editPlantSegue", sender: MyPlantViewController.self)
             }))
 
         //삭제하기 버튼
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ [self] (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "삭제하기", style: .destructive , handler:{ [self] (UIAlertAction)in
                 //해당 식물 삭제하기
                 for i in 0...(userPlants.count-1) {
                     if(userPlants[i].name == self.myPlant!.name){
@@ -441,7 +456,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             
         
         //해제 버튼
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+            alert.addAction(UIAlertAction(title: "취소하기", style: .cancel, handler:{ (UIAlertAction)in
             }))
 
             
