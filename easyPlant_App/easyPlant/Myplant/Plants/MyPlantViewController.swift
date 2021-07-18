@@ -298,9 +298,13 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
           
             //등록일 위치 종류 데이터 불러오기
             
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
             
-            dDayLabel.text = myPlant.registedDate
-            dDayLabel.text = "\(myPlant.registedDate) 부터 함께했어요!"
+            let dateRegister:Date = dateFormatter.date(from: myPlant.registedDate)!
+            let days = Calendar.current.dateComponents([.day], from: dateRegister, to: Date()).day!
+            dDayLabel.text = "\(myPlant.name)와 \(days)일 동안 함께했어요~"
             locationLabel.text = myPlant.location
             speciesLabel.text = myPlant.plantSpecies
             
