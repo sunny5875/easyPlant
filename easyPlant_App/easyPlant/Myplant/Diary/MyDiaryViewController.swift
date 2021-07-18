@@ -14,8 +14,8 @@ class MyDiaryViewController: UIViewController {
 
     @IBOutlet weak var viewClear: UIView!
     @IBOutlet weak var imageLabel: UIImageView!
- 
-   
+    
+    @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var contentVie: UIView!
     @IBOutlet weak var stackVIew: UIStackView!
     
@@ -38,9 +38,40 @@ class MyDiaryViewController: UIViewController {
         
         if let diary = diary, let plant = myplant {
             //imageLabel.image = UIImage(named: diary.picture)
+            
+            let path = UIBezierPath()
+            path.move(to: CGPoint(x: 0, y: 0))
+            path.addLine(to: CGPoint(x: stackVIew.frame.width, y: 0))
+
+            // Create a `CAShapeLayer` that uses that `UIBezierPath`:
+
+            let shapeLayer = CAShapeLayer()
+            shapeLayer.path = path.cgPath
+            shapeLayer.strokeColor = UIColor.systemGray3.cgColor
+            shapeLayer.fillColor = UIColor.clear.cgColor
+            shapeLayer.lineWidth = 2
+
+            lineView.layer.addSublayer(shapeLayer)
+            
             downloadDiaryImage(imgview: imageLabel, title: diary.picture)
             titleLabel.text = "  " + diary.title
-            diaryLabel.text = "  " + diary.story
+            
+            let attributedString = NSMutableAttributedString(string: "  " + diary.story)
+
+            // *** Create instance of `NSMutableParagraphStyle`
+            let paragraphStyle = NSMutableParagraphStyle()
+
+            // *** set LineSpacing property in points ***
+            paragraphStyle.alignment = .justified
+            paragraphStyle.lineSpacing = 10 // Whatever line spacing you want in points
+            
+            
+            // *** Apply attribute to string ***
+            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attributedString.length))
+            
+            attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 15), range: NSMakeRange(0, attributedString.length))
+
+            diaryLabel.attributedText =  attributedString
             myplant = plant
             dateLabel.text = "  " + diary.date
             
@@ -51,7 +82,6 @@ class MyDiaryViewController: UIViewController {
         view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
         diaryLabel.layer.cornerRadius = 20
-        
         titleLabel.layer.cornerRadius = titleLabel.frame.height / 3
        
         
