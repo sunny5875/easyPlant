@@ -43,7 +43,6 @@ class JoinViewController: UIViewController,UITextViewDelegate {
         border4.frame = CGRect(x: 0, y: pwCheckField.frame.size.height-1, width: pwCheckField.layer.frame.width, height: 1)
         border4.backgroundColor = UIColor.lightGray.cgColor
         pwCheckField.layer.addSublayer((border4))
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func joinBtnTapped(_ sender: Any) {

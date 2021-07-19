@@ -27,67 +27,32 @@ extension UIButton {
 
 
 class SortTableViewController: UITableViewController, UISearchResultsUpdating,UISearchBarDelegate{
-
-
-
     var searchController = UISearchController(searchResultsController: nil)
-    
-    
-    
     var nowTitle  = ""
     var plantArrayIndex = 0
     var plantArray: [Plant] = []
     var resultPlantArray: [Plant] = []
-
-    //이것도 키보드 내려가게 할려고 한건데 실패
-    //let gesture = UITapGestureRecognizer(target: self, action:  #selector(checkAction))
-    //일단 가장 먼저 스토리보드의 테이블 뷰 컨트롤러를 클릭한 후 class 칸에 TablViewController를 적어줘야 연결이 됨
-   
-   let recognizer = UITapGestureRecognizer()
+    let recognizer = UITapGestureRecognizer()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidload")
         findArray()
         setUI()
-     //   setDelegate()
-        //self.navigationItem.titleView = searchController.searchBar
-        //self.navigationItem.searchController = searchController
-        //updateSegControl()
 
         self.view.backgroundColor = greenColor
-        
-        //이부분읻 자꾸 에러나는데 이유가 뭘까..?
-        //self.searchBar.delegate = self
-        
-    
-  
-        
-
-        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-
-            //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-            //tap.cancelsTouchesInView = false
-
-
-       // view.addGestureRecognizer(tap)
-        
-
+   
     }
-    
-    
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         self.navigationItem.largeTitleDisplayMode =  .never
-       
-   
 
     }
     
+    
+    //스크롤을 감지해서 키보드를 내리는 함수
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.removeGestureRecognizer(recognizer)
         searchController.searchBar.resignFirstResponder()
@@ -114,10 +79,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         return image
     }
 
-    
-  
-
-
     //UI 디자인 설정
     func setUI(){
        
@@ -127,7 +88,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         searchController.searchBar.placeholder = ""
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.layer.borderWidth = 0
-       // searchController.searchBar.layer.borderColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1)).cgColor
         let image = self.getImageWithColor(color: UIColor.white, size: CGSize(width: 370, height: 40))
         searchController.searchBar.setSearchFieldBackgroundImage(image, for: .normal)
         self.tableView.tableHeaderView = searchController.searchBar
@@ -146,8 +106,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
-        
-      
+ 
 
     }
     
@@ -156,29 +115,9 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
     }
     
     
-    
     //서치바에서 검색하면 새로 테이블 뷰를 세팅한다
     func updateSearchResults(for searchController: UISearchController) {
         
-        /*
-        if searchController.searchBar.text != "", nowTitle == "전체검색"{
-            let text = searchController.searchBar.text
-            print("search total : \(text)")
-            plantType.plantAll[0] = []
-            fetchData(metaURL,plantURL,text!,plantArrayIndex)
-            findArray()
-            
-            
-            print(resultPlantArray)
-            if resultPlantArray.count == 0{
-                print("count 0")
-                var newPlant = Plant()
-                newPlant.initDic()
-                resultPlantArray.append(newPlant)
-            }
-            tableView.reloadData()
-        }
- */
        
             //아직 검색한게 없다면 - 임의의 셀을 추가 -> 그냥 디자인 때문
         if searchController.searchBar.text != ""{
@@ -203,10 +142,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
 
     }
     
-   
-    
-    
-    
 
     //현재 식물 분류 배열이 뭔지 찾아둔다
     func findArray(){
@@ -226,9 +161,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
            
     }
 
-   
-    
-      
     //그룹이라고 생각하면됨
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -268,39 +200,13 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         let itemLeft = plants[indexPath.row*2]
         //이미지만들어두기
         let leftImage = UIImageView()
-        /*
-        do{
-            print(itemLeft.dic["rtnStreFileNm"]!)
-            let data = try Data(contentsOf: URL(string: imageURL+itemLeft.dic["rtnStreFileNm"]!)!)
-            leftImage.image = UIImage(data: data)
-            let newWidth = cell.leftImageButton.fs_width * 1.3
-          
-            let scale = (newWidth / leftImage.image!.size.width)
-            let newHeight = leftImage.image!.size.height * scale * 1.1
-            UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-            
-            leftImage.image!.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            leftImage.image = newImage
-         
-         
-
-       }catch let err{
-           print(err.localizedDescription)
-       }
-            */
+       
         downloadPlantDataImage(imgview: leftImage, title: itemLeft.dic["cntntsSj"]!)
 
-
-       
-        
         cell.leftImageButton?.setImage(leftImage.image, for: .normal)
         cell.leftImageButton.imageView?.contentMode = .scaleAspectFill
         cell.leftImageButton.layer.cornerRadius = 30
         cell.leftCellView.layer.cornerRadius = 30
-        //cell.leftImageButton.layer.cornerRadius = 30
-
  
         //이미지버튼의 타이틀 설정
         cell.leftImageButton?.setTitle(itemLeft.dic["cntntsSj"], for: .normal)
@@ -311,9 +217,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         //각 버튼을 눌렀을 시 호출할 함수 설정
         cell.leftButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         cell.leftImageButton?.addTarget(self, action: #selector(SortTableViewController.leftButtonTapped(_:)), for: UIControl.Event.touchUpInside)
-        
-      
-        
+
         //검색결과가 없다면
        
         if resultPlantArray.count == 1 && resultPlantArray[0].dic["cntntsSj"] == "trash" {
@@ -335,29 +239,9 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
             
             let rightImage = UIImageView()
             rightImage.contentMode = .scaleAspectFit
-            /*
-            do{
-                let data = try Data(contentsOf: URL(string: imageURL+itemRight.dic["rtnStreFileNm"]!)!)
-                rightImage.image = UIImage(data: data)
-                let newWidth = cell.rightImageButton.fs_width * 1.3
-              
-                let scale = (newWidth / rightImage.image!.size.width)
-                let newHeight = rightImage.image!.size.height * scale * 1.1
-                UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-                
-                rightImage.image!.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-                let newImage = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                rightImage.image = newImage
-             }catch let err{
-                 print(err.localizedDescription)
-             }
- 
- */
+          
             downloadPlantDataImage(imgview: rightImage, title: itemRight.dic["cntntsSj"]!)
-                
-
-           
+        
             cell.rightImageButton?.setImage(rightImage.image, for: .normal)
             cell.rightImageButton.imageView?.contentMode = .scaleAspectFill
             cell.rightImageButton.layer.cornerRadius = 30
@@ -373,8 +257,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
             //각 버튼을 눌렀을 시 호출할 함수 설정
             cell.rightButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
             cell.rightImageButton?.addTarget(self, action: #selector(SortTableViewController.rightButtonTapped(_:)), for: UIControl.Event.touchUpInside)
-       
-                
 
 
         }
@@ -385,10 +267,6 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
             
         }
             
- 
- 
-        // Configure the cell...
-
         return cell
     }
      
@@ -465,12 +343,7 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         self.performSegue(withIdentifier: "rightSegue", sender: sender)
     }
     
-    
-    //Get
-    
-    //셀을 누르면 화면 전환하고 싶으면 selection segue way에 show 사용
 
-  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -482,14 +355,11 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
             vc.navigationItem.title = senderBut.title(for: .normal)
        
         }
-        
-        
     }
-    
-   
 }
 
 
+//확장
 
 extension UIImageView {
     func downloadImageFrom(_ link:String, contentMode: UIView.ContentMode) {
@@ -502,7 +372,5 @@ extension UIImageView {
             }
         }).resume()
     }
-    
-    
 
 }

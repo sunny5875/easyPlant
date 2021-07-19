@@ -13,10 +13,8 @@ class LevelViewController: UIViewController {
     @IBOutlet weak var levelStack: UIStackView!
     @IBOutlet weak var myStack: UIStackView!
     @IBOutlet var levelLables: [UILabel]!
-    
     @IBOutlet var levelImages: [UIImageView]!
     @IBOutlet weak var myLevelView: UITextView!
-    
     @IBOutlet var levelsView: [UITextView]!
     
     override func viewDidLoad() {
@@ -26,8 +24,6 @@ class LevelViewController: UIViewController {
         myStack.layer.zPosition = 102
         levelStack.layer.zPosition = 101
         bgView.layer.zPosition = 100
-        
-        
         
         let string = "\(myUser.userName)님은 현재 \(myUser.level.name)입니다 \n\(myUser.level.description)"
         let attributedString = NSMutableAttributedString(string: string)
@@ -39,11 +35,9 @@ class LevelViewController: UIViewController {
         paragraphStyle.alignment = .center
         paragraphStyle.lineSpacing = 7 // Whatever line spacing you want in points
         
-        
         // *** Apply attribute to string ***
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attributedString.length))
         attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: (string as NSString).range(of: string))
-
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: NSMakeRange(0, attributedString.length))
 
        
@@ -51,13 +45,6 @@ class LevelViewController: UIViewController {
         myLevelView.layer.cornerRadius = 30
         
         myStack.layer.cornerRadius = 30
-        //myStack.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-
-        //myLevelView.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-        
-        //myStack.backgroundColor = UIColor.white
-        //myLevelView.backgroundColor = UIColor.clear
-        
         myStack.layer.shadowOpacity = 0.2
         myStack.layer.shadowOffset = CGSize(width: 0, height: 10)
         myStack.layer.shadowRadius = 30
@@ -69,35 +56,23 @@ class LevelViewController: UIViewController {
         for (i, level) in levelLables.enumerated() {
             level.text = levels[i].name
         }
-        //myLevel.backgroundColor = UIColor.blue
         for (i, level) in levelsView.enumerated() {
             if i == 0 {
                 level.text = "식물을 등록하세요!"
             } else {
                 level.text = "평균  행복도: \(levels[i].hapiness)%  키운 식물수: \(levels[i].numPlants)개  키운 기간: \(levels[i].growingDays)일"
             }
-            //level.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             level.backgroundColor =  UIColor.clear
         }
         
         for (i, level) in levelImages.enumerated() {
             level.image = UIImage(named: levels[i].icon)
         }
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func closeModal(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

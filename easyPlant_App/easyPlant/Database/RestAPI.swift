@@ -157,85 +157,51 @@ func loadPlantSearchList(){
     
     //["전체검색","공기정화","그늘에서","성장속도","귀차니즘","인테리어","꽃과열매"]
     fetchData(metaURL, plantURL, "" , 0)
-    
-    //fetchData(metaURL, plantURL, "나한송", 4)
-    
     fetchData(metaURL, plantURL, "네마탄투스" , 5)
-    
     fetchData(metaURL, plantURL, "네오레겔리아" , 5)
-    
     fetchData(metaURL, plantURL, "뉴기니아봉선화" , 5)
-    
     fetchData(metaURL, plantURL, "더피고사리" , 5)
-    
     fetchData(metaURL, plantURL, "녹영" , 5)
-    
     fetchData(metaURL, plantURL, "데코라고무나무" , 2)
-    
     fetchData(metaURL, plantURL, "동백" , 5)
-    
     fetchData(metaURL, plantURL, "드라세나 '와네끼'" , 1)
     fetchData(metaURL, plantURL, "드라세나 '송오브인디아'" , 5)
-    
     fetchData(metaURL, plantURL, "드라세나 '자바'" , 1)
-    
     fetchData(metaURL, plantURL, "드라세나 '콤팩타'" , 1)
-    
     fetchData(metaURL, plantURL, "드라세나 드라코" , 1)
-    
     fetchData(metaURL, plantURL, "드라세나 마지나타" , 1)
-    
     fetchData(metaURL, plantURL, "드라세나 맛상게아나" , 5)
-    
     fetchData(metaURL, plantURL, "드라세나 산다레아나" , 1)
-    
     fetchData(metaURL, plantURL, "떡갈잎 고무나무" , 2)
-    
     fetchData(metaURL, plantURL, "러브체인" , 5)
-    
     fetchData(metaURL, plantURL, "렉스베고니아" , 5)
-    
     fetchData(metaURL, plantURL, "루스커스" , 2)
-    
     fetchData(metaURL, plantURL, "만데빌라" , 5)
-    
     fetchData(metaURL, plantURL, "몬스테라" , 2)
-    
     fetchData(metaURL, plantURL, "무늬관음죽" , 1)
-    
     fetchData(metaURL, plantURL, "무늬벤자민고무나무" , 1)
-    
     fetchData(metaURL, plantURL, "무늬쉐플레라'홍콩'" , 1)
-    
-    //fetchData(metaURL, plantURL, "뮤렌베키아" , 4)
     fetchData(metaURL, plantURL, "보스톤고사리" , 5)
     fetchData(metaURL, plantURL, "산세베리아" , 1)
-    //fetchData(metaURL, plantURL, "산호수" , 4)
     fetchData(metaURL, plantURL, "삼색데코라고무나무" , 5)
     fetchData(metaURL, plantURL, "세네시오 라디칸스" , 5)
     fetchData(metaURL, plantURL, "세이프릿지 야자" , 1)
     fetchData(metaURL, plantURL, "수박필레아" , 2)
     fetchData(metaURL, plantURL, "쉐플레라 '홍콩'" , 1)
-    //fetchData(metaURL, plantURL, "스킨답서스" , 4)
     fetchData(metaURL, plantURL, "심비디움" , 5)
     fetchData(metaURL, plantURL, "싱고니움" , 2)
     fetchData(metaURL, plantURL, "아라우카리아" , 1)
     fetchData(metaURL, plantURL, "아레카야자" , 1)
     fetchData(metaURL, plantURL, "아이비" , 2)
     fetchData(metaURL, plantURL, "안수리움" , 1)
-    
     fetchData(metaURL, plantURL, "익소라" , 5)
-    //fetchData(metaURL, plantURL, "칼랑코에" , 4)
-    //fetchData(metaURL, plantURL, "크립탄서스" , 4)
     fetchData(metaURL, plantURL, "테이블야자" , 1)
     fetchData(metaURL, plantURL, "폴리시아스" , 5)
     fetchData(metaURL, plantURL, "프테리스" , 5)
     fetchData(metaURL, plantURL, "피토니아 핑크스타" , 2)
     fetchData(metaURL, plantURL, "피토니아 화이트스타" , 2)
     fetchData(metaURL, plantURL, "해마리아" , 2)
-    
-    
-
+  
     
 }
 
@@ -283,11 +249,9 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
                 }
                 let xml = SWXMLHash.parse(response.value!)
                 let head = xml["response"]["header"]
-               // print(head)
                 let body = xml["response"]["body"]["items"]["item"]
                 
                 for item in body.all{
-                    //print(item)
                     if let itemNo = item["cntntsNo"].element?.text, let toInt = Int(itemNo), let imagecode = item["rtnStreFileNm"].element?.text,let name = item["cntntsSj"].element?.text{
                         cntntsNoExtract.append(toInt)
                         imageCodeExtract.append(imagecode)
@@ -298,10 +262,6 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
                         
                     }
                 }
-                
-                //print(cntntsNoExtract)
-                //print(imageCodeExtract)
-                //print(nameExtract)
                 
                 for (index,num) in cntntsNoExtract.enumerated(){
                     
@@ -341,16 +301,10 @@ func fetchData(_ urlMeta:String, _ urlPlant: String, _ text :String, _ indexArra
                                     
                                 addPlantElement(tmpDic, indexArray)
                                         
-                                  
-                                    
-
                             }
-                        
                     
                 }
-               // print("adding process all clear")
-              
-
+        
         }
 
 
@@ -417,11 +371,7 @@ func fetchDataUnique(_ urlMeta:String, _ urlPlant: String, _ text :String, _ ind
                         
                     }
                 }
-                
-                //print(cntntsNoExtract)
-                //print(imageCodeExtract)
-                //print(nameExtract)
-                
+   
                 for (index,num) in cntntsNoExtract.enumerated(){
                     
                     //매개변수 초기화
@@ -476,22 +426,20 @@ func fetchDataUnique(_ urlMeta:String, _ urlPlant: String, _ text :String, _ ind
 }
 
 
+//주어진 딕셔너리 정보로 새 식물을 만들어서 인덱스에 해당하는 식물 배열에 넣는 함수
 func addPlantElement(_ detail: [String: String], _ index : Int){
-   // print("add print element")
     var newPlant = Plant()
     newPlant.initDic()
     
+    //키의 값이 존재하는 것만 업데이트
     for key in detail.keys{
         if detail[key] != "" {
             newPlant.dic[key] = detail[key]
-            //print(newPlant.dic[key]!)
         }
     }
     
     plantType.plantAll[index].append(newPlant)
-   // print( plantType.plantAll[index])
 
-    //print("add finish")
 }
 
 

@@ -26,20 +26,15 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
 
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var dateLabel: UILabel!
-    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     @IBOutlet weak var contentTextField: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
     
     
+    //저장가능한지 확인해주는 함수중 하나
     @IBAction func checkTextWrite(_ sender: UITextField) {
-        
-//        sender.resignFirstResponder()
-        
-        //새로 만들기였다면
         
         if titleTextField.text != "", contentTextField.text != "", contentTextField.text != "내용을 입력하세요"{
             saveBarButton.isEnabled = true
@@ -49,9 +44,10 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
             saveBarButton.isEnabled = false
         }
         
-        
     }
     
+    
+    //텍스트뷰의 placeholder 설정
     func placeholderSetting() {
         contentTextField.delegate = self // txtvReview가 유저가 선언한 outlet
         contentTextField.text = "내용을 입력하세요"
@@ -59,10 +55,8 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
             
     }
         
-        
-        // TextView Place Holder
+    //텍스트뷰가 수정을 시작할 때 저장가능한지 검사&UI 설정
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print("textview begin edit")
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
@@ -77,9 +71,9 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         }
         
     }
-    // TextView Place Holder
+
+    //텍스트 뷰가 수정을 마쳤을 때 저장 가능한지 검사& UI 설정
     func textViewDidEndEditing(_ textView: UITextView) {
-        print("textviewdidendEdit")
         if textView.text.isEmpty {
             textView.text = "내용을 입력하세요"
             textView.textColor = UIColor.lightGray
@@ -95,38 +89,29 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
     }
 
 
-    
+
+    //저장 버튼이 눌렸을 때 불리는 함수
     @IBAction func saveButtonTapped(_ sender: Any) {
         //편집중이었다면
         if (isEdit == true){
-            print("edit")
             for i in 0...(userPlants.count-1) {
                 if(userPlants[i].name == userplant?.name){
                     for j in 0...userPlants[i].diarylist.count-1 {
                         if(userPlants[i].diarylist[j].picture == editDiary?.picture){
                             
-                            
-                            print("find userplant index")
                             if let image = imageView.image, let title = userplant?.name {
                                 deleteDiaryImage(title: "\(title)-\((editDiary!.title))-\(editDiary!.date)")
-                                
                                 editDiary?.title = titleTextField.text!
-                                print("edit save diary")
-                                
                                 uploadDiaryImage(img: image, title: "\(title)-\(editDiary!.title)-\(editDiary!.date)")
                                 
                                 let tmpDate = editDiary!.date
                                 let tmpTitle = editDiary!.title
                                 editDiary?.picture =  "\(title)-\(tmpTitle)-\(tmpDate)"
                                 
-                                
                             }
                          
                             editDiary?.story = contentTextField.text!
-                            print(userPlants[i].diarylist[j])
-
                             userPlants[i].diarylist[j] = editDiary!
-                            print("unwindto edit DiarySegue")
                             
                             
                             //수정하고 저장하기
@@ -155,13 +140,10 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
                 if(userPlants[i].name == userplant?.name){
                 //add
                     userPlants[i].diarylist.append(Diary(title: diarytitle, date: imageDate, story: diarycontent, picture: "\(userplant!.name)-\(diarytitle)-\(imageDate)"))
-                    print("backTomyplant")
                     
-                    print(imageDate)
                     if let image = imageView.image, let title = userplant?.name {
                         uploadDiaryImage(img: image, title: "\(title)-\(diarytitle)-\(imageDate)")
                     }
-                
                     
                     //수정하고 저장하기
                     saveUserInfo(user: myUser)
@@ -189,17 +171,15 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+        //텍스트뷰 클릭시 뷰를 키보드 만큼 들어올리기 위함
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
        
         
+        //이미지 설정
         if let image = image, let _ = userplant{
             imageView.image = image
-            
-            
-            
+   
         }
    
 
@@ -210,18 +190,11 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-       //dateString = dateFormatter.string(from: date)
-        //dateLabel.text = dateString
-        
-       // uploadimage(img: image)
-        
         if editDiary != nil {
             titleTextField.text =  editDiary?.title
             contentTextField.text = editDiary?.story
             imageView.image = UIImage(named: editDiary!.picture)
         }
-
-        // Do any additional setup after loading the view.
         
         if(isEdit == true){
             saveBarButton.isEnabled = true
@@ -230,6 +203,7 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         }
         
         
+        //각종 UI 설정
         contentView.layer.zPosition = 100
         imageView.layer.zPosition = 99
         stackView.layer.cornerRadius = 20
@@ -238,7 +212,6 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         contentTextField.layer.borderWidth = 1
         contentTextField.layer.borderColor = UIColor.systemGray5.cgColor
         contentTextField.layer.cornerRadius =  10
-        
         contentTextField.delegate = self
         
         if contentTextField.text.isEmpty {
@@ -248,52 +221,32 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         
         
     }
-
+    
+    //다른곳을 터지하면 키보드가 내려가게 하는 함수
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     
     
+    //아래 두함수는 키보드에 따라 뷰를 올리고 내리는 함수들
     @objc func keyboardShow(notification: NSNotification, sender: Any?) {
-        print(sender)
-        print("show")
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            print("show in")
                 if self.view.frame.origin.y == 0 {
-                    print("show == 0")
                     self.view.frame.origin.y -= (keyboardSize.height / 2 + 10)
 
-                   // stackView.frame.origin.y -= keyboardSize.height
-
-                    //imageView.frame.origin.y -= keyboardSize.height
-                    //contentView.frame.origin.y -= keyboardSize.height
-
-
             }
-
         }
 
     }
 
     @objc func keyboardHide(notification: NSNotification,sender: Any?) {
-       print(sender)
-        print("hide")
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
-            print("hide in")
             if self.view.frame.origin.y != 0 {
-                print("hide != 0")
                 self.view.frame.origin.y += (keyboardSize.height / 2 + 10)
 
-                //stackView.frame.origin.y += keyboardSize.height
-                //contentView.frame.origin.y += keyboardSize.height
-
-                //imageView.frame.origin.y += keyboardSize.height
-
             }
-
         }
-
     }
 
 

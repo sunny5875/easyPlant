@@ -97,10 +97,7 @@ struct UserPlant : Codable {
         try valueContatiner.encode(self.recentWater, forKey: CodingKeys.recentWater)
         try valueContatiner.encode(self.totalWaterNum,forKey: CodingKeys.totalWaterNum)
         try valueContatiner.encode(self.didWaterNum,forKey: CodingKeys.didWaterNum)
-        
-            
-        
-        
+
     }
     
     
@@ -141,12 +138,9 @@ struct UserPlant : Codable {
         self.didWaterNum = didWaterNum
     }
     
-    
 }
     
-    
-    
-    
+
   
 var listPlantsIndex: [Int] = []
 
@@ -161,7 +155,6 @@ func  saveNewUserPlant(plantsList : [UserPlant], archiveURL : URL) {
     
     do{
         let encodeData = try jsonEncoder.encode(plantsList)
-        //print(userInfoURL)
         
         // 원격에 저장
         var filePath = ""
@@ -263,11 +256,7 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
         }
         
         let imgRef = storageRef.child(filePath)
-        
-
-        // print local filesystem URL
-        //print(localURL)
-
+    
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in
           if let error = error {
@@ -283,23 +272,7 @@ func downloadUserPlantImage(imgview:UIImageView, title : String){
 
         
     }
-    
-    
-    /*
-    원래 코드
-     print("gs://easyplant-8649d.appspot.com/userPlant/\(title)")
-     storage.reference(forURL: "gs://easyplant-8649d.appspot.com/userPlant/\(title)").downloadURL{ (url, error) in
-             if let error = error{
-              
-                 print("download error + \(error)")
-             }else{
-                 let data = NSData(contentsOf: url!)
-                 let image = UIImage(data: data! as Data)
-                  imgview.image = image
-         }
-                         
-            }
-     */
+
     
  }
  

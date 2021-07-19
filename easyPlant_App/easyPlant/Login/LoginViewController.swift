@@ -47,15 +47,9 @@ class LoginViewController: UIViewController ,UITextViewDelegate {
             IDField.placeholder = "이미 로그인 된 상태입니다."
             pwField.placeholder = "이미 로그인 된 상태입니다."
         }
-        
-        //findBtn.layer.borderColor = UIColor.systemGray4.cgColor
-        //findBtn.layer.borderWidth = 1
-        findBtn.layer.cornerRadius = 15
-        
-        //joinBtn.layer.borderColor = UIColor.systemGray4.cgColor
-        //joinBtn.layer.borderWidth = 1
-        joinBtn.layer.cornerRadius = 15
 
+        findBtn.layer.cornerRadius = 15
+        joinBtn.layer.cornerRadius = 15
         setupProviderLoginView()
     }
     
@@ -418,22 +412,3 @@ extension LoginViewController : ASAuthorizationControllerPresentationContextProv
         return self.view.window!
     }
 }
-
-
-
-
-/*
- levelLabel.text = "\(myUser.level.name)"
- levelLabel.textColor = UIColor.black
- levelImage.image = UIImage(named: myUser.level.icon)
- if myUser.level.name != levels[0].name {
-     hapinessImage.isHidden = false
-     if myUser.hapiness < 70 {
-         hapinessImage.image = UIImage(named: "sadPlant")
-     } else {
-         hapinessImage.image = UIImage(named: "happyPlant")
-     }
- } else {
-     hapinessImage.isHidden = true
- }
- */

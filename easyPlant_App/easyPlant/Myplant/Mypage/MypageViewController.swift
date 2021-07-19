@@ -14,44 +14,39 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
 
     @IBOutlet weak var logoutBtn: UIButton!
     @IBOutlet var infoLabels: [UILabel]!
-    
     @IBOutlet weak var myInfo: UIView!
     
-    @IBOutlet weak var guideLabelForIphone8: UIStackView!
-    @IBOutlet weak var guideInfo: UILabel!
-    
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var guide: UIView!
     @IBOutlet weak var camerabut: UIButton!
-    
     @IBOutlet weak var cameraBackground: UIImageView!
+    
+    @IBOutlet weak var guide: UIView!
+    @IBOutlet weak var guideInfo: UILabel!
     @IBOutlet weak var guideImage: UIButton!
     @IBOutlet weak var guideButton: UIButton!
-    
     @IBOutlet weak var guidetitle: UILabel!
+    @IBOutlet weak var guideLabelForIphone8: UIStackView!
+
+    
     var plantCollectionView: UserPlantCollectionViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
         setAutolayout()
-        var addButton: UIBarButtonItem = UIBarButtonItem(title: "로그아웃", style: .done, target: self, action: #selector(addTapped))
+        let addButton: UIBarButtonItem = UIBarButtonItem(title: "로그아웃", style: .done, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = addButton
          
-        // Do any additional setup after loading the view.
     }
     
-    
-    
+    //프로필 이미지가 완전한 원모양이 되지 않아서 추가적으로 작성한 함수
     override func viewWillLayoutSubviews() {
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
         
-        
-        
-        
     }
     
+    //휴대폰 기종에 따라 달라지는 화면 설정
     func setAutolayout() {
         let screenHeight = UIScreen.main.bounds.size.height
         if screenHeight == 736 || screenHeight == 667 {
@@ -71,6 +66,7 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
 
      }
     
+    //UI 설정
     func updateUI(){
         myInfo.layer.zPosition = 100
         guide.layer.zPosition = 100
@@ -120,7 +116,6 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         requestCameraPermission()
         requestGalleryPermission()
 
-        
         //다음 세개를 action sheet에 추가할 것
         //cancel로 정하면 맨 밑에 생기고 default면 그냥 위에 생김
         let cancelAction = UIAlertAction(title: "Cancel",style: .cancel, handler: nil)
@@ -138,7 +133,6 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
             })
             alertController.addAction(cameraAction)
         }
-        
         
         //사진 앨범으로 추가하기
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
@@ -165,8 +159,6 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
             }
             
         }
-   
-        
  
     }
     
@@ -181,11 +173,11 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
             deleteProfileImage()
             uploadProfileImage(img: img)
             myUser.isChangeProfile = 1
-            print("profile image save -0")
         }
         dismiss(animated: true, completion: nil)
     }
 
+    //권한 요청 알람
     func setAuthAlertAction() {
         let authAlertController: UIAlertController
         authAlertController = UIAlertController(title: "갤러리 권한 요청", message: "갤러리 권한을 허용해야 앱을 정상적으로 이용할 수 있습니다.", preferredStyle: UIAlertController.Style.alert)
@@ -203,15 +195,12 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
-        
     }
  
     
     
     //가이드 함수
-    
     @IBAction func guidebut(_ sender: Any) {
-        print("guide cliked")
         
         let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "OnboardingViewController")
@@ -230,7 +219,6 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         
         // local 데이터 다 지우기
         deleteLocalData()
-        
         
         loadUserInfo()
         loadUserPlantAndDismiss()
@@ -263,7 +251,6 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
             // Download to the local filesystem
             infoRef.write(toFile: archiveURL) { url, error in
               if let error = error {
-                print("download to local userPlants error : \(error)")
 
               } else {
                 let data = NSData(contentsOf: url!)
@@ -272,7 +259,6 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
                     userPlants = decoded
                     
                     if let view = self.plantCollectionView {
-                        print("reload data!!!!!!@#!#@!$!$# \(userPlants)")
                         view.userPlantCollectionView.reloadData()
                     }
                     self.navigationController?.popViewController(animated: true)

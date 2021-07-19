@@ -31,23 +31,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.backgroundColor = UIColor.white
-        
-        //self.plantListTableView.backgroundColor =  UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         self.plantListTableView.backgroundColor = UIColor.clear
         calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "calendarCell")
       
         // Request notification authentication
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
                 })
-        
-       
-        //loadPlantSearchList()
-        //print("load plant search list")
 
         //앱껏다키면 로컬 데이터는 사라져서 매번 원격에서 json 파일 읽어야될 거 같애
         loadPlantData()
         
+        
+        //첫 실행인 경우 유저 업데이트를 해주고 온보딩 화면 설정해주며 기타작업진행
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             print("Not first launch.")
@@ -85,12 +80,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
 
 
+        //데이터에 관한 작업
         loadUserInfo()
         loadUserPlant()
         myUser.updateUser()
         saveUserInfo(user: myUser)
 
        
+        //알람 설정
         for (i, plant) in userPlants.enumerated() {
             if Auth.auth().currentUser == nil {
                 break
@@ -99,11 +96,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let userNotificationCenter = UNUserNotificationCenter.current()
             userNotificationCenter.delegate = self
             
-            //let date = Date(timeIntervalSinceNow: 15)
             notiContent.title = "\(plant.name) 물 줄 시간이예요!"
             notiContent.body = "물 뿌리개를 통해 \(plant.name)에게 물을 주세요."
-
-            //let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
             
             var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: plant.wateringDay)
             dateComponents.hour = Calendar.current.component(.hour, from: plant.alarmTime)
@@ -130,10 +124,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
         
+        //달력 설정
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.appearance.headerDateFormat = "M월"
         calendar.appearance.headerTitleColor = .black
-        //calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 24)
         calendar.locale = Locale(identifier: "ko_KR")
         for i in 0...6 {
             calendar.calendarWeekdayView.weekdayLabels[i].font = UIFont(name:"나눔명조", size: 60.0)
@@ -150,9 +144,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         calendar.appearance.todayColor = UIColor(red: 147/255, green: 201/255, blue: 115/255, alpha: 1)
         calendar.appearance.selectionColor = UIColor(red: 147/255, green: 170/255, blue: 147/255, alpha: 1)
         calendar.layer.cornerRadius = 20
-        //calendarView.appearance.selectionColor = UICo
-        // Do any additional setup after loading the view.
-        
+
+        //유저의 레벨정보 뷰 설정
         userView.backgroundColor = .white
         userView.layer.cornerRadius = 20
         
@@ -186,12 +179,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         for (i, plant) in userPlants.enumerated() {
             let notiContent = UNMutableNotificationContent()
-            //let date = Date(timeIntervalSinceNow: 15)
             notiContent.title = "\(plant.name) 물 줄 시간이예요!"
             notiContent.body = "물 뿌리개를 통해 \(plant.name)에게 물을 주세요."
 
-            //let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-            
             var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: plant.wateringDay)
             dateComponents.hour = Calendar.current.component(.hour, from: plant.alarmTime)
             dateComponents.minute = Calendar.current.component(.minute, from: plant.alarmTime)
@@ -207,6 +197,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    //UI 설정들
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -233,13 +224,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var ChartEntry : [ChartDataEntry] = []
         let value_fill = PieChartDataEntry(value: 0)
         let value_empty = PieChartDataEntry(value: 0)
-        
-        /*
-        pieChart.chartDescription?.text = "행복도"
-        pieChart.chartDescription?.font = UIFont.boldSystemFont(ofSize: CGFloat(12))
-        pieChart.chartDescription?.textColor = .lightGray
-        pieChart.chartDescription?.textAlign = .right
-        */
+   
         value_fill.value = Double(myUser.hapiness)
         value_fill.label = ""
         value_empty.value = 100 - value_fill.value
@@ -285,22 +270,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    func loadDummyData(){
-        /*
-        for type in plantType.plantAll{
-            for plant in type {
-                
-               
-                
-                uploadDiaryImage(img: UIImage(named : plant.engName)!, title: "\(plant.engName)")
-                uploadUserPlantImage(img: UIImage(named : plant.engName)!, title: "\(plant.engName)")
-                
- 
-            }
-        }
- */
-    }
-    
+    //레벨뷰로 가는 함수
     @objc func showLevelView(sender: UIView) {
         if Auth.auth().currentUser == nil {
             //만약 로그인이 안된 상태라면
@@ -312,16 +282,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toLoginPage" {
-            if let nav = segue.destination as? CustomNavigationController, let detailVC = nav.topViewController as? LoginViewController{
-                detailVC.homeView = self
-            }
-        }
-    }
     
+    
+    //아래는 식물 목록에 해당하는 테이블뷰 설정 함수들
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -366,8 +330,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 myUser.updateUser()
             }
-            //print("watering day : \(plant.wateringDay), compare : \(Calendar.current.compare(userPlants[i].wateringDay, to: Date(), toGranularity: .day) == .orderedSame)")
-
+    
             watering_day_string = formatter.string(from: userPlants[i].wateringDay)
             
             if watering_day_string == clicked_date_string {
@@ -387,6 +350,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
    
+    
+    //상황에 따라 달라지느 UI 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "plantCell", for: indexPath) as! UserPlantTableViewCell
         
@@ -408,10 +373,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.plantColor.isHidden = false
         cell.noPlantLabel.isHidden = true
         cell.accessoryView?.isHidden = false
-        
-        //그림자
-        //cell.addShadow()
-        
+   
         let item = userPlants[listPlantsIndex[indexPath.row]]
         
         let formatter = DateFormatter()
@@ -427,7 +389,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.location.text = item.location
         cell.period.text = "\(item.waterPeriod) 일"
         cell.plantColor.tintColor = item.color.uiColor
-        //cell.plantImage.image = UIImage(named: item.plantImage)
         downloadUserPlantImage(imgview: cell.plantImage, title: "\(item.plantImage)")
         cell.plantImage.layer.cornerRadius = cell.plantImage.frame.height / 2
 
@@ -459,6 +420,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
   
+    //식물목록 중 하나를 누르면 해당하는 식물 페이지로 넘어가게
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
            if listPlantsIndex.isEmpty {
                return indexPath
@@ -473,8 +435,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
            return indexPath
        }
  
+    
+    //물뿌리개가 눌렸을 때 설정
     @objc func watering(sender: UITapGestureRecognizer){
-        //sender.image = UIImage(named: "watering_fill")
         let wateringButton = sender.view as! UIImageView
         
         if userPlants[listPlantsIndex[wateringButton.tag]].watered == 1 {
@@ -492,14 +455,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    //unwind 함수
     @IBAction func unwindToHome(_ unwindSegue: UIStoryboardSegue) {
-//        let sourceViewController = unwindSegue.source
-        // Use data from the view controller which initiated the unwind segue
-        
+
         plantListTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toLoginPage" {
+            if let nav = segue.destination as? CustomNavigationController, let detailVC = nav.topViewController as? LoginViewController{
+                detailVC.homeView = self
+            }
+        }
     }
 }
 
+
+//확장함수들
 extension HomeViewController: FSCalendarDataSource, FSCalendarDelegateAppearance {
     //이벤트 표시 개수
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -560,7 +532,6 @@ extension HomeViewController: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.list, .badge, .sound, .banner])
-        //completionHandler([.alert, .badge, .sound])
     }
 }
 

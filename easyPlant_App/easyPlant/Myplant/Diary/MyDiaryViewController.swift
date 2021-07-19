@@ -14,36 +14,28 @@ class MyDiaryViewController: UIViewController {
 
     @IBOutlet weak var viewClear: UIView!
     @IBOutlet weak var imageLabel: UIImageView!
-    
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var contentVie: UIView!
     @IBOutlet weak var stackVIew: UIStackView!
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var dateLabel: UILabel!
-    
     @IBOutlet weak var diaryLabel: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         updateUI()
-      
         
     }
     
     func updateUI(){
         
         if let diary = diary, let plant = myplant {
-            //imageLabel.image = UIImage(named: diary.picture)
             
             let path = UIBezierPath()
             path.move(to: CGPoint(x: 0, y: 0))
             path.addLine(to: CGPoint(x: stackVIew.frame.width, y: 0))
 
             // Create a `CAShapeLayer` that uses that `UIBezierPath`:
-
             let shapeLayer = CAShapeLayer()
             shapeLayer.path = path.cgPath
             shapeLayer.strokeColor = UIColor.systemGray3.cgColor
@@ -76,14 +68,11 @@ class MyDiaryViewController: UIViewController {
             
          
         }
+        
+        //기타 UI 설정
         self.navigationItem.title = myplant?.name
-        
-    
-        
         diaryLabel.layer.cornerRadius = 20
         titleLabel.layer.cornerRadius = titleLabel.frame.height / 3
-       
-        
         contentVie.layer.cornerRadius = 30
         contentVie.layer.zPosition = 100
         imageLabel.layer.zPosition = 99
@@ -103,7 +92,6 @@ class MyDiaryViewController: UIViewController {
             
             //   아이패드에서만 실행되고 아이폰은 안나올 수도 있다
             activityController.popoverPresentationController?.sourceView = sender as! UIButton
-            
             present(activityController, animated: true, completion: nil) //이게 handler, 코드조각을 선정할 수 있다. 팝오버 기준이 버튼이 될 것이다
     }
     
@@ -137,11 +125,6 @@ class MyDiaryViewController: UIViewController {
             return
         }
         let alert = UIAlertController(title: "다이어리 관리", message: "", preferredStyle: .actionSheet)
-            
-//            alert.addAction(UIAlertAction(title: "Approve", style: .default , handler:{ (UIAlertAction)in
-//                print("User click Approve button")
-//            }))
-            
         
         //수정하기
             alert.addAction(UIAlertAction(title: "다이어리 수정하기", style: .default , handler:{ (UIAlertAction) in
@@ -180,10 +163,6 @@ class MyDiaryViewController: UIViewController {
                 print("User click Dismiss button")
             }))
 
-            
-            //uncomment for iPad Support
-            //alert.popoverPresentationController?.sourceView = self.view
-
             self.present(alert, animated: true, completion: {
                 print("completion block")
             })
@@ -193,9 +172,6 @@ class MyDiaryViewController: UIViewController {
     
     
     @IBAction func unwindToEditDiary(_ unwindSegue: UIStoryboardSegue) {
-//        let sourceViewController = unwindSegue.source
-        // Use data from the view controller which initiated the unwind segue
-        print("unwindToEditDiary")
         updateUI()
     }
     

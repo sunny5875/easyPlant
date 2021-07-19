@@ -65,20 +65,9 @@ class OnboardingViewController: UIViewController,UIScrollViewDelegate {
                imageView.contentMode = .scaleAspectFit
                imageView.center = CGPoint(x:scrollWidth/2,y: scrollHeight/2+10)
              
-//               let txt1 = UILabel.init(frame: CGRect(x:32,y:imageView.frame.maxY+30,width:scrollWidth-64,height:30))
-//               txt1.textAlignment = .center
-//               txt1.font = UIFont.boldSystemFont(ofSize: 20.0)
-//               txt1.text = titles[index]
-
-//               let txt2 = UILabel.init(frame: CGRect(x:32,y:txt1.frame.maxY+10,width:scrollWidth-64,height:50))
-//               txt2.textAlignment = .center
-//               txt2.numberOfLines = 3
-//               txt2.font = UIFont.systemFont(ofSize: 18.0)
-//               txt2.text = descs[index]
-
+//
                slide.addSubview(imageView)
-//               slide.addSubview(txt1)
-//               slide.addSubview(txt2)
+//            
                scrollView.addSubview(slide)
 
            }

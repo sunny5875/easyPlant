@@ -27,7 +27,6 @@ class NotificationViewController: UITableViewController {
     }
     
     @objc func changed () {
-        //newAlarm = datePicker.date
         
         for i in 0...(userPlants.count-1) {
             if(userPlants[i].name == myPlant?.name){
@@ -40,7 +39,6 @@ class NotificationViewController: UITableViewController {
     }
 
     @objc func colorWellChanged(_ sender: Any) {
-        //newColor = colorPickerView.selectedColor ?? UIColor(cgColor: CGColor(red: 0, green: 0, blue: 0, alpha: 1))
         
         for i in 0...(userPlants.count-1) {
             if(userPlants[i].name == myPlant?.name){

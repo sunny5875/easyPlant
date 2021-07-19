@@ -52,10 +52,6 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
             filePath = "/sampleUser/diary/\(title).jpeg"
         }
         let imgRef = storageRef.child(filePath)
-        
-
-        // print local filesystem URL
-        //print(localURL)
 
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in
@@ -70,16 +66,7 @@ func downloadDiaryImage(imgview:UIImageView, title : String){
         }
     }
     
-    /*
-     원래코드
-    Storage.storage().reference(forURL: "gs://easyplant-8649d.appspot.com/diary/\(title)").downloadURL { (url, error) in
-        print("download load diary image")
-        print(title)
-                       let data = NSData(contentsOf: url!)
-                       let image = UIImage(data: data! as Data)
-                        imgview.image = image
-        }
-   */
+ 
 }
 
 
@@ -103,7 +90,7 @@ func uploadDiaryImage(img :UIImage, title: String){
                 
         }
         else{
-            //print("성공")
+          //  print("upload diary image 성공")
         }
     }
 
@@ -123,7 +110,7 @@ func deleteDiaryImage(title : String){
       if let error = error {
             print("delete diary error + \(error)")
       } else {
-        //print("delete diary success")
+       // print("delete diary success")
       }
     }
     

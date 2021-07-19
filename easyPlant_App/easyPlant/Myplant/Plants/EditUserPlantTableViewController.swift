@@ -15,27 +15,20 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     var isChangePhoto : Bool = false
     var isEdit : Bool = true
     var speciesTmp : String?
-
     var isFromSearch : Bool?
-
     let monthPerDay: [Int] = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
-    
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet var formatLabels: [UILabel]!
-    
     @IBOutlet weak var changeBtn: UIButton!
+    
+    //텍스트 필드
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var locationTextField: UITextField!
-    
     @IBOutlet weak var registerationTextField: UITextField!
     @IBOutlet weak var speciesTextField: UITextField!
-    
     @IBOutlet weak var recentlyWateringDayTextField: UITextField!
-    
     @IBOutlet weak var wateringDayTextField: UITextField!
     
     
@@ -102,6 +95,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
     }
 
     
+    //권한 알람 창
     func setAuthAlertAction() {
         let authAlertController: UIAlertController
         authAlertController = UIAlertController(title: "갤러리 권한 요청", message: "갤러리 권한을 허용해야 앱을 정상적으로 이용할 수 있습니다.", preferredStyle: UIAlertController.Style.alert)
@@ -137,10 +131,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             if let usrplant = editPlant {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
-         
-            
+        
                 //해당 식물의 이미지를 가져오기
-                //imageView.image = UIImage(named : usrplant.plantImage)
                 downloadUserPlantImage(imgview: imageView!, title: "\(editPlant!.plantImage)")
                 
                 //해당 식물의 정보를 불러오기
@@ -234,10 +226,6 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
 
                     userPlants[i] = editPlant! // 변경된 사항들을 전부 적용시켜준다
      
-                    //let imageData : Data = (imageView.image?.pngData())!
-                   // let imagename = imageView.image?.description
-     
-                
                 }
             }
             
@@ -258,10 +246,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             //기본값으로 알람과 색상을 설정
             editPlant?.alarmTime = Date()
             editPlant?.color = Color(uiColor: UIColor(red: 150/255, green: 220/255, blue: 200/255, alpha: 1))
-            
-//            editPlant?.plantImage = imageView.image!.debugDescription
-          
-          
+
             
             //데이터 포멧
             let dateFormatter = DateFormatter()
@@ -295,13 +280,10 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
             
             if let isfrom = isFromSearch, isfrom == true{
                 performSegue(withIdentifier: "fromSearchMake", sender: nil)
-                //self.navigationController?.popViewController(animated: false)
-                
 
             }
             else{
                 performSegue(withIdentifier: "makeNewPlant", sender: self)
-
             }
         }
         
@@ -330,6 +312,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
     }
     
+    
+    //텍스트가 비었는지 검사
     func checkTextEmpty() -> Int {
         if nameTextField.text! != "", speciesTextField.text != "",
                registerationTextField.text != "",
@@ -341,6 +325,7 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         return 0
     }
     
+    //텍스트의 형식을 검사
     func checkTextFormat(_ sender: UITextField) -> Int {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

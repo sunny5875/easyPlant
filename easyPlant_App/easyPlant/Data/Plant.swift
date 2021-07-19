@@ -61,7 +61,6 @@ func loadPlantData(){
        
         filePath = "/PlantData/plantData.json"
         
-        
         let infoRef = storageRef.child(filePath)
         
         // Download to the local filesystem
@@ -91,7 +90,6 @@ func  savePlantData(plantData : PlantType) {
     do{
         let encodeData = try jsonEncoder.encode(plantData)
         // 원격에 저장
-        
         var filePath = ""
         
             filePath = "/PlantData/plantData.json"
@@ -131,7 +129,6 @@ func downloadPlantDataImage(imgview:UIImageView, title : String){
     //로컬에 없다면 원격 저장소에서 받아온다
     if let data = NSData(contentsOf: localURL){
         //로컬에 이미지가 존재할 경우 로컬 저장소에서 사용
-       // print("로컬에 이미지 존재!!")
         let image = UIImage(data: data as Data)
         imgview.image = image
         
@@ -145,11 +142,7 @@ func downloadPlantDataImage(imgview:UIImageView, title : String){
      
         
         let imgRef = storageRef.child(filePath)
-        
-
-        // print local filesystem URL
-        //print(localURL)
-
+    
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in
           if let error = error {

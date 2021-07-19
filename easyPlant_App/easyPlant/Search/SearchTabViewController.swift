@@ -8,8 +8,6 @@
 import UIKit
 
 class SearchTabViewController: UIViewController {
-
-    
     @IBOutlet var menuButtons: [UIButton]!
     @IBOutlet weak var totalSearch: UIButton!
     var titleSend: String?
@@ -19,9 +17,7 @@ class SearchTabViewController: UIViewController {
      
         setUI()
         self.view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-        //self.view.backgroundColor = UIColor.white
-        
-        // Do any additional setup after loading the view.
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,12 +25,14 @@ class SearchTabViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.isNavigationBarHidden = false
         
+        //모든 식물 사진을 받아온다.
         downloadAllData()
 
     }
 
     
     
+    //각 버튼들의 UI 설정
     func setUI(){
         for but in menuButtons{
             but.layer.borderWidth = 0.5
@@ -52,6 +50,7 @@ class SearchTabViewController: UIViewController {
         
     }
 
+    //아래 두함수는 모두 매뉴를 눌렀을때 이동 함수
     @IBAction func searchMenuTab(_ sender: Any) {
         let butSelect:UIButton = sender as! UIButton
         titleSend = butSelect.title(for: .normal)

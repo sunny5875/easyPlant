@@ -13,10 +13,7 @@ class DiaryCollectionViewCell: UICollectionViewCell {
     
     
     func update(info : Diary){
-        //imageView.image = UIImage(named: info.picture)
-        print("info picture")
-        print(info.picture)
-
+  
         downloadDiaryImage(imgview: imageView!, title: "\(info.picture)")
     }
 }

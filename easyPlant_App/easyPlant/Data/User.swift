@@ -31,10 +31,8 @@ struct User : Codable{
         level = try container.decode(Level.self, forKey: .level)
         growingDays = try container.decode(Int.self, forKey: .growingDays)
         numPlants = try container.decode(Int.self, forKey: .numPlants)
-       
         hapiness = try container.decode(Int.self, forKey: .hapiness)
         registeredDate = try container.decode(Date.self, forKey: .registeredDate)
-       
         userName = try container.decode(String.self, forKey: .userName)
         isChangeProfile = try container.decode(Int.self, forKey: .isChangeProfile)
         
@@ -46,10 +44,8 @@ struct User : Codable{
         try valueContatiner.encode(self.level,forKey: CodingKeys.level)
         try valueContatiner.encode(self.growingDays,forKey: CodingKeys.growingDays)
         try valueContatiner.encode(self.numPlants,forKey: CodingKeys.numPlants)
-      
         try valueContatiner.encode(self.hapiness,forKey: CodingKeys.hapiness)
         try valueContatiner.encode(self.registeredDate,forKey: CodingKeys.registeredDate)
-       
         try valueContatiner.encode(self.userName,forKey: CodingKeys.userName)
         try valueContatiner.encode(self.isChangeProfile,forKey: CodingKeys.isChangeProfile)
         
@@ -73,7 +69,6 @@ struct User : Codable{
         }
                
         numPlants = userPlants.count
-        //print("%%%%%%%%%% register : \(registeredDate), date : \(Date())")
         growingDays = Calendar.current.dateComponents([.day], from: registeredDate, to: Date()).day!
         
         hapiness = 0
@@ -136,7 +131,6 @@ func loadUserInfo(){
     }
     else {
  
-        //let localURL = documentsDirectory.appendingPathComponent("localDiary/\(title)")
         // Create a reference to the file you want to download
         var filePath = ""
         if let user = Auth.auth().currentUser {
@@ -173,8 +167,6 @@ func  saveUserInfo(user : User) {
     
     do{
         let encodeData = try jsonEncoder.encode(user)
-        //print(userInfoURL)
-        
         // 원격에 저장
         
         var filePath = ""
@@ -189,7 +181,7 @@ func  saveUserInfo(user : User) {
                     return
                 }
                 else{
-                    //print("성공")
+                    //print("save user info 성공")
                 }
             }
             
@@ -228,10 +220,6 @@ func downloadProfileImage(imgview:UIImageView){
             filePath = "/sampleUser/profile/profile"
         }
         let imgRef = storageRef.child(filePath)
-        
-
-        // print local filesystem URL
-        //print(localURL)
 
         // Download to the local filesystem
         imgRef.write(toFile: localURL) { url, error in
@@ -277,7 +265,7 @@ func uploadProfileImage(img :UIImage){
                  
          }
          else{
-             //print("성공")
+             //print("upload profile image 성공")
          }
      }
 

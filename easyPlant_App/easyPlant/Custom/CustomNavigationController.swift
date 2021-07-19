@@ -14,11 +14,9 @@ class CustomNavigationController: UINavigationController {
     
         self.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
-
         self.navigationBar.shadowImage = UIImage()
      
     }
-    
 
 
 }
