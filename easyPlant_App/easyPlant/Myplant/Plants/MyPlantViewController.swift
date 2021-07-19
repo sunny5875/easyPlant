@@ -305,7 +305,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             
             let dateRegister:Date = dateFormatter.date(from: myPlant.registedDate)!
             let days = Calendar.current.dateComponents([.day], from: dateRegister, to: Date()).day!
-            self.days.text = "+\(days)"
+            self.days.text = "D+\(days)"
             
             locationLabel.text = myPlant.location
             speciesLabel.text = myPlant.plantSpecies
