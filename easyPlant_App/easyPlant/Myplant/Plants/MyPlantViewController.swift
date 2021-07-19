@@ -37,6 +37,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     @IBOutlet weak var labelStackView: UIStackView!
     
+    @IBOutlet weak var days: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var speciesLabel2: UILabel!
     @IBOutlet weak var locationLabel2: UILabel!
@@ -290,7 +291,7 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func updateUI(){
 
-        imageView.layer.borderWidth = 0
+        imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         
        
@@ -304,7 +305,8 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
             
             let dateRegister:Date = dateFormatter.date(from: myPlant.registedDate)!
             let days = Calendar.current.dateComponents([.day], from: dateRegister, to: Date()).day!
-            dDayLabel.text = "\(myPlant.name)와 \(days)일 동안 함께했어요~"
+            self.days.text = "+\(days)"
+            
             locationLabel.text = myPlant.location
             speciesLabel.text = myPlant.plantSpecies
             
@@ -404,15 +406,8 @@ class MyPlantViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        speciesLabel2.layer.borderWidth = 2
-        speciesLabel2.layer.borderColor = UIColor.white.cgColor
-        speciesLabel2.textColor = UIColor.white
-        locationLabel2.layer.borderWidth = 2
-        locationLabel2.layer.borderColor = UIColor.white.cgColor
-        locationLabel2.textColor = UIColor.white
-        happinessLabel2.layer.borderWidth = 2
-        happinessLabel2.layer.borderColor = UIColor.white.cgColor
-        happinessLabel2.textColor = UIColor.white
+      
+        
         updateUI()
         loadUserPlant()
 

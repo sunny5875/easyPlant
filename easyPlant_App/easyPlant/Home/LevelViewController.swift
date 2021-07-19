@@ -42,11 +42,11 @@ class LevelViewController: UIViewController {
         
         // *** Apply attribute to string ***
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range:NSMakeRange(0, attributedString.length))
-        attributedString.addAttribute(.foregroundColor, value: UIColor.white, range: (string as NSString).range(of: string))
+        attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: (string as NSString).range(of: string))
 
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 16), range: NSMakeRange(0, attributedString.length))
 
-        myLevelView.textColor = UIColor.white
+       
         myLevelView.attributedText = attributedString
         myLevelView.layer.cornerRadius = 30
         

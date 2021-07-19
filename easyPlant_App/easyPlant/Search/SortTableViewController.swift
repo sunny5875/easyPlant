@@ -297,6 +297,10 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
         
         cell.leftImageButton?.setImage(leftImage.image, for: .normal)
         cell.leftImageButton.imageView?.contentMode = .scaleAspectFill
+        cell.leftImageButton.layer.cornerRadius = 30
+        cell.leftCellView.layer.cornerRadius = 30
+        //cell.leftImageButton.layer.cornerRadius = 30
+
  
         //이미지버튼의 타이틀 설정
         cell.leftImageButton?.setTitle(itemLeft.dic["cntntsSj"], for: .normal)
@@ -356,7 +360,8 @@ class SortTableViewController: UITableViewController, UISearchResultsUpdating,UI
            
             cell.rightImageButton?.setImage(rightImage.image, for: .normal)
             cell.rightImageButton.imageView?.contentMode = .scaleAspectFill
-            
+            cell.rightImageButton.layer.cornerRadius = 30
+            cell.rightCellView.layer.cornerRadius = 30
             
             //이미지 버튼의 타이틀 설정
             cell.rightImageButton?.setTitle(itemRight.dic["cntntsSj"], for: .normal)

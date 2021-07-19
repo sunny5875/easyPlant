@@ -165,8 +165,8 @@ class EditUserPlantTableViewController: UITableViewController,UINavigationContro
         
         
         //이미지 뷰의 바운더리 설정
-        imageView.layer.borderWidth = 0
-        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.systemGray4.cgColor
         imageView.layer.cornerRadius = imageView.layer.frame.width / 2
         
 
