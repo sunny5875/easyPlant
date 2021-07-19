@@ -17,6 +17,9 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
     
     @IBOutlet weak var myInfo: UIView!
     
+    @IBOutlet weak var guideLabelForIphone8: UIStackView!
+    @IBOutlet weak var guideInfo: UILabel!
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var guide: UIView!
     @IBOutlet weak var camerabut: UIButton!
@@ -25,11 +28,13 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
     @IBOutlet weak var guideImage: UIButton!
     @IBOutlet weak var guideButton: UIButton!
     
+    @IBOutlet weak var guidetitle: UILabel!
     var plantCollectionView: UserPlantCollectionViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        setAutolayout()
         var addButton: UIBarButtonItem = UIBarButtonItem(title: "로그아웃", style: .done, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = addButton
          
@@ -46,6 +51,25 @@ class MypageViewController: UIViewController,UINavigationControllerDelegate, UII
         
         
     }
+    
+    func setAutolayout() {
+        let screenHeight = UIScreen.main.bounds.size.height
+        if screenHeight == 736 || screenHeight == 667 {
+             print("iPhone 8")
+            guideInfo.isHidden = true
+            guideImage.isHidden = true
+            guidetitle.isHidden = true
+            guideLabelForIphone8.isHidden = false
+            
+         }
+        else{
+            guideInfo.isHidden = false
+            guideImage.isHidden = false
+            guidetitle.isHidden = false
+            guideLabelForIphone8.isHidden = true
+        }
+
+     }
     
     func updateUI(){
         myInfo.layer.zPosition = 100
