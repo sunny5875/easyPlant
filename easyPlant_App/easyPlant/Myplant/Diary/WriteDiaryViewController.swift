@@ -190,10 +190,14 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         super.viewDidLoad()
         
 //        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
-   
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+       
         
         if let image = image, let _ = userplant{
             imageView.image = image
+            
             
             
         }
@@ -249,6 +253,48 @@ class WriteDiaryViewController: UIViewController,UITextViewDelegate {
         self.view.endEditing(true)
     }
     
+    
+    
+    @objc func keyboardShow(notification: NSNotification, sender: Any?) {
+        print(sender)
+        print("show")
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            print("show in")
+                if self.view.frame.origin.y == 0 {
+                    print("show == 0")
+                    self.view.frame.origin.y -= (keyboardSize.height / 2 + 10)
+
+                   // stackView.frame.origin.y -= keyboardSize.height
+
+                    //imageView.frame.origin.y -= keyboardSize.height
+                    //contentView.frame.origin.y -= keyboardSize.height
+
+
+            }
+
+        }
+
+    }
+
+    @objc func keyboardHide(notification: NSNotification,sender: Any?) {
+       print(sender)
+        print("hide")
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue{
+            print("hide in")
+            if self.view.frame.origin.y != 0 {
+                print("hide != 0")
+                self.view.frame.origin.y += (keyboardSize.height / 2 + 10)
+
+                //stackView.frame.origin.y += keyboardSize.height
+                //contentView.frame.origin.y += keyboardSize.height
+
+                //imageView.frame.origin.y += keyboardSize.height
+
+            }
+
+        }
+
+    }
 
 
 }

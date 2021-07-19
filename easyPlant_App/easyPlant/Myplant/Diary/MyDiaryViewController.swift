@@ -29,8 +29,7 @@ class MyDiaryViewController: UIViewController {
         super.viewDidLoad()
 
         updateUI()
-        
-       
+      
         
     }
     
@@ -79,7 +78,7 @@ class MyDiaryViewController: UIViewController {
         }
         self.navigationItem.title = myplant?.name
         
-        view.backgroundColor = UIColor(cgColor: CGColor(red: 174/255, green: 213/255, blue: 129/255, alpha: 1))
+    
         
         diaryLabel.layer.cornerRadius = 20
         titleLabel.layer.cornerRadius = titleLabel.frame.height / 3
@@ -208,5 +207,8 @@ class MyDiaryViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+
+
+
 }
 
